@@ -11,4 +11,9 @@ public abstract class PolygonalShape extends Shape {
 	public int getSides() {
 		return sides;
 	}
+
+	@Override
+	public void draw() {
+		System.out.println(String.format("This is a polygonal shape of %d sides.", sides));
+	}
 }
