@@ -6,7 +6,7 @@ import java.util.Set;
 public class Seller extends Employee{
 
 	private String sellerType = SellerTypeEnum.STORE.getSellerType();
-	private Set<Sell> sells = new HashSet<Sell>();
+	private Set<Sale> sells = new HashSet<Sale>();
 	
 	public Seller() {
 		super();
@@ -20,11 +20,11 @@ public class Seller extends Employee{
 		this.sellerType = sellerType;
 	}
 
-	public Set<Sell> getSells() {
+	public Set<Sale> getSells() {
 		return sells;
 	}
 
-	public void setSells(Set<Sell> sells) {
+	public void setSells(Set<Sale> sells) {
 		this.sells = sells;
 	}
 

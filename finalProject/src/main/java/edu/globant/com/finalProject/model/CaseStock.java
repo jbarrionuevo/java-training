@@ -3,6 +3,7 @@ package edu.globant.com.finalProject.model;
 public class CaseStock {
 	private Case theCase;
 	private int stock;
+	private int miniumStockBeforeAlert;
 	
 	public CaseStock(){
 		
@@ -23,12 +24,20 @@ public class CaseStock {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+	
+	public int getMiniumStockBeforeAlert() {
+		return miniumStockBeforeAlert;
+	}
+
+	public void setMiniumStockBeforeAlert(int miniumStockBeforeAlert) {
+		this.miniumStockBeforeAlert = miniumStockBeforeAlert;
+	}
 
 	@Override
 	public String toString() {
-		return "CaseStock [theCase=" + theCase + ", stock=" + stock + "]";
+		return "CaseStock [theCase=" + theCase + ", stock=" + stock + ", miniumStockBeforeAlert="
+				+ miniumStockBeforeAlert + "]";
 	}
-
 
 	
 }

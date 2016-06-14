@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.joda.time.LocalDate;
 
-public class Sell {
+public class Sale {
 
 	private int id;
 	private Customer customer;

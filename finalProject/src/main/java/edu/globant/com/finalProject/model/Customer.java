@@ -10,7 +10,7 @@ public class Customer {
 	private int age;
 	private String gender = CustomerGenderEnum.MALE.getCustomerGender();
 	private String location;
-	private Set<Sell> receipts = new HashSet<Sell>();
+	private Set<Sale> receipts = new HashSet<Sale>();
 	
 	public Customer(){
 		
@@ -56,11 +56,11 @@ public class Customer {
 		this.location = location;
 	}
 
-	public Set<Sell> getReceipts() {
+	public Set<Sale> getReceipts() {
 		return receipts;
 	}
 
-	public void setReceipts(Set<Sell> receipts) {
+	public void setReceipts(Set<Sale> receipts) {
 		this.receipts = receipts;
 	}
 
