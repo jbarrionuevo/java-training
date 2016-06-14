@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="interfaces.Provider"/>
-<fullyQualifiedTypeName name="java.util.Collection"/>
 <fullyQualifiedTypeName name="classes.Receipt"/>
+<fullyQualifiedTypeName name="interfaces.Provider"/>
+<fullyQualifiedTypeName name="classes.StoreSeller"/>
+<fullyQualifiedTypeName name="classes.Case"/>
+<fullyQualifiedTypeName name="classes.CaseDesign"/>
+<fullyQualifiedTypeName name="classes.CaseDevice"/>
+<fullyQualifiedTypeName name="classes.Customer"/>
+<fullyQualifiedTypeName name="java.text.DateFormat"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="interfaces.DeliverySellerInterface"/>
+<fullyQualifiedTypeName name="interfaces.StoreSellerInterface"/>
+<fullyQualifiedTypeName name="classes.DeliverySeller"/>
+<fullyQualifiedTypeName name="classes.Order"/>
+<fullyQualifiedTypeName name="classes.CaseSeller"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="classes.Provider"/>
+<fullyQualifiedTypeName name="classes.StoreOrder"/>
+<fullyQualifiedTypeName name="classes.ProviderOrder"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="org.joda.time.Days"/>
+<fullyQualifiedTypeName name="org.joda.time.DateTime"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="classes.DateMethods"/>
+<fullyQualifiedTypeName name="enums.Gender"/>
+<fullyQualifiedTypeName name="enums.SaleStatus"/>
+<fullyQualifiedTypeName name="classes.Logistic"/>
+<fullyQualifiedTypeName name="classes.Sale"/>
 </qualifiedTypeNameHistroy>
