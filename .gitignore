@@ -2,6 +2,6 @@
 \.project
 \.settings/
 target/
-\.metadata/
-RemoteSystemsTempFiles/
-\.recommenders/
+Workspace/.metadata
+Workspace/.recommenders
+Workspace/RemoteSystemsTempFiles
