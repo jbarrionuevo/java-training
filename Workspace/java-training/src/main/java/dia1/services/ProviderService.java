@@ -6,14 +6,13 @@ import dia1.daos.ProviderDao;
 import dia1.models.Case;
 import dia1.models.Order;
 import dia1.models.Provider;
-import dia1.models.ProviderOrder;
 
 public class ProviderService {
 	private ProviderDao providerDao;
 	
 	public void addOrderToProvider(Order order, Provider provider){
 		provider.addOrder(order);
-		System.out.println("Add order");
+		System.out.println("Add order to Provider "+provider.getName());
 		//update provider in db
 	}
 

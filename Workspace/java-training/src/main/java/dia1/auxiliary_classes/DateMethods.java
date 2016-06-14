@@ -1,4 +1,4 @@
-package dia1.models;
+package dia1.auxiliary_classes;
 
 import java.util.Date;
 

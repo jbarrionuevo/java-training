@@ -2,15 +2,12 @@ package dia1.models;
 
 import dia1.enums.Gender;
 
-public class Customer {
-	private String name,location;
+public class Customer extends ThirdPartyParticipant{
 	private int age;
 	private Gender gender;
 	
 	public Customer(String name, String location, int age, Gender gender) {
-		super();
-		this.name = name;
-		this.location = location;
+		super(name,location);
 		this.age = age;
 		this.gender = gender;
 	}
@@ -21,18 +18,6 @@ public class Customer {
 				this.getName(), this.getLocation(), this.getAge(), this.getGender());
 	}
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
 	public int getAge() {
 		return age;
 	}

@@ -1,20 +1,20 @@
 package dia1.models;
 
 public class CaseDevice {
-	private String deviceName;
+	private String name;
 
 	
-	public CaseDevice(String deviceName) {
+	public CaseDevice(String name) {
 		super();
-		this.deviceName = deviceName;
+		this.name = name;
 	}
 
-	public String getDeviceName() {
-		return deviceName;
+	public String getName() {
+		return name;
 	}
 
-	public void setDeviceName(String deviceName) {
-		this.deviceName = deviceName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

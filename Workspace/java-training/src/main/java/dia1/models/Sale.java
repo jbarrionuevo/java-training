@@ -4,10 +4,10 @@ import dia1.enums.SaleStatus;
 
 public class Sale {
 	private Receipt receipt;
-	private StoreOrder order;
+	private Order order;
 	private SaleStatus status;
 	
-	public Sale(StoreOrder order) {
+	public Sale(Order order) {
 		super();
 		this.order=order;
 		this.status = SaleStatus.DRAFT;
@@ -28,13 +28,15 @@ public class Sale {
 		this.status = status;
 	}
 
-	public StoreOrder getOrder() {
+	public Order getOrder() {
 		return order;
 	}
 
-	public void setOrder(StoreOrder order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	}
+
+	
 	
 	
 	

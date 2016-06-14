@@ -18,7 +18,7 @@ public class Case {
 	@Override
 	public String toString(){
 		return String.format("Design: %s, Device: %s", 
-				this.getDesign().getName(), this.getDevice().getDeviceName());
+				this.getDesign().getName(), this.getDevice().getName());
 	}
 	
 	public CaseDesign getDesign() {

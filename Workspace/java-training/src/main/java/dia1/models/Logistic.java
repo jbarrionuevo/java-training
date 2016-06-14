@@ -6,22 +6,22 @@ import java.util.HashMap;
 
 public class Logistic extends Employee {
 	
-	private HashMap<Case, Integer> inventory;
+	private Inventory inventory;
 	
-	public HashMap<Case, Integer> getInventory() {
+	public Logistic(String name, Inventory inventory) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Inventory getInventory() {
 		return inventory;
 	}
 
-	public void setInventory(HashMap<Case, Integer> inventory) {
+	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
 	
-	public void addCaseToInventory(Case aCase, int quantity){
-		this.inventory.put(aCase, this.inventory.get(aCase)+quantity);
-	}
 	
-	public void removeCaseFromInventory(Case aCase, int quantity){
-		this.inventory.put(aCase, this.inventory.get(aCase)-quantity);
-	}
+
 
 }

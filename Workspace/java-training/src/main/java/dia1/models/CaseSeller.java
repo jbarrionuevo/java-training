@@ -5,22 +5,20 @@ import java.util.Collection;
 public class CaseSeller extends Employee {
 	
 	private Collection<Sale> sales;
-	private Logistic logistic; //to tell him to decrement when selling a product
 	
-	public CaseSeller(){}
+	public CaseSeller(String name){
+		super(name);
+	}
 	
-	public CaseSeller(Collection<Sale> sales, Logistic logistic) {
-		super();
+	public CaseSeller(String name, Collection<Sale> sales) {
+		super(name);
 		this.sales = sales;
-		this.logistic = logistic;
 	}
 
-	public void registerOrder(StoreOrder order){
-		Sale newSale = new Sale(order);
-		this.sales.add(newSale);
+	public void addSale(Sale sale){
+		this.sales.add(sale);
 	}
 	
-
 	public Collection<Sale> getSales() {
 		return sales;
 	}
@@ -28,18 +26,7 @@ public class CaseSeller extends Employee {
 	public void setSales(Collection<Sale> sales) {
 		this.sales = sales;
 	}
-	
-	public Collection<Order> getOrders(){
-		return (Collection<Order>) this.sales.stream().map(sale->sale.getOrder());
-	}
 
-	public Logistic getLogistic() {
-		return logistic;
-	}
-
-	public void setLogistic(Logistic logistic) {
-		this.logistic = logistic;
-	}
 	
 	
 }

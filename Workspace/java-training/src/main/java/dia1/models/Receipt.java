@@ -6,27 +6,22 @@ import java.util.Date;
 
 public class Receipt {
 	private String storeName;
-	private int quantity;
-	private Customer customer;
+	private Order order;
 	private Date dateOfSale;
-	private double singlePrice;
 	
-	public Receipt(String storeName, int quantity, Customer customer,
-			Date dateOfSale, double singlePrice) {
+	public Receipt(String storeName, Date dateOfSale,Order order) {
 		super();
 		this.storeName = storeName;
-		this.quantity = quantity;
-		this.customer = customer;
 		this.dateOfSale = dateOfSale;
-		this.singlePrice = singlePrice;
+		this.order=order;
 	}
 	
 	@Override
 	public String toString(){
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		return String.format("Receipt: Store name: %s; Quantity: %d; Customer: [%s];"
-				+ "Date: %s; Single price: [%f]", this.getStoreName(), this.getQuantity(),
-				this.getCustomer(), df.format(this.getDateOfSale()), this.getSinglePrice());
+				+ "Date: %s", this.getStoreName(), this.getOrder().getQuantity(),
+				this.getOrder().getCreator(), df.format(this.getDateOfSale()));
 	}
 
 	public String getStoreName() {
@@ -37,14 +32,6 @@ public class Receipt {
 		this.storeName = storeName;
 	}
 
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
 	public Date getDateOfSale() {
 		return dateOfSale;
 	}
@@ -53,22 +40,13 @@ public class Receipt {
 		this.dateOfSale = dateOfSale;
 	}
 
-	
 
-	public double getSinglePrice() {
-		return singlePrice;
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setSinglePrice(double singlePrice) {
-		this.singlePrice = singlePrice;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 	
 	
