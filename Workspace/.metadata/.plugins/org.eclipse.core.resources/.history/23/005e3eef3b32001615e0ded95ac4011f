@@ -1,9 +1,0 @@
-package classes;
-
-import java.util.Date;
-
-public class DateMethods {
-	public int differenceBetweenDates(Date d1, Date d2){
-		
-	}
-}

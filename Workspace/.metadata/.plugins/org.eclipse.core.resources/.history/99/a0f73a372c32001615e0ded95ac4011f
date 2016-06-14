@@ -1,7 +1,0 @@
-package interfaces;
-
-public interface DeliverySellerInterface {
-	static int deliver(){
-		return 1;
-	}
-}

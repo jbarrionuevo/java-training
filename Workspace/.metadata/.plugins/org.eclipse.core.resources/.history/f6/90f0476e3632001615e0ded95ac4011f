@@ -1,6 +1,0 @@
-package classes;
-
-public class StoreOrder extends Order{
-	private Customer owner;
-	
-}

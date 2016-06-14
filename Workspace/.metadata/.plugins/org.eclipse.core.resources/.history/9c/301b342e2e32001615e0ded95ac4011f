@@ -1,9 +1,0 @@
-package classes;
-
-import interfaces.DeliverySellerInterface;
-import interfaces.StoreSellerInterface;
-
-public class CompleteSeller extends CaseSeller implements DeliverySellerInterface,StoreSellerInterface{
-
-	
-}
