@@ -1,4 +1,4 @@
-package edu.globant.com.finalProject.model;
+package edu.globant.day1.exercises.oop.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +8,7 @@ public class CaseProvider {
 	private int id;
 	private String name;
 	private Set<DeviceTypeEnum> deviceTypes = new HashSet<DeviceTypeEnum>();
+	private Set<Order> orders = new HashSet<Order>();
 	
 	public CaseProvider(){
 		
@@ -37,10 +38,18 @@ public class CaseProvider {
 		this.deviceTypes = deviceTypes;
 	}
 
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
 	@Override
 	public String toString() {
-		return "CaseProvider [id=" + id + ", name=" + name + ", deviceTypes=" + deviceTypes + "]";
-	}
-	
+		return "CaseProvider [id=" + id + ", name=" + name + ", deviceTypes=" + deviceTypes + ", orders=" + orders
+				+ "]";
+	}	
 	
 }

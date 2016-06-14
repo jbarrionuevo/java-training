@@ -1,4 +1,4 @@
-package edu.globant.com.finalProject.model;
+package edu.globant.day1.exercises.oop.model;
 
 public class Store {
  

@@ -1,4 +1,4 @@
-package edu.globant.com.finalProject.model;
+package edu.globant.day1.exercises.oop.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +9,8 @@ public class Order {
 
 	private int id;
 	private LocalDate deliveryDate;
+	private int delayFromSchedule;
+	private String orderStatus = OrderStatusEnum.ORDERED.getOrderStatus();
 	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>();
 	private CaseProvider caseProvider;
 	
@@ -47,11 +49,28 @@ public class Order {
 	public void setCaseProvider(CaseProvider caseProvider) {
 		this.caseProvider = caseProvider;
 	}
+	
+	public int getDelayFromSchedule() {
+		return delayFromSchedule;
+	}
+
+	public void setDelayFromSchedule(int delayFromSchedule) {
+		this.delayFromSchedule = delayFromSchedule;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", deliveryDate=" + deliveryDate + ", orderDetails=" + orderDetails + ", caseProvider="
-				+ caseProvider + "]";
-	}	
+		return "Order [id=" + id + ", deliveryDate=" + deliveryDate + ", delayFromSchedule=" + delayFromSchedule
+				+ ", orderStatus=" + orderStatus + ", orderDetails=" + orderDetails + ", caseProvider=" + caseProvider
+				+ "]";
+	}
 	
 }
