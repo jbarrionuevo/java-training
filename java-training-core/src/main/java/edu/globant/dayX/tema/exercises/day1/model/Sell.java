@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface Sell {
 	public float value = 0.0f;
-	public List<Product> products = new ArrayList<Product>();
+	public List<Case> products = new ArrayList<Case>();
 	
 	//status possible values: draft, paid, cancelled or refund
 	public String status = "";
