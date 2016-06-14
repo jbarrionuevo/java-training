@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class CaseImpl implements Case {
 
-	public String caseDesign; 
+	public String caseDesign;
 	public String caseDevice;
-	
-	public CaseImpl(String caseDesign, String caseDevice){
+
+	public CaseImpl(String caseDesign, String caseDevice) {
 		this.caseDesign = caseDesign;
 	}
-	
+
 	@Override
 	public Date orderExpected() {
 		// TODO Auto-generated method stub
@@ -63,6 +63,24 @@ public class CaseImpl implements Case {
 	public void setOrderDelivered(Date orderDelivered) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Provider provider() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getProvider() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Provider setProvider() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
