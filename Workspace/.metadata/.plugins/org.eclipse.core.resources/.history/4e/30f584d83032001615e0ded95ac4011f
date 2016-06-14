@@ -1,0 +1,15 @@
+package interfaces;
+
+import classes.DeliverySeller;
+
+public interface DeliverySellerInterface {
+	
+	default void deliver(){
+		
+	}
+	
+//	default void attendRequest(DeliverySeller me){
+//		me.
+//	}
+	
+}

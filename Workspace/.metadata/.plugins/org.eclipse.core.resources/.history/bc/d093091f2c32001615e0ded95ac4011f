@@ -1,0 +1,7 @@
+package interfaces;
+
+public interface DeliverySellerInterface {
+	int deliver(){
+		return 1;
+	}
+}

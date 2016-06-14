@@ -1,0 +1,11 @@
+package classes;
+
+import java.util.Collection;
+
+public class CaseSeller extends Employee {
+	private Collection<Order> orders;
+	
+	public void registerOrder(Order order){
+		
+	}
+}

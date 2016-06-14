@@ -1,0 +1,12 @@
+package interfaces;
+
+import java.util.Date;
+
+import classes.Order;
+import classes.Receipt;
+
+public interface StoreSellerInterface {
+	default void sellCase(Order order){
+		new Receipt("Store name", order.getQuantity(), order.getOwner(),new Date(), order.getMyCase() );
+	}
+}

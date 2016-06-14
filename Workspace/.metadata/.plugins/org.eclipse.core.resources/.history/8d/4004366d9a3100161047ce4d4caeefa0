@@ -1,0 +1,14 @@
+package com.example.repositories;
+
+import java.util.Collection;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
+
+import com.example.models.UserRole;
+
+public interface UserRoleRepository extends MongoRepository<UserRole,String>{
+//public interface UserRoleRepository extends JpaRepository<UserRole,Long>{
+	Collection<UserRole> findByUsername(String username);
+}

@@ -1,0 +1,12 @@
+package com.example.exceptions;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(value=HttpStatus.BAD_REQUEST, reason = "Must buy at least 1 item of the product")
+public class AtLeast1ItemException extends RuntimeException {
+
+	public AtLeast1ItemException() {
+		// TODO Auto-generated constructor stub
+	}
+}

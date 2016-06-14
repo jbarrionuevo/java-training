@@ -1,0 +1,92 @@
+package classes;
+
+import java.util.Date;
+
+public class Receipt {
+	private String name,location,storeName;
+	private int age,quantity;
+	private Gender gender;
+	private Date dateOfSale;
+	private Case myCase;
+	
+	public Receipt(String name, String location, String storeName, int age, int quantity, Gender gender,
+			Date dateOfSale, Case myCase) {
+		super();
+		this.name = name;
+		this.location = location;
+		this.storeName = storeName;
+		this.age = age;
+		this.quantity = quantity;
+		this.gender = gender;
+		this.dateOfSale = dateOfSale;
+		this.myCase = myCase;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getStoreName() {
+		return storeName;
+	}
+
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public Date getDateOfSale() {
+		return dateOfSale;
+	}
+
+	public void setDateOfSale(Date dateOfSale) {
+		this.dateOfSale = dateOfSale;
+	}
+
+	public Case getMyCase() {
+		return myCase;
+	}
+
+	public void setMyCase(Case myCase) {
+		this.myCase = myCase;
+	}
+	
+	
+
+	
+}

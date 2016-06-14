@@ -1,0 +1,86 @@
+package com.example.dtos;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.hateoas.ResourceSupport;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.example.exceptions.AtLeast1ItemException;
+import com.example.exceptions.MissingAttributesException;
+import com.example.models.Cart;
+import com.example.models.Customer;
+import com.example.models.ItemToPurchase;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class CartDTO {
+	private String id; 
+
+	@NotNull(message="Cart cannot be null")
+	@Size(min=1,message="Cart must have at least 1 item")
+	@Valid
+	private Set<ItemToPurchaseDTO> items= new HashSet<>();
+	
+	@NotNull(message="Cart must have a customer")
+	@Valid
+	private CustomerDTO customer;
+	
+	public CartDTO(){}
+	
+	public CartDTO(String id, Set<ItemToPurchaseDTO> items, CustomerDTO customer) {
+		super();
+		this.setId(id);
+		this.items = items;
+		this.customer = customer;
+	}
+	
+	public CartDTO(String id){
+		this.setId(id);
+	}
+	@JsonCreator
+	public CartDTO(@JsonProperty("items") Set<ItemToPurchaseDTO> items,
+			@JsonProperty("customer") CustomerDTO customer){
+		this.items = items;
+		this.customer = customer;
+	}
+
+	public Set<ItemToPurchaseDTO> getItems() {
+		return items;
+	}
+	public void setItems(Set<ItemToPurchaseDTO> items) {
+		this.items = items;
+	}
+
+	public CustomerDTO getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(CustomerDTO customer) {
+		this.customer = customer;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	
+}
+
+@ResponseStatus(value=HttpStatus.BAD_REQUEST, reason = "Cant save cart with no items")
+class CartWithoutItemsException extends RuntimeException {
+
+	public CartWithoutItemsException() {
+		// TODO Auto-generated constructor stub
+	}
+}

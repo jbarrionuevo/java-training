@@ -1,0 +1,11 @@
+package classes;
+
+import java.util.Collection;
+
+public class DeliverySeller extends CaseSeller {
+	
+	public void deliver(){
+		
+	}
+	
+}

@@ -1,0 +1,35 @@
+package com.example.auxiliar;
+
+import java.util.Collection;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+public class PagingAndSorting<T> {
+	
+	private SortCreator sortCreator = new SortCreator();
+	
+	/**page-oriented (could be item oriented, with offset and limit) **/
+	public Collection<T> findAll(Integer page, Integer size, Sort sort, PagingAndSortingRepository repository) {
+		// TODO Auto-generated method stub
+	 	if(page==null || size == null){
+	 		if(sort==null)
+	 			return (Collection<T>) repository.findAll();
+	 		else{
+	 			return (Collection<T>) repository.findAll(sort);
+	 		}
+	 	}else{
+	 		Pageable pageable;
+	 		if(sort==null)
+	 			pageable = new PageRequest(page, size);
+	 		else{
+	 			pageable = new PageRequest(page, size, sort);
+	 		}
+	 		return repository.findAll(pageable).getContent();
+	 	}
+	}
+	
+	
+}

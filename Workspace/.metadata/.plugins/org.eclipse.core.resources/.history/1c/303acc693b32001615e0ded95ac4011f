@@ -1,0 +1,76 @@
+package classes;
+
+import java.util.Calendar;
+import java.util.Date;
+
+public abstract class Order {
+	private Case myCase;
+	private int quantity, id;
+	private Date dateOfRequest, dateOfDelivery;
+	
+	public Order(){
+		
+	}
+	
+	public Order(Case myCase, int quantity, Date dateOfRequest, int id) {
+		super();
+		this.myCase = myCase;
+		this.quantity = quantity;
+		this.id=id;
+		this.dateOfRequest=dateOfRequest;
+	}
+	
+	public boolean deliveredOnTime(){
+		Calendar start = Calendar.getInstance();
+		Calendar end = Calendar.getInstance();
+		start.setTime(dateOfRequest);
+		end.setTime(dateOfDelivery);
+		Date startDate = start.getTime();
+		Date endDate = end.getTime();
+		long startTime = startDate.getTime();
+		long endTime = endDate.getTime();
+		long diffTime = endTime - startTime;
+		long diffDays = diffTime / (1000 * 60 * 60 * 24);
+		return this.dateOfDelivery.
+	}
+	
+	public Case getMyCase() {
+		return myCase;
+	}
+	public void setMyCase(Case myCase) {
+		this.myCase = myCase;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+
+	public Date getDateOfRequest() {
+		return dateOfRequest;
+	}
+
+	public void setDateOfRequest(Date dateOfRequest) {
+		this.dateOfRequest = dateOfRequest;
+	}
+
+	public Date getDateOfDelivery() {
+		return dateOfDelivery;
+	}
+
+	public void setDateOfDelivery(Date dateOfDelivery) {
+		this.dateOfDelivery = dateOfDelivery;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+}

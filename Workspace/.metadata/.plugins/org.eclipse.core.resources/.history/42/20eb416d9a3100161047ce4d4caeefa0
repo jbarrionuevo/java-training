@@ -1,0 +1,66 @@
+package com.example.services;
+
+import java.io.IOException;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import javax.websocket.server.PathParam;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.auxiliar.PagingAndSorting;
+import com.example.exceptions.UserAlreadyExistsException;
+import com.example.exceptions.UserNotFoundException;
+import com.example.models.Product;
+import com.example.models.UserRole;
+import com.example.models.Users;
+import com.example.repositories.UserRoleRepository;
+import com.example.repositories.UsersRepository;
+
+@Service
+public class UsersService{
+
+	@Autowired
+	UsersRepository usersRepository;
+	@Autowired
+	UserRoleRepository userRoleRepository;
+	
+	PagingAndSorting<Users> pagingAndSorting = new PagingAndSorting<Users>();
+
+	public void register(Users user){
+		if(usersRepository.findByUsername(user.getUsername())!=null) throw new UserAlreadyExistsException();
+		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+		usersRepository.save(user);
+		userRoleRepository.save(new UserRole(user.getUsername(),"ROLE_USER"));	
+	}	
+	
+	public Users login(Users user){
+		Users userFound = usersRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword());
+		if(userFound==null) throw new UserNotFoundException();
+		return user;
+	}
+	
+	 public Collection<Users> findUsers(Integer page, Integer size, Sort sort) {
+		 Collection<Users> result = pagingAndSorting.findAll(page, size, sort, usersRepository);
+		 return result;
+	}
+}
+
+

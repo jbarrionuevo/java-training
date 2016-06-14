@@ -1,0 +1,59 @@
+package com.example.mapping;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.dozer.CustomConverter;
+import org.dozer.MappingException;
+
+import com.example.dtos.ProductDTO;
+import com.example.models.Product;
+
+public class ProductCustomConverter implements CustomConverter{
+
+	@Override
+	public Object convert(Object destination, Object source, 
+		      Class destClass, Class sourceClass) {
+		// TODO Auto-generated method stub
+		if (source == null) {
+		      return null;
+		}
+		ProductDTO dest = null;
+		    if (source instanceof Product) {
+		      if (destination == null) {
+		        dest = new ProductDTO();
+		      } else {
+		        dest = (ProductDTO) destination;
+		      }
+		      //in the response, i include the product id
+		      dest.setData(((Product) source).getId()+"/"+
+		    		  ((Product) source).getName()+"/"+
+		    		  ((Product) source).getCategory()+"/"+
+		    		  ((Product) source).getPrice()+"/"+
+		    		  ((Product) source).getStock()+"/"+
+		    		  ((Product) source).getExpirationDate());
+		      return dest;
+		    } else if (source instanceof ProductDTO) {
+		      String sourceObj = 
+		        ((ProductDTO) source).getData();
+		      String[] parts = sourceObj.split("/");
+		      //in the request, the product id is not in parts
+		      SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		      Date date=null;
+				try {
+					date = formatter.parse(parts[4]);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		      return new Product(parts[0],parts[1],Double.parseDouble(parts[2]),
+		    		  Integer.parseInt(parts[3]),date);
+		    } else {
+		      throw new MappingException("Converter ProductCustomConverter "
+		          + "used incorrectly. Arguments passed in were:"
+		          + destination + " and " + source);
+		 }
+	}
+
+}

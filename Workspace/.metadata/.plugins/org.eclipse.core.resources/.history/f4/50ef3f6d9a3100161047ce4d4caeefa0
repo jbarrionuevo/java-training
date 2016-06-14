@@ -1,0 +1,122 @@
+package com.example.services;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.dtos.CartDTO;
+import com.example.dtos.ItemToPurchaseDTO;
+import com.example.dtos.ProductDTO;
+import com.example.exceptions.CartNotFoundException;
+import com.example.exceptions.CustomerNotFoundException;
+import com.example.exceptions.ItemNotFoundException;
+import com.example.models.Cart;
+import com.example.models.Customer;
+import com.example.models.ItemToPurchase;
+import com.example.models.Product;
+import com.example.repositories.CartRepository;
+import com.example.repositories.CustomerRepository;
+import com.example.repositories.ProductRepository;
+
+@Service
+public class CartService {
+	@Autowired
+	CartRepository cartRepository;
+	@Autowired
+	ProductRepository productRepository;
+	@Autowired
+	ProductService productService;
+	@Autowired
+	CustomerRepository customerRepository;
+	
+	//CREATE
+	public Cart saveCart(Cart cart){
+		checkCustomerAndProducts(cart);
+		return cartRepository.save(cart);
+	}
+	
+	public Cart find(String cartId) {  //mongo
+//		public Cart cartWithId(Long cartId) {
+			return retrieveCartOrError(cartId);
+	}
+	
+	public void deleteCart(String cartId) {
+		retrieveCartOrError(cartId);
+		cartRepository.delete(String.valueOf(cartId));
+	}
+	
+	//BUY CART
+	public void buy(Cart cart){
+		HashMap<Integer,Product> productsToUpdate = checkCustomerAndProducts(cart);
+		productsToUpdate.forEach((quant,prod)->{
+			prod.setStock(prod.getStock()-quant);
+			productRepository.save(prod);
+		});
+		//update cart condition to 'bought'
+	}
+	
+	public HashMap<Integer,Product> checkCustomerAndProducts(Cart cart){
+		HashMap<Integer,Product> result = new HashMap<Integer,Product>();
+		if(customerRepository.findOne(String.valueOf(cart.getCustomer().getId()))==null) 
+			throw new CustomerNotFoundException(String.valueOf(cart.getCustomer().getId()));
+		cart.getItems().stream().forEach((item)->{
+			Product product = productService.retrieveProductOrError(String.valueOf(item.getProduct_id()));
+			productService.checkStock(product, item.getQuantity());
+			result.put(item.getQuantity(), product);
+		});
+		return result;
+	}
+
+	public void buy(String cartId) { //this with mongodb
+//	public void buy(Long cartId) {
+		Cart cart = cartRepository.findOne(String.valueOf(cartId));
+		if(cart==null) throw new CartNotFoundException(cartId);
+		this.buy(cart);
+	}
+	
+	public Collection<Cart> findAll(){
+	    return cartRepository.findAll();
+	 }
+	
+	public Cart retrieveCartOrError(String cartId){  //mongodb
+//		  public Cart retrieveCartOrError(Long cartId){
+		Cart result = cartRepository.findOne(String.valueOf(cartId));
+		if(result==null) throw new CartNotFoundException(cartId);
+		return result;
+//		cartRepository.findOne(cartId).orElseThrow(() -> new CartNotFoundException(cartId));
+	}
+
+	public Collection<ItemToPurchase> itemsOfCart(String cartId) {
+		return this.retrieveCartOrError(cartId).getItems();
+	}
+
+	public ItemToPurchase itemOfCart(String cartId, String itemId) {
+//		Optional<ItemToPurchase> result = this.retrieveCartOrError(cartId).getItems().stream().filter(i -> i.getId()==itemId).findFirst();
+//		if(result==null) throw new ItemNotFoundException(itemId);
+		Collection<ItemToPurchase> items = this.retrieveCartOrError(cartId).getItems();
+		for(ItemToPurchase item: items){
+			if(item.getId().equals(itemId)){
+				return item;
+			}
+		}
+		throw new ItemNotFoundException(itemId);
+	}
+
+	public Customer customerOfCart(String cartId) {
+		// TODO Auto-generated method stub
+		return this.retrieveCartOrError(cartId).getCustomer();
+	}
+
+	
+}

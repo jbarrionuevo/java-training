@@ -1,0 +1,6 @@
+package classes;
+
+public class Order {
+	private Case myCase;
+	private int quantity;
+}

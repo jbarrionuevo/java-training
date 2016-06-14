@@ -1,0 +1,10 @@
+package classes;
+
+import java.util.Date;
+
+import interfaces.StoreSellerInterface;
+
+public class StoreSeller extends CaseSeller implements StoreSellerInterface{
+
+	
+}

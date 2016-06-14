@@ -1,0 +1,34 @@
+package classes;
+
+public class Case {
+	
+	private CaseDesign design;
+	private CaseDevice device;
+	
+	public Case(CaseDesign design, CaseDevice device) {
+		super();
+		this.design = design;
+		this.device = device;
+	}
+	
+	@Override
+	public String toString(){
+		return String.format("Design: %s, Device: %s", 
+				this.getDesign().getName(), this.getDevice().getDeviceName());
+	}
+	
+	public CaseDesign getDesign() {
+		return design;
+	}
+	public void setDesign(CaseDesign design) {
+		this.design = design;
+	}
+	public CaseDevice getDevice() {
+		return device;
+	}
+	public void setDevice(CaseDevice device) {
+		this.device = device;
+	}
+	
+	
+}

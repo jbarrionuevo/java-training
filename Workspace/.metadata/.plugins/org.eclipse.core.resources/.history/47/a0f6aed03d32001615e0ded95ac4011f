@@ -1,0 +1,36 @@
+package classes;
+
+public class Sale {
+	private Receipt receipt;
+	private Case myCase;
+	private boolean isRefund,cancelled;
+	
+	public Sale(Receipt receipt, Case myCase, boolean isRefund) {
+		super();
+		this.receipt = receipt;
+		this.myCase = myCase;
+		this.isRefund = isRefund;
+		this.cancelled=false;
+	}
+	
+	public Receipt getReceipt() {
+		return receipt;
+	}
+	public void setReceipt(Receipt receipt) {
+		this.receipt = receipt;
+	}
+	public Case getMyCase() {
+		return myCase;
+	}
+	public void setMyCase(Case myCase) {
+		this.myCase = myCase;
+	}
+	public boolean isRefund() {
+		return isRefund;
+	}
+	public void setRefund(boolean isRefund) {
+		this.isRefund = isRefund;
+	}
+	
+	
+}

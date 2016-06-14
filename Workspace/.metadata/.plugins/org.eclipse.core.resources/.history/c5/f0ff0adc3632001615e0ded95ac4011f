@@ -1,0 +1,14 @@
+package interfaces;
+
+import java.util.Date;
+
+import classes.Order;
+import classes.Receipt;
+
+public interface StoreSellerInterface {
+	
+	
+	default Receipt sellCase(StoreOrder order){
+		return new Receipt("Fravega", order.getQuantity(), order.getOwner(),new Date(), order.getMyCase().getPrice() );
+	}
+}

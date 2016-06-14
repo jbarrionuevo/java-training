@@ -1,0 +1,162 @@
+package com.example.models;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.example.dtos.ItemToPurchaseDTO;
+import com.example.exceptions.AtLeast1ItemException;
+import com.example.exceptions.MissingAttributesException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Entity
+public class ItemToPurchase implements Comparable<ItemToPurchase>{
+
+	@Id
+	@GeneratedValue //COMMENT THIS WHEN USING MONGO, AND MAKE IT A STRING
+	private String id;
+	private String product_id;
+//	private Long id;   //mysql
+//	private Long product_id;
+	
+	private int quantity;
+	
+	@ManyToOne(cascade=CascadeType.ALL) 
+	@JsonIgnore
+	private Cart cart;
+	
+	public ItemToPurchase(){
+		
+	}
+	
+	
+//	public ItemToPurchase(Long id, Long product_id, int quantity, Cart cart) {
+	public ItemToPurchase(String id, String product_id, int quantity, Cart cart) {
+		super();
+		this.id = id;
+		this.product_id = product_id;
+		this.quantity = quantity;
+		this.cart = cart;
+	}
+
+
+
+	@JsonCreator
+	public ItemToPurchase(
+			@JsonProperty("quantity") int quantity,
+			@JsonProperty("product_id") String product_id){ //mongo
+//			@JsonProperty("product_id") Long product_id){  //mysql
+		super();
+		this.quantity=quantity;
+		this.product_id=product_id;
+//		this.cart=cart;
+	}
+	
+	public static void checkFields(ItemToPurchase item){
+		 if (item.getQuantity() <= 0) throw new AtLeast1ItemException();
+		 if (item.getProduct_id()==null) throw new MissingAttributesException();
+	}
+	
+	@Override
+	public boolean equals(Object other){
+		return (this.getProduct_id().equals(((ItemToPurchase)other).getProduct_id()) &&
+				String.valueOf(this.getQuantity()).equals(String.valueOf(((ItemToPurchase)other).getQuantity())) &&
+				(this.getCart().equals(((ItemToPurchase)other).getCart())));
+	}
+	
+	public ItemToPurchase(String id, int quantity, String product_id) {  //mongo
+//	public ItemToPurchase(Long id, int quantity, Long product_id) {  //mysql
+		super();
+		this.id = id;
+		this.quantity = quantity;
+		this.product_id = product_id;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+
+
+	public int quantity(){
+		return quantity;
+	}
+	
+
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	@Override
+	public String toString(){
+		return String.format(
+				"Item[id=%s, product_id='%s', quantity='%s']",
+				id, product_id, quantity);
+	}
+
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+//	public Long getId() {
+//		return id;
+//	}
+//
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+//
+//	public Long getProduct_id() {
+//		return product_id;
+//	}
+//
+//	public void setProduct_id(Long product_id) {
+//		this.product_id = product_id;
+//	}
+
+	public String getProduct_id() {
+		return product_id;
+	}
+
+	public void setProduct_id(String product_id) {
+		this.product_id = product_id;
+	}
+
+
+
+	@Override
+	public int compareTo(ItemToPurchase other) {
+		return this.getId().compareTo(other.getId());
+	}
+	
+	
+
+	
+}

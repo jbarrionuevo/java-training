@@ -1,0 +1,11 @@
+package classes;
+
+import interfaces.ProviderInterface;
+
+public class RealCaseProvider implements ProviderInterface{
+
+	public void deliver() {
+
+	}
+
+}

@@ -1,0 +1,134 @@
+package com.example.services;
+
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.auxiliar.PagingAndSorting;
+import com.example.dtos.ProductDTO;
+import com.example.exceptions.ProductNotFoundException;
+import com.example.models.ItemToPurchase;
+import com.example.models.Product;
+import com.example.repositories.ProductRepository;
+
+@Service
+public class ProductService{
+	
+	@Autowired
+	ProductRepository productRepository;
+	
+	PagingAndSorting<Product> pagingAndSortingValidator = new PagingAndSorting<Product>();
+	
+	//CREATE
+	public Product createProduct(Product newProduct){
+	    return productRepository.save(newProduct);
+	}
+	
+	//READ
+	public Product find(String productId) {  //mongo
+//	public Product productWithId(Long productId) {
+		return retrieveProductOrError(productId);
+	}
+
+	//UPDATE
+	 public void editProduct(String productId, Product productUpdated){ //mongodb
+//	 public void editProduct(Long productId, Product productUpdated){
+		retrieveProductOrError(productId);
+//		System.out.println("version before:"+productUpdated.getVersion());
+		productUpdated.setId(productId);
+		productRepository.save(productUpdated);
+//	    Product res = productRepository.save(productUpdated);
+//	    System.out.println("version after:"+res.getVersion());
+	 }
+	 
+	 //DELETE
+	 public void deleteProduct(String productId){  //mongo
+//	 public void deleteProduct(Long productId){
+		retrieveProductOrError(productId);
+		productRepository.delete(productId);
+	 }
+	 
+//	 public Collection<Product> findAll(){
+//	    return productRepository.findAll();
+//	 }
+	 
+	 public Collection<Product> findProducts(Integer page, Integer size, Sort sort) {
+		 	return pagingAndSortingValidator.findAll(page, size, sort, productRepository);
+	}	 
+	 
+	 
+	public void checkout(String product_id, int quantity) {
+			// TODO Auto-generated method stub
+			Product product = retrieveProductOrError(product_id);
+			checkStock(product,quantity);
+			product.setStock(product.getStock()-quantity);
+			productRepository.save(product);
+	}
+	 
+	  public Collection<Product> productsWithCategory(String category) {
+		  return productRepository.findByCategory(category);
+	  }
+	 
+	  public Collection<Product> productsWithName(String name) {
+	    	return productRepository.findByName(name);
+	  }
+
+	  public Collection<Product> productsWithStockGreaterThan(int quantity) {
+	    	return productRepository.findByStockGreaterThan(quantity);
+	  }
+	  
+	  public Collection<Product> productsWithStockLessThan(int quantity) {
+	    	return productRepository.findByStockLessThan(quantity);
+	  }
+	  
+	  public Collection<Product> findByStockBetween(int inf, int sup) {
+	    	return productRepository.findByStockBetween(inf,sup);
+	  }
+	  
+	  //AUXILIARY METHODS
+	  public Product retrieveProductOrError(String productId){  //mongodb
+//	  public Product retrieveProductOrError(Long productId){
+		  Product result = productRepository.findOne(productId);
+		  if(result==null) throw new ProductNotFoundException(productId);
+		  return result;
+	  }
+	  
+	  public void checkStock(Product product, int quantity){
+			 if(product.getStock()<quantity) throw new NotEnoughProductStock(product.getId());
+	  }
+
+	public Collection<Product> productsWithExpirationDateBetween(Date date1, Date date2) {
+		return productRepository.findByExpirationDateBetween(date1, date2);
+	}
+
+	
+
+
+}
+
+@ResponseStatus(value=HttpStatus.UNPROCESSABLE_ENTITY, reason="Not enough product stock")
+class NotEnoughProductStock extends RuntimeException {
+
+	public NotEnoughProductStock(String productId) { //mongodb
+//	public NotEnoughProductStock(Long productId) {
+	}
+}

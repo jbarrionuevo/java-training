@@ -1,0 +1,7 @@
+package interfaces;
+
+public interface DeliverySellerInterface {
+	default void deliver(){
+		
+	}
+}

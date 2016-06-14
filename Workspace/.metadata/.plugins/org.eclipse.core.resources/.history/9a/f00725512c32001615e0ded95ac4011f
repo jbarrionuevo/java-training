@@ -1,0 +1,10 @@
+package interfaces;
+
+public interface DeliverySellerInterface {
+	
+	default int deliver(){
+		//testing interface default methods
+		return 1;
+	}
+	
+}

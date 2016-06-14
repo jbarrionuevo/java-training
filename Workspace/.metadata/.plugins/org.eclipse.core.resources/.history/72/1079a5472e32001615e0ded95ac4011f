@@ -1,0 +1,12 @@
+package classes;
+
+import interfaces.DeliverySellerInterface;
+import interfaces.StoreSellerInterface;
+
+public class CompleteSeller extends CaseSeller implements DeliverySellerInterface,StoreSellerInterface{
+
+	public static void main(String[] args){
+		CompleteSeller test = new CompleteSeller();
+		test.deliver();
+	}
+}

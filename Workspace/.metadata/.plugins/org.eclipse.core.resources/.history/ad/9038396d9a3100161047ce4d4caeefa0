@@ -1,0 +1,46 @@
+package com.example;
+
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
+import com.mangofactory.swagger.plugin.EnableSwagger;
+import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
+import com.wordnik.swagger.model.ApiInfo;
+
+
+import static com.google.common.collect.Lists.*;
+
+@Configuration
+@EnableSwagger
+	public class Swagger2SpringBoot {
+
+	@Autowired
+	private SpringSwaggerConfig springSwaggerConfig;
+
+
+	   @Bean //Don't forget the @Bean annotation
+	   public SwaggerSpringMvcPlugin customImplementation(){
+	      return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
+	            .apiInfo(apiInfo())
+	            .includePatterns(".*/*.*");
+	   }
+
+	    private ApiInfo apiInfo() {
+	      ApiInfo apiInfo = new ApiInfo(
+	              "Shopping Cart API",
+	              "Here you can find the available endpoints of de API",
+	              "My Apps API terms of service",
+	              "My Apps API Contact Email",
+	              "My Apps API Licence Type",
+	              "My Apps API License URL"
+	        );
+	      return apiInfo;
+	    }
+}

@@ -1,0 +1,11 @@
+package classes;
+
+import interfaces.ProviderInterface;
+
+public class OMCaseProvider extends ProviderInterface implements ProviderInterface{
+
+	public void deliver() {
+
+	}
+
+}

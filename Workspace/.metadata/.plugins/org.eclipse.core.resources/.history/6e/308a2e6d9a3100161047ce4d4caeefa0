@@ -1,0 +1,26 @@
+package com.example.validators;
+
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+
+import com.example.dtos.ProductDTO;
+import com.example.exceptions.MissingAttributesException;
+import com.example.exceptions.WrongFormatException;
+import com.example.models.Product;
+
+public class HibernateValidator<T,S> {
+	
+	Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+	
+	public void validateObject(S tDTO) throws MissingAttributesException{
+		 Set<ConstraintViolation<S>> constraintViolations = validator.validate(tDTO);
+		 if(!(constraintViolations.isEmpty())){
+			 String message="";
+			 constraintViolations.stream().forEach(msg -> message.concat(msg.getMessage()));
+			 throw new WrongFormatException(message);
+		 }
+	 }
+}

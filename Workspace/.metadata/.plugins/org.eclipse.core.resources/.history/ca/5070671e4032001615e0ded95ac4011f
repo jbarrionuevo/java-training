@@ -1,0 +1,28 @@
+package classes;
+
+import java.util.Collection;
+
+public class CaseSeller extends Employee {
+	
+	private Collection<Sale> sales;
+	
+	
+	public void registerOrder(StoreOrder order){
+		Sale newSale = new Sale(order);
+		this.sales.add(newSale);
+	}
+
+	public Collection<Sale> getSales() {
+		return sales;
+	}
+
+	public void setSales(Collection<Sale> sales) {
+		this.sales = sales;
+	}
+	
+	public Collection<Order> getOrders(){
+		return (Collection<Order>) this.sales.stream().map(sale->sale.getOrder());
+	}
+	
+	
+}

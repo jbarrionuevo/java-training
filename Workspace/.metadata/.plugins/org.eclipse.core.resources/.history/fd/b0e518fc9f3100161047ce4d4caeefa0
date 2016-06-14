@@ -1,0 +1,13 @@
+package classes;
+
+import java.util.Date;
+
+public class Receipt {
+	private String name,location,storeName;
+	private int age,quantity;
+	private Gender gender;
+	private Date dateOfSale;
+	private Case myCase;
+
+	
+}

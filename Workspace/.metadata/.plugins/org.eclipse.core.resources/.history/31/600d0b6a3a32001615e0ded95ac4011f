@@ -1,0 +1,43 @@
+package classes;
+
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+
+public class Logistic extends Employee {
+	
+	private HashMap<Case, Integer> inventory;
+	private Collection<ProviderOrder> madeOrders;
+
+	public HashMap<Case, Integer> getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(HashMap<Case, Integer> inventory) {
+		this.inventory = inventory;
+	}
+	
+	public void addCaseToInventory(Case aCase, int quantity){
+		this.inventory.put(aCase, this.inventory.get(aCase)+quantity);
+	}
+	
+	public void receiveCaseFromProvider(Order madeOrder){
+		this.addCaseToInventory(madeOrder.getMyCase(),madeOrder.getQuantity());
+	}
+	
+	
+	public void requestProvider(Case aCase, Provider provider, int quantity){
+		ProviderOrder newOrder = new ProviderOrder(aCase, quantity, new Date(), 1, provider)
+		this.madeOrders.add(newOrder);
+		provider.addOrder(newOrder);
+	}
+
+	public Collection<ProviderOrder> getMadeOrders() {
+		return madeOrders;
+	}
+
+	public void setMadeOrders(Collection<ProviderOrder> madeOrders) {
+		this.madeOrders = madeOrders;
+	}
+	
+}

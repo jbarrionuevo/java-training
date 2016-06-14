@@ -1,0 +1,68 @@
+package com.example.controllers;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.dtos.CartDTO;
+import com.example.dtos.CustomerDTO;
+import com.example.dtos.ProductDTO;
+import com.example.exceptions.MissingAttributesException;
+import com.example.models.Customer;
+import com.example.models.Product;
+import com.example.repositories.CustomerRepository;
+import com.example.services.CustomerService;
+import com.example.validators.HibernateValidator;
+
+@RestController
+@RequestMapping("/customers")
+public class CustomerController {
+	
+	@Autowired
+	CustomerService customerService;
+	
+	@Autowired
+	private Mapper mapper;
+	
+	HibernateValidator<Customer, CustomerDTO> validator = new HibernateValidator<Customer,CustomerDTO>();
+	
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseStatus(value= HttpStatus.OK)
+	  public Collection<CustomerDTO> allCustomers(){
+		 Collection<CustomerDTO> result= new ArrayList<CustomerDTO>();
+		 
+		 customerService.findAll().stream().forEach((p)->{result.add(mapper.map(p,CustomerDTO.class));});
+	     return result;
+	 }
+	
+	@RequestMapping(value="/{customerId}", method = RequestMethod.GET)
+	@ResponseStatus(value= HttpStatus.OK)
+	  public CustomerDTO customerWithId(@PathVariable String customerId){
+		return mapper.map(this.customerService.find(customerId),CustomerDTO.class);
+	 }
+	
+	/*****************************PUT*******************************************/
+	//UPDATE
+	@RequestMapping(method = RequestMethod.PUT, value="/{customerId}")
+	@ResponseStatus(value= HttpStatus.OK)
+//	public void editProduct(@PathVariable Long productId, @RequestBody ProductDTO productDTO){
+	public void editCustomer(@PathVariable String customerId, @RequestBody CustomerDTO customerDTO){ //mongo
+		Customer newCustomer= checkAndCreateCustomer(customerDTO);
+		customerService.editCustomer(customerId,newCustomer);
+	  }
+	
+	 private Customer checkAndCreateCustomer(CustomerDTO customerDTO) throws MissingAttributesException{
+			validator.validateObject(customerDTO);
+			return mapper.map(customerDTO,Customer.class);
+			/** checkData(productDTO) checks that the json has all the fields needed, not checked in the hibernate validator **/
+		 }
+}

@@ -1,0 +1,20 @@
+package interfaces;
+
+import java.util.Date;
+
+import classes.Case;
+import classes.Logistic;
+import classes.Order;
+import classes.Receipt;
+import classes.Sale;
+import classes.StoreOrder;
+import enums.SaleStatus;
+
+public interface StoreSellerInterface {
+	
+	default void sellCase(Sale sale, Logistic logistic){
+		sale.setReceipt(new Receipt("Fravega", sale.getOrder().getQuantity(), sale.getOrder().getOwner(),new Date(), sale.getOrder().getMyCase().getPrice()));
+		sale.setStatus(SaleStatus.PAID);
+		//this.logistic.sellCase(aCase,quantity);
+	}
+}

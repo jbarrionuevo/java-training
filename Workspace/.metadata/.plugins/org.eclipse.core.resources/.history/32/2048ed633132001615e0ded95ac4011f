@@ -1,0 +1,19 @@
+package classes;
+
+import java.util.Date;
+
+import interfaces.StoreSellerInterface;
+
+public class StoreSeller extends CaseSeller implements StoreSellerInterface{
+
+	public static void main(String[] args){
+		StoreSeller test = new StoreSeller();
+		CaseDesign designMock = new CaseDesign("IPhone design");
+		CaseDevice deviceMock = new CaseDevice("IPhone 6");
+		Case caseMock = new Case(designMock, deviceMock);
+		Customer customerMock = new Customer("ilan", "LP 7 y 50", 22, Gender.M);
+		Order orderMock = new Order(caseMock, 10, customerMock);
+		Receipt generatedReceipt = test.sellCase(orderMock);
+		System.out.println(generatedReceipt);
+	}
+}

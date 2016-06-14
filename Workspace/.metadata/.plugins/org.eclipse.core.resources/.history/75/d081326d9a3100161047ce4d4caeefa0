@@ -1,0 +1,157 @@
+package com.example.models;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Version;
+
+import org.springframework.data.mongodb.core.index.Indexed;
+
+import com.example.dtos.ProductDTO;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Entity
+public class Product{
+
+	@Id
+//	@GeneratedValue //COMMENT THIS WHEN USING MONGO, AND MAKE IT A STRING
+//	private Long id;  //mysql
+	private String id; //mongo
+	
+	@Version 
+	private long version;
+	
+	
+	public long getVersion() { 
+	    return version; 
+	}
+	
+	@Indexed
+	private String category;
+	@Indexed
+	private String name;
+	private double price;
+	private int stock;
+	private Date expirationDate;
+
+//	@JsonIgnore
+//    @ManyToOne
+//    private Cart cart;
+	
+	
+	Product(){ //jpa only
+	}
+	
+	public Product(String id){
+//	public Product(Long id){
+		this.id=id;
+	}
+	
+//	public Product(Long id, int stock){
+	public Product(String id, int stock){
+		this.id=id;
+		this.stock=stock;
+	}
+	
+	public Product(String id, String category, String name, double price, int stock, Date expirationDate){
+//	public Product(Long id, String category, String name, double price, int stock, Date expirationDate){
+		this.id=id;
+		this.category = category;
+		this.name = name;
+		this.price=price;
+		this.stock=stock;
+		this.expirationDate=expirationDate;
+	}
+	
+	@JsonCreator
+	public Product(@JsonProperty("category") String category, 
+			@JsonProperty("name") String name, 
+			@JsonProperty("price") double price, 
+			@JsonProperty("stock")int stock,
+			@JsonProperty("expirationDate") Date expirationDate) {
+		super();
+		this.category = category;
+		this.name = name;
+		this.price=price;
+		this.stock=stock;
+		this.expirationDate=expirationDate;
+	}
+
+	@Override
+	public String toString(){
+	    	return String.format(
+					"Product[name='%s', category='%s', price='%f', stock='%d', expiration_date='%s']",
+					name, category,price, stock, expirationDate.toString());
+	}
+	 	
+
+	public String getCategory() {
+		return category;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+//	public Long getId() {
+//		return id;
+//	}
+//
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Date getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(Date expirationDate) {
+		this.expirationDate = expirationDate;
+	}
+
+
+	
+}

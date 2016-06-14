@@ -1,0 +1,37 @@
+package com.example.services;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.exceptions.CustomerNotFoundException;
+import com.example.exceptions.ProductNotFoundException;
+import com.example.models.Customer;
+import com.example.models.Product;
+import com.example.repositories.CustomerRepository;
+
+@Service
+public class CustomerService {
+
+	@Autowired
+	CustomerRepository customerRepository;
+	
+	public Collection<Customer> findAll(){
+	    return customerRepository.findAll();
+	 }
+	
+	public Customer find(String customerId){
+		Customer result = customerRepository.findOne(String.valueOf(customerId));
+		if(result==null) throw new CustomerNotFoundException(customerId);
+		return result;
+	}
+
+	public void editCustomer(String customerId, Customer newCustomer) {
+		Customer result = customerRepository.findOne(customerId);
+		if(result==null) throw new CustomerNotFoundException(customerId);
+		newCustomer.setId(customerId);
+		customerRepository.save(newCustomer);
+	}
+
+}

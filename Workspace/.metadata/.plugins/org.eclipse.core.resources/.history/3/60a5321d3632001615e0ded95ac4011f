@@ -1,0 +1,25 @@
+package classes;
+
+import java.util.Collection;
+
+public class Logistic extends Employee {
+	
+	private Collection<Case> inventory;
+
+	public Collection<Case> getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Collection<Case> inventory) {
+		this.inventory = inventory;
+	}
+	
+	public void addCaseToInventory(Case aCase){
+		this.inventory.add(aCase);
+	}
+	
+	public void receiveCaseFromProvider(Order madeOrder){
+		this.addCaseToInventory(madeOrder.getMyCase());
+	}
+	
+}

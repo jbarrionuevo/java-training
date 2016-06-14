@@ -1,0 +1,12 @@
+package classes;
+
+import interfaces.Provider;
+
+public class OMCaseProvider implements Provider{
+
+	public void provide() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,26 @@
+package classes;
+
+import java.util.Date;
+
+public class Receipt {
+	private String name,location,storeName;
+	private int age,quantity;
+	private Gender gender;
+	private Date dateOfSale;
+	private Case myCase;
+	
+	public Receipt(String name, String location, String storeName, int age, int quantity, Gender gender,
+			Date dateOfSale, Case myCase) {
+		super();
+		this.name = name;
+		this.location = location;
+		this.storeName = storeName;
+		this.age = age;
+		this.quantity = quantity;
+		this.gender = gender;
+		this.dateOfSale = dateOfSale;
+		this.myCase = myCase;
+	}
+
+	
+}

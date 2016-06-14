@@ -1,0 +1,22 @@
+package com.example.auxiliar;
+
+import java.util.ArrayList;
+
+import org.springframework.data.domain.Sort;
+
+public class SortCreator {
+	
+	public Sort getSortObject(String sort) {
+		if( (sort==null) || (sort.isEmpty())) return null;
+		String[] attributes = sort.split("\\|");
+		ArrayList<Sort.Order> orders = new ArrayList<Sort.Order>();
+		for(String attribute:attributes){
+			Sort.Direction direction = Sort.Direction.ASC;
+			if(attribute.startsWith("-"))
+				direction = Sort.Direction.DESC;
+			orders.add(new Sort.Order(direction, attribute.replace("-", "")));
+		}
+		return new Sort(orders);
+	}
+	
+}
