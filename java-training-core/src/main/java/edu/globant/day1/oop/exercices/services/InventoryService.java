@@ -1,13 +1,13 @@
-package dia1.services;
+package edu.globant.day1.oop.exercices.services;
 
 import java.util.HashMap;
 
-import dia1.daos.InventoryDao;
-import dia1.models.Case;
-import dia1.models.CaseDesign;
-import dia1.models.CaseDevice;
-import dia1.models.Inventory;
-import dia1.models.Provider;
+import edu.globant.day1.oop.exercices.daos.InventoryDao;
+import edu.globant.day1.oop.exercices.models.Case;
+import edu.globant.day1.oop.exercices.models.CaseDesign;
+import edu.globant.day1.oop.exercices.models.CaseDevice;
+import edu.globant.day1.oop.exercices.models.Inventory;
+import edu.globant.day1.oop.exercices.models.Provider;
 
 public class InventoryService {
 	
