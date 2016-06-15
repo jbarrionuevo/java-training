@@ -1,0 +1,4 @@
+In my previews project I`ve to learn a lot of business rules, also the common language inside the application. For example we have resorts, 
+parks and tickets, some have offers of different types, like annual offer, marketing offer. We also have plantypes we used to identify packages,
+for example: room only, room plus tickets. The project was divided in different services, each one with his own language. For example we have 
+AvailabilityService for checking Availability.
