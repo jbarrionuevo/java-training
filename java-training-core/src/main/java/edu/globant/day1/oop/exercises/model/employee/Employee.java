@@ -1,8 +1,5 @@
 package edu.globant.day1.oop.exercises.model.employee;
 
-import edu.globant.day1.oop.exercises.model.cases.Case;
-import edu.globant.day1.oop.exercises.model.sale.Sale;
-
 public abstract class Employee {
 
 	private String name;
