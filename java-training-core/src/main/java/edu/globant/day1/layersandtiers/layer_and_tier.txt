@@ -1,0 +1,6 @@
+I have never used layers and tiers in a project.
+I used a 3-layer model in a college project, in Grails. The layers were: Model, View, and Controller.
+In the model layer, I put all business logic.
+In the view layer, I designed objects so that the user can interact with the system.
+In the controller layer, I designed all interactions between Model and View.
+

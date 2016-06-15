@@ -1,0 +1,10 @@
+I joined recently to Globant and had not assignment to project.
+I applied the DDD technique always without realizing it in college projects and other works.
+
+At ION Solid application:
+Case -> represents the main product sold by the company
+Customer -> It represents people who buy the Case.
+Employee -> It represents the people working in the company. They can be: Seller or Logistic.
+Seller -> people who sells Cases to Customer.
+Provider -> companies that supply us Cases to sell.
+Sale -> It represents the output of Cases in exchange for money. It is performed by Employee

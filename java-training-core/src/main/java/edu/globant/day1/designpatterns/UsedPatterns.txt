@@ -1,5 +1,5 @@
 I joined recently to Globant and had not assignment to project.
-I applied various patterns at university projects , such as Strategy, Observer, Singleton , Command , Decorator , State and Composite.
+I applied various patterns at university projects and other jobs, such as Strategy, Observer, Singleton , Command , Decorator , State and Composite.
 
 STAGE:
 Two sectors within the credit card company

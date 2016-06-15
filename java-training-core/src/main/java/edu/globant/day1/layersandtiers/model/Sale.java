@@ -1,4 +1,4 @@
-package edu.globant.day1.oop.exercises.Sale;
+package edu.globant.day1.layersandtiers.model;
 
 import edu.globant.day1.oop.exercises.Case.Case;
 import edu.globant.day1.oop.exercises.Employee.Logistic;

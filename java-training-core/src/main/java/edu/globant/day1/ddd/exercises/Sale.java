@@ -1,8 +1,10 @@
-package edu.globant.day1.oop.exercises.Sale;
+package edu.globant.day1.ddd.exercises;
 
 import edu.globant.day1.oop.exercises.Case.Case;
 import edu.globant.day1.oop.exercises.Employee.Logistic;
 import edu.globant.day1.oop.exercises.Employee.StockAlert;
+import edu.globant.day1.oop.exercises.Sale.Receipt;
+import edu.globant.day1.oop.exercises.Sale.TypeOfSale;
 
 
 
@@ -11,30 +13,21 @@ public abstract class Sale {
 	private Receipt receipt;
 	private String status; 
 	
-	
 	public TypeOfSale getTypeOfSale() {
 		return typeOfSale;
 	}
-
-
 
 	public void setTypeOfSale(TypeOfSale typeOfSale) {
 		this.typeOfSale = typeOfSale;
 	}
 
-
-
 	public Receipt getReceipt() {
 		return receipt;
 	}
 
-
-
 	public void setReceipt(Receipt receipt) {
 		this.receipt = receipt;
 	}
-
-
 
 	public void register() {
 		System.out.println("Registering sale...");
