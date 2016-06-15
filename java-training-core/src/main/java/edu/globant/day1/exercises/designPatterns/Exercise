@@ -1,0 +1,4 @@
+Design patterns
+I don't worked much with design patterns, but i used   
+SINGLETON for create an only sessionFactory for all aplicaition. (Hibernate)
+

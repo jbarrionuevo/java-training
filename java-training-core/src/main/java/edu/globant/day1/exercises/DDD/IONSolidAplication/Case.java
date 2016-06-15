@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day1.exercises.oop.entity;
+package edu.globant.day1.exercises.DDD.IONSolidAplication;
+
 
 import java.util.ArrayList;
 import java.util.List;
