@@ -1,0 +1,7 @@
+In my last project we have several layers and Tiers
+We interact with Service layer that implements a lot of interfaces to access the classes, we have a dao, model, service and webservice layers,
+in webservice layer we have the RestApi endpoints, which UI use to send the request. This request is processed in the service layer and formatted in 
+order to get data from the backend or another service, requesting this in the DAO layer. We also have a Jobs layer that make some extra work like 
+update cache for example.   
+
+Tiers: we have backend (black box), the RestApi and the UI tiers.

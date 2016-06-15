@@ -1,0 +1,6 @@
+Right now I have three layer in my app 
+Model that is used to model the objects, a Service Layer that makes the logic of the application taking data from the database using the DAO layer 
+to interact with it.
+
+We will have a 2-tier app, we will generate one .jar or .war file containing application tier, and the second is the database tier 
+where we are going to persist the data.
