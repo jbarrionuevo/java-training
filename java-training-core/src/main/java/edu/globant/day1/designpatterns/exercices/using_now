@@ -3,3 +3,5 @@ Up till now, I have used:
 	- The Observer Pattern; the inventory has a collection of observers (the Providers) and a collection of CaseWrappers (which include a case,
 	a minimum stock, and a current stock). Whenever a sale is made, the CaseWrapper of that case is updated, checking if the current stock is
 	less than the minimum; if true, the inventory notifies all its observers, so they can refund that case, auto-generating an order to them.
+	- The State Pattern; up till now, it may not be necesary, but as I think that in the future, depending on the current state, the sale can
+	behave in one way or another, it may be a good idea to implement the state pattern on it.
