@@ -1,0 +1,31 @@
+I joined recently to Globant and had not assignment to project.
+I applied various patterns at university projects , such as Strategy, Observer, Singleton , Command , Decorator , State and Composite.
+
+STAGE:
+Two sectors within the credit card company
+Sales
+Commercial terms
+
+Requirements
+All foreign customers have a 20% discount for cash payment.
+Retail customers can only pay cash
+It is accepted that certain clients to pay 30, 60 and 90 days
+
+
+* Strategy y decorator: I used them in similar domains, which changes from one another was the way of composing the object (decorator
+from "inside" outward and backward Strategy).
+In the above example I used strategy to define the types of business condition and each implements its algorithm.
+
+* Singleton: usually I used it for database connections, having only one instance is easier to manage the connection.
+
+* Observer:
+In the above example I used it to launch alarms against certain customer actions.
+
+* Composite: I used in domains where the object had to be composed of other simpler.
+Example: A parcel may consist of a lot or several of them, but also can act as a batch plot and contain
+other lots within you.
+
+* State: domains where the action of the object depends on its state.
+Example: clothing store that sends mail to their followers when they open and close its doors. That is, when the state of the local changes,
+the action of sending mail is done.
+

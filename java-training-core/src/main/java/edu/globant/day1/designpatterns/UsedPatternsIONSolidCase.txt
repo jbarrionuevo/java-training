@@ -1,0 +1,7 @@
+I used:
+	Strategy -> Case, Employee and Sale.
+	Observer -> Logistic(Employee)
+	
+I could have used the State pattern on the status of the sale, but as different behavior is not defined, I chose to handle 
+it with a status variable.
+
