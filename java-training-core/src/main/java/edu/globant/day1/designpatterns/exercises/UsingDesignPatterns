@@ -1,0 +1,4 @@
+I will use:
+	Singleton: in order to have only one instance of inventory (class Inventory)
+	State: for behaviour depends in sales status
+	
