@@ -9,15 +9,13 @@ import org.joda.time.Days;
 public abstract class Order {
 	private HashMap<Case,Integer> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
-	private ThirdPartyParticipant creator;
 	
 	public Order(){}
 	
-	public Order(HashMap<Case,Integer> requestCases, Date dateOfRequest, ThirdPartyParticipant creator) {
+	public Order(HashMap<Case,Integer> requestCases, Date dateOfRequest) {
 		super();
 		this.requestCases = requestCases;
 		this.dateOfRequest=dateOfRequest;
-		this.creator=creator;
 	}
 	
 	public int getQuantity(){
@@ -42,14 +40,6 @@ public abstract class Order {
 
 	public void setDateOfDelivery(Date dateOfDelivery) {
 		this.dateOfDelivery = dateOfDelivery;
-	}
-
-	public ThirdPartyParticipant getCreator() {
-		return creator;
-	}
-
-	public void setCreator(ThirdPartyParticipant creator) {
-		this.creator = creator;
 	}
 
 	public HashMap<Case,Integer> getRequestCases() {

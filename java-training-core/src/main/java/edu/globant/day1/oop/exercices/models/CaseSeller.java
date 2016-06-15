@@ -4,6 +4,8 @@ import java.util.Collection;
 
 public class CaseSeller extends Employee {
 	
+	//whenever a caseSeller receives an order, its a new sale with the DRAFT status; if then, the sale is not
+	//succesfull, its marked as CANCELLED; otherwise, its marked as PAID, and it could then be REFUND
 	private Collection<Sale> sales;
 	
 	public CaseSeller(String name){

@@ -6,8 +6,7 @@ public class Inventory {
 	
 	private static HashMap<Case, Integer> inventory = null;
 
-	private Inventory() {
-	}
+	private Inventory() {}
 
 	public static HashMap<Case, Integer> getInventory() {
 		if (inventory == null) {

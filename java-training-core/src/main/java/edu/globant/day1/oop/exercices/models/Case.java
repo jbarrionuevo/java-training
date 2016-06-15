@@ -7,12 +7,14 @@ public class Case {
 	private CaseDesign design;
 	private CaseDevice device;
 	private double price;
+	private Provider provider;
 	
-	public Case(CaseDesign design, CaseDevice device, Double price) {
+	public Case(CaseDesign design, CaseDevice device, Double price, Provider provider) {
 		super();
 		this.design = design;
 		this.device = device;
 		this.price=price;
+		this.provider=provider;
 	}
 	
 	@Override
@@ -41,6 +43,14 @@ public class Case {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 	
 	

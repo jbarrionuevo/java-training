@@ -8,12 +8,14 @@ public class Receipt {
 	private String storeName;
 	private Order order;
 	private Date dateOfSale;
+	private Customer customer;
 	
-	public Receipt(String storeName, Date dateOfSale,Order order) {
+	public Receipt(String storeName, Date dateOfSale,Order order, Customer customer) {
 		super();
 		this.storeName = storeName;
 		this.dateOfSale = dateOfSale;
 		this.order=order;
+		this.customer=customer;
 	}
 	
 	@Override
@@ -21,7 +23,7 @@ public class Receipt {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		return String.format("Receipt: Store name: %s; Quantity: %d; Customer: [%s];"
 				+ "Date: %s", this.getStoreName(), this.getOrder().getQuantity(),
-				this.getOrder().getCreator(), df.format(this.getDateOfSale()));
+				this.getCustomer(), df.format(this.getDateOfSale()));
 	}
 
 	public String getStoreName() {
@@ -47,6 +49,14 @@ public class Receipt {
 
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
 	
