@@ -6,5 +6,3 @@ We also divided the project structure in different domain classes, such us:
 - value objects (debtOriginDate, which had day, month, year)
 - repositories (debtRepository)
 - entities/model objects (such as debt)
-Another DDD practice that we developed was the layered architecture, having different layers, such as the presentation layer (where the user could register
-a new debt), the application layer (where the new debt was processed), the domain layer (to save/retrieve a debt) and the interface layer.
