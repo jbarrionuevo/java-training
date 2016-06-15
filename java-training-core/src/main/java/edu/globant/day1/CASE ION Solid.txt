@@ -1,0 +1,113 @@
+ION Solid is a startup that focuses on selling cellphone and tablet cases.
+
+The company has the following type of employees: the CEO and founder, 
+
+case sellers, the logistic people that works with case providers and hold an 
+
+inventory of the cases, and business administrator.
+
+Currently, there are two providers for the cases: Real Case for cellphone 
+
+cases and OMCase for tablets. There may be other providers in the future, 
+
+even providers for both kind of devices. Providers must deliver the cases to 
+
+the main warehouse, that is the basement of the CEO’s house. Cases are 
+
+classified by their design and device. For example, there are cases with the 
+
+same design for iPhone 6, iPhone 6s and Nexus 6.
+
+There are two type of sellers: delivery sellers and store sellers. There are 
+
+sellers that do both jobs. Delivery sellers are attending phone calls made to 
+
+the store and the places done via the Facebook page. After accumulating a 
+
+bunch of orders, they go out and deliver each case. Store sellers are 
+
+physically in the store attending orders from customers that pass by. Each 
+
+seller, when selling a case, must create a receipt and register the name, 
+
+age, gender and location of the customer, date of sale, price of the cases 
+
+and how many of them were sold and the name of the store where the sale 
+
+took place. After selling a case, there’s a warranty period of one month 
+
+where the customer can replace the case or return it if didn’t like it. When 
+
+replacing a case, the customer may receive another case with same design 
+
+for the device as replacement or maybe he wants a different model. If the 
+
+customer chooses a different model, the sale is marked as a refund, the 
+
+customer picks a new case and a new sale is placed. In case the customer 
+
+doesn’t want a new case, the sale is just refunded and the case returned.
+
+The business administrator came up with the idea that lot of tasks in the 
+
+business can be automated by using an application rather than doing 
+
+manual work. Also, they have lots of spreadsheets in their Google accounts 
+
+and it becomes cumbersome to have lot of files opened at the same time to 
+
+search for data. Even if they download them all to their laptops, is still a 
+
+huge burden. He convinced the CEO to have his friend, a very skilled Java 
+
+developer, help them to create an application and ease their work. The 
+
+CEO agreed but since they’re still small, the app should focus on the main 
+
+processes of the company. These are two, basically: control the inventory 
+
+of cases and manage the sells. The developer agreed and asked for a list 
+
+of tasks that needed to be automated.
+
+After speaking with some people of logistic and some of the sellers, the 
+
+developer got this list of requirements:
+
+? Keep track of how many cases are in stock for every design and 
+
+case.
+
+? Allow to register an order to the provider when the amount of cases is 
+
+too low. The amounts can be configured. To help the logistic team, 
+
+there must be alerts that show the cases that need a new order to the 
+
+provider.
+
+? Keep track of how many cases get from each provider, if the delivery 
+
+was on date or got late, and if late for how much time. In these cases, 
+
+the inventory for case must increase.
+
+? Allow to register each sale and track its status. There are times when 
+
+the sale is cancelled due to delivery sellers taking too much time to 
+
+get to the customer’s place or the customer in the store realizes that 
+
+doesn’t have enough money in their card to buy the case. The sale 
+
+can have one of these status: draft, paid, cancelled and refund.
+
+? When registering a sell, the amount of physic cases for the design 
+
+and device sold must be decreased from the inventory.
+
+In order to save time for the application development, the delivery sellers 
+
+have to go back to the store to register their sales. They have to register all 
+
+sales, even if they were cancelled.

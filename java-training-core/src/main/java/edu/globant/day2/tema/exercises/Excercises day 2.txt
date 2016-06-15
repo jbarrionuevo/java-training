@@ -1,0 +1,83 @@
+1-Try to remember a set of classes and interfaces that you have used
+previously in a project that was using a design pattern. Explain the scenario
+and the design of classes/interfaces used to solve the problem.
+
+	This is relatively new for me. My experience with design patterns in a professional context is very limited.
+
+	I've used the state pattern in the past to reduce the cyclomatic complexity of a solution (and, consequently, its understandability and maintainability derived issues). 
+	I had a class which behavior depended on its internal, multiples and changing states so, instead of adding multiple conditions and methods to evaluate the state and implement behavior, y created an interface with the definition of the methods 
+	(behaviors) to be implemented by concrete state classes. These concrete state classes had the methods to be used when the object is in a determined state (each state has its own
+	set of method implementations). There was other class called Context which contained (composition) the state object. The Context implemented the behaviors (methods) by calling the State interface so,
+	depending on the type of state interface, a different implementation of the behavior method was called without any necessity to evaluate state with conditions or complex and unmaintainable code. 
+
+2-Define the set of classes and interfaces for ION Solid application (previous
+case). Consider the usage of GoF design patterns (even those that weren’t
+explained in this presentation).
+
+	Initial thoughts implemented in the edu.globant.day2.tema.exercises.service package.
+
+3-Describe any experience where you have used DDD and model objects in a
+project.
+
+	I have no previous experience with DDD.
+
+4-Using DDD, define a model for ION Solid application.
+	
+	I think is close to be done, dough it is difficult to keep every object (particularly those in my service layer) named exclusively 
+	with pure domain vocabulary.
+	
+5-See if the classes and interfaces designed previously for ION Solid
+application matches or is similar to the model you’ve designed. In case they
+don’t, then adjust the classes and interfaces appropriately.	
+	
+	Done. All classes in package edu.globant.day2.tema.exercises.
+	
+6- Describe the layers and tiers used in the latest project you were working on.
+
+	The latest project I worked on had three tiers and several layers:
+		
+		Tiers
+			Web browser (client tier)
+			Middleware: 	
+			Backend: 
+ 				
+		Layers: each of the Middleware services has a group of layers:
+					Client
+					CXF
+					REST interface
+					Service
+					DAO
+				
+7- Depict a model of the layers of the project.
+	Restful Webservice:
+	
+		Client layer: 
+			-Get/post calls (Json). 
+		REST interface layer:
+			-Get/post call to parameters and resources call.	
+			-Parameters and resources call to service layer.
+		Service layer: 
+			-Implementing logic and calls to the DAO layer.
+		DAO layer: 
+			-Persistence and retrieval of data from permanent or cache data sources.
+	
+8- Depict a model of the tiers of the project.
+	Tiers
+		Web browser (client tier)
+		Middleware: services implementing behavior to process, request and send data 
+					to and from the backend to the customer. Multiple instances of these
+				    services are deployed physically independent (in different servers/VMs).
+						
+		Backend: set of systems and datasources provided by the customer. 
+		
+9- Organize the classes and interfaces for ION Solid Management application in
+layers and tiers.
+	
+		Done. Will have 4 layers and a unique tier.
+		
+		Layers are:
+			 
+			 edu.globant.day2.tema.exercises.view
+			 edu.globant.day2.tema.exercises.service
+			 edu.globant.day2.tema.exercises.model
+			 edu.globant.day2.tema.exercises.dao

@@ -1,4 +1,4 @@
-package edu.globant.dayX.tema.exercises.day1.model;
+package edu.globant.day1.tema.exercises.model;
 
 public interface Provider {
 	public String name = "";

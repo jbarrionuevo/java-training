@@ -1,4 +1,4 @@
-package edu.globant.dayX.tema.exercises.day1.service;
+package edu.globant.day1.tema.exercises.service;
 
 public class ProviderOrderService {
 	public void registerOrder() {
