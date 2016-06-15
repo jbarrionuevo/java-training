@@ -8,7 +8,8 @@ package edu.globant.day1.exercises.oop.service;
 import edu.globant.day1.exercises.oop.dao.SalesDao;
 import edu.globant.day1.exercises.oop.dao.SalesDaoImpl;
 
-import edu.globant.day1.exercises.oop.entity.Receipt;
+
+import edu.globant.day1.exercises.oop.entity.Sale;
 
 /**
  *
@@ -19,7 +20,7 @@ public class SalesServiceImpl implements SalesService{
     SalesDao salesDao = new SalesDaoImpl();
     
     @Override
-    public void addSale(Receipt sale) {
+    public void addSale(Sale sale) {
         salesDao.addSale(sale);
     }
     

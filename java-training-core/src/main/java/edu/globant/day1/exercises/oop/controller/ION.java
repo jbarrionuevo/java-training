@@ -26,9 +26,9 @@ public class ION {
         SalesService salesService = new SalesServiceImpl();
 
         Customer customer1 = new Customer("Federico Gaston Calarco", 22, 'M', "La Plata");
-        Receipt sale1 = new Receipt(customer1, "14/06/2016", 20, 1, "Store Nº 3 - 7th Ave, New York, NY, USA");
+        Receipt receipt1 = new Receipt(customer1, "14/06/2016", 20, 1, "Store Nº 3 - 7th Ave, New York, NY, USA");
 
-        salesService.addSale(sale1);
+      
 
     }
 }

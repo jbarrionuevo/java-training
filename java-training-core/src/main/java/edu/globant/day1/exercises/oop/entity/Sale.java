@@ -11,6 +11,6 @@ package edu.globant.day1.exercises.oop.entity;
  */
 public class Sale {
     private Receipt receipt;
-    
+    private String status; //  draft, paid, cancelled and refund
     
 }

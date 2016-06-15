@@ -5,7 +5,7 @@
  */
 package edu.globant.day1.exercises.oop.dao;
 
-import edu.globant.day1.exercises.oop.entity.Receipt;
+import edu.globant.day1.exercises.oop.entity.Sale;
 
 /**
  *
@@ -14,7 +14,7 @@ import edu.globant.day1.exercises.oop.entity.Receipt;
 public class SalesDaoImpl implements SalesDao{
 
     @Override
-    public void addSale(Receipt sale) {
+    public void addSale(Sale sale) {
         System.out.println("Add sale ");
     }
     

@@ -5,12 +5,14 @@
  */
 package edu.globant.day1.exercises.oop.service;
 
-import edu.globant.day1.exercises.oop.entity.Receipt;
+import edu.globant.day1.exercises.oop.entity.Sale;
+
+
 
 /**
  *
  * @author fedec
  */
 public interface SalesService {
-    public void addSale(Receipt sale);
+    public void addSale(Sale sale);
 }
