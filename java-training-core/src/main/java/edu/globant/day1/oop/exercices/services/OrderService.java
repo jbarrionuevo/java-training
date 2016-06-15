@@ -8,7 +8,7 @@ public class OrderService {
 	
 	private OrderDao orderDao;
 	
-	public int wasDelayed(Order order){
+	public int delay(Order order){
 		if(order.getDateOfDelivery()==null) return -1;
 		int difference = DateMethods.differenceBetweenDates(order.getDateOfRequest(), order.getDateOfDelivery());
 		if(difference>30) return difference-30;
