@@ -8,6 +8,8 @@ package edu.globant.day1.exercises.oop.controller;
 import edu.globant.day1.exercises.oop.entity.Customer;
 import edu.globant.day1.exercises.oop.entity.Provider;
 import edu.globant.day1.exercises.oop.entity.Receipt;
+import edu.globant.day1.exercises.oop.entity.Sale;
+import edu.globant.day1.exercises.oop.entity.SaleStatus;
 import edu.globant.day1.exercises.oop.service.SalesService;
 import edu.globant.day1.exercises.oop.service.SalesServiceImpl;
 
@@ -28,7 +30,7 @@ public class ION {
         Customer customer1 = new Customer("Federico Gaston Calarco", 22, 'M', "La Plata");
         Receipt receipt1 = new Receipt(customer1, "14/06/2016", 20, 1, "Store Nº 3 - 7th Ave, New York, NY, USA");
 
-      
+        Sale sale1 = new Sale(receipt1, SaleStatus.DRAFT);
 
     }
 }

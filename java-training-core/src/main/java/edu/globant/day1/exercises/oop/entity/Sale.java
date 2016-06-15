@@ -11,6 +11,31 @@ package edu.globant.day1.exercises.oop.entity;
  */
 public class Sale {
     private Receipt receipt;
-    private String status; //  draft, paid, cancelled and refund
+    private SaleStatus status;
+
+    public Sale(Receipt receipt, SaleStatus status) {
+        this.receipt = receipt;
+        this.status = status;
+    }
+
+    public Receipt getReceipt() {
+        return receipt;
+    }
+
+    public void setReceipt(Receipt receipt) {
+        this.receipt = receipt;
+    }
+
+    public SaleStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(SaleStatus status) {
+        this.status = status;
+    }
+
+    
+    
+    
     
 }

@@ -7,13 +7,8 @@ package edu.globant.day1.exercises.oop.entity;
 
 /**
  *
- * @author fedec
+ * @author federico.calarco
  */
-public class CaseForCellphone extends Case{
-
-    public CaseForCellphone(String design, String device) {
-        super(design, device);
-    }
-    
-    
+public enum DeviceType {
+    CELLPHONE,TABLET
 }

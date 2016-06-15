@@ -21,6 +21,7 @@ public class SalesServiceImpl implements SalesService{
     
     @Override
     public void addSale(Sale sale) {
+
         salesDao.addSale(sale);
     }
     

@@ -5,18 +5,32 @@
  */
 package edu.globant.day1.exercises.oop.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author fedec
  */
-public abstract class Case {
+public class Case {
     
+    List<Device>  compatibleDevices = new ArrayList();
     private String design;
-    private String device;
 
-    public Case(String design, String device) {
+    public Case(String design) {
         this.design = design;
-        this.device = device;
+    }
+
+    public List<Device> getCompatibleDevices() {
+        return compatibleDevices;
+    }
+
+    public void setCompatibleDevices(List<Device> compatibleDevices) {
+        this.compatibleDevices = compatibleDevices;
+    }
+    
+    public void addCompatibleDevices(Device device){
+        this.compatibleDevices.add(device);
     }
 
     public String getDesign() {
@@ -27,13 +41,7 @@ public abstract class Case {
         this.design = design;
     }
 
-    public String getDevice() {
-        return device;
-    }
-
-    public void setDevice(String device) {
-        this.device = device;
-    }
+    
 
 
 

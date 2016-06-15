@@ -7,12 +7,9 @@ package edu.globant.day1.exercises.oop.entity;
 
 /**
  *
- * @author fedec
+ * @author federico.calarco
  */
-public class CaseForTablet extends Case{
 
-    public CaseForTablet(String design, String device) {
-        super(design, device);
-    }
-    
+public enum SaleStatus {
+    DRAFT,PAID,CANCELLED,REFUND
 }
