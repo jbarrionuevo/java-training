@@ -19,8 +19,16 @@ public class SaleService {
 		Sale result=null;
 		try{
 			result= saleDao.getSale(saleId);
-		}catch(SaleNotFoundException e){
+		}catch(IllegalArgumentException e){
+			System.out.println("Sale id cannot be null");
+			e.printStackTrace(System.out);
+		}
+		catch(SaleNotFoundException e){
 			System.out.println("Sale id was not found");
+			e.printStackTrace(System.out);
+		}
+		catch(Exception e){
+			System.out.println("Exception found, please review your code quickly!!");
 			e.printStackTrace(System.out);
 		}
 		return result;
