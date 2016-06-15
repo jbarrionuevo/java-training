@@ -96,6 +96,7 @@ public class AbstractFactoryPattern {
 
 	public static void main(String[] args) {
 		playWithTerrain(new DesertTerrainFactory());
+		System.out.println("------------------------------------------");
 		playWithTerrain(new MoonTerrainFactory());
 	}
 
