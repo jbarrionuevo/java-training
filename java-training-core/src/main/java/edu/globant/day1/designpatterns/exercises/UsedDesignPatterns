@@ -1,0 +1,8 @@
+In my last and unique project in Globant we have a lot of patterns, some of this are:
+	- Observer: was used in order to wait all data come back from another services
+	- Builder: we have a lot of builder pattern implementations, one of the last I used was from a Exception back
+	- Factory: one common use of this patter was using logger library.
+	Because the project was too big, I´m sure was more patterns but I didn´t need to work with it and didn´t see it
+	Another Patterns I used was in Java bootcamp, we have to make a shopping cart, I implemented Strategy for diferent 
+	payment methods, observer in order to notify when some action happend like a new items was added and builders and 
+	factories for some classes
