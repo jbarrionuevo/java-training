@@ -1,0 +1,18 @@
+In the debt project I mentioned, we were working in a kind of four-layer application:
+1) Presentation Layer, which was formed by the UI to let the user use the app
+2) Controllers Layer, which took the requirements from the user (mainly, DTOs) and processed them, using the Services Layer (to which it passed model objects,
+using a tool like dozer to do the mapping) to get/persist/delete data
+3) Services layer, which received model objects from the previous layer, and interact with the Data Access layer, passing these objects to it and also retrieving
+them from it
+4) Data Access layer, implemented with DAOs, which accessed the underlying databases
+The bussiness layer, as you can see, was divided in two layers (2 and 3).
+
+Respecting to tiers, we used the typical 3-tier application, formed by:
+- a presentation tier
+- a logic tier
+- a data tier
+
+I plan to have the same layer architecture for the recently created app. In this way, I will be able to generate unit tests (testing for example a controller,
+mocking the services layer; or a service, mocking the corresponding daos), and integration tests (testing the functionality of the app entirely, testing
+all the layers simoultaneously).
+Respecting to tiers, we'll have a 1-tier app, as we will generate only one .jar file.
