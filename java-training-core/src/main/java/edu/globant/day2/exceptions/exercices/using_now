@@ -1,0 +1,5 @@
+In the ION app, I would use:
+- SQLExceptions, whenever accessing the db. An example is provided in exercices.daos.SaleDao
+- IllegalArgumentException, for example when trying to retrieve a sale without providing a saleId
+- I'll create custom exceptions, such as SaleNotFoundException (available in exercices.exceptions.SaleNotFoundException), thrown when trying to
+	retrieve a non-existent sale. This exception will be used to catch the error in SaleService, for example, as you can see in exercices.services.SaleSerive.
