@@ -35,7 +35,7 @@ public class Inventory implements InventorySubject{
 		//if inventory has a CaseWrapper for that type of case
 			//update it
 		//else
-			//create new casewrapper for that type of case, then update it
+			//throw not found
 	}
 
 	@Override
