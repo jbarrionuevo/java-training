@@ -5,3 +5,5 @@ Up till now, I have used:
 	less than the minimum; if true, the inventory notifies all its observers, so they can refund that case, auto-generating an order to them.
 	- The State Pattern; up till now, it may not be necesary, but as I think that in the future, depending on the current state, the sale can
 	behave in one way or another, it may be a good idea to implement the state pattern on it.
+	- The Strategy Pattern; the CaseSeller class is no longer abstract; instead, now all instances of sellers are going to be CaseSeller instances,
+	with a strategy, which will determine how the seller is going to behave (delivery/store/complete seller)
