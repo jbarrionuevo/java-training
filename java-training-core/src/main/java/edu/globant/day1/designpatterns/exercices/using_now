@@ -1,5 +1,7 @@
 Up till now, I have used:
 	- The Singleton Pattern, restricting the Inventory instance to be only one.
+	- The Factory method Pattern, with a CaseSeller factory which allows to create the different types of sellers, depending on the passed
+	string parameter
 	- The Observer Pattern; the inventory has a collection of observers (the Providers) and a collection of CaseWrappers (which include a case,
 	a minimum stock, and a current stock). Whenever a sale is made, the CaseWrapper of that case is updated, checking if the current stock is
 	less than the minimum; if true, the inventory notifies all its observers, so they can refund that case, auto-generating an order to them.
