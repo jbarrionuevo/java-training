@@ -1,0 +1,24 @@
+In a shared expenses application project I'm working on, I use layers and tiers in the following way:
+
+- Server side: one tier is a Java application with Spring, Spring Security, Hibernate and no views. This application has all the DTOs mapped
+to the DB with JPA annotations. So it has the following classes, among others:
+	-AppUser
+	-UserGroup
+	-Expense
+	-ExpenseDetail
+	-Category
+	-Notification
+The server has a service layer that has the business logic, checks the validity of a request, checks that the API Key sent from the client corresponds
+to an actual user, and returns a response or executes the task. For example:
+	-AppUserService (interface)
+	-AppUserServiceImpl (@Service, @Transactional, @Autowired AppUserDao dao) 
+There's a DAO layer who uses Hibernate to communicate with the DB.
+The server has a Controller layer that responds all requests with a ResponseEntity with the corresponding HTTP Status code and the object, JSON Parsed
+via Jackson.
+
+- Client side: the second tier is a Java application with Spring, Spring Security and a view layer. It does not have a DAO since all the requests are
+made through REST. The view, using Angular, calls his own Controller via $http (AJAX). The Controller calls the corresponding service, who gets the
+Object from the Server via RestTemplate and parses the JSON to a String. In the view, Angular gets that JSON String and shows the information. 
+
+I already organized the ION Solid application classes and interfaces into layers, as seen in the "exercises.oop" package. It makes it easier to understand
+the application functionalities, helps organization and decoupling, and code reusability.
