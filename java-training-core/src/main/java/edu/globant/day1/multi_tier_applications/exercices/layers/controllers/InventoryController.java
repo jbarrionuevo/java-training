@@ -1,6 +1,6 @@
-package edu.globant.day1.multi_tier_applications.exercices.structure.controllers;
+package edu.globant.day1.multi_tier_applications.exercices.layers.controllers;
 
-import edu.globant.day1.multi_tier_applications.exercices.structure.services.InventoryService;
+import edu.globant.day1.multi_tier_applications.exercices.layers.services.InventoryService;
 
 public class InventoryController {
 	private InventoryService inventoryService;

@@ -1,6 +1,6 @@
-package edu.globant.day1.multi_tier_applications.exercices.structure.controllers;
+package edu.globant.day1.multi_tier_applications.exercices.layers.controllers;
 
-import edu.globant.day1.multi_tier_applications.exercices.structure.services.CaseSellerService;
+import edu.globant.day1.multi_tier_applications.exercices.layers.services.CaseSellerService;
 
 public class CaseSellerController {
 	private CaseSellerService caseSellerService;

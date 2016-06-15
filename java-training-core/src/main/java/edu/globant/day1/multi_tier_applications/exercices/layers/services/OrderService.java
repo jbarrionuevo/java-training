@@ -1,4 +1,4 @@
-package edu.globant.day1.multi_tier_applications.exercices.structure.services;
+package edu.globant.day1.multi_tier_applications.exercices.layers.services;
 
 import edu.globant.day1.oop.exercices.auxiliary_classes.DateMethods;
 import edu.globant.day1.oop.exercices.daos.OrderDao;

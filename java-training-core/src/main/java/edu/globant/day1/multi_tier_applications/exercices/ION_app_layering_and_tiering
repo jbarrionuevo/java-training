@@ -1,0 +1,9 @@
+(**1,2,3,4 refer to previousy_used.txt, read it first!**)
+I plan to have the same layer architecture for the recently created app; for the moment being, we'll have layers 2,3 and 4, and 1 is going to be represented with
+a DTOs layer (since client will send DTOs), which will include Hibernate validators (to make some rules mandatory, such as the name of the design cannot be empty,
+etc., which will let to provide a feedback to the client, and, if this validators succeed, provide correct objects to the underlying layer).
+In this way, I will be able to generate unit tests (testing for example a controller, mocking the services layer; or a
+service, mocking the corresponding daos), and integration tests (testing the functionality of the app entirely, testing all the layers simoultaneously).
+
+Respecting to tiers, we'll have a 2-tier app, as we will generate only one .jar file (which will represent both the presentation and logic tier), and we'll 
+persist and retrieve data from an underlying database, which will represent the data tier.

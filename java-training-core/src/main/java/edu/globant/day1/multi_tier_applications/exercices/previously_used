@@ -12,7 +12,3 @@ Respecting to tiers, we used the typical 3-tier application, formed by:
 - a logic tier
 - a data tier
 
-I plan to have the same layer architecture for the recently created app. In this way, I will be able to generate unit tests (testing for example a controller,
-mocking the services layer; or a service, mocking the corresponding daos), and integration tests (testing the functionality of the app entirely, testing
-all the layers simoultaneously).
-Respecting to tiers, we'll have a 1-tier app, as we will generate only one .jar file.
