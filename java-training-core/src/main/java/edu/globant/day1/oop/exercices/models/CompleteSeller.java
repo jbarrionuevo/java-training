@@ -8,6 +8,8 @@ import edu.globant.day1.oop.exercices.interfaces.StoreSellerInterface;
 
 public class CompleteSeller extends CaseSeller implements DeliverySellerInterface,StoreSellerInterface{
 
+	public CompleteSeller() {}
+	
 	public CompleteSeller(String name) {
 		super(name);
 		// TODO Auto-generated constructor stub

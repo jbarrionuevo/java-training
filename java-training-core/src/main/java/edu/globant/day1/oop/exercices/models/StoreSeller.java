@@ -10,6 +10,8 @@ public class StoreSeller extends CaseSeller implements StoreSellerInterface{
 
 	private String store;
 	
+	public StoreSeller(){}
+	
 	public StoreSeller(String name){
 		super(name);
 	}

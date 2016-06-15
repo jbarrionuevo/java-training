@@ -3,6 +3,8 @@ package edu.globant.day1.oop.exercices.models;
 public abstract class Employee {
 	private String name;
 	
+	public Employee(){}
+	
 	public Employee(String name){
 		this.name=name;
 	}
