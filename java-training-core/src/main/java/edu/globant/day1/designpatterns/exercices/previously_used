@@ -1,0 +1,12 @@
+Since I have entered Globant recently, I have not been part of a project in the company, but i have worked for a year
+in the Social Prevision Institute, with java.
+There, me and my team designed a Debt Web App, where we used some design patterns, for example:
+	- We used the singleton pattern to deal with Connection, having only one EntityManager for each database we were 
+	accessing
+	- We used the strategy pattern to deal with payments; the debtor had to paid his debts in a process where he/she
+	had to pick a recovery plan, which gave different payment options, such as credit card, paying in cash, divide
+	their debt in fees, etc; so, depending on their choice, a different strategy was chosen.
+	- We implemented the observer pattern, because every time a debt was generated, all the alarms and stadistics had
+	to be triggered/refreshed, so the last ones where observers of the action of registering a debt.
+	- Last but not least, as debts acted differently depending on their stage and their current department, we 
+	implemented the state pattern, changing the debt behaviour during its travel.
