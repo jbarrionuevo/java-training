@@ -1,4 +1,4 @@
-package edu.globant.day1.oop.exercices.services;
+package edu.globant.day1.designpatterns.exercices.observer;
 
 import java.util.HashMap;
 
@@ -6,7 +6,6 @@ import edu.globant.day1.oop.exercices.daos.InventoryDao;
 import edu.globant.day1.oop.exercices.models.Case;
 import edu.globant.day1.oop.exercices.models.CaseDesign;
 import edu.globant.day1.oop.exercices.models.CaseDevice;
-import edu.globant.day1.oop.exercices.models.Inventory;
 import edu.globant.day1.oop.exercices.models.Provider;
 
 public class InventoryService {
@@ -14,14 +13,15 @@ public class InventoryService {
 	private InventoryDao inventoryDao;
 	
 	public void addCase(Case aCase, int quantity){
-		HashMap<Case,Integer> inventory = Inventory.getInventory();
-		inventory.put(aCase, inventory.get(aCase)+quantity);
+		Inventory inventory = Inventory.getInstance();
+		inventory.addCase(aCase, quantity);
 		//update inventory in db
 	}
 	
 	public void removeCase(Case aCase, int quantity){
-		HashMap<Case,Integer> inventory = Inventory.getInventory();
-		inventory.put(aCase, inventory.get(aCase)-quantity);
+		Inventory inventory = Inventory.getInstance();
+		inventory.removeCase(aCase, quantity);
+		inventory.doNotify(aCase);
 		//trigger alarm if the case stock is less than a minimum number
 		//update inventory in db
 	}
