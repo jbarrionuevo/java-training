@@ -1,4 +1,4 @@
-package edu.globant.day1.layersandtiers.model;
+package edu.globant.day1.layersandtiers.exercises.model;
 
 public class Customer {
 	private String name;
