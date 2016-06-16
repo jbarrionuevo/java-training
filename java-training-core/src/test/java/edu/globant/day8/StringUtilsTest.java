@@ -1,4 +1,4 @@
-package edu.globant.day7;
+package edu.globant.day8;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.globant.day7.StringUtils;
+import edu.globant.day8.StringUtils;
 
 public class StringUtilsTest {
 

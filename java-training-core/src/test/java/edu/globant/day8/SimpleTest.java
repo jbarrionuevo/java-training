@@ -1,11 +1,11 @@
-package edu.globant.day7;
+package edu.globant.day8;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import edu.globant.day7.SimpleClass;
+import edu.globant.day8.SimpleClass;
 
 /**
  * Unit test class for SimpleClass

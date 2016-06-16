@@ -1,4 +1,4 @@
-package edu.globant.day7;
+package edu.globant.day8;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -8,7 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import edu.globant.day7.SimpleValidator;
+import edu.globant.day8.SimpleValidator;
 
 public class SimpleValidatorTest {
 
