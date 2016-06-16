@@ -5,8 +5,6 @@
  */
 package edu.globant.day1.exercises.designPatterns.Service;
 
-import edu.globant.day1.exercises.oop.service.*;
-
 /**
  *
  * @author fedec
