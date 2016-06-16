@@ -1,0 +1,11 @@
+In the Debt Application I mentioned before, I used:
+- A Set of debts in the debtor (Set<Debts>), with the HashMap implementation (I didnt care about the order, only about the debts dont being
+repeated)
+- A TreeMap to keep the list of debtors (TreeMap<Debtor,Account>) with their accounts associated, so we could access a specific debtor account,
+being important to keep an order to list them like that.
+- A Queue to keep track of debtors fees which had their expiring date expired, so the user could notify them about this in order of importance 
+(the first fee expired is the first one that should be notified, so we needed a FIFO). We could have also used a Deque, if the user would have asked
+us to retrieve these expired fees from the most important to the least important, and viceversa.
+- An ArrayList to keep the periods in which there were strange movements, in a Debt; we implemented an ArrayList 'cause there could be repeated periods,
+meaning that there was more than one strange movement in that time.
+ 
