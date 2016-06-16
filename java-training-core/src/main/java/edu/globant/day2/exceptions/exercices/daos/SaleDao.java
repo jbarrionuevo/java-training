@@ -34,12 +34,17 @@ public class SaleDao {
 	}
 	
 	public Sale getSale(Integer saleId) throws SaleNotFoundException{
-		if(saleId==null) throw new IllegalArgumentException("Sale id cannot be empty.");
 		try{
 			//get sale with id saleId
+			//itExists represents that there is a sale with that id after searching in the db
+			boolean itExists=true;
+			if(itExists)
+				throw new SaleNotFoundException("Sale with id "+saleId+" was not found");
 			return null;
 		}catch(Exception e){
-			throw new SaleNotFoundException("Sale with id "+saleId+" was not found");
+			System.out.println("Do not keep calm because it's an unexpected exception.");
+			e.printStackTrace(System.out);
+			return null;
 		}
 	}
 	

@@ -1,13 +1,13 @@
 To talk about exceptions, I will refer to the Cart Api in which I've been working since I entered Globant (which was part of the java bootcamp, which I
-didn't attend).
+didn't attend, though).
 There, I created several custom exceptions, such as:
 	- CartNotFoundException: thrown whenever the client asked for a specific cart providing its id, but this was not found
 	- MissingAttributesException: thrown whenever a DTO got to the controllers layer, in JSON format, and didnt have every
-		field that was required for mapping the DTO to the model object
+		required field for mapping the DTO to the model object
 	- UserAlreadyExistsException: thrown when trying to register a new user with a username which already existed in the db.
 	- WrongFormatException: thrown whenever a DTO got to the controllers layer in a JSON format, and a value of a field was
 		not correct talking about format, for example "dateOfBirth: hello".
 Then, I used dozer (tool for mapping DTO to model entities and viceversa) exceptions, such as MappingException, thrown when trying to convert a DTO to its 
-respective model entity, or viceversa.
+respective model entity, or viceversa, and not being catch with one of the exceptions previously defined below.
 Since I used Spring Boot, repositories methods were merely authomatic; but if I didnt, I would probably have to use SQLExceptions whenever accessing the
 db or loading a driver, to catch possible exceptions.

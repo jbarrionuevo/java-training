@@ -15,15 +15,12 @@ public class SaleService {
 	private SaleDao saleDao;
 	private InventoryDao inventoryDao;
 
-	public Sale getSale(int saleId){
+	public Sale getSale(Integer saleId){
 		Sale result=null;
+		if(saleId==null) throw new IllegalArgumentException("Sale id cannot be empty.");
 		try{
 			result= saleDao.getSale(saleId);
-		}catch(IllegalArgumentException e){
-			System.out.println("Sale id cannot be null");
-			e.printStackTrace(System.out);
-		}
-		catch(SaleNotFoundException e){
+		}catch(SaleNotFoundException e){
 			System.out.println("Sale id was not found");
 			e.printStackTrace(System.out);
 		}
