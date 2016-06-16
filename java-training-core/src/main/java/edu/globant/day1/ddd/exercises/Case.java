@@ -1,12 +1,17 @@
 package edu.globant.day1.ddd.exercises;
 
-import edu.globant.day1.oop.exercises.Case.TypeOfCase;
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+import edu.globant.day1.oop.exercises.Case.Design;
+import edu.globant.day1.oop.exercises.Case.Device;
 import edu.globant.day1.oop.exercises.Provider.Provider;
 
-public abstract class Case {
+public abstract class Case{
 	
-	private TypeOfCase typeOfCase;
-	private Provider provider;
+	private TreeSet<Provider> providers;
+	private ArrayList<Device> devices;
+	private Design design;
 	protected double price;
 	protected int quantity;
 	protected int MINIMUM_QUANTITY;
@@ -15,26 +20,39 @@ public abstract class Case {
 		
 	}
 	
-	public Case(TypeOfCase type,Provider provider, double price,int quantity, int minimum){
+	public Case(TreeSet<Provider> providers,ArrayList<Device> devices ,Design design,double price,int quantity, int minimum){
 		this.MINIMUM_QUANTITY = minimum;
-		this.typeOfCase = type;
-		this.provider = provider;
+		this.providers = providers;
+		this.devices = devices;
+		this.design = design;
 		this.price = price;
 		this.quantity = quantity;
 	}
 	
-	public TypeOfCase getTypeOfCase() {
-		return typeOfCase;
+	public Design getDesign() {
+		return design;
 	}
-	public void setTypeOfCase(TypeOfCase typeOfCase) {
-		this.typeOfCase = typeOfCase;
+
+	public void setDesign(Design design) {
+		this.design = design;
 	}
-	public Provider getProvider() {
-		return provider;
+
+	public ArrayList<Device> getDevices() {
+		return devices;
 	}
-	public void setProvider(Provider provider) {
-		this.provider = provider;
+
+	public void setDevices(ArrayList<Device> devices) {
+		this.devices = devices;
 	}
+
+	public TreeSet<Provider> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(TreeSet<Provider> providers) {
+		this.providers = providers;
+	}
+
 	public double getPrice() {
 		return price;
 	}

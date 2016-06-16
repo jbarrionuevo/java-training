@@ -1,0 +1,9 @@
+I used Exceptions at many projects in other work, "Business" Exceptions generally.
+For example, in a program that processed excel files, if the number of rows of this was superior to a number they configurate it
+throws an "TooLargeException".
+
+I used edge cases too.
+For example, to manage files i used IOException.
+
+On a project, I used the Guava library and drove Guava's Exceptions. 
+The Same with Hibernate
