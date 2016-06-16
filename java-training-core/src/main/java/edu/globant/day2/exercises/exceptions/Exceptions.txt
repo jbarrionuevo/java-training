@@ -1,0 +1,5 @@
+In a project for the National Seed Institute (Instituto Nacional de Semillas) I worked for before Globant, I handled many types of exceptions. For instance,
+the people from Legal wanted to upload files and classify them. This could throw a FileIOException, FileNotFoundException, etc. which was handled properly and
+returned a message to the user.
+On the other side, there were connections to many different databases using JDBC, thus there was a high probability of a SQLException. That was also managed
+surrounding every SQL Statement with Try - Catch, setting autocommit to false and making a rollback if any connection failed.

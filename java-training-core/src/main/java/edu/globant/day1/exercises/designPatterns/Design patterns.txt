@@ -1,6 +1,6 @@
 I used various design patterns in a project for the National Seed Institute (Instituto Nacional de Semillas) where I worked before Globant.
 First of all, I used Strategy pattern, as I used several Servlets for different behaviours. For example, when the task asked was to create
-a new account for a new agent (class Agent), the button called the corresponding Servlet (AgentCRUD) with the POST method and an action, wich 
+a new account for a new agent (class Agent), the button called the corresponding Servlet (AgentCRUD) with the POST method and an action, which 
 indicated the servlet on how to manage the task and what method to execute. In this case, it returned a success / failure message to the view.
 When the task was to recover all the agents, it returned the ArrayList<Agent>. In the last case, the view had an Iterator to build the table in the JSP.
 Plus, I used at least two filters (Chain of responsability): one to set the charset always to UTF-8, avoiding issues when reading and writing
