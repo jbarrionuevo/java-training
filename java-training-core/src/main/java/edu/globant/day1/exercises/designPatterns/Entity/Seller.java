@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day1.exercises.oop.entity;
-
-import edu.globant.day1.exercises.designPatterns.Entity.*;
+package edu.globant.day1.exercises.designPatterns.Entity;
 
 /**
  *
  * @author fedec
  */
-public class DeliverySeller extends Seller{
+public abstract class Seller extends Employee{
 
-    public DeliverySeller(String name) {
+    public Seller(String name) {
         super(name);
     }
     

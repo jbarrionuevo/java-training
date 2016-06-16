@@ -5,7 +5,7 @@
  */
 package edu.globant.day1.exercises.oop.service;
 
-import edu.globant.day1.exercises.oop.entity.Sale;
+import edu.globant.day1.exercises.designPatterns.Entity.Sale;
 
 
 

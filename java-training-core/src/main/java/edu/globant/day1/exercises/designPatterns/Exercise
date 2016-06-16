@@ -1,4 +1,7 @@
 Design patterns
-I don't worked much with design patterns, but i used   
-SINGLETON for create an only sessionFactory for all aplicaition. (Hibernate)
 
+I don't worked much with design patterns, these are new for me,  but i've used   
+
+- SINGLETON for create an only sessionFactory for all aplicaition. (Hibernate)
+
+- Inversion of Control (IoC) and Dependency Injection (DI) with Spring Framework

@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day1.exercises.oop.entity;
-
-import edu.globant.day1.exercises.designPatterns.Entity.*;
+package edu.globant.day1.exercises.designPatterns.Entity;
 
 /**
  *
  * @author federico.calarco
  */
-
-public enum SaleStatus {
-    DRAFT,PAID,CANCELLED,REFUND
+public enum DeviceType {
+    CELLPHONE,TABLET
 }

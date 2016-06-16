@@ -5,11 +5,11 @@
  */
 package edu.globant.day1.exercises.oop.controller;
 
-import edu.globant.day1.exercises.oop.entity.Customer;
-import edu.globant.day1.exercises.oop.entity.Provider;
-import edu.globant.day1.exercises.oop.entity.Receipt;
-import edu.globant.day1.exercises.oop.entity.Sale;
-import edu.globant.day1.exercises.oop.entity.SaleStatus;
+import edu.globant.day1.exercises.designPatterns.Entity.Customer;
+import edu.globant.day1.exercises.designPatterns.Entity.Provider;
+import edu.globant.day1.exercises.designPatterns.Entity.Receipt;
+import edu.globant.day1.exercises.designPatterns.Entity.Sale;
+import edu.globant.day1.exercises.designPatterns.Entity.SaleStatus;
 import edu.globant.day1.exercises.oop.service.SalesService;
 import edu.globant.day1.exercises.oop.service.SalesServiceImpl;
 

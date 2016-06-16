@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day1.exercises.oop.entity;
+package edu.globant.day1.exercises.designPatterns.Service;
 
-import edu.globant.day1.exercises.designPatterns.Entity.*;
+import edu.globant.day1.exercises.designPatterns.Entity.Sale;
+
+
 
 /**
  *
  * @author fedec
  */
-public class StoreSeller extends Seller{
-
-    public StoreSeller(String name) {
-        super(name);
-    }
-    
+public interface SalesService {
+    public void addSale(Sale sale);
 }

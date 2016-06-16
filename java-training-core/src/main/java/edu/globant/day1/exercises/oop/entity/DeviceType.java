@@ -5,6 +5,8 @@
  */
 package edu.globant.day1.exercises.oop.entity;
 
+import edu.globant.day1.exercises.designPatterns.Entity.*;
+
 /**
  *
  * @author federico.calarco

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day1.exercises.oop.service;
+package edu.globant.day1.exercises.designPatterns.Service;
 
+import edu.globant.day1.exercises.oop.service.*;
 import edu.globant.day1.exercises.oop.dao.SalesDao;
 import edu.globant.day1.exercises.oop.dao.SalesDaoImpl;
 
