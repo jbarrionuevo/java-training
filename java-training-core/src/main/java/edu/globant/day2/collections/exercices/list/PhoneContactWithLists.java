@@ -13,6 +13,9 @@ public class PhoneContactWithLists {
 		ArrayList<PhoneContact> phoneBook = addNumbers(new ArrayList<PhoneContact>());
 		System.out.println("Print without order");
 		System.out.println(phoneBook);
+		System.out.println("Add a new number; its added to the end");
+		phoneBook.add(new PhoneContact("new", "newLastName", "4567123"));
+		System.out.println(phoneBook);
 		System.out.println("Print ordered by Last Name");
 		Collections.sort(phoneBook,PhoneContact.PhoneContactLastNameComparator);
 		System.out.println(phoneBook);
