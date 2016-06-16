@@ -10,9 +10,9 @@ public class ThreadUtils {
 
 	public static void executeTasksInThreadsAndWait(Runnable ... tasks) {
 		Thread[] threadArray = new Thread[tasks.length];
-		int i = 0;
+		int i = 1;
 		for (Runnable task : tasks) {
-			threadArray[i] = new Thread(task, "Thread " + i);
+			threadArray[i-1] = new Thread(task, "Thread " + i);
 			i++;
 		}
 		for (Thread t : threadArray) {

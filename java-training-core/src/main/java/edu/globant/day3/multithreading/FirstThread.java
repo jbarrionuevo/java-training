@@ -9,12 +9,12 @@ public class FirstThread extends Thread {
 	@Override
 	public void run() {
 		for (int i = 1; i <= LIMIT; i++) {
-			System.out.println(String.format("Hilo: %s. Data: %d", this.getName(), i));
+			System.out.println(String.format("Thread: %s. Data: %d", this.getName(), i));
 		}
 	}
 	public static void main(String[] args) {
-		showNoPriority();
-//		showPriority(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY);
+//		showNoPriority();
+		showPriority(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY);
 	}
 
 	public static void showNoPriority() {
@@ -22,12 +22,12 @@ public class FirstThread extends Thread {
 	}
 
 	public static void showPriority(int priorityT1, int priorityT2) {
-		Thread t1 = new FirstThread("hilo 1");
+		Thread t1 = new FirstThread("Thread 1");
 		Thread t2 = new Thread(() -> {
 			for (int i = 1; i <= LIMIT; i++) {
-				System.out.println(String.format("Hilo: %s. Data: %d", Thread.currentThread().getName(), i));
+				System.out.println(String.format("Thread: %s. Data: %d", Thread.currentThread().getName(), i));
 			}
-		}, "hilo 2");
+		}, "Thread 2");
 		t1.setPriority(priorityT1);
 		t2.setPriority(priorityT2);
 		t1.start();
