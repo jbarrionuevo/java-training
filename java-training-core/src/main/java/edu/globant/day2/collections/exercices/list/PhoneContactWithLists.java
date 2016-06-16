@@ -14,8 +14,14 @@ public class PhoneContactWithLists {
 		System.out.println("Print without order");
 		System.out.println(phoneBook);
 		System.out.println("Add a new number; its added to the end");
-		phoneBook.add(new PhoneContact("new", "newLastName", "4567123"));
+		PhoneContact newPhoneContact = new PhoneContact("new", "newLastName", "4567123");
+		phoneBook.add(newPhoneContact);
 		System.out.println(phoneBook);
+		
+		System.out.println("Add the same number; its added and now is repeated");
+		phoneBook.add(newPhoneContact);
+		System.out.println(phoneBook);
+		
 		System.out.println("Print ordered by Last Name");
 		Collections.sort(phoneBook,PhoneContact.PhoneContactLastNameComparator);
 		System.out.println(phoneBook);

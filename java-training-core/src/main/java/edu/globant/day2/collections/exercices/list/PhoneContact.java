@@ -2,7 +2,7 @@ package edu.globant.day2.collections.exercices.list;
 
 import java.util.Comparator;
 
-public class PhoneContact {
+public class PhoneContact implements Comparable {
 	private String firstName,lastName,phoneNumber;
 
 	
@@ -54,6 +54,11 @@ public class PhoneContact {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	@Override
+	public int compareTo(Object otherPhoneContact) {
+		return this.getLastName().toLowerCase().compareTo(((PhoneContact)otherPhoneContact).getLastName().toLowerCase());
 	}
 	
 	
