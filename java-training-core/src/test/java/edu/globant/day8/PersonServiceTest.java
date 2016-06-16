@@ -1,4 +1,4 @@
-package edu.globant.day7;
+package edu.globant.day8;
 
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
@@ -10,6 +10,10 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import edu.globant.day8.Person;
+import edu.globant.day8.PersonDao;
+import edu.globant.day8.PersonService;
 
 public class PersonServiceTest {
 
