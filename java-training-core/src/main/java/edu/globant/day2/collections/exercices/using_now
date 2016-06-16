@@ -1,0 +1,7 @@
+In the ION app, I think we'll have to use:
+- A Set of Sales in the CaseSeller ('cause they have to keep track of them, but only need them once, not repeated)
+- Another Set, in this case of observers, in the Inventory, to keep its observers (providers)
+- The inventory may keep a HashMap, associating every Case type with its stock number
+- Providers orders may be kept in a Queue, so they are ordered by ascending date (to first attend the oldest ones)
+- If customers are going to keep the products they have bought, these could be stored in an ArrayList (cause they 
+could be repeated (same product, bought more than once))
