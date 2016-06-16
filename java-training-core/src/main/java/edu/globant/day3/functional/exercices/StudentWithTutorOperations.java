@@ -3,6 +3,7 @@ package edu.globant.day3.functional.exercices;
 import static java.util.Arrays.asList;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -26,7 +27,7 @@ class StudentWithTutor {
 	}
 	
 	public double average(){
-		return this.gradeList.stream().mapToDouble(Double::doubleValue).reduce(0, (a,b)->a+b) / this.gradeList.size();
+		return this.getGradeList().stream().mapToDouble(Double::doubleValue).average().orElse(0);
 	}
 
 	@Override
@@ -41,14 +42,59 @@ class StudentWithTutor {
 
 public class StudentWithTutorOperations {
 	
-	public static List<StudentWithTutor> get3Averages(List<StudentWithTutor> studentList, boolean up){
+	public static List<StudentWithTutor> get3Averages(List<StudentWithTutor> studentList, boolean descending){ 
+		//descending determines the order (false->ascending) of the averages
 		return studentList.stream()
 				.sorted((s1, s2) -> 
-					s1.getGradeList().stream().mapToDouble(Double::doubleValue).average().orElse(0)  > 
-					s2.getGradeList().stream().mapToDouble(Double::doubleValue).average().orElse(0) ? up ? -1 : 1 
-																								    : up ? 1 : -1)
+					s1.average()  > s2.average() ? descending ? -1 : 1 
+												 : descending ? 1 : -1)
 				.limit(3)
 				.collect(Collectors.toList());
+	}
+	
+	public static StudentWithTutor getClosestStudentToAverage(List<StudentWithTutor> studentList){
+		//Get the student whose average grade is closest to the average of the class. If there are two or more, choose only one of them
+		double classAverage = 
+				studentList.stream()
+					.map(s->s.average()).collect(Collectors.toList())
+					.stream()
+					.mapToDouble(Double::doubleValue)
+					.average().orElse(0);
+		return studentList.stream()
+				.sorted((s1, s2) -> Math.abs(s1.average() - classAverage) > 
+									Math.abs(s2.average() - classAverage) ? 1 : -1)
+				.limit(1)
+				.collect(Collectors.toList()).get(0);
+	}
+	
+	public static String tutorWithMoreStudents(List<StudentWithTutor> studentList){
+		//Get the tutor with most students. 
+		return studentList.stream()
+		.collect(Collectors.groupingBy(StudentWithTutor::getTutor))
+		.entrySet()
+		.stream()
+		.sorted((t1,t2)->t1.getValue().size() > t2.getValue().size() ? -1 : 1)
+		.map(t->t.getKey())
+		.collect(Collectors.toList()).get(0).toString()
+		;
+	}
+	
+	public static String bestStudentOfTutor(List<StudentWithTutor> studentList, String tutor){
+		//From tutor students, get the student with highest grades.
+		return ((List<StudentWithTutor>)studentList.stream()
+				.collect(Collectors.groupingBy(StudentWithTutor::getTutor))
+				.entrySet()
+				.stream()
+				.filter(t->t.getKey().equals(tutor))
+				.collect(Collectors.toList())
+				.get(0)
+				.getValue())
+				.stream()
+				.sorted((s1, s2) -> 
+						s1.average()  > s2.average() ?  -1 : 1)
+				.collect(Collectors.toList()).get(0)
+				.toString()
+		;
 	}
 	
 	public static void main(String[] args) {
@@ -68,5 +114,13 @@ public class StudentWithTutorOperations {
 		System.out.println(get3Averages(studentList,true));
 		System.out.println("Worst 3 averages: ");
 		System.out.println(get3Averages(studentList,false));
+		System.out.println("Closest student to class average");
+		System.out.println(getClosestStudentToAverage(studentList));
+		String tutor = tutorWithMoreStudents(studentList);
+		System.out.println("Tutor with most students");
+		System.out.println(tutor);
+		System.out.println("Best student of that Tutor");
+		System.out.println(bestStudentOfTutor(studentList,tutor));
+
 	}
 }
