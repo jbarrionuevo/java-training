@@ -1,4 +1,4 @@
-package edu.globant.day4;
+package edu.globant.day4.jdbc;
 
 import static edu.globant.utils.DateUtils.parseDate;
 import static edu.globant.utils.DateUtils.toSqlDate;

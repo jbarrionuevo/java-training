@@ -1,4 +1,4 @@
-package edu.globant.day4;
+package edu.globant.day4.jdbc;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
