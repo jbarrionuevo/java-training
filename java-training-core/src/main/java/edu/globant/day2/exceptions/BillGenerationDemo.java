@@ -8,11 +8,17 @@ public class BillGenerationDemo {
 
 	public static void main(String[] args) {
 		generateBill("", 10);
+		System.out.println("--------------------------------------");
 		generateBill("     ", 10);
+		System.out.println("--------------------------------------");
 		generateBill(null, 10);
+		System.out.println("--------------------------------------");
 		generateBill("12345", 0);
+		System.out.println("--------------------------------------");
 		generateBill("12345", 10);
+		System.out.println("--------------------------------------");
 		generateBill("67890", 10);
+		System.out.println("--------------------------------------");
 		generateBill("lj32nl4rnqweqd", 10);
 	}
 
@@ -26,6 +32,9 @@ public class BillGenerationDemo {
 			System.out.println("Do not keep calm because it's an unexpected exception.");
 			e.printStackTrace(System.out);
 		}
+//		} catch (Exception e) {
+//			throw new BillGenerationException("Unexpected.", e);
+//		}
 	}
 
 	public static void doGenerateBill(String account, double amount) throws BillGenerationException {
