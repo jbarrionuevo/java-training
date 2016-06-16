@@ -1,0 +1,5 @@
+I´m thinking in use:
+	- SQLExceptions, for problems related to access the db
+	- IllegalArgumentException, for missing data in some case that will need it, for example an id.
+	- SalesException, in SaleService, for example when a sale was not found
+	- StockException, in the places where I decrement the stock in order to control if the sale is higher than stock for example

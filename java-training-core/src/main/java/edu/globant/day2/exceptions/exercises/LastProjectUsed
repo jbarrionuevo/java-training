@@ -1,0 +1,7 @@
+In my last project we have an exception mapper builder, we have constants
+for almost all error types and exceptions,so we create an error with the 
+type and code then we can set a cause and a message for this and finally 
+build it. This basically was made in order to improve the error log system.
+We need to log the exception in order to know where was the error easier. 
+In another hand i used some common exception like incorrect or null parameters,
+and i remember the last one I use was in case a toggle didn´t exists throws and exception.   
