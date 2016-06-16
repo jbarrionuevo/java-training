@@ -1,24 +1,23 @@
-package edu.globant.IONSolid.model;
+package edu.globant.day1.layerandtiers.exercices.IONSolid.model.delivery;
 
 import java.sql.Date;
 import java.util.ArrayList;
 
-import edu.globant.IONSolid.model.cases.Case;
-import edu.globant.IONSolid.model.provider.Provider;
+import edu.globant.day1.layerandtiers.exercices.IONSolid.model.cases.Case;
+import edu.globant.day1.layerandtiers.exercices.IONSolid.provider;
 
 public class Delivery {
 
 	private Provider provider;
 	private Date deliverDate;
-	//true delay, false not delay
-	//could be an enum
-	private boolean status; 
+	private DeliveryStatus status; 
 	private ArrayList<Case> cases;
 	
 	public Delivery(Provider provider, Date date) {
 		this.setProvider(provider);
 		this.setDeliverDate(date);
-		this.setStatus(false); //false by defect
+		//ON_DATE by defect
+		this.setStatus(DeliveryStatus.ON_DATE); 
 	}
 	
 	public void addCases(Case newCase) {
@@ -50,11 +49,11 @@ public class Delivery {
 		this.deliverDate = deliverDate;
 	}
 
-	public boolean isStatus() {
+	public DeliveryStatus isStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(DeliveryStatus status) {
 		this.status = status;
 	}
 }

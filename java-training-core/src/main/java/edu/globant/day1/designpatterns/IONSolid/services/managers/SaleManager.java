@@ -1,7 +1,7 @@
-package edu.globant.IONSolid.services.managers;
+package edu.globant.day1.designpatterns.IONSolid.services.managers;
 
-import edu.globant.IONSolid.model.employee.SaleEmployee;
-import edu.globant.IONSolid.model.receipt.Receipt;
+import edu.globant.day1.designpatterns.IONSolid.model.employee.SaleEmployee;
+import edu.globant.day1.designpatterns.IONSolid.model.receipt.Receipt;
 
 public class SaleManager {
 

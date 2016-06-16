@@ -1,6 +1,6 @@
-package edu.globant.IONSolid.model.employee;
+package edu.globant.day1.designpatterns.IONSolid.model.employee;
 
-import edu.globant.IONSolid.model.receipt.Receipt;
+import edu.globant.day1.designpatterns.IONSolid.model.receipt.Receipt;
 
 public class SaleEmployee extends Employee {
 

@@ -1,4 +1,4 @@
-package edu.globant.IONSolid.model.provider;
+package edu.globant.day1.layerandtiers.exercices.IONSolid.provider;
 
 public class Provider {
 	
