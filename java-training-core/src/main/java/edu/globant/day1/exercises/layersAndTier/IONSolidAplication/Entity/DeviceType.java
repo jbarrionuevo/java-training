@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Dao;
+package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity;
 
-import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Sale;
+import edu.globant.day1.exercises.DDD.IONSolidAplication.*;
 
 
 
@@ -13,8 +13,6 @@ import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Sale;
  *
  * @author federico.calarco
  */
-public interface SalesDao {
-    
-    public void addSale(Sale sale);
-    
+public enum DeviceType {
+    CELLPHONE,TABLET
 }

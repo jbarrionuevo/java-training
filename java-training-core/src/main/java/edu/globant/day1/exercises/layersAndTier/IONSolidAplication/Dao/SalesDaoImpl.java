@@ -5,10 +5,19 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Dao;
 
+import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Sale;
+
+
+
 /**
  *
  * @author federico.calarco
  */
 public class SalesDaoImpl implements SalesDao{
+
+    @Override
+    public void addSale(Sale sale) {
+        System.out.println("Sale saved");
+    }
     
 }

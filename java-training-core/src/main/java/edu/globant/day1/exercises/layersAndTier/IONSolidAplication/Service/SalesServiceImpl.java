@@ -5,7 +5,9 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Service;
 
-import edu.globant.day1.exercises.designPatterns.Entity.Sale;
+import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Dao.SalesDao;
+import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Dao.SalesDaoImpl;
+import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Sale;
 
 /**
  *
@@ -13,9 +15,16 @@ import edu.globant.day1.exercises.designPatterns.Entity.Sale;
  */
 public class SalesServiceImpl implements SalesService{
 
+    SalesDao salesDao = new SalesDaoImpl();
+    InverntoryService inventoryService = new InventoryServiceImpl();
+
     @Override
     public void addSale(Sale sale) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
+        salesDao.addSale(sale);
     }
+
+
     
 }
