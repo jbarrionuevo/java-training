@@ -1,27 +1,15 @@
 Describe any experience where you have used DDD and model objects in a project.
 
-- When i worked in a project ..
+I am working on a project "Your Course" which is a web application where teachers can upload their courses and students can register to them.
 
+Before the begin with design of the application, we had meetings with teachers and students to know their requirements.
 
-TRANSLATE! --> 
+We obtained a series of requirements/needs and detected its entities.
 
-
-- Trabajo en un proyecto que consiste en una aplicacion web donde profesores pueden subir sus cursos y
-usuarios pueden registrasrse a los mismos. 
-
-Antes de comenzar con el diseño de la aplicacion se tuvo reuniones con profesores de diferentes areas 
-para enfocarnos en el tema y saber sus necesidades, como así tambien lo hicimos con los futuros usuarios de la aplicacion.
-
-A partir de estas reuniones obtuvimos una serie de requerimientos/necesidades que nosotros como desarrolladores
-nunca las habiamos pensado.
-
-Las entidades resultantes fueron:
-
--Entitys:
+-Entities:
+    Course
     Student 
     Teacher
-    Course
     Category
     Academy
-    
     
