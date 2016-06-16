@@ -6,12 +6,17 @@ import edu.globant.day1.oop.exercises.Sale.Sale;
 
 public class Seller implements TypeOfEmployee{
 	private ArrayList<Sale> sales;
-	
-	private void registerAllSales(){
-		sales.forEach(s -> s.register());
+
+	@Override
+	public void registerAllSales() {
+		getSales().forEach(s-> registerSale(s));
 	}
 	
-	private void registerSale(Sale s){
-		s.register();
+	public ArrayList<Sale> getSales() {
+		return sales;
+	}
+	
+	public void setSales(ArrayList<Sale> sales) {
+		this.sales = sales;
 	}
 }

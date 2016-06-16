@@ -27,6 +27,9 @@ public abstract class Case{
 		this.quantity = quantity;
 	}
 	
+	
+	
+	
 	public Design getDesign() {
 		return design;
 	}
