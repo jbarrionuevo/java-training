@@ -5,10 +5,17 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Service;
 
+import edu.globant.day1.exercises.designPatterns.Entity.Sale;
+
 /**
  *
  * @author federico.calarco
  */
 public class SalesServiceImpl implements SalesService{
+
+    @Override
+    public void addSale(Sale sale) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

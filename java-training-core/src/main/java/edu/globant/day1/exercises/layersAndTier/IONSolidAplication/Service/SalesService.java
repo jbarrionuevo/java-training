@@ -5,10 +5,12 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Service;
 
+import edu.globant.day1.exercises.designPatterns.Entity.Sale;
+
 /**
  *
  * @author federico.calarco
  */
 public interface SalesService {
-    
+    public void addSale(Sale sale);
 }

@@ -5,10 +5,40 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity;
 
+import edu.globant.day1.exercises.designPatterns.Entity.Receipt;
+import edu.globant.day1.exercises.designPatterns.Entity.SaleStatus;
+
 /**
  *
  * @author federico.calarco
  */
 public class Sale {
+    private Receipt receipt;
+    private SaleStatus status;
+
+    public Sale(Receipt receipt, SaleStatus status) {
+        this.receipt = receipt;
+        this.status = status;
+    }
+
+    public Receipt getReceipt() {
+        return receipt;
+    }
+
+    public void setReceipt(Receipt receipt) {
+        this.receipt = receipt;
+    }
+
+    public SaleStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(SaleStatus status) {
+        this.status = status;
+    }
+
+    
+    
+    
     
 }
