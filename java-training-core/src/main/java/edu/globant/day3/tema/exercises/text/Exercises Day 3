@@ -1,0 +1,49 @@
+1-Describe the exception handling mechanism used in your current or last
+project. Describe if there were special or edge cases.
+	The system of my last project uses the following mechanisms to handle exceptions:
+		1-By catching Exceptions and using a LOGGER to register them. 
+		
+		Example: 
+		Catching InterruptedExceptions* and logging the occurrence. (*"Thrown when a thread is waiting, sleeping, or otherwise 
+		occupied, and the thread is interrupted, either before or during the activity").
+
+		2-By throwing general Exceptions (java.lang.Exception) in methods, to be dealt by calling classes. 
+			
+2-Define the set of exceptions (checked and unchecked), including standard
+and custom, to use in ION Solid Management application, and the methods
+where the exceptions should be.
+		
+		Checked exceptions: 
+			-TimeoutException
+			-SQLException
+			-IOException
+			-InterruptedException
+			
+		Unchecked exceptions:
+			
+			Default:
+				-RuntimeException
+					-NullPointerException
+					-IndexOutOfBoundsException
+					-BufferOverflowException
+				
+			Custom:
+				-SaleNotPossibleException	
+				-SaleStateNotDefinedException
+				-UserNotLoggedException
+				-NoStockAvailableException	
+	
+3-Describe use cases when you have used each interface and which
+implementations you used.
+	
+	TO DO.
+	
+4-Define the use cases where to use each collection interface and their
+implementations in ION Solid application.
+	
+	TO DO.
+	
+5-Write a small console application that handles phone contact information. The
+information is held in memory. Use at least each interface revised.
+
+	PARTIAL.
