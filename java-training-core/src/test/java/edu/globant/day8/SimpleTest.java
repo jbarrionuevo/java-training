@@ -5,6 +5,8 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
+import edu.globant.day7.SimpleClass;
+
 /**
  * Unit test class for SimpleClass
  *

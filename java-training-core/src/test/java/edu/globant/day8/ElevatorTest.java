@@ -13,6 +13,8 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.globant.day7.Elevator;
+
 public class ElevatorTest {
 
 	Elevator elevator;
