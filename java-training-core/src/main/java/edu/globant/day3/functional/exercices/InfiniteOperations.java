@@ -5,9 +5,9 @@ import java.util.stream.IntStream;
 
 public class InfiniteOperations {
 	public static void main(String[] args) {
-		System.out.println("First 10 triangle numbers");
+		System.out.println("First 10 triangle numbers: ");
 		first10TriangleNumbers();
-		System.out.println("First 13 factorial numbers");
+		System.out.println("First 13 factorial numbers: ");
 		first13FactorialNumbers();
 	}
 	

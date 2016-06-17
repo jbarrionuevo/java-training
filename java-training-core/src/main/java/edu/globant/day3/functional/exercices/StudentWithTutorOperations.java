@@ -114,12 +114,12 @@ public class StudentWithTutorOperations {
 		System.out.println(get3Averages(studentList,true));
 		System.out.println("Worst 3 averages: ");
 		System.out.println(get3Averages(studentList,false));
-		System.out.println("Closest student to class average");
+		System.out.println("Closest student to class average: ");
 		System.out.println(getClosestStudentToAverage(studentList));
 		String tutor = tutorWithMoreStudents(studentList);
-		System.out.println("Tutor with most students");
+		System.out.println("Tutor with most students: ");
 		System.out.println(tutor);
-		System.out.println("Best student of that Tutor");
+		System.out.println("Best student of that Tutor: ");
 		System.out.println(bestStudentOfTutor(studentList,tutor));
 
 	}
