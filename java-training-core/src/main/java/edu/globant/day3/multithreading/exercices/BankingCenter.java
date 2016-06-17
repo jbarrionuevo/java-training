@@ -41,7 +41,7 @@ public class BankingCenter {
 					queue.offer(new Customer(String.valueOf(i),typeOfCustomer));
 					System.out.println("Client "+String.valueOf(i)+" is now at the queue, wanting to "+typeOfCustomer);
 					i++;
-				} else System.out.println("Clients outside waiting the queue to be smaller so they can enter it!!"+queue);
+				} else System.out.println("¡¡¡ATENTION!!! Clients outside waiting the queue to be smaller so they can enter it!!"+queue);
 			}
 		});
 		
@@ -57,7 +57,7 @@ public class BankingCenter {
 						}
 					}
 					if(nextToAttend!=null){  //if there was somebody at the queue, the teller attends him/her
-						System.out.println(String.format(Thread.currentThread().getName()+" attending client "+nextToAttend.getName()+", "
+						System.out.println("---"+String.format(Thread.currentThread().getName()+" attending client "+nextToAttend.getName()+", "
 								+ "who wants to "+nextToAttend.getBankAction()));
 						nextToAttend.makeAction();
 					}
