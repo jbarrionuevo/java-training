@@ -2,6 +2,7 @@ package edu.globant.day3.multithreading.exercices;
 
 public class Customer{
 	private String name,bankAction;
+	private long accountNumber;
 	
 	public Customer(String name,String bankAction) {
 		super();
@@ -65,6 +66,14 @@ public class Customer{
 
 	public void setBankAction(String bankAction) {
 		this.bankAction = bankAction;
+	}
+
+	public long getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 	
 }
