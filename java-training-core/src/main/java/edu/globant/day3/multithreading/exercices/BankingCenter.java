@@ -12,7 +12,6 @@ public class BankingCenter {
 	public static void main(String[] args) throws InterruptedException {
 		
 		Queue<Customer> queue = new LinkedList<Customer>();
-		Set<Thread> tellers = new HashSet<Thread>();
 		
 		Random random = new Random();
 		int numberOfTellers = random.nextInt(4)+1;
