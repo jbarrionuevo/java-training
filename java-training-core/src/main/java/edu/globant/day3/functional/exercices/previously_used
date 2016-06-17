@@ -1,4 +1,4 @@
 In my last project, I have used functional programming only a little, just to try it out and get used to its new syntax, replacing for example
 the usual java foreach (for ObjectType o: collection) for the functional one (.forEach()), and using the map and filter functions; but, as I said,
-it was just a matter of writting less than really take advantage of its features.
-Now that we have learn a bit more about it, I'll try to use it more often, since it clarifies our code a lot.
+it was just a matter of writting less than really taking advantage of its new features.
+Now that we have learn a bit more about it, I'll try to use it more often, since it seems to clarify our code a lot.
