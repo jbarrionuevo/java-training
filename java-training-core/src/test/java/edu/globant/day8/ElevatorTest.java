@@ -1,6 +1,6 @@
-package edu.globant.day7;
+package edu.globant.day8;
 
-import static edu.globant.day7.Elevator.DEFAULT_MAX_WEIGHT_CAPACITY;
+import static edu.globant.day8.Elevator.DEFAULT_MAX_WEIGHT_CAPACITY;
 import static java.util.Collections.emptyList;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
@@ -12,6 +12,8 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import edu.globant.day8.Elevator;
 
 public class ElevatorTest {
 

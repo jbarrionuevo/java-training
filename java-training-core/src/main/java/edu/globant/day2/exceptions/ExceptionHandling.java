@@ -40,8 +40,14 @@ public class ExceptionHandling {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("Started.");
+		System.out.println("-------------------------------------------");
 		workWithFile(getLocalResourcePath("/edu/globant/day2/numbers.txt"));
+		System.out.println("-------------------------------------------");
 		workWithFile("C:/prueba.txt");
+		System.out.println("-------------------------------------------");
 		workWithFile(null);
+		System.out.println("-------------------------------------------");
+		System.out.println("Finished.");
 	}
 }

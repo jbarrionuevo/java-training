@@ -1,4 +1,4 @@
-package edu.globant.day7;
+package edu.globant.day8;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -6,6 +6,8 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import edu.globant.day8.Calculator;
 
 public class CalculatorTest {
 

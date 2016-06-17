@@ -1,4 +1,4 @@
-package edu.globant.day7;
+package edu.globant.day8;
 
 public class SimpleValidator {
 
