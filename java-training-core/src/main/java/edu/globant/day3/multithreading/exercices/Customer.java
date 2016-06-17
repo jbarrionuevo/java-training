@@ -25,7 +25,7 @@ public class Customer{
 	
 	public void askForBorrowal(){
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(4000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -41,7 +41,7 @@ public class Customer{
 	
 	public void depositMoney(){
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
