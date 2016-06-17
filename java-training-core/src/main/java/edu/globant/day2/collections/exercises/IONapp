@@ -1,0 +1,3 @@
+In ION app I think i will use HashMap for inventory to have every case with his amount, Set for CaseSellers, 
+because every sale is different from another so can´t be repeated, same case for Provider and for Costumer,
+we need to know what cases bought so I'll use ArrayList, because items can be repeated.  

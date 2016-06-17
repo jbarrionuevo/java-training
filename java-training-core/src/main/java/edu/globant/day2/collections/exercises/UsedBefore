@@ -1,0 +1,3 @@
+In my last project we use collections in order to model complex objects, so we had big structures where we have an ArrayList 
+of HashMaps and every map has another Arraylist inside with another Map. This structure was already defined and we used to map it
+to a Json object. In specials cases we need to order the data for some criteria so we use SortedMap.     
