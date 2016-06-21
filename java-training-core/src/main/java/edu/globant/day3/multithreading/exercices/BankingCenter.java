@@ -3,6 +3,7 @@ package edu.globant.day3.multithreading.exercices;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Random;
@@ -21,7 +22,7 @@ public class BankingCenter {
 	public static void main(String[] args) throws InterruptedException {
 		
 		BlockingQueue<Customer> queue = new PriorityBlockingQueue<Customer>(); //queue where new customers will be waiting and from where tellers will retrieve them
-		ArrayList<Runnable> tasks = new ArrayList<Runnable>();
+		List<Runnable> tasks = new ArrayList<Runnable>();
 		Random random = new Random();
 		
 		Thread enqueuer = new Thread(() -> {  //Thread which will enqueue new customers, simulating their arrival to the bank
