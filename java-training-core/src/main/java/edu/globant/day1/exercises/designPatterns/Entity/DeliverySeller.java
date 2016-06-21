@@ -5,14 +5,26 @@
  */
 package edu.globant.day1.exercises.designPatterns.Entity;
 
+
+
+
 /**
  *
  * @author fedec
  */
 public class DeliverySeller extends Seller{
 
-    public DeliverySeller(String name) {
-        super(name);
+    public DeliverySeller(){
+        super("Undefined", "Delivery Seller");
     }
+ 
+    public DeliverySeller(String fullname) {
+        super(fullname, "Delivery Seller");
+    }
+    
+
+
+
+
     
 }

@@ -5,14 +5,18 @@
  */
 package edu.globant.day1.exercises.designPatterns.Entity;
 
+
+
 /**
  *
  * @author fedec
  */
 public abstract class Seller extends Employee{
 
-    public Seller(String name) {
-        super(name);
+    public Seller(String fullname, String jobTitle) {
+        super(fullname, jobTitle);
     }
+    
+    
     
 }

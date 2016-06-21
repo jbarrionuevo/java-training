@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day1.exercises.designPatterns.Service;
+package edu.globant.day1.exercises.designPatterns.factoryMethod;
 
-import edu.globant.day1.exercises.designPatterns.Entity.Sale;
+import edu.globant.day1.exercises.designPatterns.Entity.Seller;
 
 
 
@@ -13,6 +13,6 @@ import edu.globant.day1.exercises.designPatterns.Entity.Sale;
  *
  * @author fedec
  */
-public interface SalesService {
-    public void addSale(Sale sale);
+public interface FactorySeller {
+    Seller getSeller();
 }

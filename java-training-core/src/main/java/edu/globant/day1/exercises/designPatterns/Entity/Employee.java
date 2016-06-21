@@ -5,25 +5,42 @@
  */
 package edu.globant.day1.exercises.designPatterns.Entity;
 
+
+
 /**
  *
  * @author fedec
  */
 public abstract class Employee {
     
-    private String name;
+    private String fullname;
+    private String jobTitle;
 
-    public Employee(String name) {
-        this.name = name;
+    public Employee(String fullname, String jobTitle) {
+        this.fullname = fullname;
+        this.jobTitle = jobTitle;
     }
 
-    public String getName() {
-        return name;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+
     
+    
+
+
     
 }
