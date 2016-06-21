@@ -15,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 public class BankingCenter {
 	
+	static final int MAX_THREADS = 5;
+	
 	public static void main(String[] args) throws InterruptedException {
 		
 		BlockingQueue<Customer> queue = new LinkedBlockingQueue<Customer>(); //queue where new customers will be waiting and from where tellers will retrieve them
@@ -71,7 +73,7 @@ public class BankingCenter {
 			tasks.add(teller);
 		}
 				
-		workWithThreadPool(queue, Executors.newCachedThreadPool(), (tasks.stream().toArray(Runnable[]::new))); 
+		workWithThreadPool(queue, Executors.newFixedThreadPool(MAX_THREADS), (tasks.stream().toArray(Runnable[]::new))); 
 	}
 	
 	public static void workWithThreadPool(BlockingQueue queue, ExecutorService executor, Runnable ... tasks) throws InterruptedException {
