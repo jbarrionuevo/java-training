@@ -1,0 +1,6 @@
+EXEPTIONS:
+
+I've used exeptions like:
+
+- SQLException to handle JDBC conection.
+

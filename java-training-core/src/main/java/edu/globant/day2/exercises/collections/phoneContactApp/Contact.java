@@ -16,6 +16,7 @@ public class Contact {
     private String fullname;
     private Set<String> phoneNumber = new HashSet();
     private String mail;
+    private Category category;
 
     public Contact() {
     }
@@ -57,6 +58,14 @@ public class Contact {
         this.mail = mail;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+        category.addContact(this); // ?? this ok or not?
+    }
 
     public void addPhoneNumber(String number){
         this.phoneNumber.add(number);
