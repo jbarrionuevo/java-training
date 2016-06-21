@@ -32,7 +32,7 @@ public class Customer{
 	
 	public void askForBorrowal(){
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,7 +48,7 @@ public class Customer{
 	
 	public void depositMoney(){
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
