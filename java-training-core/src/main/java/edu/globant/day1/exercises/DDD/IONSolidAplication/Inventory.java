@@ -6,7 +6,6 @@
 package edu.globant.day1.exercises.DDD.IONSolidAplication;
 
 
-import java.util.HashMap;
 
 /**
  *
@@ -14,18 +13,28 @@ import java.util.HashMap;
  */
 public class Inventory {
     
-    HashMap<Case,Integer> StockCases = new HashMap();
+    private Case cases;
+    private int cantUnits;
 
-    public Inventory() {
+    public Inventory(Case cases, int cantUnits) {
+        this.cases = cases;
+        this.cantUnits = cantUnits;
     }
 
-    public HashMap getStockCases() {
-        return StockCases;
+    public Case getCases() {
+        return cases;
     }
 
-    public void setStockCases(HashMap StockCases) {
-        this.StockCases = StockCases;
+    public void setCases(Case cases) {
+        this.cases = cases;
     }
-    
+
+    public int getCantUnits() {
+        return cantUnits;
+    }
+
+    public void setCantUnits(int cantUnits) {
+        this.cantUnits = cantUnits;
+    }
     
 }

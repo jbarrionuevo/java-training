@@ -5,34 +5,42 @@
  */
 package edu.globant.day1.exercises.DDD.IONSolidAplication;
 
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author fedec
  */
 public class Case {
-    
-    List<Device>  compatibleDevices = new ArrayList();
-    private String design;
-    private Double price;
 
-    public Case(String design) {
-        this.design = design;
+    private int id;
+    Set<Device> compatibleDevices = new HashSet<Device>();
+    private String design;
+    private double price;
+
+    public Case() {
     }
 
-    public List<Device> getCompatibleDevices() {
+    public Case(String design, double price) {
+        this.design = design;
+        this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Set<Device> getCompatibleDevices() {
         return compatibleDevices;
     }
 
-    public void setCompatibleDevices(List<Device> compatibleDevices) {
+    public void setCompatibleDevices(Set<Device> compatibleDevices) {
         this.compatibleDevices = compatibleDevices;
-    }
-    
-    public void addCompatibleDevices(Device device){
-        this.compatibleDevices.add(device);
     }
 
     public String getDesign() {
@@ -43,9 +51,16 @@ public class Case {
         this.design = design;
     }
 
-    
+    public double getPrice() {
+        return price;
+    }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-
+    public void addCompatibleDevice(Device device){
+        this.compatibleDevices.add(device);
+    }
     
 }

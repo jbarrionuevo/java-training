@@ -5,26 +5,10 @@
  */
 package edu.globant.day1.exercises.DDD.IONSolidAplication;
 
-
-
-
 /**
  *
  * @author fedec
  */
-public class DeliverySeller extends Seller{
-
-    public DeliverySeller(){
-        super("Undefined", "Delivery Seller");
-    }
- 
-    public DeliverySeller(String fullname) {
-        super(fullname, "Delivery Seller");
-    }
-    
-
-
-
-
+public class Order {
     
 }

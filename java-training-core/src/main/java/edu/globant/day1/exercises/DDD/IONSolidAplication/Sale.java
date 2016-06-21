@@ -5,19 +5,27 @@
  */
 package edu.globant.day1.exercises.DDD.IONSolidAplication;
 
-
-
 /**
  *
  * @author fedec
  */
 public class Sale {
+    private Case deviceCase;
     private Receipt receipt;
     private SaleStatus status;
 
-    public Sale(Receipt receipt, SaleStatus status) {
+    public Sale(Case deviceCase, Receipt receipt, SaleStatus status) {
+        this.deviceCase = deviceCase;
         this.receipt = receipt;
         this.status = status;
+    }
+
+    public Case getCases() {
+        return deviceCase;
+    }
+
+    public void setCases(Case deviceCase) {
+        this.deviceCase = deviceCase;
     }
 
     public Receipt getReceipt() {
@@ -35,9 +43,4 @@ public class Sale {
     public void setStatus(SaleStatus status) {
         this.status = status;
     }
-
-    
-    
-    
-    
 }
