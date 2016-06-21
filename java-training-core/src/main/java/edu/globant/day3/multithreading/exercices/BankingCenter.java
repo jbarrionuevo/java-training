@@ -11,6 +11,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class BankingCenter {
@@ -19,7 +20,7 @@ public class BankingCenter {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-		BlockingQueue<Customer> queue = new LinkedBlockingQueue<Customer>(); //queue where new customers will be waiting and from where tellers will retrieve them
+		BlockingQueue<Customer> queue = new PriorityBlockingQueue<Customer>(); //queue where new customers will be waiting and from where tellers will retrieve them
 		ArrayList<Runnable> tasks = new ArrayList<Runnable>();
 		Random random = new Random();
 		
@@ -44,8 +45,8 @@ public class BankingCenter {
 						break;
 				}
 				try {
+					System.out.println("Client "+String.valueOf(i)+" entering the queue, wanting to "+typeOfCustomer);
 					queue.offer(new Customer(String.valueOf(i),typeOfCustomer));
-					System.out.println("Client "+String.valueOf(i)+" is now at the queue, wanting to "+typeOfCustomer);
 					i++;
 				} catch (Exception e) {
 					e.printStackTrace(System.out);

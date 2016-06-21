@@ -1,6 +1,6 @@
 package edu.globant.day3.multithreading.exercices;
 
-public class Customer{
+public class Customer implements Comparable<Customer>{
 	private String name,bankAction;
 	private long accountNumber;
 	private static int customerNumber = 0;
@@ -53,6 +53,14 @@ public class Customer{
 			e.printStackTrace();
 		}
 	}
+	
+
+	@Override
+	public int compareTo(Customer other) { //the most important action is deposit, since it gives money to the bank
+		if (this.getBankAction().equals("deposit")) return -1;
+		else if(other.getBankAction().equals("deposit")) return 1;
+		return Integer.valueOf(this.getName()).compareTo(Integer.valueOf(other.getName()));
+	}
 
 	@Override
 	public String toString(){
@@ -81,5 +89,6 @@ public class Customer{
 	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
+
 	
 }
