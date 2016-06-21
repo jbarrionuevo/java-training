@@ -1,0 +1,24 @@
+Describe use cases when you have used each interface and which implementations you used.
+Define the use cases where to use each collection interface and their implementations in ION Solid application.
+Write a small console application that handles phone contact information. The information is held in memory. Use at least each interface revised.
+
+
+- I've used collections like:
+
+- List: 
+    ArrayList:
+        OnlineBanking Application to save last account movements.
+        private List<movements> movements = new ArrayList<movements>();
+
+    LinkedList:
+        To save places
+        List<String> city = new LinkedList<String>();
+            city.add("La Plata");
+            city.add("Bahia Blanca");
+            city.add("Tandil");
+            
+
+-Set:
+    HashSet:
+    To set role to account
+    private Set<Role> roles = new HashSet<Role>

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day2.exercises.PhoneContactApp;
+package edu.globant.day2.exercises.collections.phoneContactApp;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -13,14 +14,24 @@ import java.util.List;
  */
 public class Contact {
     private String fullname;
-    private List<String> phoneNumber ;
+    private Set<String> phoneNumber = new HashSet();
     private String mail;
 
-    public Contact(String fullname, List<String> phoneNumber, String mail) {
+    public Contact() {
+    }
+
+    public Contact(String fullname, Set<String> phoneNumber, String mail) {
         this.fullname = fullname;
         this.phoneNumber = phoneNumber;
         this.mail = mail;
     }
+
+    public Contact(String fullname, String mail) {
+        this.fullname = fullname;
+        this.mail = mail;
+    }
+    
+    
 
     public String getFullname() {
         return fullname;
@@ -30,11 +41,11 @@ public class Contact {
         this.fullname = fullname;
     }
 
-    public List<String> getPhoneNumber() {
+    public Set<String> getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(List<String> phoneNumber) {
+    public void setPhoneNumber(Set<String> phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -46,6 +57,10 @@ public class Contact {
         this.mail = mail;
     }
 
+
+    public void addPhoneNumber(String number){
+        this.phoneNumber.add(number);
+    }
 
     
     

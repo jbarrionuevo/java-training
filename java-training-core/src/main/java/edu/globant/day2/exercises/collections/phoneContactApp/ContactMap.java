@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day2.exercises.PhoneContactApp;
+package edu.globant.day2.exercises.collections.phoneContactApp;
 
 import java.util.HashMap;
 import java.util.Map;
