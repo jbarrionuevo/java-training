@@ -3,6 +3,12 @@ package edu.globant.day3.multithreading.exercices;
 public class Customer{
 	private String name,bankAction;
 	private long accountNumber;
+	private static int customerNumber = 0;
+	
+	public static int getCustomerNumber(){
+		customerNumber++;
+		return customerNumber;
+	}
 	
 	public Customer(String name,String bankAction) {
 		super();
