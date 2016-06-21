@@ -5,18 +5,13 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Dao;
 
-import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Sale;
-
-
-
+import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Case;
 
 
 /**
  *
- * @author federico.calarco
+ * @author fedec
  */
-public interface SalesDao {
-    
-    public void addSale(Sale sale);
-    
+public interface CaseDao {
+    void newCase(Case caseCover);
 }

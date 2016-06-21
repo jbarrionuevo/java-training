@@ -5,8 +5,6 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity;
 
-import edu.globant.day1.exercises.DDD.IONSolidAplication.*;
-
 
 
 /**
@@ -17,10 +15,12 @@ public class Logistic extends Employee{
     
     private Inventory inventory;
 
-    public Logistic(Inventory inventory, String name) {
-        super(name);
+    
+    public Logistic(Inventory inventory, String fullname, String jobTitle) {
+        super(fullname, jobTitle);
         this.inventory = inventory;
     }
+
 
     public Inventory getInventory() {
         return inventory;

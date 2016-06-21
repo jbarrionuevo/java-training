@@ -5,8 +5,6 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity;
 
-import edu.globant.day1.exercises.DDD.IONSolidAplication.*;
-
 
 
 /**
@@ -15,16 +13,29 @@ import edu.globant.day1.exercises.DDD.IONSolidAplication.*;
  */
 public class Customer {
     
+    private int id;
     private String name;
     private int age;
     private char gender;
     private String location;
 
-    public Customer(String name, int age, char gender, String location) {
+    public Customer() {
+    }
+
+    public Customer(int id, String name, int age, char gender, String location) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.location = location;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -58,7 +69,13 @@ public class Customer {
     public void setLocation(String location) {
         this.location = location;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Customer{" + "id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", location=" + location + '}';
+    }
+
+
     
     
 }

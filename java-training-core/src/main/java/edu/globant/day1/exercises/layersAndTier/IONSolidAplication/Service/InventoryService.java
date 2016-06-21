@@ -5,14 +5,19 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Service;
 
+
 import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Case;
+import java.util.Map;
+
 
 /**
  *
  * @author federico.calarco
  */
-public interface InverntoryService {
+public interface InventoryService {
     
-    public void addStock(Case cases, int cantUnits);
-    public void removeStock(Case cases, int cantUnits);
+    int getStock(Case caseCover);
+    Map<Case,Integer> getAllStock();
+    void addStock(Case cases, int cantUnits);
+    void removeStock(Case cases, int cantUnits);
 }

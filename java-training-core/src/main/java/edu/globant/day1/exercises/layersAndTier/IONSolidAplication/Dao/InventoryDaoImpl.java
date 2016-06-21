@@ -5,7 +5,11 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Dao;
 
+
 import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Case;
+import java.util.HashMap;
+import java.util.Map;
+
 
 
 /**
@@ -13,24 +17,39 @@ import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Case;
  * @author federico.calarco
  */
 public class InventoryDaoImpl implements InventoryDao{
+    
+    private Map<Case,Integer> inventory = new HashMap<Case,Integer>();
 
     @Override
-    public void addStock() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getStockByCase(Case cases) {
+        return inventory.get(cases);
     }
 
     @Override
-    public void removeStock() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addStock(Case caseCover, int cant) {
+        
+        if(inventory.get(caseCover) != null){
+            int oldStock = inventory.get(caseCover);
+            inventory.replace(caseCover, oldStock+cant);
+        }else{
+            inventory.put(caseCover, cant);
+        }
+        System.out.println("addStock OK: " + caseCover.getDesign() + " Stock -> " + inventory.get(caseCover) );
     }
 
     @Override
-    public int getStockByCase(Case DeviceCase) {
-        
-        return 4;
-        
+    public void removeStock(Case caseCover, int cant) {
+        int oldStock  = inventory.get(caseCover);
+        inventory.put(caseCover, oldStock-cant);
         
     }
+
+    @Override
+    public Map<Case,Integer> getAllStock() {
+        return inventory;
+    }
+
+
 
 
     

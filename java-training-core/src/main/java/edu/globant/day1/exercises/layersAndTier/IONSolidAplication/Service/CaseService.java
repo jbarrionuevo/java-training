@@ -5,16 +5,13 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Service;
 
-import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Sale;
-
-
-
+import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Case;
 
 
 /**
  *
- * @author federico.calarco
+ * @author fedec
  */
-public interface SalesService {
-    public void addSale(Sale sale);
+public interface CaseService {
+    void newCase(Case caseCover);
 }

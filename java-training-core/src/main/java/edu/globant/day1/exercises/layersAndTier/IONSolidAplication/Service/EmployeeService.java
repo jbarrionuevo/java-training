@@ -5,16 +5,19 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Service;
 
-import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Sale;
-
-
-
+import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Employee;
 
 
 /**
  *
- * @author federico.calarco
+ * @author fedec
  */
-public interface SalesService {
-    public void addSale(Sale sale);
+public interface EmployeeService {
+    
+    void addEmployee(Employee employee);
+
+    Employee getEmployee(Employee employee);
+
+    Employee getEmployee(int id);
+    
 }

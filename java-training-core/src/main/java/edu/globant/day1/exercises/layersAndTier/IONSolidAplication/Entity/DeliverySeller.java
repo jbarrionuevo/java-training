@@ -5,7 +5,6 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity;
 
-import edu.globant.day1.exercises.DDD.IONSolidAplication.*;
 
 
 
@@ -15,8 +14,17 @@ import edu.globant.day1.exercises.DDD.IONSolidAplication.*;
  */
 public class DeliverySeller extends Seller{
 
-    public DeliverySeller(String name) {
-        super(name);
+    public DeliverySeller(){
+        super("Undefined", "Delivery Seller");
     }
+ 
+    public DeliverySeller(String fullname) {
+        super(fullname, "Delivery Seller");
+    }
+    
+
+
+
+
     
 }

@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity;
-
+package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Controller;
 
 /**
  *
- * @author federico.calarco
+ * @author fedec
  */
-
-public enum SaleStatus {
-    DRAFT,PAID,CANCELLED,REFUND
+public class SellControler {
+    
 }

@@ -5,18 +5,10 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity;
 
-
-
 /**
  *
  * @author fedec
  */
-public abstract class Seller extends Employee{
-
-    public Seller(String fullname, String jobTitle) {
-        super(fullname, jobTitle);
-    }
-    
-    
+public class Order {
     
 }

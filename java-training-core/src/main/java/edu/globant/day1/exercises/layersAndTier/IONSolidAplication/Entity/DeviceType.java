@@ -5,8 +5,6 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity;
 
-import edu.globant.day1.exercises.DDD.IONSolidAplication.*;
-
 
 
 /**

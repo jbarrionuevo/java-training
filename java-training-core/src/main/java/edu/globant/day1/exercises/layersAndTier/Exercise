@@ -1,34 +1,13 @@
-1) Describe the layers and tiers used in the latest project you were working on.
-
 LAYERS: 
-In my last projects, i used the architectural pattern MVC (Model - View - Controller), with help the Spring MVC.
+
+In my last projects, i've used the architectural pattern MVC (Model - View - Controller), with help the Spring MVC.
 - Model: Business logic (Service - Entity - Dao) 
 - View: Jsp
 - Controller: View Layer < -Controller -> Model Layer
 
 TIERS: 
-In a Globant training i made an web application where i used:
+In at Globant training i made an web application where i used:
 - Client tier: HTML5+JS with Websockets for the backend comunication.
-- Backend tier: Java with WebSocket API.
+- Backend tier: Java application with WebSocket API.
 - Data base tier: MySQL
-
-Depict a model of the layers of the project.
-
-PROJECT: Your Course
-
-VIEW
-...
-CONTROLLER 
-....
-MODEL
-....
-
-
-
-
-
-
-
-Depict a model of the tiers of the project.
-Organize the classes and interfaces for ION Solid Management application in layers and tiers.
 

@@ -9,6 +9,9 @@ import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Dao.SalesDao;
 import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Dao.SalesDaoImpl;
 import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Sale;
 
+
+
+
 /**
  *
  * @author federico.calarco
@@ -16,7 +19,7 @@ import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Sale;
 public class SalesServiceImpl implements SalesService{
 
     SalesDao salesDao = new SalesDaoImpl();
-    InverntoryService inventoryService = new InventoryServiceImpl();
+    InventoryService inventoryService = new InventoryServiceImpl();
 
     @Override
     public void addSale(Sale sale) {

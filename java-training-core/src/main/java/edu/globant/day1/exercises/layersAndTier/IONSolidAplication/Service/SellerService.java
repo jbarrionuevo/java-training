@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity;
+package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Service;
+
+import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Seller;
 
 
 
@@ -11,12 +13,8 @@ package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity;
  *
  * @author fedec
  */
-public abstract class Seller extends Employee{
-
-    public Seller(String fullname, String jobTitle) {
-        super(fullname, jobTitle);
-    }
+public interface SellerService {
     
-    
+    void Seller(Seller seller);
     
 }

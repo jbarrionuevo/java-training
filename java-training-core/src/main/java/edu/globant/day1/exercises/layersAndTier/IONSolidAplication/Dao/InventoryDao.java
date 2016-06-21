@@ -5,17 +5,22 @@
  */
 package edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Dao;
 
-import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Case;
 
+import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Case;
+import java.util.Map;
 
 /**
  *
  * @author federico.calarco
  */
 public interface InventoryDao {
+
+    int getStockByCase(Case cases);
     
-    public int getStockByCase(Case cases);
-    public void addStock();
-    public void removeStock();
-    
+    Map<Case,Integer> getAllStock();
+
+    void addStock(Case caseCover, int cant);
+
+    void removeStock(Case caseCover, int cant);
+
 }

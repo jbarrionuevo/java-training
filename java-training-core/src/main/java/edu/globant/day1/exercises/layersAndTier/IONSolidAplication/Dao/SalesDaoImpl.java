@@ -9,6 +9,7 @@ import edu.globant.day1.exercises.layersAndTier.IONSolidAplication.Entity.Sale;
 
 
 
+
 /**
  *
  * @author federico.calarco
