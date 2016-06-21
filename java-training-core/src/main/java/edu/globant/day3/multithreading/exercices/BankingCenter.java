@@ -72,7 +72,8 @@ public class BankingCenter {
 			}, "Teller no "+(i+1));
 			tasks.add(teller);
 		}
-				
+		
+		System.out.println("There are "+numberOfTellers+" tellers available");
 		workWithThreadPool(queue, Executors.newFixedThreadPool(MAX_THREADS), (tasks.stream().toArray(Runnable[]::new))); 
 	}
 	
@@ -84,7 +85,7 @@ public class BankingCenter {
 		executor.shutdown();
 	    if (!executor.awaitTermination(20000, TimeUnit.MILLISECONDS)) {
 	        System.out.println("Bank Closed");  //The bank is closed
-	        System.out.println(queue+" have priority for tomorrow, since they got to enter the bank and got a number");
+	        if(queue.size()>0) System.out.println(queue+" have priority for tomorrow, since they got to enter the bank and got a number");
 	        System.exit(0);
 	    }
 	}
