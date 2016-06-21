@@ -35,6 +35,8 @@ public class MultipleExceptionHandling {
 				} catch (ClassNotFoundException | InstantiationException e) {
 					warn(e);
 				}
+
+				System.out.println("--------------------------------------------------------------------------------------");
 			}
 		} catch (IOException e) {
 			warn(e);

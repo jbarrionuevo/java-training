@@ -119,7 +119,7 @@ public class StudentWithTutorOperations {
 		String tutor = tutorWithMoreStudents(studentList);
 		System.out.println("Tutor with most students: ");
 		System.out.println(tutor);
-		System.out.println("Best student of that Tutor: ");
+		System.out.println("Best student from that Tutor: ");
 		System.out.println(bestStudentOfTutor(studentList,tutor));
 
 	}
