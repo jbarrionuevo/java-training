@@ -56,7 +56,9 @@ public class Customer implements Comparable<Customer>{
 	
 
 	@Override
-	public int compareTo(Customer other) { //the most important action is deposit, since it gives money to the bank
+	public int compareTo(Customer other) { //the most important action is deposit, since it gives money to the bank, and then, the customer number
+		if ( (this.getBankAction().equals("deposit")) && (other.getBankAction().equals("deposit")))
+			return Integer.valueOf(this.getName()).compareTo(Integer.valueOf(other.getName()));
 		if (this.getBankAction().equals("deposit")) return -1;
 		else if(other.getBankAction().equals("deposit")) return 1;
 		return Integer.valueOf(this.getName()).compareTo(Integer.valueOf(other.getName()));

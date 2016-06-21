@@ -1,0 +1,10 @@
+There's a priority blocking queue, where customers will be put.
+Customers may want to deposit, borrow money, or check their accounts.
+A customer has priority over another customer if he's trying to deposit money (bank policy). 
+If 2 customers are trying to deposit or none of them is, the one with the minor number has priority (since he got first to the queue).
+There will be 5 threads at most; a mandatory one, called "enqueuer", which will generate new customers all the time; and then, from 1 to 4 more threads 
+(this number is randomly decided at runtime), simulating each one a different bank teller.
+The execution of the program always last 20 seconds, after when a queue with the customers which were not attended is shown, saying that they have priority
+for the next day since they have already got their numbers. 
+During the execution, tellers take the next customer from the queue, and attend him/her.
+Depending on the action the customer want to develop, this attention last differently.

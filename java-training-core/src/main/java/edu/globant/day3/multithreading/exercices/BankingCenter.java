@@ -45,7 +45,9 @@ public class BankingCenter {
 						break;
 				}
 				try {
-					System.out.println("Client "+String.valueOf(i)+" entering the queue, wanting to "+typeOfCustomer);
+					System.out.print("Client "+String.valueOf(i)+" entering the queue, wanting to "+typeOfCustomer);
+					if(typeOfCustomer.equals("deposit")) System.out.print(" (HAS PRIORITY)");
+					System.out.println();
 					queue.offer(new Customer(String.valueOf(i),typeOfCustomer));
 					i++;
 				} catch (Exception e) {
