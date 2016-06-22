@@ -1,5 +1,8 @@
-1) Single Responsibility Principle:
-This principle may be applied in most of the aplications, since developers tend to group lots of functionalities together, not respecting this principle
+1) Single Responsibility Principle
+This principle may be applied in most of the applications, since developers tend to group lots of functionalities together, not respecting this principle
 nor the "low coupling" one. We could apply it in validations, where we validate an email for example, validating it's not null, it has an email format, etc;
 what we could do is to decouple that function to a Email class, which would have a method such as validateEmail(String email).
 2)Open/Close principle
+There are many cases in which we tend to design an algorithm only thinking in the current situation of the problem; a few days after that moment, a new 
+situation suddenly appear, and we have to modify it so it satisfies both the previous situation plus the new one; and this is repeated every now and then,
+making such a big mess in the algorithm that a giant if/else condition is created; so, thinking about this principle from the word go is a great deal.

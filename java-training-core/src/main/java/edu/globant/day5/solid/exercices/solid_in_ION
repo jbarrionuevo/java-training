@@ -1,0 +1,9 @@
+1) Single Responsibility Principle
+This may apply to the layer division that we've already thought off; for example, creating one service for each entity in our db. Everything related to the
+inventory should be left for its corresponding service, even being that a provider or a caseseller may touch it. In addition, although touching the inventory
+has repercussion in providers, asking them for replacing the stock is an action that should be in the provider service.
+2) Open/Close principle
+When CaseSellers make a sale, they should behave in a way, depending on the type of sellers they are. So, its a good idea to let each type of seller to handle
+this behavior; thats why we can think of an interface or an abstract class CaseSeller, with the method sale(), without a default implementation, and each type
+of seller will override and implement this method to develop whatever he wants. In this way, whenever a new type of seller is added, he will have to reimplement
+this method, without affecting the old sellers, making the app scalable.
