@@ -11,6 +11,7 @@ this method, without affecting the old sellers, making the app scalable.
 Talking about CaseSellers again, if we implement "attendPhoneCall" in the superclass, then StoreSellers would have to implement them as well, when they are not
 supposed to. So, we should be careful in which methods we implement in the superclass.
 4) Interface Segregation Principle
-
+We should be careful in our implemented services, so we dont add functionality to them that doesnt correspond; instead, we should divide it into the corresponding 
+services, or at least create new ones for the client that would extend de first one.
 5) Dependency Inversion Principle
 When we start using a framework such as Hibernate or Spring, we will be seeing this principle in action.
