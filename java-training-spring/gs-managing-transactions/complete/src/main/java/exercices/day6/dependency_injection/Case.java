@@ -3,7 +3,7 @@ package exercices.day6.dependency_injection;
 import java.util.Date;
 
 public class Case {
-	
+	//comment
 	private CaseDesign design;
 	private CaseDevice device;
 	private double price;
