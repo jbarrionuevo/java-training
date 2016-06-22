@@ -1,4 +1,4 @@
-package edu.globant.day2.tema.exercises.model;
+package model;
 
 import java.util.Date;
 import java.util.List;

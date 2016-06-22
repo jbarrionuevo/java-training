@@ -1,0 +1,12 @@
+Exercise
+
+-Take a look at the examples given in the repository, play with them and think
+about other options or cases where you can apply the SOLID principles.
+
+-Think if your previous design for the ION Solid application conforms to the
+SOLID principles. It is violating any? Which one? Why? How can you change
+the design to prevent that violation?
+
+-Think about the design that you proposed for the ION Solid application, how
+would you communicate it? Which diagrams would you use? Create a
+diagram of each kind for that model. 
