@@ -7,3 +7,6 @@ When CaseSellers make a sale, they should behave in a way, depending on the type
 this behavior; thats why we can think of an interface or an abstract class CaseSeller, with the method sale(), without a default implementation, and each type
 of seller will override and implement this method to develop whatever he wants. In this way, whenever a new type of seller is added, he will have to reimplement
 this method, without affecting the old sellers, making the app scalable.
+3) Liskov Substitution Principle
+Talking about CaseSellers again, if we implement "attendPhoneCall" in the superclass, then StoreSellers would have to implement them as well, when they are not
+supposed to. So, we should be careful in which methods we implement in the superclass.
