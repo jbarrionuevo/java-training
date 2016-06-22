@@ -1,0 +1,4 @@
+In order to use dependency injection with Spring, I used Spring Boot. The DI is visible in the layer of services, in which each service (annotated with @Service) 
+has an autowired dao object, which be injected in runtime.
+DAOs are implemented as interfaces which extend from JpaRepository, which allow us to use methods as findAll, save, etc., without having to implement them.
+We can also see a method anotated with @Transactional in OrderService, "addOrders", which will save all the given orders in the underlying database.
