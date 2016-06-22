@@ -1,3 +1,5 @@
+I'll talk about what I should do from now on in the app, but there seems not to be much violation of this principles in what I have done till now, 'cause
+there's not much implemented. 
 1) Single Responsibility Principle
 This may apply to the layer division that we've already thought off; for example, creating one service for each entity in our db. Everything related to the
 inventory should be left for its corresponding service, even being that a provider or a caseseller may touch it. In addition, although touching the inventory
