@@ -7,6 +7,8 @@ public abstract class Sell {
 
 	private List<Case> items;
 
+	private List<SellStatus> sellStatus;
+
 	private Seller seller;
 
 	private Date sellDate;
@@ -63,6 +65,14 @@ public abstract class Sell {
 
 	public void setStore(Store store) {
 		this.store = store;
+	}
+
+	public List<SellStatus> getSellStatusHistory() {
+		return sellStatus;
+	}
+
+	public void setSellStatusHistory(List<SellStatus> sellStatusHistory) {
+		this.sellStatus = sellStatusHistory;
 	}
 
 }
