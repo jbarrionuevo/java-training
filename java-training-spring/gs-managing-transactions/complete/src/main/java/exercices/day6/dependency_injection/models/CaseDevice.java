@@ -1,8 +1,17 @@
 package exercices.day6.dependency_injection.models;
 
-public class CaseDevice {
-	private String name;
+import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class CaseDevice implements Serializable {
+	@Id
+	@GeneratedValue
+	private Long id;
+	private String name;
 	
 	public CaseDevice(String name) {
 		super();

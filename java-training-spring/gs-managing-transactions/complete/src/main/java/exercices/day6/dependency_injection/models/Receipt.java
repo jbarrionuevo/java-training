@@ -4,10 +4,25 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Receipt {
+	@Id
+	@GeneratedValue
+	private Long id;
+	
 	private String storeName;
+	
+	@OneToOne
 	private Order order;
 	private Date dateOfSale;
+	
+	@ManyToOne
 	private Customer customer;
 	
 	public Receipt(String storeName, Date dateOfSale,Order order, Customer customer) {

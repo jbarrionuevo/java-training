@@ -1,9 +1,21 @@
 package exercices.day6.dependency_injection.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Provider extends ThirdPartyParticipant{
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Provider extends ThirdPartyParticipant implements Serializable {
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@OneToMany
 	private Collection<Order> orders;
 	
 	public Provider(String name,String location){

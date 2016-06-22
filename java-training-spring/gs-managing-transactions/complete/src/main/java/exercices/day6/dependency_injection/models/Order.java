@@ -4,7 +4,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Order {
+	@Id
+	@GeneratedValue
+	private Long id;
 	private HashMap<Case,Integer> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
 	

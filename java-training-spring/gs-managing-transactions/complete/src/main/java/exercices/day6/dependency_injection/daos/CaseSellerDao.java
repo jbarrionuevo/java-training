@@ -9,7 +9,7 @@ import exercices.day6.dependency_injection.Application;
 import exercices.day6.dependency_injection.models.Case;
 import exercices.day6.dependency_injection.models.CaseSeller;
 
-public interface CaseSellerDao extends JpaRepository<CaseSeller, Long>{
+public interface CaseSellerDao extends CrudRepository<CaseSeller, Long>{
 
 
 }

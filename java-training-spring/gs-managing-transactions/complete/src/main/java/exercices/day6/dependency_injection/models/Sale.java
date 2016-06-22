@@ -1,10 +1,23 @@
 package exercices.day6.dependency_injection.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import exercices.day6.dependency_injection.enums.SaleStatus;
 
+@Entity
 public class Sale {
+	@Id
+	@GeneratedValue
+	private Long id;
+	@OneToOne
 	private Receipt receipt;
+	
+	@OneToOne
 	private Order order;
+	
 	private SaleStatus status;
 	
 	public Sale(Order order) {

@@ -1,12 +1,26 @@
 package exercices.day6.dependency_injection.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Case {
-	//comment
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Case implements Serializable {
+	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@ManyToOne
 	private CaseDesign design;
+	@ManyToOne
 	private CaseDevice device;
 	private double price;
+	@ManyToOne
 	private Provider provider;
 	
 	public Case(CaseDesign design, CaseDevice device, Double price, Provider provider) {
