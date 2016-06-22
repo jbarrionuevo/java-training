@@ -1,0 +1,3 @@
+My last project had multithreading implemented, i never touched that part, i just saw when i debugged the code, sometimes a thread pauses 
+or just wait for a request, making debug a little harder. The benefits where that communication between micro services was faster, for example
+one thread wait for a request made to another service and another can be processing some data or consulting to another service.    
