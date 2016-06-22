@@ -1,7 +1,7 @@
 package exercices.day6.dependency_injection.interfaces;
 
-import exercices.day6.dependency_injection.DeliverySeller;
-import exercices.day6.dependency_injection.Sale;
+import exercices.day6.dependency_injection.models.DeliverySeller;
+import exercices.day6.dependency_injection.models.Sale;
 
 public interface DeliverySellerInterface {
 	

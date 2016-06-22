@@ -1,4 +1,4 @@
-package exercices.day6.dependency_injection;
+package exercices.day6.dependency_injection.models;
 
 public abstract class Employee {
 	private String name;

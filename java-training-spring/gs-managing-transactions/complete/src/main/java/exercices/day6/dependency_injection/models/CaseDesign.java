@@ -1,10 +1,10 @@
-package exercices.day6.dependency_injection;
+package exercices.day6.dependency_injection.models;
 
-public class CaseDevice {
+public class CaseDesign {
 	private String name;
 
 	
-	public CaseDevice(String name) {
+	public CaseDesign(String name) {
 		super();
 		this.name = name;
 	}

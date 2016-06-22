@@ -2,7 +2,8 @@ package exercices.day6.dependency_injection.daos;
 
 import org.springframework.data.repository.CrudRepository;
 
-import exercices.day6.dependency_injection.Provider;
+import exercices.day6.dependency_injection.models.Provider;
+
 
 public interface ProviderDao extends CrudRepository<Provider,Long>{
 

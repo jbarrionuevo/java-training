@@ -1,4 +1,4 @@
-package exercices.day6.dependency_injection;
+package exercices.day6.dependency_injection.models;
 
 import java.util.Date;
 

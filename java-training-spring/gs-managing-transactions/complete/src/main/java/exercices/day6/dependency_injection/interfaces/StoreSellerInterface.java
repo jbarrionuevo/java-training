@@ -2,9 +2,8 @@ package exercices.day6.dependency_injection.interfaces;
 
 import java.util.Date;
 
-import exercices.day6.dependency_injection.CaseSeller;
-import exercices.day6.dependency_injection.Sale;
-
+import exercices.day6.dependency_injection.models.CaseSeller;
+import exercices.day6.dependency_injection.models.Sale;
 
 public interface StoreSellerInterface {
 	

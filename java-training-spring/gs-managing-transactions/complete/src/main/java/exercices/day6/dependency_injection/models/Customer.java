@@ -1,4 +1,4 @@
-package exercices.day6.dependency_injection;
+package exercices.day6.dependency_injection.models;
 
 import exercices.day6.dependency_injection.enums.Gender;
 

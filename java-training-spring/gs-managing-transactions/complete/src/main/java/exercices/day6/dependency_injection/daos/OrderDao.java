@@ -2,7 +2,7 @@ package exercices.day6.dependency_injection.daos;
 
 import org.springframework.data.repository.CrudRepository;
 
-import exercices.day6.dependency_injection.Order;
+import exercices.day6.dependency_injection.models.Order;
 
 public interface OrderDao extends CrudRepository<Order,Long>{
 
