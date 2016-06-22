@@ -11,3 +11,14 @@ This principle, as we saw at the class, can also be seen in java default classes
 we notice that a subclass is inheriting some behavior from its superclass that not corresponds; this leads us to invoke that method in a subclass, which will
 generate an exception (controlled, in the best case) or result in a non-desired action. In this case, we should rethink the hierarchy, or see how to implement
 the method in the subclass so that it behaves as the client would expect.
+4) Interface Segregation Principle
+When creating a hierarchy, for example Shape, we tend to add the most common methods to the superclass (in this case, area, volume, perimeter, etc). This is
+because we only think about some shapes; but then we realize that there are some shapes, like squares, don't implement some of these (in its case, area); so this
+lead us to create a new Shape subclass, called FlatShape, for example, with this method, deleting it from the Shape abstract class.
+If we inherited the Shape class from another service, and it includes the area method, we should create our own FlatShapeService, which would include only the
+operations we want from the inherited class.
+5) Dependency Inversion Principle
+Every Java developer has heard about this principle, since Spring is always showing off that it implements the dependency injection inversion of control. When
+developing a framework, this is a good idea. In Spring Boot, for example, we should not care much about the underlying database; if we are working with Mongo,
+we can create an EntityRepository, which would extend from MongoRepository, and automatically we would have the basic database operations, such as save, delete,
+retrieve by id, etc.
