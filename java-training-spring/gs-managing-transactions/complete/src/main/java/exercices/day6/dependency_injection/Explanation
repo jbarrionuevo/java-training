@@ -2,6 +2,8 @@ In order to use dependency injection with Spring, I used Spring Boot. The DI is 
 has an autowired dao object, which be injected in runtime.
 DAOs are implemented as interfaces which extend from JpaRepository, which allow us to use methods as findAll, save, etc., without having to implement them.
 We can also see a method anotated with @Transactional in CaseService, "saveCases", which will save all the given orders in the underlying database.
+We'll need this @Transactional annotation, for example, in the method registerSales(Sale... sales), in SaleService, invoked whenever a delivery seller gets back
+to the store and needs to register them.
 
 To show that we can use both annotations and .xml files, I added a beans.xml file in src/main/resources, which injects the caseDao into the caseService class,
 where we commented the @Autowired annotation to show that the dao is being injected by the xml configuration. This let us combine both ways of injection. To
