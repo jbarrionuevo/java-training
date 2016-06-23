@@ -15,6 +15,11 @@ public class CaseDevice implements Serializable {
 	
 	public CaseDevice(){}
 	
+	@Override
+	public String toString(){
+		return String.format("Name: %s", this.getName());
+	}
+	
 	public CaseDevice(String name) {
 		super();
 		this.name = name;

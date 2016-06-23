@@ -68,7 +68,7 @@ private static final Logger log = LoggerFactory.getLogger(Application.class);
 				caseService.findAllCases().size());
 		
 		for (Case aCase: caseService.findAllCases()) {
-			log.info("So far, " + aCase + " is persisted.");
+			log.info("So far, Case [" + aCase + "] is persisted.");
 		}
 		
 //		HashMap<Case,Integer> caseDesire = new HashMap<Case,Integer>();

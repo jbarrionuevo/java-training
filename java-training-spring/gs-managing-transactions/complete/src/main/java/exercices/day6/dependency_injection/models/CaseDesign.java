@@ -20,6 +20,11 @@ public class CaseDesign implements Serializable {
 		this.name = name;
 	}
 
+	@Override
+	public String toString(){
+		return String.format("Name: %s", this.getName());
+	}
+	
 	public String getName() {
 		return name;
 	}
