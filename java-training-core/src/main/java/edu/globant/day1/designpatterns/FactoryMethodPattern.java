@@ -1,5 +1,7 @@
 package edu.globant.day1.designpatterns;
 
+import java.util.Scanner;
+
 abstract class Photo {
 
 	private String resolution;
@@ -65,10 +67,15 @@ class HighResolutionPhotoEditor implements PhotoEditor {
 public class FactoryMethodPattern {
 
 	public static void main(String[] args) {
-		PhotoEditor photoEditor = getPhotoEditor(0);
-		System.out.println(photoEditor.createPhoto("PNG"));
-		PhotoEditor anotherPhotoEditor = getPhotoEditor(1);
-		System.out.println(anotherPhotoEditor.createPhoto("PNG"));
+//		PhotoEditor photoEditor = getPhotoEditor(0);
+//		System.out.println(photoEditor.createPhoto("PNG"));
+		System.out.print("Choose photo quality: (0) Low, (1) High: ");
+		try (Scanner scanner = new Scanner(System.in)) {
+			PhotoEditor anotherPhotoEditor = getPhotoEditor(scanner.nextInt());
+			System.out.println(anotherPhotoEditor.createPhoto("PNG"));
+		} catch (Exception e) {
+
+		}
 	}
 
 	public static PhotoEditor getPhotoEditor(int type) {

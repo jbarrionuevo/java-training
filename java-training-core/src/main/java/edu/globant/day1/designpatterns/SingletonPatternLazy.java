@@ -32,4 +32,10 @@ public final class SingletonPatternLazy {
 	public void error(String s) {
 		error(s, null);
 	}
+
+	public static void main(String[] args) {
+		SingletonPatternLazy.getInstance().info("Hello world");
+		SingletonPatternLazy.getInstance().error("An error happened");
+		SingletonPatternLazy.getInstance().error("More details of the error.", new Exception("This is an exception."));
+	}
 }
