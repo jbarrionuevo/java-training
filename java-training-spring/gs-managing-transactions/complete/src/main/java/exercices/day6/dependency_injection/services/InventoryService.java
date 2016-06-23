@@ -12,11 +12,4 @@ public class InventoryService {
 	@Autowired
 	private InventoryDao inventoryDao;
 
-	public InventoryDao getInventoryDao() {
-		return inventoryDao;
-	}
-
-	public void setInventoryDao(InventoryDao inventoryDao) {
-		this.inventoryDao = inventoryDao;
-	}
 }

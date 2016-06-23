@@ -36,11 +36,4 @@ public class ProviderService {
 		return providerDao.findAll();
 	}
 	
-	public ProviderDao getProviderDao() {
-		return providerDao;
-	}
-
-	public void setProviderDao(ProviderDao providerDao) {
-		this.providerDao = providerDao;
-	}
 }

@@ -40,11 +40,4 @@ public class OrderService{
 	        return orderDao.findAll();
 	}
 	
-	public OrderDao getOrderDao() {
-		return orderDao;
-	}
-
-	public void setOrderDao(OrderDao orderDao) {
-		this.orderDao = orderDao;
-	}
 }
