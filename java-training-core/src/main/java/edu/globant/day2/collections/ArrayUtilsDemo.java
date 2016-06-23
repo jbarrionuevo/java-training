@@ -46,14 +46,14 @@ public class ArrayUtilsDemo {
 	public static void main(String[] args) {
 		performTasks(new int[] { 5, 15, 7, 19, 12 });
 		System.out.println("----------------------------------------------------------");
-		performTasks(new IntegerHolder[] { 
+		performTasks(new IntegerHolder[] {
 				new IntegerHolder(5),
 				new IntegerHolder(15),
 				new IntegerHolder(7),
 				new IntegerHolder(19),
-				new IntegerHolder(12) 
+				new IntegerHolder(12)
 			},
-			new IntegerHolder[] { 
+			new IntegerHolder[] {
 				new IntegerHolder(5),
 				new IntegerHolder(7),
 				new IntegerHolder(12),
