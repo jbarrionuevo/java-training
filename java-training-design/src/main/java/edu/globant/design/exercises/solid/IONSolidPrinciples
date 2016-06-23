@@ -1,0 +1,18 @@
+I will apply this principles when we advance a little more in the lessons, since we don´t have a lot of code and it will change a lot, there´s not a lot
+of violations. 
+
+- Single Responsibility Principle
+I will take care about this principle when I have to start making services, trying to make every service take responsibility only for his class behavior.
+
+- Open/Close principle
+I will take advantage of this principle when we have to persist our data, so we just extends from spring and hibernate classes.
+
+- Liskov Substitution Principle
+In CaseSellers class I will be careful about this principle, because the behavior of the hierarchy seems to be very similar, so we will need to implement 
+some methods in superclass, but being careful in which ones we implement.
+
+- Interface Segregation Principle
+we need to be careful in our services implementations, we don't want to add functionality that doesn't make sense.
+
+- Dependency Inversion Principle
+We will use this with Hibernate and Spring frameworks.

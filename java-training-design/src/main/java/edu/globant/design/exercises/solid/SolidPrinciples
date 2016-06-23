@@ -1,0 +1,20 @@
+- Single Responsibility Principle
+I think one advantage of this principle is make your code cleaner, as you can abstract and make a class take only one responsibility against a lot.
+Using this principle is good for example if i know some class works as expected, maybe i never need to touch it again, saving work time.
+
+- Open/Close principle
+I think this principle is very close to Single responsibility ones, if we have a class that make what we need, we just have to use it, without care about
+how is it implemented.
+
+- Liskov Substitution Principle
+I think this principle is very easy to violate, sometimes we create a hierarchy, and we can notice that inheriting some behavior from another class that make 
+no sense talking about behavior. We need to change hierarchy, implement the method in the subclass in order to take off that behavior we don't want to have.
+
+- Interface Segregation Principle
+This principle is very common problem, we used to add common behavior in classes, we create a interface and  if we need to add another method we add there 
+making this interface more complex and having unimplemented methods in classes. 
+
+- Dependency Inversion Principle
+Anyone that used Spring framework, knows or heard about it since this frameworks used this mechanism. this is a great approach for abstracting things, 
+you just need to know which class you need to extend in order to make less code, for example extending a repository, you don´t need to implement common 
+operations
