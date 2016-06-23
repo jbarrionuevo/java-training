@@ -19,7 +19,7 @@ public class CaseService{
 	
 	private final static Logger log = LoggerFactory.getLogger(CaseService.class);
 	
-	@Autowired
+//	@Autowired //commented to show that the injection is being taken from the beans.xml file
 	CaseDao caseDao;
 	
 	public void saveCase(Case newCase){
@@ -37,4 +37,14 @@ public class CaseService{
 	public Collection<Case> findAllCases() {
         return caseDao.findAll();
 	}
+
+	public CaseDao getCaseDao() {
+		return caseDao;
+	}
+
+	public void setCaseDao(CaseDao caseDao) {
+		this.caseDao = caseDao;
+	}
+	
+	
 }
