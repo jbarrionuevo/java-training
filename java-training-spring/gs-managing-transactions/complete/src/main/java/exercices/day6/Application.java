@@ -1,4 +1,4 @@
-package exercices.day6.dependency_injection;
+package exercices.day6;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
