@@ -1,13 +1,13 @@
 package edu.globant.day1.exercises.oop.model;
 
-public class SellDetail {
+public class SaleDetail {
 
 	private int id;
-	private Sale sell;
+	private Sale sale;
 	private Case theCase;
 	private int quantity;
 	
-	public SellDetail(){
+	public SaleDetail(){
 		
 	}
 
@@ -19,12 +19,12 @@ public class SellDetail {
 		this.id = id;
 	}
 
-	public Sale getSell() {
-		return sell;
+	public Sale getSale() {
+		return sale;
 	}
 
-	public void setSell(Sale sell) {
-		this.sell = sell;
+	public void setSale(Sale sale) {
+		this.sale = sale;
 	}
 
 	public Case getTheCase() {
@@ -45,7 +45,7 @@ public class SellDetail {
 
 	@Override
 	public String toString() {
-		return "SellDetail [id=" + id + ", sell=" + sell + ", theCase=" + theCase + ", quantity=" + quantity + "]";
+		return "SellDetail [id=" + id + ", sale=" + sale + ", theCase=" + theCase + ", quantity=" + quantity + "]";
 	}
 	
 	

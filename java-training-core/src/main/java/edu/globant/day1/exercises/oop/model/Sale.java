@@ -8,7 +8,7 @@ public class Sale {
 	private Customer customer;
 	private Seller seller;
 	private LocalDate date;
-	private SellDetail sellDetail;
+	private SaleDetail saleDetail;
 	private String status = SaleStatusEnum.DRAFT.getSaleStatus();
 	private Store store;
 	private double totalPrice;
@@ -49,12 +49,12 @@ public class Sale {
 		this.date = date;
 	}
 
-	public SellDetail getSellDetail() {
-		return sellDetail;
+	public SaleDetail getSaleDetail() {
+		return saleDetail;
 	}
 
-	public void setSellDetail(SellDetail sellDetail) {
-		this.sellDetail = sellDetail;
+	public void setSaleDetail(SaleDetail saleDetail) {
+		this.saleDetail = saleDetail;
 	}
 
 	public String getStatus() {
@@ -83,8 +83,8 @@ public class Sale {
 
 	@Override
 	public String toString() {
-		return "Sale [id=" + id + ", customer=" + customer + ", seller=" + seller + ", date=" + date + ", sellDetail="
-				+ sellDetail + ", status=" + status + ", store=" + store + ", totalPrice=" + totalPrice + "]";
+		return "Sale [id=" + id + ", customer=" + customer + ", seller=" + seller + ", date=" + date + ", saleDetail="
+				+ saleDetail + ", status=" + status + ", store=" + store + ", totalPrice=" + totalPrice + "]";
 	}
 	
 	
