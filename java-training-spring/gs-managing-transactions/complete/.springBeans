@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:exercices.day6.Application</config>
+		<config>java:exercices.Application</config>
 	</configs>
 	<autoconfigs>
 		<config>java:hello.Application</config>
