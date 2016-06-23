@@ -13,6 +13,7 @@ public class CaseDesign implements Serializable {
 	private Long id;
 	private String name;
 
+	public CaseDesign(){}
 	
 	public CaseDesign(String name) {
 		super();

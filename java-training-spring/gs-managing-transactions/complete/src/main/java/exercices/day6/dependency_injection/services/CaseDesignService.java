@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import exercices.day6.dependency_injection.daos.CaseDao;
 import exercices.day6.dependency_injection.daos.CaseDesignDao;
@@ -13,12 +14,21 @@ import hello.BookingService;
 
 @Service
 public class CaseDesignService {
-private final static Logger log = LoggerFactory.getLogger(BookingService.class);
+	
+	private final static Logger log = LoggerFactory.getLogger(CaseDesignService.class);
 	
 	@Autowired
 	CaseDesignDao caseDesignDao;
 	
-	public void saveCase(CaseDesign newCaseDesign){
+	public void saveCaseDesign(CaseDesign newCaseDesign){
 		caseDesignDao.save(newCaseDesign);
+	}
+	
+	@Transactional
+	public void saveCaseDesigns(CaseDesign... caseDesigns){
+		 for (CaseDesign caseDesign: caseDesigns) {
+	            log.info("Persisting Case Design [" + caseDesign + "] to database...");
+	            caseDesignDao.save(caseDesign);
+	     }
 	}
 }

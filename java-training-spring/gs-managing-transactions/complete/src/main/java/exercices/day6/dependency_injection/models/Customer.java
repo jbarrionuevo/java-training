@@ -8,9 +8,7 @@ import exercices.day6.dependency_injection.enums.Gender;
 
 @Entity
 public class Customer extends ThirdPartyParticipant{
-	@Id
-	@GeneratedValue
-	private Long id;
+
 	private int age;
 	private Gender gender;
 	

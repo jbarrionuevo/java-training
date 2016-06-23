@@ -13,6 +13,8 @@ public class CaseDevice implements Serializable {
 	private Long id;
 	private String name;
 	
+	public CaseDevice(){}
+	
 	public CaseDevice(String name) {
 		super();
 		this.name = name;

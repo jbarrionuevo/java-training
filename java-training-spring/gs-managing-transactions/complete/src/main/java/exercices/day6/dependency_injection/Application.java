@@ -16,6 +16,7 @@ import exercices.day6.dependency_injection.services.CaseDesignService;
 import exercices.day6.dependency_injection.services.CaseDeviceService;
 import exercices.day6.dependency_injection.services.CaseService;
 import exercices.day6.dependency_injection.services.OrderService;
+import exercices.day6.dependency_injection.services.ProviderService;
 import hello.BookingService;
 
 import java.util.Date;
@@ -29,7 +30,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
-@EnableAutoConfiguration
 public class Application {
 	
 private static final Logger log = LoggerFactory.getLogger(Application.class);
@@ -38,9 +38,6 @@ private static final Logger log = LoggerFactory.getLogger(Application.class);
 	JdbcTemplate jdbcTemplate(DataSource dataSource) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		log.info("Creating tables");
-//		jdbcTemplate.execute("drop table CASE if exists");
-//		jdbcTemplate.execute("create table CASE("
-//				+ "...)");
 		return jdbcTemplate;
 	}
 
@@ -50,29 +47,40 @@ private static final Logger log = LoggerFactory.getLogger(Application.class);
 		CaseDeviceService caseDeviceService = ctx.getBean(CaseDeviceService.class);
 		CaseDesignService caseDesignService = ctx.getBean(CaseDesignService.class);
 		CaseService caseService = ctx.getBean(CaseService.class);
+		ProviderService providerService = ctx.getBean(ProviderService.class);
+		OrderService orderService = ctx.getBean(OrderService.class);
 		
-//		OrderService orderService = ctx.getBean(OrderService.class);
-//		
-		Case case1 = new Case(new CaseDesign("test"), new CaseDevice("test"), 150.0, new Provider("provider", "Some St."));
-		Case case2 = new Case(new CaseDesign("test2"), new CaseDevice("test2"), 250.0, new Provider("provider2", "Some St. 2"));
+		CaseDesign design1 = new CaseDesign("design1");
+		CaseDesign design2 = new CaseDesign("design2");
+		CaseDevice device1 = new CaseDevice("device1");
+		CaseDevice device2 = new CaseDevice("device2");
+		Provider provider1 = new Provider("provider", "Some St.");
+		Provider provider2 = new Provider("provider2", "Some St. 2");
+		Case case1 = new Case(design1, device1, 150.0, provider1);
+		Case case2 = new Case(design2, device2, 250.0, provider2);
 		
-		caseService.saveCase(case1);
-		caseService.saveCase(case2);
-//		
+		caseDesignService.saveCaseDesigns(design1,design2);
+		caseDeviceService.saveCaseDevices(device1,device2);
+		providerService.saveProviders(provider1,provider2);
+		
+		caseService.saveCases(case1,case2);
+		Assert.assertEquals("Should retrieve 2 cases", 2,
+				caseService.findAllCases().size());
+		
+		for (Case aCase: caseService.findAllCases()) {
+			log.info("So far, " + aCase + " is persisted.");
+		}
+		
 //		HashMap<Case,Integer> caseDesire = new HashMap<Case,Integer>();
 //		caseDesire.put(case1, 10);
 //		caseDesire.put(case2, 25);
 //		HashMap<Case,Integer> caseDesire2 = new HashMap<Case,Integer>();
 //		caseDesire2.put(case1, 7);
 //		caseDesire2.put(case2, 1);
-//		
+		
+//		orderService.saveOrder(new Order(caseDesire,new Date()));
 //		orderService.addOrders(new Order(caseDesire,new Date()), new Order(caseDesire2,new Date()));
-//		Assert.assertEquals("Should retrieve 2 orders", 2,
-//				orderService.findAllOrders().size());
-//		
-//		for (Order order: orderService.findAllOrders()) {
-//			log.info("So far, " + order + " is persisted.");
-//		}
+		
 	}
 	
 	

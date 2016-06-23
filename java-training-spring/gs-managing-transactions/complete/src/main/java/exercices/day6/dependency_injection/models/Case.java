@@ -23,6 +23,8 @@ public class Case implements Serializable {
 	@ManyToOne
 	private Provider provider;
 	
+	public Case(){}
+	
 	public Case(CaseDesign design, CaseDevice device, Double price, Provider provider) {
 		super();
 		this.design = design;
@@ -33,8 +35,8 @@ public class Case implements Serializable {
 	
 	@Override
 	public String toString(){
-		return String.format("Design: %s, Device: %s", 
-				this.getDesign().getName(), this.getDevice().getName());
+		return String.format("Design: %s, Device: %s, Provider: %s", 
+				this.getDesign().getName(), this.getDevice().getName(), this.getProvider().getName()+"("+this.getProvider().getLocation()+")");
 	}
 	
 	public CaseDesign getDesign() {

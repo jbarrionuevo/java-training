@@ -13,6 +13,7 @@ public class Order {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	private HashMap<Case,Integer> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
 	

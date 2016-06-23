@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 import exercices.day6.dependency_injection.models.Order;
+import exercices.day6.dependency_injection.models.Provider;
 
 public interface OrderDao extends JpaRepository<Order,Long>{
 

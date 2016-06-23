@@ -1,10 +1,17 @@
 package exercices.day6.dependency_injection.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-public abstract class ThirdPartyParticipant {
+@Entity
+public class ThirdPartyParticipant implements Serializable{
+	
+	@Id
+	@GeneratedValue
+	private Long id;
 	
 	private String name,location;
 	

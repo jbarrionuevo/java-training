@@ -14,7 +14,7 @@ import hello.BookingService;
 @Service
 public class CaseSellerService {
 	
-	private final static Logger log = LoggerFactory.getLogger(BookingService.class);
+	private final static Logger log = LoggerFactory.getLogger(CaseSellerService.class);
 	
 	@Autowired
 	CaseSellerDao caseSellerDao;

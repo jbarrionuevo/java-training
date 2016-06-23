@@ -17,19 +17,23 @@ import exercices.day6.dependency_injection.models.Case;
 import exercices.day6.dependency_injection.models.Order;
 import hello.BookingService;
 @Service
-public class OrderService {
+public class OrderService{
 	
-	private final static Logger log = LoggerFactory.getLogger(BookingService.class);
+	private final static Logger log = LoggerFactory.getLogger(OrderService.class);
 	
 	@Autowired
 	private OrderDao orderDao;
 	
 	@Transactional
-	public void addOrders(Order... orders){
+	public void saveOrders(Order... orders){
 		 for (Order order: orders) {
-	            log.info("Adding " + order + " to database...");
+	            log.info("Persisting Order [" + order + "] to database...");
 	            orderDao.save(order);
 	     }
+	}
+	
+	public void saveOrder(Order order){
+		orderDao.save(order);
 	}
 	
 	public Collection<Order> findAllOrders() {
