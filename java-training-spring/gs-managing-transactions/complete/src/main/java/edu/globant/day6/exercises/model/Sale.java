@@ -1,9 +1,18 @@
 package edu.globant.day6.exercises.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import edu.globant.day6.exercises.enums.Status;
 
+@Entity
 public class Sale {
-	
+	@Id
+	@GeneratedValue
+	private Long id;
+	@OneToOne
 	private Receipt receipt;
 	private Status status;
 	private double total;

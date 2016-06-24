@@ -5,7 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Case implements Serializable {
@@ -13,8 +14,9 @@ public class Case implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+	@ManyToOne
 	private Design design;
+	@ManyToOne
 	private Device device;
 	private double price;
 	private int stock;
@@ -59,6 +61,14 @@ public class Case implements Serializable {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

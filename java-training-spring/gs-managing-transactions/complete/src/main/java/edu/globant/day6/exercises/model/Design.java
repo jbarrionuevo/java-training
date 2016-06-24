@@ -1,10 +1,21 @@
 package edu.globant.day6.exercises.model;
 
-public class Design {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Design {
+	@Id
+	@GeneratedValue
+	private Long id;
 	private String name;
 	
-	public Design (String name) {
+	public Design () {
+		
+	}
+
+	public Design(String name) {
 		this.name = name;
 	}
 

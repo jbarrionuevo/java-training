@@ -3,8 +3,16 @@ package edu.globant.day6.exercises.model;
 import java.util.Date;
 import java.util.HashMap;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Order {
 
+	@Id
+	@GeneratedValue
+	private Long id;
 	private HashMap<Case, Integer> Cases;
 	private Date requestDate;
 	private Date receivedDate;
@@ -31,6 +39,14 @@ public class Order {
 
 	public void setReceivedDate(Date receivedDate) {
 		this.receivedDate = receivedDate;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }
