@@ -9,7 +9,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.CoreMatchers.*;
 
-public class TestCase {
+public class CaseTest {
 
 	@Mock
 	CaseDesign caseDesignMock;
@@ -52,6 +52,13 @@ public class TestCase {
 		assertThat("Case Device wasnt correctly assigned",test.getDevice(),is(caseDeviceMock));
 		assertThat("Provider wasnt correctly assigned",test.getProvider(),is(providerMock));
 		assertThat("Price wasnt correctly assigned",test.getPrice(),is(10.0));
+	}
+	
+	@Test
+	public void testToString(){
+		Case test = new Case(caseDesignMock,caseDeviceMock,10.0,providerMock);
+		assertThat("To String method doesnt work as expected",test.toString(),equalTo("Design: "+caseDesignMock.getName()+
+				", Device: "+caseDeviceMock.getName()+", Provider: "+providerMock.getName()+"("+providerMock.getLocation()+")"));
 	}
 
 }
