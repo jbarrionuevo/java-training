@@ -1,5 +1,6 @@
 package edu.globant.testing.integration;
 
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
