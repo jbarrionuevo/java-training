@@ -1,0 +1,5 @@
+In ION app, i added transactional annotation to case service for adding more than one at time as we see in class,
+I consider not necessary to use transactional only for add one item as we discuss. I planed to add in the other 
+services when we started to develop all behavior. Right now is not working as expected because some error with beans,
+in future i will go deeper in spring boot and investigate different ways to implement, as choose correct repository. 
+So this can consider as work in progress.
