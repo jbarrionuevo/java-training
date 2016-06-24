@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Cases</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<table>
+      <tr>
+      	<th>INDEX</th>
+        <th>DESIGN</th>
+        <th>DEVICE</th>
+        <th>PROVIDER</th>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+        	<th>DELETE</th>
+        </div>
+      </tr>
+		<tr th:each="case,itrStat : ${cases}">
+			<td th:text="${itrStat.count}"></td>
+	        <td th:text="${case.design}"></td>
+	        <td th:text="${case.device}"></td>
+	        <td th:text="${case.provider}"></td>
+	        <div sec:authorize="hasRole('ROLE_ADMIN')">
+	        	<td><button type="button">Delete</button></td>
+	        </div>
+	    </tr>
+	 </table>
+	 
+	 <a th:href="@{/}">Back to the homepage</a>
+</body>
+</html>
