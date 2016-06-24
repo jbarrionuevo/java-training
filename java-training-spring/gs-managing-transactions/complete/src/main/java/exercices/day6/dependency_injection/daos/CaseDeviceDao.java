@@ -7,5 +7,5 @@ import exercices.day6.dependency_injection.models.CaseDevice;
 import exercices.day6.dependency_injection.models.CaseSeller;
 
 public interface CaseDeviceDao extends JpaRepository<CaseDevice,Long>{
-
+	public CaseDevice findByName(String name);
 }

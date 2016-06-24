@@ -31,4 +31,13 @@ public class CaseDeviceService {
 	            caseDeviceDao.save(caseDevice);
 	     }
 	}
+	
+	public CaseDevice findBy(Long id){
+		return caseDeviceDao.findOne(id);
+	}
+	
+	public CaseDevice findByName(String name){
+		return caseDeviceDao.findByName(name);
+	}
+	
 }
