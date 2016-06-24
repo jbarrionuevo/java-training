@@ -1,13 +1,16 @@
 package edu.globant.finalProject.model.Employee;
 
-import java.util.Observable;
-import java.util.Observer;
+import edu.globant.finalProject.model.Inventory.Inventory;
 
-public class Logistic implements TypeOfEmployee,Observer{
+public class Logistic implements TypeOfEmployee{
+	private Inventory inventory;
 
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		System.out.println(arg1);		
-		System.out.println("Logistic observer");
+	public Inventory getInventory() {
+		return inventory;
 	}
+
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
+	}
+	
 }

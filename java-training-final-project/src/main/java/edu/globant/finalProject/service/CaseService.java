@@ -11,5 +11,5 @@ public interface CaseService {
 	public Case get(int id);
 	public void update(Case c);
 	public int checkStock(Case c);
-	
+	public boolean hasLowStock(Case c);
 }

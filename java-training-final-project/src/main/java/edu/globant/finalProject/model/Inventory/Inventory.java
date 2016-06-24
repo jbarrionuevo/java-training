@@ -1,8 +1,11 @@
-package edu.globant.finalProject.model.Case;
+package edu.globant.finalProject.model.Inventory;
 
 import java.util.HashMap;
+import java.util.Observable;
 
-public class Inventory {
+import edu.globant.finalProject.model.Case.Case;
+
+public class Inventory{
 	private HashMap<Case,Integer> cases;
 
 	public HashMap<Case, Integer> getCases() {
