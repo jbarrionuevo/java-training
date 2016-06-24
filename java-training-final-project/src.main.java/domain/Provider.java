@@ -1,7 +1,7 @@
-package model;
+package domain;
 
-public class Store {
-	private String name;
+public class Provider {
+	public String name;
 
 	public String getName() {
 		return name;

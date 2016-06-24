@@ -1,0 +1,10 @@
+Exercises
+
+-Think about the ION Solid application, do you have a web presentation? How
+would you change your current application implementation to use Spring
+MVC as the main web framework for implementing the presentation? Do this
+change at least to handle 1 request and demonstrate Spring MVC in action.
+
+-Think about the need of adding security to the ION Solid application, how
+would you implement it using spring security? Implement the security for at
+least 1 page in the application.

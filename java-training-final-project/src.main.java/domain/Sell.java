@@ -1,6 +1,5 @@
-package model;
+package domain;
 
-import java.util.Date;
 import java.util.List;
 
 public abstract class Sell {
@@ -9,12 +8,11 @@ public abstract class Sell {
 
 	private List<SellStatus> sellStatus;
 
-	private Seller seller;
+	private Employee seller;
 
-	private Date sellDate;
 	// status possible values: draft, paid, cancelled or refund
 	private SellStatus status;
-	// description of the status
+	
 	private String description;
 
 	private Store store;
@@ -27,20 +25,12 @@ public abstract class Sell {
 		this.items = items;
 	}
 
-	public Seller getSeller() {
+	public Employee getSeller() {
 		return seller;
 	}
 
-	public void setSeller(Seller seller) {
+	public void setSeller(Employee seller) {
 		this.seller = seller;
-	}
-
-	public Date getSellDate() {
-		return sellDate;
-	}
-
-	public void setSellDate(Date sellDate) {
-		this.sellDate = sellDate;
 	}
 
 	public SellStatus getStatus() {

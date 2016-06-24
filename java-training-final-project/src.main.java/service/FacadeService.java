@@ -1,5 +1,7 @@
 package service;
 
+import service.sales.SalesService;
+
 //mi idea is to use this pattern to abstract the use of multiple services to the view
 public class FacadeService {
 	private InventoryService inventoryService;

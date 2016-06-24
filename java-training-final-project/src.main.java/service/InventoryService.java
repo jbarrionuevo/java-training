@@ -3,7 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Case;
+import domain.Case;
 
 public class InventoryService {
 

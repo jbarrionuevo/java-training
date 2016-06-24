@@ -9,6 +9,8 @@
 		<java.version>1.8</java.version>
 		<!-- The main class to start by executing java -jar -->
 		<start-class>src.main.java.Application</start-class>
+		<commons.lang.version>3.4</commons.lang.version>
+        <junit.version>4.12</junit.version>
 	</properties>
 	<build>
 		<plugins>
@@ -62,5 +64,31 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+ 			<groupId>org.springframework.boot</groupId>
+ 			<artifactId>spring-boot-starter-security</artifactId>
+ 		</dependency>
+ 		<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 </project>

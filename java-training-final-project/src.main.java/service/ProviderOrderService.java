@@ -1,6 +1,6 @@
 package service;
 
-import model.Provider;
+import domain.Provider;
 
 public class ProviderOrderService {
 	@SuppressWarnings("unused")
