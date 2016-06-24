@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.thymeleaf.util.Validate;
+
 @Entity
 public class CaseDevice implements Serializable {
 	@Id
@@ -21,7 +23,7 @@ public class CaseDevice implements Serializable {
 	}
 	
 	public CaseDevice(String name) {
-		super();
+		Validate.notEmpty(name, "Name cannot be blank");
 		this.name = name;
 	}
 

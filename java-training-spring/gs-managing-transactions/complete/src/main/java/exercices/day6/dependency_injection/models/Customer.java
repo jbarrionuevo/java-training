@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.thymeleaf.util.Validate;
+
 import exercices.day6.dependency_injection.enums.Gender;
 
 @Entity
@@ -14,6 +16,7 @@ public class Customer extends ThirdPartyParticipant{
 	
 	public Customer(String name, String location, int age, Gender gender) {
 		super(name,location);
+		Validate.notNull(gender, "Gender cannot be blank");
 		this.age = age;
 		this.gender = gender;
 	}

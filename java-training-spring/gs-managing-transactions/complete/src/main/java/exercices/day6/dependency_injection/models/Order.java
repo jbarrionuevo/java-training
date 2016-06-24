@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.thymeleaf.util.Validate;
+
 @Entity
 public class Order {
 	@Id
@@ -21,6 +23,9 @@ public class Order {
 	
 	public Order(HashMap<Case,Integer> requestCases, Date dateOfRequest) {
 		super();
+		Validate.notNull(dateOfRequest, "Date of request cannot be null");
+		Validate.notNull(requestCases, "Request cases cannot be null");
+		Validate.containsNoEmpties((Iterable<String>) requestCases, "There must be at least 1 request case");
 		this.requestCases = requestCases;
 		this.dateOfRequest=dateOfRequest;
 	}

@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.thymeleaf.util.Validate;
+
 import exercices.day6.dependency_injection.enums.SaleStatus;
 
 @Entity
@@ -22,6 +24,7 @@ public class Sale {
 	
 	public Sale(Order order) {
 		super();
+		Validate.notNull(order,"Order cannot be null");
 		this.order=order;
 		this.status = SaleStatus.DRAFT;
 	}

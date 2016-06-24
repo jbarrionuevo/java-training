@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.thymeleaf.util.Validate;
+
 @Entity
 public class Case implements Serializable {
 	
@@ -26,7 +28,10 @@ public class Case implements Serializable {
 	public Case(){}
 	
 	public Case(CaseDesign design, CaseDevice device, Double price, Provider provider) {
-		super();
+		Validate.notNull(design, "Design cannot be null");
+		Validate.notNull(device,"Device cannot be null");
+		Validate.notNull(provider,"Provider cannot be null");
+		Validate.notNull(price,"Price cannot be null");
 		this.design = design;
 		this.device = device;
 		this.price=price;

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.thymeleaf.util.Validate;
+
 @Entity
 public class ThirdPartyParticipant implements Serializable{
 	
@@ -18,6 +20,8 @@ public class ThirdPartyParticipant implements Serializable{
 	public ThirdPartyParticipant(){}
 	
 	public ThirdPartyParticipant(String name,String location){
+		Validate.notEmpty(name, "Name cannot be empty");
+		Validate.notEmpty(location, "Location cannot be empty");
 		this.name=name;
 		this.location=location;
 	}

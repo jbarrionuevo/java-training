@@ -3,6 +3,8 @@ package exercices.day6.dependency_injection.models;
 import java.util.Collection;
 import java.util.Date;
 
+import org.thymeleaf.util.Validate;
+
 import exercices.day6.dependency_injection.interfaces.StoreSellerInterface;
 
 
@@ -18,6 +20,7 @@ public class StoreSeller extends CaseSeller implements StoreSellerInterface{
 	
 	public StoreSeller(String name,Collection<Sale> sales, String store){
 		super(name,sales);
+		Validate.notEmpty(store,"Store cannot be empty");
 		this.store=store;
 	}
 

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.thymeleaf.util.Validate;
+
 @Entity
 public class Receipt {
 	@Id
@@ -27,6 +29,10 @@ public class Receipt {
 	
 	public Receipt(String storeName, Date dateOfSale,Order order, Customer customer) {
 		super();
+		Validate.notNull(dateOfSale,"Date of sale cannot be null");
+		Validate.notEmpty(storeName,"Store Name cannot be blank");
+		Validate.notNull(order,"Order cannot be null");
+		Validate.notNull(customer,"Customer cannot be null");
 		this.storeName = storeName;
 		this.dateOfSale = dateOfSale;
 		this.order=order;
