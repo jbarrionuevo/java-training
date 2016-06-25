@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Cases</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	When we have data persisted here you will see some Cases
+	<table>
+		<tr>
+			<th>Price</th>
+			<th>Device</th>
+			<th>Design</th>
+			<th>Amount</th>
+			
+		</tr>
+		<tr>
+			<td th:text="${case.price}"></td>
+		    <td th:text="${case.design}"></td>
+	        <td th:text="${case.device}"></td>
+	        <td th:text="${case.stock}"></td>
+	    </tr>    
+	</table>
+
+	<a th:href="@{/home}">Back home</a>
+</body>
+</html>

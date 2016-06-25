@@ -1,5 +1,7 @@
 package edu.globant.day6.exercises.services;
 
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.globant.day6.exercises.DAO.CaseDAO;
 import edu.globant.day6.exercises.model.Case;
-
 @Service
 public class CaseService {
 
@@ -17,8 +18,9 @@ public class CaseService {
 	@Autowired
 	CaseDAO caseDao;
 
-	public void saveCase(Case newCase) {
-		caseDao.save(newCase);
+	public void saveCase(Case aCase) {
+		log.info("Persisting Case [" + aCase + "] to database...");
+		caseDao.save(aCase);
 	}
 
 	@Transactional
@@ -35,6 +37,10 @@ public class CaseService {
 
 	public void setCaseDao(CaseDAO caseDao) {
 		this.caseDao = caseDao;
+	}
+
+	public Collection<Case> findAllCases() {
+		return (Collection<Case>) caseDao.findAll(); 
 	}
 
 }

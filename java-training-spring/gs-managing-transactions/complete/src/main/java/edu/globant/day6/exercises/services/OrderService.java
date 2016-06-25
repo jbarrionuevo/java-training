@@ -12,4 +12,12 @@ public class OrderService {
 	@Autowired
 	OrderServiceDAO orderServiceDAO;
 
+	public OrderServiceDAO getOrderServiceDAO() {
+		return orderServiceDAO;
+	}
+
+	public void setOrderServiceDAO(OrderServiceDAO orderServiceDAO) {
+		this.orderServiceDAO = orderServiceDAO;
+	}
+
 }

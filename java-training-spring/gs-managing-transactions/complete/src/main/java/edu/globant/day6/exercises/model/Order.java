@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import edu.globant.day6.exercises.model.Case;
+
 @Entity
 public class Order {
 

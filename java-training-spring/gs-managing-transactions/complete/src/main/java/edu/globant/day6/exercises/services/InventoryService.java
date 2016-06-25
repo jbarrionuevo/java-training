@@ -10,4 +10,12 @@ public class InventoryService {
 	
 	@Autowired
 	InventoryServiceDAO inventoryServiceDao;
+
+	public InventoryServiceDAO getInventoryServiceDao() {
+		return inventoryServiceDao;
+	}
+
+	public void setInventoryServiceDao(InventoryServiceDAO inventoryServiceDao) {
+		this.inventoryServiceDao = inventoryServiceDao;
+	}
 }

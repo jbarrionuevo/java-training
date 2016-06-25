@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import edu.globant.day6.exercises.model.Design;
+import edu.globant.day6.exercises.model.Device;
+
 @Entity
 public class Case implements Serializable {
 

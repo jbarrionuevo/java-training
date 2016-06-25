@@ -11,6 +11,14 @@ public class DeviceService {
 	@Autowired
 	DeviceDAO deviceDAO;
 
+	public DeviceDAO getDeviceDAO() {
+		return deviceDAO;
+	}
+
+	public void setDeviceDAO(DeviceDAO deviceDAO) {
+		this.deviceDAO = deviceDAO;
+	}
+
 	public void saveDevice(Device aDevice) {
 		deviceDAO.save(aDevice);
 	}

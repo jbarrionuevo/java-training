@@ -11,4 +11,12 @@ public class ProviderService {
 	@Autowired
 	ProviderServiceDAO providerServiceDao;
 
+	public ProviderServiceDAO getProviderServiceDao() {
+		return providerServiceDao;
+	}
+
+	public void setProviderServiceDao(ProviderServiceDAO providerServiceDao) {
+		this.providerServiceDao = providerServiceDao;
+	}
+
 }

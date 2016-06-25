@@ -4,6 +4,9 @@ public class Employee {
 	
 	private String name;
 
+	public Employee (){
+		
+	}
 	public String getName() {
 		return name;
 	}

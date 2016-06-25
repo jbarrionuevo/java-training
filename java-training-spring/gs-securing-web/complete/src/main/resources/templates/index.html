@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:th="http://www.thymeleaf.org" 
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	
+	<div >
+		<h1 th:inline="text">Hello Anonymous!</h1>
+		 <p>Click <a th:href="@{/cases}">here</a> to see some cases</p>
+		<a th:href="@{/login}">Login</a>
+	</div>
+    
+</body>
+</html>
+
+
+       

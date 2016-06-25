@@ -10,4 +10,12 @@ public class SaleService {
 	
 	@Autowired
 	SaleServiceDAO saleServiceDAO;
+
+	public SaleServiceDAO getSaleServiceDAO() {
+		return saleServiceDAO;
+	}
+
+	public void setSaleServiceDAO(SaleServiceDAO saleServiceDAO) {
+		this.saleServiceDAO = saleServiceDAO;
+	}
 }
