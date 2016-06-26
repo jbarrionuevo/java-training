@@ -1,4 +1,4 @@
-package exercices.dependencyInjection;
+package dependencyInjection.excercices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

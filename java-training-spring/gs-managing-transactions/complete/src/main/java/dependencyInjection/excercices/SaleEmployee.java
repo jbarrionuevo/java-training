@@ -1,4 +1,4 @@
-package exercices.dependencyInjection;
+package dependencyInjection.excercices;
 
 public class SaleEmployee {
 
@@ -8,7 +8,7 @@ public class SaleEmployee {
 		this.name = name;
 	}
 	
-	String getName() {
+	public String getName() {
 		return this.name;
 	}
 }

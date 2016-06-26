@@ -1,4 +1,4 @@
-package exercices.dependencyInjection;
+package dependencyInjection.excercices;
 
 public enum SaleState {
 

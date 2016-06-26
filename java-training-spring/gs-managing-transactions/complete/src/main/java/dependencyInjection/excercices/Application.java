@@ -1,4 +1,4 @@
-package exercices.dependencyInjection;
+package dependencyInjection.excercices;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
