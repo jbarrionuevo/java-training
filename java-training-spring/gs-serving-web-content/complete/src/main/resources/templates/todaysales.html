@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>IonSolid Sales Page</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<h1>IonSolid Today Sales</h1>
+			<table>
+			      <tr>
+			      	<th>ID</th>
+			        <th>EMPLOYEE NAME</th>
+			      </tr>
+			      <tr th:each="sale  : ${sales}">
+			        <td th:text="${sale.saleId}"></td>
+			       	<td th:text="${sale.employee.name}"></td>	   
+			      </tr>
+		</table>
+		<h2><a href="home">Back Home</a></h2>
+	</body>
+</html>
