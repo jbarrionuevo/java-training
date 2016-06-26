@@ -1,27 +1,29 @@
  Exercises Functional
-1● Describe any situation where you have used a functional programming approach in your current or 
+1�Describe any situation where you have used a functional programming approach in your current or 
 latest project. Explain the situation and the approach used.
 
 I have used functional programming in the university but not at work or in a software project/system.
 
-2● From the StudentWithTutor class shown in StreamsDemo, do the following
+2� From the StudentWithTutor class shown in StreamsDemo, do the following
 operations:
-○ Get the top 3 students from their average grade.
-○ Get the lowest 3 students from their average grade.
-○ Get the student whose average grade is closest to the average of the class. If there are two or more, 
+	a- Get the top 3 students from their average grade.
+		Done
+	b- Get the lowest 3 students from their average grade.
+		Done
+	c- Get the student whose average grade is closest to the average of the class. If there are two or more, 
 choose only one of them.
-○ Get the tutor with most students. From their students, get the student with highest grades.
-3● Create an infinite stream for triangle numbers. Show the first 10.
-4● Create an infinite stream for factorial numbers. Show the first 13.
+	d- Get the tutor with most students. From their students, get the student with highest grades.
+	e- Create an infinite stream for triangle numbers. Show the first 10.
+	f- Create an infinite stream for factorial numbers. Show the first 13.
 
  Exercises
-5● Describe an scenario where you have designed or worked with a multithreaded designed application written 
+3- Describe an scenario where you have designed or worked with a multithreaded designed application written 
 by hand (e.g. application server benefits like Servlets don’t count). Describe the scenario and how using 
 multi threading helped you and your team.
 
 I have used multi-threading in the university but not at work or in a software project/system.
 
-6● Write a small console application that simulates a banking center. Assume there’s a single queue 
+4- Write a small console application that simulates a banking center. Assume there’s a single queue 
 for customers. Each customer must be numbered in order to be attended. There may be up to 4 bank tellers. 
 Customers may have one of three tasks: ask for a borrowal, check their account status and deposit money. 
 All accounts are recognized by an 8-digit account number.

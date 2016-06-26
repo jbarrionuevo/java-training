@@ -13,7 +13,7 @@ public abstract class Sell {
 	// status possible values: draft, paid, cancelled or refund
 	private SellStatus status;
 	// description of the status
-	private String statusDescription;
+	private String description;
 
 	private Store store;
 
@@ -50,11 +50,11 @@ public abstract class Sell {
 	}
 
 	public String getStatusDescription() {
-		return statusDescription;
+		return description;
 	}
 
 	public void setStatusDescription(String statusDescription) {
-		this.statusDescription = statusDescription;
+		this.description = statusDescription;
 	}
 
 	public Store getStore() {

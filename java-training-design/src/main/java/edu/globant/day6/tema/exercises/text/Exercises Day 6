@@ -1,0 +1,11 @@
+Exercise
+
+-Think about how would you modify your model created for the ION Solid
+application in order to get it created by spring using dependency injection.
+How would the xml or the annotations look like?
+
+-Think about the ION Solid application, do you have a web presentation? How
+would you change your current application implementation to use Spring
+MVC as the main web framework for implementing the presentation? Do this
+change at least to handle 1 request and demonstrate Spring MVC in action.
+

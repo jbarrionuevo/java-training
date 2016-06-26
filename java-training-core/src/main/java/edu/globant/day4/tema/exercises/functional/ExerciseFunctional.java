@@ -1,7 +1,6 @@
 package edu.globant.day4.tema.exercises.functional;
 
 import static java.util.Arrays.asList;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,35 +41,39 @@ public class ExerciseFunctional {
 				new StudentWithTutor("Fabricio", asList(5d, 18d, 10d), "Morgan"),
 				new StudentWithTutor("Beatriz", asList(9d, 17d, 14d), "Adrián"),
 				new StudentWithTutor("Jacob", asList(20d, 2d, 7d), "Felipe"));
-		showStudents(studentList);
-		/*
-		 * System.out.println(
-		 * "----------------------------------------------------------");
-		 * List<StudentWithTutor> studentsWithGradeAbove10 =
-		 * studentList.stream() .filter(s -> s.getGradeList().stream()
-		 * .mapToDouble(Double::doubleValue) .average().orElse(0) > 10)
-		 * .collect(Collectors.toList());
-		 * showStudents(studentsWithGradeAbove10); System.out.println(
-		 * "----------------------------------------------------------");
-		 * Map<String, List<StudentWithTutor>> studentsByTutor =
-		 * studentList.stream()
-		 * .collect(Collectors.groupingBy(StudentWithTutor::getTutor));
-		 * studentsByTutor.entrySet().stream() .forEach(e -> {
-		 * System.out.println(e.getKey() + "'s students: ");
-		 * showStudents(e.getValue()); }); System.out.println(
-		 * "----------------------------------------------------------");
-		 * Map<String, List<StudentWithTutor>> studentsByTutorOrdered =
-		 * studentList.stream() .collect(Collectors.groupingBy(
-		 * StudentWithTutor::getTutor, LinkedHashMap::new,
-		 * Collectors.toList())); studentsByTutorOrdered.entrySet().stream()
-		 * .forEach(e -> { System.out.println(e.getKey() + "'s students: ");
-		 * showStudents(e.getValue()); }); System.out.println(
-		 * "----------------------------------------------------------"); Double
-		 * classAverageGrade = studentList.stream() .flatMap(s ->
-		 * s.getGradeList().stream()) .mapToDouble(Double::doubleValue)
-		 * .average() .orElse(10d); System.out.println(String.format(
-		 * "Class average grade is %.2f.", classAverageGrade));
-		 */
+		// showStudents(studentList);
+
+		System.out.println("----------------------------------------------------------");
+		List<StudentWithTutor> studentsWithGradeAbove10 = studentList.stream()
+				.filter(s -> s.getGradeList().stream().mapToDouble(Double::doubleValue).average().orElse(0) > 10)
+				.collect(Collectors.toList());
+		showStudents(studentsWithGradeAbove10);
+		System.out.println("----------------------------------------------------------");
+		Map<String, List<StudentWithTutor>> studentsByTutor = studentList.stream()
+				.collect(Collectors.groupingBy(StudentWithTutor::getTutor));
+		studentsByTutor.entrySet().stream().forEach(e -> {
+			System.out.println(e.getKey() + "'s students: ");
+			showStudents(e.getValue());
+		});
+		System.out.println("----------------------------------------------------------");
+		Map<String, List<StudentWithTutor>> studentsByTutorOrdered = studentList.stream()
+				.collect(Collectors.groupingBy(StudentWithTutor::getTutor, LinkedHashMap::new, Collectors.toList()));
+		studentsByTutorOrdered.entrySet().stream().forEach(e -> {
+			System.out.println(e.getKey() + "'s students: ");
+			showStudents(e.getValue());
+		});
+		System.out.println("----------------------------------------------------------");
+		Double classAverageGrade = studentList.stream().flatMap(s -> s.getGradeList().stream())
+				.mapToDouble(Double::doubleValue).average().orElse(10d);
+		System.out.println(String.format("Class average grade is %.2f.", classAverageGrade));
+
+		System.out.println("Top three students are: ");
+		getThreeTopAverage(studentList).stream().forEach(s -> System.out.println(s.getName() + " with "
+				+ s.getGradeList().stream().mapToDouble(Double::doubleValue).average().getAsDouble()));
+
+		System.out.println("Worst three students are: ");
+		getThreeLowestAverage(studentList).stream().forEach(s -> System.out.println(s.getName() + " with "
+				+ s.getGradeList().stream().mapToDouble(Double::doubleValue).average().getAsDouble()));
 	}
 
 	public static void showStudents(List<StudentWithTutor> studentList) {
@@ -78,7 +81,28 @@ public class ExerciseFunctional {
 				s -> System.out.println(String.format("Student %s with grades %s", s.getName(), s.getGradeList())));
 	}
 
+	// test average
 	public static void getAverageGrade(StudentWithTutor student) {
+		student.getGradeList().stream()
+				.forEach(s -> System.out.println("The student " + student.getName() + " has an average grade of "
+						+ student.getGradeList().stream().mapToDouble(Double::doubleValue).average()));
 	}
 
+	// exercise 1 a
+	public static List<StudentWithTutor> getThreeTopAverage(List<StudentWithTutor> students) {
+		return students.stream()
+				.sorted((a, b) -> Double.compare(
+						b.getGradeList().stream().mapToDouble(Double::doubleValue).average().getAsDouble(),
+						a.getGradeList().stream().mapToDouble(Double::doubleValue).average().getAsDouble()))
+				.limit(3).collect(Collectors.toList());
+	}
+
+	// exercise 1 b
+	public static List<StudentWithTutor> getThreeLowestAverage(List<StudentWithTutor> students) {
+		return students.stream()
+				.sorted((b, a) -> Double.compare(
+						b.getGradeList().stream().mapToDouble(Double::doubleValue).average().getAsDouble(),
+						a.getGradeList().stream().mapToDouble(Double::doubleValue).average().getAsDouble()))
+				.limit(3).collect(Collectors.toList());
+	}
 }

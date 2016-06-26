@@ -1,0 +1,32 @@
+
+Inventory management
+
+	-Employee creates a case.
+
+	-Employee lists all cases in stock.
+	-Employee lists cases in stock by case (model or ID).
+	-Employee lists cases in stock by design (color/description or name of design).
+	
+	-Employee updates case inventory in stock by case ID.
+
+	-Logistics user receives an alert indicating the cases that need to be ORDERED to a provider.
+	-Employee configures watermark (stock level) of a case.
+	-Logistics employee creates an order of cases to a provider (with date of expected delivery). 
+	-Logistics employee updates an order of cases to a provider.
+
+
+
+Sales Management
+
+	-Employee creates a sale.
+	-Employee updates a sale (status changes: draft, paid (receipt: customer name, customer age, customer gender, 
+		customer location, price of case, qty and store), cancelled, refund, (*delivered?), one month warranty is condition to allow refund or replace).
+		customer replaces a case?
+	-Employee cancel a sale.
+	-Employee lists his/her sales. 
+
+	-The system updates inventory when a sell is created (draft).
+	The system updates inventory when a sell is created (cancelled, refund or paid).
+	
+	-Employee registers a delivery of cases from a provider (amount, provider, order) .
+	-Employee lists delivered orders (delivery offset).

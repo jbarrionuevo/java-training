@@ -11,7 +11,6 @@ public class Application {
         flightService.book(new Flight("AA954"));
         hotelService.book(new Hotel("NYX Hotel"));
         carService.book(new Car("Honda Civic"));
-
     }
 
 }
