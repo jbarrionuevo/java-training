@@ -8,10 +8,12 @@ package edu.globant.ioncases.controller;
 import edu.globant.ioncases.model.Case;
 import edu.globant.ioncases.model.Customer;
 import edu.globant.ioncases.model.OrderSale;
-import edu.globant.ioncases.model.Seller;
 import edu.globant.ioncases.model.Store;
 import edu.globant.ioncases.model.StoreSeller;
+import edu.globant.ioncases.service.CustomerService;
+import edu.globant.ioncases.service.InventoryService;
 import edu.globant.ioncases.service.SalesService;
+import edu.globant.ioncases.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +31,23 @@ public class SalesControler {
 
     @Autowired(required = true)
     SalesService salesService;
+    
+    @Autowired (required = true)
+    CustomerService customerService;
+    
+    @Autowired (required = true)
+    SellerService sellerService;
+    
+    @Autowired  (required = true)
+    InventoryService inventoryService;
 
     @RequestMapping(value = "/addSale", method = RequestMethod.GET)
-    public String addSale() {
+    public String addSale(Model model) {
 
+        model.addAttribute("customers", customerService.getAll());
+        model.addAttribute("sellers", sellerService.getAll());
+        model.addAttribute("inventory", inventoryService.getAll());
+        model.addAttribute("orderSale", new OrderSale());
         return "addSale";
     }
 
@@ -41,6 +56,7 @@ public class SalesControler {
             @RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model
     ) {
 
+        
         // TODO: SallesController -> addSale
         OrderSale orderSale = new OrderSale();
         orderSale.addCaseToOrder(new Case("Batman case", 20), 2);

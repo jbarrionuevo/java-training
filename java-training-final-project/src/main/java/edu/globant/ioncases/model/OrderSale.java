@@ -41,9 +41,4 @@ public class OrderSale {
         order.put(caseCover, amount);
 
     }
-
-    
-    
-    
-
 }

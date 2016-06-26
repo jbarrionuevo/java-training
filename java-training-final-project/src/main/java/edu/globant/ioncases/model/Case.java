@@ -14,6 +14,7 @@ import java.util.Set;
  */
 public class Case {
 
+    private long id;
     private String design;
     private Set<Device> compatibleDevices = new HashSet<>();
     private double price;
@@ -22,6 +23,18 @@ public class Case {
     public Case(String design, double price) {
         this.design = design;
         this.price = price;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Set<Provider> getProviders() {
+        return providers;
     }
 
     public String getDesign() {
@@ -48,13 +61,14 @@ public class Case {
         this.price = price;
     }
 
+    public void setProviders(Set<Provider> providers) {
+        this.providers = providers;
+    }
+
     public Set<Provider> getProvider() {
         return providers;
     }
 
-    public void setProvider(Set<Provider> provider) {
-        this.providers = provider;
-    }
 
     public void addCompatibleDevices(Device device) {
         compatibleDevices.add(device);

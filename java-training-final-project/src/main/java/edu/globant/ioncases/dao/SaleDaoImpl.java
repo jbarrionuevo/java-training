@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author federico.calarco
  */
 @Repository
-@Transactional
 public class SaleDaoImpl implements SaleDao{
     
     List<Sale> sales = new ArrayList<>();
