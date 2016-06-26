@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>IonSolid Sales Page</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<h1  th:inline="text">IonSolid Today Sales [[${#httpServletRequest.remoteUser}]] Page</h1>
+			<table>
+			      <tr>
+			      	<th>ID</th>
+			        <th>EMPLOYEE NAME</th>
+			      </tr>
+			      <tr th:each="sale  : ${sales}">
+			        <td th:text="${sale.saleId}"></td>
+			       	<td th:text="${sale.employee.name}"></td>	   
+			      </tr>
+		</table>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+	</body>
+</html>
