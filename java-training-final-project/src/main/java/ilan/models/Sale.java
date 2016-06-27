@@ -3,6 +3,7 @@ package ilan.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.thymeleaf.util.Validate;
@@ -19,6 +20,9 @@ public class Sale {
 	
 	@OneToOne
 	private Order order;
+	
+	@ManyToOne
+	CaseSeller seller;
 	
 	private SaleStatus status;
 	

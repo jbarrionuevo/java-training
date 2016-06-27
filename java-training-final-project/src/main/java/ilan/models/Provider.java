@@ -1,30 +1,21 @@
 package ilan.models;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Provider extends ThirdPartyParticipant {
+public class Provider extends ThirdPartyParticipant implements InventoryObserver{
 	
 	@OneToMany
 	private Collection<Order> orders;
 	
-	public Provider(){}
-	
 	public Provider(String name,String location){
 		super(name,location);
 		this.orders = new ArrayList<Order>();
-	}
-	
-	@Override
-	public String toString(){
-		return String.format("Name: %s. Location: %s", this.getName(), this.getLocation());
 	}
 	
 	public Collection<Order> getOrders() {
@@ -37,6 +28,12 @@ public class Provider extends ThirdPartyParticipant {
 	
 	public void addOrder(Order order){
 		this.orders.add(order);
+	}
+
+	@Override
+	public void doUpdate(Case aCase) {
+		System.out.println("Check if the provider contains aCase; if true,"
+				+ "generate an auto-order for provide that case");
 	}	
 	
 }

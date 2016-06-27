@@ -1,27 +1,78 @@
 package ilan.models;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Inventory {
+public class Inventory implements InventorySubject{
 	
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	private static HashMap<Case, Integer> inventory = null;
+	private static Inventory instance = null;
+	
+	private static Collection<CaseWrapper> inventory = new ArrayList<CaseWrapper>();
+	private static Set<InventoryObserver> inventoryObservers;
 
-	private Inventory() {}
+	public Inventory() {
+		this.inventory = new ArrayList<CaseWrapper>();
+		this.inventoryObservers = new HashSet<InventoryObserver>();
+	}
 
-	public static HashMap<Case, Integer> getInventory() {
-		if (inventory == null) {
-			inventory = new HashMap<Case, Integer>();
+	public static Inventory getInstance() {
+		if (instance == null) {
+			instance = new Inventory();
 		}
-		return inventory;
+		return instance;
+	}
+	
+	public static void addCase(Case aCase, int quantity){
+		//if inventory has a CaseWrapper for that type of case
+			//update it
+		//else
+		   //create new casewrapper for that type of case, then update it
+	}
+	
+	public static void removeCase(Case aCase, int quantity){
+		//if inventory has a CaseWrapper for that type of case
+			//update it
+		//else
+			//throw not found
+	}
+
+	@Override
+	public void addObserver(InventoryObserver inventoryObserver) {
+		inventoryObservers.add(inventoryObserver);
+	}
+
+	@Override
+	public void removeObserver(InventoryObserver inventoryObserver) {
+		inventoryObservers.remove(inventoryObserver);
+	}
+
+	private CaseWrapper getWrapperForCase(Case aCase){
+		//return the wrapper for that case, which include its minimum stock and current stock
+		return null;
+	}
+	@Override
+	public void doNotify(Case aCase) {
+		Iterator<InventoryObserver> it = inventoryObservers.iterator();
+		CaseWrapper wrapperUpdated = getWrapperForCase(aCase);
+		if(wrapperUpdated.getCurrentStock()<wrapperUpdated.getCurrentStock()){
+			while (it.hasNext()) {
+				InventoryObserver inventoryObserver = it.next();
+				inventoryObserver.doUpdate(aCase);
+			}
+		}
 	}
 	
 	

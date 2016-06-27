@@ -12,10 +12,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import ilan.models.Case;
 import ilan.models.CaseDesign;
 import ilan.models.CaseDevice;
+import ilan.models.Inventory;
 import ilan.models.Provider;
 import ilan.services.CaseDesignService;
 import ilan.services.CaseDeviceService;
 import ilan.services.CaseService;
+import ilan.services.InventoryService;
 import ilan.services.ProviderService;
 
 import java.util.Date;
@@ -48,6 +50,7 @@ private static final Logger log = LoggerFactory.getLogger(Application.class);
 		CaseDesignService caseDesignService = ctx.getBean(CaseDesignService.class);
 		CaseService caseService = ctx.getBean(CaseService.class);
 		ProviderService providerService = ctx.getBean(ProviderService.class);
+		InventoryService inventoryService = ctx.getBean(InventoryService.class);
 		
 		CaseDesign design1 = new CaseDesign("design1");
 		CaseDesign design2 = new CaseDesign("design2");
@@ -57,10 +60,13 @@ private static final Logger log = LoggerFactory.getLogger(Application.class);
 		Provider provider2 = new Provider("provider2", "Some St. 2");
 		Case case1 = new Case(design1, device1, 150.0, provider1);
 		Case case2 = new Case(design2, device2, 250.0, provider2);
+		Inventory inventory = new Inventory();
+		
 		
 		caseDesignService.saveCaseDesigns(design1,design2);
 		caseDeviceService.saveCaseDevices(device1,device2);
 		providerService.saveProviders(provider1,provider2);
+		inventoryService.saveInventory(inventory);
 		
 		caseService.saveCases(case1,case2);
 		Assert.assertEquals("Should retrieve 2 cases", 2,

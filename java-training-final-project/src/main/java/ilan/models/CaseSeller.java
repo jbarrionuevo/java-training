@@ -2,7 +2,9 @@ package ilan.models;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -16,7 +18,7 @@ public abstract class CaseSeller extends Employee {
 	@GeneratedValue
 	private Long id;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "seller", cascade = CascadeType.ALL)
 	private Collection<Sale> sales;
 	
 	public CaseSeller(){}

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ilan.daos.CaseDao;
 import ilan.models.Case;
+import ilan.models.CaseDesign;
 
 
 @Service
@@ -34,6 +35,10 @@ public class CaseService{
 	
 	public Collection<Case> findAllCases() {
         return caseDao.findAll();
+	}
+	
+	public Collection<Case> findCasesWithDesign(CaseDesign design) {
+        return caseDao.findByDesign(design);
 	}
 
 	public CaseDao getCaseDao() {
