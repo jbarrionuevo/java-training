@@ -1,6 +1,8 @@
 package domain;
 
-public class Store {
+import persistence.DAO.DTO;
+
+public class Store implements DTO{
 	private String name;
 	private String address;
 

@@ -3,7 +3,9 @@ package domain;
 import java.util.Date;
 import java.util.List;
 
-public class Case {
+import persistence.DAO.DTO;
+
+public class Case implements DTO{
 
 	private String ID;
 

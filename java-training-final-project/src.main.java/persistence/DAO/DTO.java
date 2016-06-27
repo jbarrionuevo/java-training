@@ -1,5 +1,5 @@
 package persistence.DAO;
 
-public class SaleDAO {
+public interface DTO {
 
 }

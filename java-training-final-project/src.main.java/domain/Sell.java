@@ -2,7 +2,9 @@ package domain;
 
 import java.util.List;
 
-public abstract class Sell {
+import persistence.DAO.DTO;
+
+public abstract class Sell implements DTO{
 
 	private List<Case> items;
 

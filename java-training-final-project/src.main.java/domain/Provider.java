@@ -1,6 +1,8 @@
 package domain;
 
-public class Provider {
+import persistence.DAO.DTO;
+
+public class Provider implements DTO{
 	public String name;
 
 	public String getName() {

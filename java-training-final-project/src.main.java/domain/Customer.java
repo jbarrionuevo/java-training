@@ -1,6 +1,8 @@
 package domain;
 
-public class Customer {
+import persistence.DAO.DTO;
+
+public class Customer implements DTO{
 	private String name;
 	private String lastName;
 	private Integer age;

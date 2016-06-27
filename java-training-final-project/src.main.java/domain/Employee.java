@@ -1,6 +1,8 @@
 package domain;
 
-public abstract class Employee {
+import persistence.DAO.DTO;
+
+public abstract class Employee implements DTO {
 	public String name;
 
 	private String type;

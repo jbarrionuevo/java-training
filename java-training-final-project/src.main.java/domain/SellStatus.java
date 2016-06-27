@@ -2,7 +2,9 @@ package domain;
 
 import java.util.Date;
 
-public abstract class SellStatus {
+import persistence.DAO.DTO;
+
+public abstract class SellStatus implements DTO{
 	private Date date;
 	//types: RefundSell / DraftSell / Complete
 	private String type;
