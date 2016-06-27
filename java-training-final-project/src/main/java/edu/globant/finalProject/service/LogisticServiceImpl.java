@@ -1,7 +1,5 @@
 package edu.globant.finalProject.service;
 
-import java.util.Iterator;
-
 import edu.globant.finalProject.model.Case.Case;
 import edu.globant.finalProject.model.Provider.Provider;
 import edu.globant.finalProject.model.Sale.Sale;

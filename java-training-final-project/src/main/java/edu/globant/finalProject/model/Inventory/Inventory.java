@@ -1,7 +1,6 @@
 package edu.globant.finalProject.model.Inventory;
 
 import java.util.HashMap;
-import java.util.Observable;
 
 import edu.globant.finalProject.model.Case.Case;
 

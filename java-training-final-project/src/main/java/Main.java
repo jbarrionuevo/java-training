@@ -47,5 +47,10 @@ public class Main {
 		
 		showAllStock(inventory);
 	}
+
+	private static void showAllStock(Inventory inventory) {
+		//inventory.getCases().for
+		
+	}
 	
 }

@@ -3,7 +3,6 @@ package edu.globant.finalProject.dao;
 import org.apache.commons.lang3.Validate;
 
 import edu.globant.finalProject.model.Sale.Receipt;
-import edu.globant.finalProject.model.Sale.Sale;
 
 public class SellerDAO {
 
