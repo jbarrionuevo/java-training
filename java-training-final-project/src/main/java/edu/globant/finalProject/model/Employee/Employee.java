@@ -3,7 +3,7 @@ package edu.globant.finalProject.model.Employee;
 import java.util.Date;
 import org.apache.commons.lang3.Validate;
 
-public abstract class Employee{
+public class Employee{
 	private TypeOfEmployee typeOfEmployee;
 	private String name;
 	private String lastName;

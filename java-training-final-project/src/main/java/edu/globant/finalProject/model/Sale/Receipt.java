@@ -1,41 +1,48 @@
 package edu.globant.finalProject.model.Sale;
 
 
-import java.util.ArrayList;
 import java.util.Date;
 
-import edu.globant.finalProject.model.Case.Case;
-import edu.globant.finalProject.model.Customer.Customer;
+import org.apache.commons.lang3.Validate;
 
 public class Receipt {
-	private Customer customer;
-	private Date date;
-	private ArrayList<Case> cases;
-	private String nameOfStore;
+	private Date creationDate;
+	private Date warrantyDate;
+	private Sale sale;
 	
-	public Customer getCustomer() {
-		return customer;
+	public Receipt(Date creationDate, Date warrantyDate,Sale sale){
+		Validate.notNull(creationDate,"Creation Date cannot be null");
+		Validate.notNull(creationDate,"Warranty Date cannot be null");
+		Validate.notNull(sale,"Sale cannot be null");
+		
+		this.creationDate = creationDate;
+		this.warrantyDate = warrantyDate;
+		this.sale = sale;
 	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	
+	public Sale getSale() {
+		return sale;
+	}
+	public void setSale(Sale sale) {
+		this.sale = sale;
 	}
 	public Date getDate() {
-		return date;
+		return creationDate;
 	}
 	public void setDate(Date date) {
-		this.date = date;
+		this.creationDate = date;
 	}
-	public ArrayList<Case> getCases() {
-		return cases;
+	public Date getCreationDate() {
+		return creationDate;
 	}
-	public void setCases(ArrayList<Case> cases) {
-		this.cases = cases;
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
-	public String getNameOfStore() {
-		return nameOfStore;
+	public Date getWarrantyDate() {
+		return warrantyDate;
 	}
-	public void setNameOfStore(String nameOfStore) {
-		this.nameOfStore = nameOfStore;
+	public void setWarrantyDate(Date warrantyDate) {
+		this.warrantyDate = warrantyDate;
 	}
 	
 	

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.Validate;
 
 import edu.globant.finalProject.model.Provider.Provider;
 
-public abstract class Case {
+public class Case {
 
 	private int id;
 	private String name;
@@ -17,12 +17,7 @@ public abstract class Case {
 	protected double price;
 	protected int MINIMUM_QUANTITY;
 
-	public Case() {
-
-	}
-
-	public Case(int id, String name, TreeSet<Provider> providers,
-			ArrayList<Device> devices, Design design, double price, int minimum) {
+	public Case(int id, String name, TreeSet<Provider> providers,ArrayList<Device> devices, Design design, double price, int minimum) {
 		
 		Validate.notNull(id,"The id cannot be null");
 		Validate.notBlank(name,"The name cannot be blank");

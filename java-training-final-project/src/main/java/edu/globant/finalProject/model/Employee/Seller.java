@@ -8,6 +8,10 @@ import edu.globant.finalProject.model.Sale.Sale;
 public class Seller implements TypeOfEmployee{
 	private ArrayList<Sale> sales;
 	
+	public Seller(){
+		super();
+	}
+	
 	public ArrayList<Sale> getSales() {
 		return sales;
 	}

@@ -4,6 +4,10 @@ import edu.globant.finalProject.model.Inventory.Inventory;
 
 public class Logistic implements TypeOfEmployee{
 	private Inventory inventory;
+	
+	public Logistic(){
+		super();
+	}
 
 	public Inventory getInventory() {
 		return inventory;
