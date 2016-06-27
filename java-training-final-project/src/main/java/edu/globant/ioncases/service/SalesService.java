@@ -7,6 +7,7 @@ package edu.globant.ioncases.service;
 
 import edu.globant.ioncases.model.Customer;
 import edu.globant.ioncases.model.OrderSale;
+import edu.globant.ioncases.model.OrderSale2;
 import edu.globant.ioncases.model.Sale;
 import edu.globant.ioncases.model.Seller;
 
@@ -16,7 +17,7 @@ import edu.globant.ioncases.model.Seller;
  */
 public interface SalesService {
     
-    public Sale addSale(Customer customer, Seller seller, OrderSale orderSale);
+    public Sale addSale2(OrderSale2 order);
     public String checkSaleStatus(long saleId);
     
 }

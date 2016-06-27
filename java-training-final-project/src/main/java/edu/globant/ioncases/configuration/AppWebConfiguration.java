@@ -44,5 +44,6 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/sales").setViewName("sales");
+        registry.addViewController("/inventory").setViewName("inventory");
     }
 }

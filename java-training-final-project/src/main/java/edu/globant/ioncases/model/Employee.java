@@ -13,7 +13,7 @@ package edu.globant.ioncases.model;
  * @author fedec
  */
 public abstract class Employee {
-    
+    private long id;
     private String fullname;
     private String jobTitle;
 
@@ -38,7 +38,16 @@ public abstract class Employee {
         this.jobTitle = jobTitle;
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
+    
     
     
 

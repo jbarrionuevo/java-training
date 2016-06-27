@@ -31,14 +31,14 @@
             <h1>New sale</h1>
 
             <div class="col-md-12" style="background-color: whitesmoke">
-                <f:form action="${pageContext.request.contextPath}/sales/addSale" >
+                <f:form action="${pageContext.request.contextPath}/sales/addSalePost">
 
 
                     <div>
-                        <label for="customer">Customer: </label><br/>
+                        <label for="customer">Customer: </label> <br/>
                         <select name="customer" id="customer">
                             <c:forEach items="${customers}" var="customer">
-                                <option value="${customer}">${customer.getName()}</option>
+                                <option value="${customer.getId()}">${customer.getName()}</option>
                             </c:forEach>
                         </select>
                         <a href="#">New Customer</a> <!-- MODAL -->
@@ -49,7 +49,7 @@
                         <label for="seller">Seller: </label><br/>
                         <select name="seller" id="seller">
                             <c:forEach items="${sellers}" var="seller">
-                                <option value="${seller}">${seller.getFullname()}</option>
+                                <option value="${seller.getId()}">${seller.getFullname()}</option>
                             </c:forEach>
                         </select>
                         <a href="#">New Seller</a>
@@ -158,9 +158,11 @@
             }
 
 
-            function addCaseToSale(s){
+            function addCaseToSale(s) {
                 var r = s.toString();
                 console.log(r);
+
+            <c:set target="${orderSale.order}" property="inventory.key" value="1"/>
                 $('#newItemModal').modal("hide");
             }
 

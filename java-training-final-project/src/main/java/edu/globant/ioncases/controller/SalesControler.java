@@ -8,6 +8,7 @@ package edu.globant.ioncases.controller;
 import edu.globant.ioncases.model.Case;
 import edu.globant.ioncases.model.Customer;
 import edu.globant.ioncases.model.OrderSale;
+import edu.globant.ioncases.model.OrderSale2;
 import edu.globant.ioncases.model.Store;
 import edu.globant.ioncases.model.StoreSeller;
 import edu.globant.ioncases.service.CustomerService;
@@ -17,6 +18,7 @@ import edu.globant.ioncases.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,14 +33,14 @@ public class SalesControler {
 
     @Autowired(required = true)
     SalesService salesService;
-    
-    @Autowired (required = true)
+
+    @Autowired(required = true)
     CustomerService customerService;
-    
-    @Autowired (required = true)
+
+    @Autowired(required = true)
     SellerService sellerService;
-    
-    @Autowired  (required = true)
+
+    @Autowired(required = true)
     InventoryService inventoryService;
 
     @RequestMapping(value = "/addSale", method = RequestMethod.GET)
@@ -51,27 +53,27 @@ public class SalesControler {
         return "addSale";
     }
 
-    @RequestMapping(value = "/addSale", method = RequestMethod.POST)
-    public String addSale(
-            @RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model
-    ) {
+    @RequestMapping(value = "/addSalePost", method = RequestMethod.POST)
+    public String addSalePost(
+            @RequestParam("customer") long idCustomer,
+            @RequestParam("seller") long idSeller,
+            @RequestParam(value = "orderSale", required = false) String order,
+            Model model) {
 
-        
-        // TODO: SallesController -> addSale
-        OrderSale orderSale = new OrderSale();
-        orderSale.addCaseToOrder(new Case("Batman case", 20), 2);
-        orderSale.addCaseToOrder(new Case("Black case2", 4), 5);
-        
-        Store store = new Store("Store 12213");
-        
-        StoreSeller seller = new StoreSeller("Federico", store);
-
-        Customer customer = new Customer("Pepe", 21, 'M', "Madryn");
-
-        
-        
+        System.out.println("---------------------> " + idCustomer + idSeller + order);
+//
+//        // TODO: SallesController -> addSale
+//        OrderSale orderSale = new OrderSale();
+//        orderSale.addCaseToOrder(new Case("Batman case", 20), 2);
+//        orderSale.addCaseToOrder(new Case("Black case2", 4), 5);
+//        
+//        Store store = new Store("Store 12213");
+//        
+//        StoreSeller seller = new StoreSeller("Federico", store);
+//
+//        Customer customer = new Customer("Pepe", 21, 'M', "Madryn");
         // -------------------------------------------------------------
-        model.addAttribute("sale", salesService.addSale(customer, seller, orderSale));
+        //   model.addAttribute("sale", salesService.addSale2(order));
         return "sale";
     }
 
