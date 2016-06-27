@@ -36,9 +36,6 @@ public class InventoryService {
 //		//update inventory in db
 //	}
 //	
-	public void saveInventory(Inventory inventory){
-		inventoryDao.save(inventory);
-	}
 	
 	public int caseStock(CaseDesign design, CaseDevice device){
 		System.out.println("return the number of cases with those parameters");
