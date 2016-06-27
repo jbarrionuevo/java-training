@@ -1,38 +1,30 @@
 package edu.globant.IONSolid.model.cases;
 
 public class Case {
-
-	private String name;
-	private String design;
-	private String device;
 	
-	public Case(String name, String design, String devide) {
-		this.setName(name);
-		this.setDesign(design);
-		this.setDevice(devide);
+	private String name;
+	private CaseDevice device;
+	private CaseDesign design;
+	
+	public Case(String name, CaseDevice device, CaseDesign design) {
+		this.name = name;
+		this.device = device;
+		this.design = design;
+	}
+
+	public CaseDesign getDesign() {
+		return design;
+	}
+
+	public void addDesign(CaseDesign design) {
+		this.design = design;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDesign() {
-		return design;
-	}
-
-	public void setDesign(String design) {
-		this.design = design;
-	}
-
-	public String getDevice() {
+	public CaseDevice getDevice() {
 		return device;
-	}
-
-	public void setDevice(String device) {
-		this.device = device;
 	}
 }
