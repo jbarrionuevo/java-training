@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="
+      http://www.springframework.org/schema/security
+      http://www.springframework.org/schema/security/spring-security-4.0.xsd
+      http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+ 
+    <!-- Rest authentication entry point configuration -->
+    <http use-expressions="true" auto-config="false">   	
+    	
+        <intercept-url pattern="/" access="isAuthenticated()" />
+        <intercept-url pattern="/new**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/edit**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/delete**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/users**" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/login" access="permitAll" />
+        
+        <csrf disabled="true"/> 
+        <form-login  login-page="/login" username-parameter="username" password-parameter="password" />
+        <access-denied-handler error-page="/Access_Denied" />
+        <logout />
+    </http>
+ 
+    <!-- Authentication manager -->
+    <authentication-manager >
+        <authentication-provider ref="restAuthenticationProvider"/>
+    </authentication-manager>
+      
+    <beans:bean id="restAuthenticationProvider" class="main.ar.com.globant.springmvc.configuration.RestAuthenticationProvider" />
+ 
+    <!-- Enable the annotations for defining the secure role -->
+    <global-method-security secured-annotations="enabled" />
+ 
+</beans:beans>
