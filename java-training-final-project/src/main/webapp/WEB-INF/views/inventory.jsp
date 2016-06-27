@@ -12,8 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="<c:url value="/inventory/addCase"/>">View inventory</a>
-        <a href="<c:url value="/sales/trackStatusSale"/>">Add case </a>
+        <a href="<c:url value="/inventory/showAll"/>">View inventory</a>
+        <a href="<c:url value="/inventory/add"/>">Add case </a>
         <a href="<c:url value="/sales/viewAllSales"/>">Upload stock</a>
     </body>
 </html>

@@ -33,7 +33,6 @@
             <div class="col-md-12" style="background-color: whitesmoke">
                 <f:form action="${pageContext.request.contextPath}/sales/addSalePost">
 
-
                     <div>
                         <label for="customer">Customer: </label> <br/>
                         <select name="customer" id="customer">
@@ -63,38 +62,27 @@
                         <table class="table">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>#</th>
-                                    <th>Case code</th>
+                                    <th>Code</th>
                                     <th>Case name</th>
                                     <th>Quantity</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>123213</td>
-                                    <td>Batman edition</td>
-                                    <td><input type="number" value="1" min="0" max="99" class="qtyinput"></td>
-                                    <td><span class="remove">X</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>5325</td>
-                                    <td>Thornton</td>
-                                    <td><input type="number" value="1" min="0" max="99" class="qtyinput"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>123213</td>
-                                    <td>the Bird</td>
-                                    <td><input type="number" value="1" min="0" max="99" class="qtyinput"></td>
-                                </tr>
+                            <tbody id="orderr">
+                                <c:forEach items="${orderSale}" var="order">
+                                    <tr>
+
+                                        <td>${order.key}</td>
+                                        <td>case model</td>
+                                        <td><input type="number" value="${order.value}" min="0" max="99" class="qtyinput"></td>
+
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
 
-
                     </div>
 
+                    <input type="text" id="orderSale" name="orderSale2" value="array" />
 
                     <br>
                     <button href="/">Cancel</button> 
@@ -153,17 +141,37 @@
 
         <script>
 
+
+            var map = {};
+            var array = [];
             function addNewItem() {
                 $('#newItemModal').modal("show");
             }
 
 
-            function addCaseToSale(s) {
-                var r = s.toString();
-                console.log(r);
+            function addCaseToSale(idCase) {
 
-            <c:set target="${orderSale.order}" property="inventory.key" value="1"/>
+            <c:set target="${orderSale}" property="123" value="432" />
+
+                var item = {
+                    "itemId": idCase,
+                    "quantity": "1"
+                };
+                array.push(JSON.stringify(item));
+                console.log('array:  ->' + array.length);
+                $('#orderSale').val(array);
+
                 $('#newItemModal').modal("hide");
+
+                $('#orderr').add(
+                        '<p><b>Welcome ' + idCase + '</b></>'
+                        );
+            }
+
+            function noname(idCase) {
+                $('#orderr').add(
+                        '<p><b>Welcome ' + idCase + '</b></>'
+                        );
             }
 
         </script>

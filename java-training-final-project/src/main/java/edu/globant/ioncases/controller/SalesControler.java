@@ -5,20 +5,16 @@
  */
 package edu.globant.ioncases.controller;
 
-import edu.globant.ioncases.model.Case;
-import edu.globant.ioncases.model.Customer;
 import edu.globant.ioncases.model.OrderSale;
-import edu.globant.ioncases.model.OrderSale2;
-import edu.globant.ioncases.model.Store;
-import edu.globant.ioncases.model.StoreSeller;
 import edu.globant.ioncases.service.CustomerService;
 import edu.globant.ioncases.service.InventoryService;
 import edu.globant.ioncases.service.SalesService;
 import edu.globant.ioncases.service.SellerService;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,10 +42,14 @@ public class SalesControler {
     @RequestMapping(value = "/addSale", method = RequestMethod.GET)
     public String addSale(Model model) {
 
+        Map<Long, Integer> order = new HashMap<>();
+        order.put(123L, 3);
+        order.put(124L, 4);
+
         model.addAttribute("customers", customerService.getAll());
         model.addAttribute("sellers", sellerService.getAll());
         model.addAttribute("inventory", inventoryService.getAll());
-        model.addAttribute("orderSale", new OrderSale());
+        model.addAttribute("orderSale", order);
         return "addSale";
     }
 
@@ -57,10 +57,10 @@ public class SalesControler {
     public String addSalePost(
             @RequestParam("customer") long idCustomer,
             @RequestParam("seller") long idSeller,
-            @RequestParam(value = "orderSale", required = false) String order,
+            @RequestParam(value = "orderSale", required = false) Map<Long, Integer> order,
             Model model) {
 
-        System.out.println("---------------------> " + idCustomer + idSeller + order);
+        System.out.println("---------------------> " + idCustomer + idSeller + order.size());
 //
 //        // TODO: SallesController -> addSale
 //        OrderSale orderSale = new OrderSale();

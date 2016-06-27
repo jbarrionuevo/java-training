@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/sales/*").access("hasRole('SELLER')")
-                .antMatchers("/inventory/*").access("hasRole('INVENTORY')")
+                .antMatchers("/inventory/*").access("hasRole('LOGISTIC')")
                 .antMatchers("/resources/**").permitAll()
                 .and().formLogin();
 
