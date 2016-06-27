@@ -1,0 +1,12 @@
+-Had to remove <scope>test</scope> from .POM (errors)
+
+[ERROR] /C:/Users/jorge.barrionuevo/Desktop/bench/development_technical/Java/Jav
+a training Globant SSR/data/repo1/java-training/java-training-final-project/src.
+main.java/src/test/java/EmployeeTest.java:[7,24] package org.junit does not exis
+t
+[ERROR] /C:/Users/jorge.barrionuevo/Desktop/bench/development_technical/Java/Jav
+a training Globant SSR/data/repo1/java-training/java-training-final-project/src.
+main.java/src/test/java/EmployeeTest.java:[7,1] static import only from classes
+and interfaces
+
+why?
