@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class CaseWrapper {
 	@ManyToOne
-	private CaseProduct aCase;
+	private CaseProduct myCase;
 	
 	@Id
 	@GeneratedValue
@@ -20,19 +20,19 @@ public class CaseWrapper {
 	private int minimumStock;
 	private int currentStock;
 	
-	public CaseWrapper(CaseProduct aCase, int minimumStock, int currentStock, Inventory inventory) {
+	public CaseWrapper(CaseProduct myCase, int minimumStock, int currentStock, Inventory inventory) {
 		super();
-		this.aCase = aCase;
+		this.myCase = myCase;
 		this.minimumStock = minimumStock;
 		this.currentStock = currentStock;
 		this.inventory=inventory;
 	}
 	
 	public CaseProduct getaCase() {
-		return aCase;
+		return myCase;
 	}
-	public void setaCase(CaseProduct aCase) {
-		this.aCase = aCase;
+	public void setaCase(CaseProduct myCase) {
+		this.myCase = myCase;
 	}
 	public int getMinimumStock() {
 		return minimumStock;

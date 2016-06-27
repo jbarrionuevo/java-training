@@ -22,7 +22,7 @@ public class Inventory {
 	@GeneratedValue
 	private Long id;
 	
-	private static Inventory instance = null;
+//	private static Inventory instance = null;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "inventory", cascade = CascadeType.ALL)
 	private static Collection<CaseWrapper> stock;
@@ -35,12 +35,13 @@ public class Inventory {
 //		this.inventoryObservers = new HashSet<InventoryObserver>();
 	}
 
-	public static Inventory getInstance() {
-		if (instance == null) {
-			instance = new Inventory();
-		}
-		return instance;
-	}
+//	public static Inventory getInstance() {
+//		if (instance == null) {
+//			instance = new Inventory();
+//		}
+//		return instance;
+//	}
+	
 	
 	public static void addCase(CaseProduct aCase, int quantity){
 		//if inventory has a CaseWrapper for that type of case
@@ -49,6 +50,16 @@ public class Inventory {
 		   //create new casewrapper for that type of case, then update it
 	}
 	
+	public static Collection<CaseWrapper> getStock() {
+		return stock;
+	}
+	
+	
+
+	public static void setStock(Collection<CaseWrapper> stock) {
+		Inventory.stock = stock;
+	}
+
 	public static void removeCase(CaseProduct aCase, int quantity){
 		//if inventory has a CaseWrapper for that type of case
 			//update it
