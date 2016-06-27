@@ -91,7 +91,6 @@ private static final Logger log = LoggerFactory.getLogger(Application.class);
 		caseDesignService.saveCaseDesigns(design1,design2);
 		caseDeviceService.saveCaseDevices(device1,device2);
 		providerService.saveProviders(provider1,provider2);
-//		inventoryService.saveInventory(inventory);
 		
 		caseService.saveCases(case1,case2);
 //		Assert.assertEquals("Should retrieve 2 cases", 2,
@@ -101,18 +100,11 @@ private static final Logger log = LoggerFactory.getLogger(Application.class);
 			log.info("So far, Case [" + aCase + "] is persisted.");
 		}
 		
-//		CaseWrapper wrapper1 = new CaseWrapper(case1, 100, 500, inventoryService.getInventory());
-//		CaseWrapper wrapper2 = new CaseWrapper(case2, 250, 4500, inventoryService.getInventory());
-//		caseWrapperService.saveCaseWrappers(wrapper1,wrapper2);
 		inventoryService.incrementStock(case1, 100);
 		inventoryService.incrementStock(case2, 250);
-		
-//		HashMap<Case,Integer> caseDesire = new HashMap<Case,Integer>();
-//		caseDesire.put(case1, 10);
-//		caseDesire.put(case2, 25);
-//		HashMap<Case,Integer> caseDesire2 = new HashMap<Case,Integer>();
-//		caseDesire2.put(case1, 7);
-//		caseDesire2.put(case2, 1);
+		inventoryService.incrementStock(case1, 150);
+//		
+
 		
 //		orderService.saveOrder(new Order(caseDesire,new Date()));
 //		orderService.addOrders(new Order(caseDesire,new Date()), new Order(caseDesire2,new Date()));

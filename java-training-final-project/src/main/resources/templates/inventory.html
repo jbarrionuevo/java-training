@@ -19,16 +19,20 @@
         <th>DESIGN</th>
         <th>DEVICE</th>
         <th>PROVIDER</th>
-        <th>STOCK</th>
+        <th>CURRENT STOCK</th>
+        <th>MINIMUM STOCK</th>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
         	<th>DELETE</th>
         </div>
       </tr>
+      
 		<tr th:each="casewrapper,itrStat : ${inventory}">
 			<td th:text="${itrStat.count}"></td>
-	        <td th:text="${casewrapper.aCase.design}"></td>
-	        <td th:text="${casewrapper.aCase.device}"></td>
-	        <td th:text="${casewrapper.aCase.provider}"></td>
+	        <td th:text="${casewrapper.myCase.design.name}"></td>
+	        <td th:text="${casewrapper.myCase.device.name}"></td>
+	        <td th:text="${casewrapper.myCase.provider}"></td>
+	        <td th:text="${casewrapper.currentStock}"></td>
+	        <td th:text="${casewrapper.minimumStock}"></td>
 	        <div sec:authorize="hasRole('ROLE_ADMIN')">
 	        	<td><button type="button">Delete</button></td>
 	        </div>

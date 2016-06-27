@@ -25,7 +25,7 @@ public class Inventory {
 //	private static Inventory instance = null;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "inventory", cascade = CascadeType.ALL)
-	private static Collection<CaseWrapper> stock;
+	private Collection<CaseWrapper> stock;
 	
 //	@OneToMany
 //	private Set<InventoryObserver> inventoryObservers;
@@ -43,21 +43,20 @@ public class Inventory {
 //	}
 	
 	
-	public static void addCase(CaseProduct aCase, int quantity){
-		//if inventory has a CaseWrapper for that type of case
-			//update it
-		//else
-		   //create new casewrapper for that type of case, then update it
+	public void addCase(CaseProduct aCase, int quantity){
+		CaseWrapper wrapper = new CaseWrapper(aCase, 0, quantity, this);
+		this.stock.add(wrapper);
 	}
 	
-	public static Collection<CaseWrapper> getStock() {
+	
+	public Collection<CaseWrapper> getStock() {
 		return stock;
 	}
 	
 	
 
-	public static void setStock(Collection<CaseWrapper> stock) {
-		Inventory.stock = stock;
+	public void setStock(Collection<CaseWrapper> stock) {
+		this.stock = stock;
 	}
 
 	public static void removeCase(CaseProduct aCase, int quantity){
@@ -92,6 +91,8 @@ public class Inventory {
 //			}
 //		}
 //	}
+
+	
 	
 	
 }

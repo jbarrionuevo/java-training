@@ -55,7 +55,7 @@ public class InventoryService {
 	public Collection<CaseDesign> getDesigns(){
 		return inventoryDao.findAll().get(0).getStock()
 	    		.stream()
-	    		.map(cw -> cw.getaCase()).collect(Collectors.toList())
+	    		.map(cw -> cw.getMyCase()).collect(Collectors.toList())
 	    		.stream()
 	    		.collect(Collectors.groupingBy(CaseProduct::getDesign)).keySet();
 	}
@@ -67,8 +67,10 @@ public class InventoryService {
 	
 	public void incrementStock(CaseProduct aCase, int quantity){
 		CaseWrapper wrapper = caseWrapperDao.findByMyCase(aCase);
+		Inventory inventory = this.getInventory();
 		if(wrapper==null){
-			caseWrapperDao.save(new CaseWrapper(aCase, 0, quantity, this.getInventory()));
+			inventory.addCase(aCase, quantity);
+			inventoryDao.save(inventory);
 		}
 		else{
 			wrapper.setCurrentStock(wrapper.getCurrentStock()+quantity);

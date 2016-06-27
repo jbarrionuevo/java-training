@@ -30,8 +30,10 @@ public class InventoryController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(value= HttpStatus.OK)
     public String getInventory(Model model) {
-		model.addAttribute("inventory",inventoryService.getInventoryWrappers());
-    	model.addAttribute("designs",inventoryService.getDesigns());
-        return "cases";
+		Collection<CaseWrapper> wrappers = inventoryService.getInventoryWrappers();
+		Collection<CaseDesign> designs = inventoryService.getDesigns();
+		model.addAttribute("inventory",wrappers);
+    	model.addAttribute("designs",designs);
+        return "inventory";
     }
 }

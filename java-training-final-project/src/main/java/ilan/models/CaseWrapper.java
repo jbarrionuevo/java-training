@@ -20,6 +20,8 @@ public class CaseWrapper {
 	private int minimumStock;
 	private int currentStock;
 	
+	public CaseWrapper(){}
+	
 	public CaseWrapper(CaseProduct myCase, int minimumStock, int currentStock, Inventory inventory) {
 		super();
 		this.myCase = myCase;
@@ -28,10 +30,10 @@ public class CaseWrapper {
 		this.inventory=inventory;
 	}
 	
-	public CaseProduct getaCase() {
+	public CaseProduct getMyCase() {
 		return myCase;
 	}
-	public void setaCase(CaseProduct myCase) {
+	public void setMyCase(CaseProduct myCase) {
 		this.myCase = myCase;
 	}
 	public int getMinimumStock() {
