@@ -7,6 +7,6 @@ public interface InventorySubject {
 
 		public void removeObserver(InventoryObserver inventoryObserver);
 
-		public void doNotify(Case aCase);
+		public void doNotify(CaseProduct aCase);
 
 }

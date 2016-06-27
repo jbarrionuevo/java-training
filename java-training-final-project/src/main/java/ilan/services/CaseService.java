@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ilan.daos.CaseDao;
-import ilan.models.Case;
+import ilan.models.CaseProduct;
 import ilan.models.CaseDesign;
 
 
@@ -21,23 +21,23 @@ public class CaseService{
 //	@Autowired //commented to show that the injection is being taken from the beans.xml file
 	CaseDao caseDao;
 	
-	public void saveCase(Case newCase){
+	public void saveCase(CaseProduct newCase){
 	    caseDao.save(newCase);
 	}
 	
 	@Transactional
-	public void saveCases(Case... cases){
-		 for (Case aCase: cases) {
+	public void saveCases(CaseProduct... cases){
+		 for (CaseProduct aCase: cases) {
 	            log.info("Persisting Case [" + aCase + "] to database...");
 	            caseDao.save(aCase);
 	     }
 	}
 	
-	public Collection<Case> findAllCases() {
+	public Collection<CaseProduct> findAllCases() {
         return caseDao.findAll();
 	}
 	
-	public Collection<Case> findCasesWithDesign(CaseDesign design) {
+	public Collection<CaseProduct> findCasesWithDesign(CaseDesign design) {
         return caseDao.findByDesign(design);
 	}
 

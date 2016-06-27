@@ -21,13 +21,13 @@ public class Receipt {
 	private String storeName;
 	
 	@OneToOne
-	private Order order;
+	private CaseOrder caseOrder;
 	private Date dateOfSale;
 	
 	@ManyToOne
 	private Customer customer;
 	
-	public Receipt(String storeName, Date dateOfSale,Order order, Customer customer) {
+	public Receipt(String storeName, Date dateOfSale,CaseOrder order, Customer customer) {
 		super();
 		Validate.notNull(dateOfSale,"Date of sale cannot be null");
 		Validate.notEmpty(storeName,"Store Name cannot be blank");
@@ -35,7 +35,7 @@ public class Receipt {
 		Validate.notNull(customer,"Customer cannot be null");
 		this.storeName = storeName;
 		this.dateOfSale = dateOfSale;
-		this.order=order;
+		this.caseOrder=order;
 		this.customer=customer;
 	}
 	
@@ -64,12 +64,12 @@ public class Receipt {
 	}
 
 
-	public Order getOrder() {
-		return order;
+	public CaseOrder getOrder() {
+		return caseOrder;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrder(CaseOrder order) {
+		this.caseOrder = order;
 	}
 
 	public Customer getCustomer() {

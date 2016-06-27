@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ilan.daos.CaseDesignDao;
-import ilan.models.Case;
+import ilan.models.CaseProduct;
 import ilan.models.CaseDesign;
 import ilan.models.CaseDevice;
 

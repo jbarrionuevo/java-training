@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.*;
 public class SaleTest {
 
 	@Mock
-	Order orderMock;
+	CaseOrder orderMock;
 	
 	@Before
     public void setup() {

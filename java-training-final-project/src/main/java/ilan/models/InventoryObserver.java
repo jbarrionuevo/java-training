@@ -5,5 +5,5 @@ import java.util.HashMap;
 
 
 public interface InventoryObserver {
-	public void doUpdate(Case aCase);
+	public void doUpdate(CaseProduct aCase);
 }

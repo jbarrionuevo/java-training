@@ -19,17 +19,17 @@ public class Sale {
 	private Receipt receipt;
 	
 	@OneToOne
-	private Order order;
+	private CaseOrder caseOrder;
 	
 	@ManyToOne
 	CaseSeller seller;
 	
 	private SaleStatus status;
 	
-	public Sale(Order order) {
+	public Sale(CaseOrder order) {
 		super();
 		Validate.notNull(order,"Order cannot be null");
-		this.order=order;
+		this.caseOrder=order;
 		this.status = SaleStatus.DRAFT;
 	}
 	
@@ -48,12 +48,12 @@ public class Sale {
 		this.status = status;
 	}
 
-	public Order getOrder() {
-		return order;
+	public CaseOrder getOrder() {
+		return caseOrder;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrder(CaseOrder order) {
+		this.caseOrder = order;
 	}
 
 	

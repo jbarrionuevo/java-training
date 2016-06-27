@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import org.thymeleaf.util.Validate;
 
 @Entity
-public class Case implements Serializable {
+public class CaseProduct implements Serializable {
 	
 	@Id
 	@GeneratedValue
@@ -25,9 +25,9 @@ public class Case implements Serializable {
 	@ManyToOne
 	private Provider provider;
 	
-	public Case(){}
+	public CaseProduct(){}
 	
-	public Case(CaseDesign design, CaseDevice device, Double price, Provider provider) {
+	public CaseProduct(CaseDesign design, CaseDevice device, Double price, Provider provider) {
 		Validate.notNull(design, "Design cannot be null");
 		Validate.notNull(device,"Device cannot be null");
 		Validate.notNull(provider,"Provider cannot be null");

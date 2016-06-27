@@ -28,27 +28,27 @@ public class CaseTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation() {
-		new Case(null,caseDeviceMock,10.0,providerMock);
+		new CaseProduct(null,caseDeviceMock,10.0,providerMock);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation2() {
-		new Case(caseDesignMock,null,10.0,providerMock);
+		new CaseProduct(caseDesignMock,null,10.0,providerMock);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation3() {
-		new Case(caseDesignMock,caseDeviceMock,null,providerMock);
+		new CaseProduct(caseDesignMock,caseDeviceMock,null,providerMock);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation4() {
-		new Case(caseDesignMock,caseDeviceMock,10.0,null);
+		new CaseProduct(caseDesignMock,caseDeviceMock,10.0,null);
 	}
 	
 	@Test
 	public void testCreation() {
-		Case test = new Case(caseDesignMock,caseDeviceMock,10.0,providerMock);
+		CaseProduct test = new CaseProduct(caseDesignMock,caseDeviceMock,10.0,providerMock);
 		assertThat("Case Design wasnt correctly assigned",test.getDesign(),is(caseDesignMock));
 		assertThat("Case Device wasnt correctly assigned",test.getDevice(),is(caseDeviceMock));
 		assertThat("Provider wasnt correctly assigned",test.getProvider(),is(providerMock));
@@ -57,7 +57,7 @@ public class CaseTest {
 	
 	@Test
 	public void testToString(){
-		Case test = new Case(caseDesignMock,caseDeviceMock,10.0,providerMock);
+		CaseProduct test = new CaseProduct(caseDesignMock,caseDeviceMock,10.0,providerMock);
 		assertThat("To String method doesnt work as expected",test.toString(),equalTo("Design: "+caseDesignMock.getName()+
 				", Device: "+caseDeviceMock.getName()+", Provider: "+providerMock.getName()+"("+providerMock.getLocation()+")"));
 	}

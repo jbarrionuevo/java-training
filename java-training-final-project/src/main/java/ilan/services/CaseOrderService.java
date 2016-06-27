@@ -12,30 +12,30 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ilan.daos.OrderDao;
-import ilan.models.Order;
+import ilan.daos.CaseOrderDao;
+import ilan.models.CaseOrder;
 
 @Service
-public class OrderService{
+public class CaseOrderService{
 	
-	private final static Logger log = LoggerFactory.getLogger(OrderService.class);
+	private final static Logger log = LoggerFactory.getLogger(CaseOrderService.class);
 	
 	@Autowired
-	private OrderDao orderDao;
+	private CaseOrderDao orderDao;
 	
 	@Transactional
-	public void saveOrders(Order... orders){
-		 for (Order order: orders) {
+	public void saveOrders(CaseOrder... orders){
+		 for (CaseOrder order: orders) {
 	            log.info("Persisting Order [" + order + "] to database...");
 	            orderDao.save(order);
 	     }
 	}
 	
-	public void saveOrder(Order order){
+	public void saveOrder(CaseOrder order){
 		orderDao.save(order);
 	}
 	
-	public Collection<Order> findAllOrders() {
+	public Collection<CaseOrder> findAllOrders() {
 	        return orderDao.findAll();
 	}
 	

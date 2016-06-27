@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ilan.daos.InventoryDao;
-import ilan.models.Case;
+import ilan.models.CaseProduct;
 import ilan.models.CaseDesign;
 import ilan.models.CaseDevice;
 import ilan.models.Inventory;
@@ -22,20 +22,20 @@ public class InventoryService {
 	@Autowired
 	private InventoryDao inventoryDao;
 	
-	public void addCase(Case aCase, int quantity){
-		Inventory inventory = Inventory.getInstance();
-		inventory.addCase(aCase, quantity);
-		//update inventory in db
-	}
+//	public void addCase(Case aCase, int quantity){
+//		Inventory inventory = Inventory.getInstance();
+//		inventory.addCase(aCase, quantity);
+//		//update inventory in db
+//	}
 	
-	public void removeCase(Case aCase, int quantity){
-		Inventory inventory = Inventory.getInstance();
-		inventory.removeCase(aCase, quantity);
-		inventory.doNotify(aCase);
-		//trigger alarm if the case stock is less than a minimum number
-		//update inventory in db
-	}
-	
+//	public void removeCase(Case aCase, int quantity){
+//		Inventory inventory = Inventory.getInstance();
+//		inventory.removeCase(aCase, quantity);
+//		inventory.doNotify(aCase);
+//		//trigger alarm if the case stock is less than a minimum number
+//		//update inventory in db
+//	}
+//	
 	public void saveInventory(Inventory inventory){
 		inventoryDao.save(inventory);
 	}

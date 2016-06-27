@@ -7,12 +7,16 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Inventory implements InventorySubject{
+public class Inventory {
+//implements InventorySubject{
 	
 	@Id
 	@GeneratedValue
@@ -20,12 +24,15 @@ public class Inventory implements InventorySubject{
 	
 	private static Inventory instance = null;
 	
-	private static Collection<CaseWrapper> inventory = new ArrayList<CaseWrapper>();
-	private static Set<InventoryObserver> inventoryObservers;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "inventory", cascade = CascadeType.ALL)
+	private static Collection<CaseWrapper> stock;
+	
+//	@OneToMany
+//	private Set<InventoryObserver> inventoryObservers;
 
-	public Inventory() {
-		this.inventory = new ArrayList<CaseWrapper>();
-		this.inventoryObservers = new HashSet<InventoryObserver>();
+	private Inventory() {
+		this.stock = new ArrayList<CaseWrapper>();
+//		this.inventoryObservers = new HashSet<InventoryObserver>();
 	}
 
 	public static Inventory getInstance() {
@@ -35,45 +42,45 @@ public class Inventory implements InventorySubject{
 		return instance;
 	}
 	
-	public static void addCase(Case aCase, int quantity){
+	public static void addCase(CaseProduct aCase, int quantity){
 		//if inventory has a CaseWrapper for that type of case
 			//update it
 		//else
 		   //create new casewrapper for that type of case, then update it
 	}
 	
-	public static void removeCase(Case aCase, int quantity){
+	public static void removeCase(CaseProduct aCase, int quantity){
 		//if inventory has a CaseWrapper for that type of case
 			//update it
 		//else
 			//throw not found
 	}
 
-	@Override
-	public void addObserver(InventoryObserver inventoryObserver) {
-		inventoryObservers.add(inventoryObserver);
-	}
+//	@Override
+//	public void addObserver(InventoryObserver inventoryObserver) {
+//		inventoryObservers.add(inventoryObserver);
+//	}
+//
+//	@Override
+//	public void removeObserver(InventoryObserver inventoryObserver) {
+//		inventoryObservers.remove(inventoryObserver);
+//	}
 
-	@Override
-	public void removeObserver(InventoryObserver inventoryObserver) {
-		inventoryObservers.remove(inventoryObserver);
-	}
-
-	private CaseWrapper getWrapperForCase(Case aCase){
+	private CaseWrapper getWrapperForCase(CaseProduct aCase){
 		//return the wrapper for that case, which include its minimum stock and current stock
 		return null;
 	}
-	@Override
-	public void doNotify(Case aCase) {
-		Iterator<InventoryObserver> it = inventoryObservers.iterator();
-		CaseWrapper wrapperUpdated = getWrapperForCase(aCase);
-		if(wrapperUpdated.getCurrentStock()<wrapperUpdated.getCurrentStock()){
-			while (it.hasNext()) {
-				InventoryObserver inventoryObserver = it.next();
-				inventoryObserver.doUpdate(aCase);
-			}
-		}
-	}
+//	@Override
+//	public void doNotify(Case aCase) {
+//		Iterator<InventoryObserver> it = inventoryObservers.iterator();
+//		CaseWrapper wrapperUpdated = getWrapperForCase(aCase);
+//		if(wrapperUpdated.getCurrentStock()<wrapperUpdated.getCurrentStock()){
+//			while (it.hasNext()) {
+//				InventoryObserver inventoryObserver = it.next();
+//				inventoryObserver.doUpdate(aCase);
+//			}
+//		}
+//	}
 	
 	
 }
