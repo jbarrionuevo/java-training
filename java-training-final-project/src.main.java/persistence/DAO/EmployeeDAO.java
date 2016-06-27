@@ -1,44 +1,12 @@
 package persistence.DAO;
 
-import java.util.List;
+import org.hibernate.Session;
 
-import domain.Sell;
+@SuppressWarnings("rawtypes")
+public class EmployeeDAO extends AbstractDAO{
 
-public class EmployeeDAO implements DAO{
-
-	@Override
-	public List<Sell> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Sell> findById() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Sell> findByName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean insert(DTO dto) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean update(DTO dto) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(DTO dto) {
-		// TODO Auto-generated method stub
-		return false;
+	public EmployeeDAO(Session session) {
+		super(session);
+		// TODO Auto-generated constructor stub
 	}
 }

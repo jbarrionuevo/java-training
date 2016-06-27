@@ -10,3 +10,82 @@ main.java/src/test/java/EmployeeTest.java:[7,1] static import only from classes
 and interfaces
 
 why?
+
+---------------------------------------------------------------------------------
+study AbstractDAO constructor
+
+public AbstractDAO(Session session) {
+		this.session = session;
+		Type type = getClass().getGenericSuperclass();
+		while (!(type instanceof ParameterizedType) || ((ParameterizedType) type).getRawType() != AbstractDAO.class) {
+			if (type instanceof ParameterizedType) {
+				type = ((Class<?>) ((ParameterizedType) type).getRawType()).getGenericSuperclass();
+			} else {
+				type = ((Class<?>) type).getGenericSuperclass();
+			}
+		}
+		entityClass = (Class<T>)((ParameterizedType) type).getActualTypeArguments()[0];
+	}
+	
+---------------------------------------------------------------------------------
+Class Class<T> 	
+
+     java.lang.Object
+        java.lang.Class<T> 
+        
+     Type Parameters:
+    	T - the type of the class modeled by this Class object. For example, the type of String.class is Class<String>. Use Class<?> if the class being modeled is unknown.   
+
+---------------------------------------------------------------------------------
+Example generics
+
+This one is a concrete example:
+ 
+public class Box {
+    private Object object;
+
+    public void set(Object object) { this.object = object; }
+    public Object get() { return object; }
+}
+
+Followed by a generics version:
+
+public class Box<T> {
+    // T stands for "Type"
+    private T t;
+
+    public void set(T t) { this.t = t; }
+    public T get() { return t; }
+}
+
+And then Box<Integer> integerBox = new Box<Integer>()
+
+With multiple parameters:
+
+public interface Pair<K, V> {
+    public K getKey();
+    public V getValue();
+}
+
+public class OrderedPair<K, V> implements Pair<K, V> {
+
+    private K key;
+    private V value;
+
+    public OrderedPair(K key, V value) {
+	this.key = key;
+	this.value = value;
+    }
+
+    public K getKey()	{ return key; }
+    public V getValue() { return value; }
+}
+
+The following statements create two instantiations of the OrderedPair class:
+
+Pair<String, Integer> p1 = new OrderedPair<String, Integer>("Even", 8);
+Pair<String, String>  p2 = new OrderedPair<String, String>("hello", "world");
+
+---------------------------------------------------------------------------------
+    	
+    	
