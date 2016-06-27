@@ -1,4 +1,4 @@
-package edu.globant.day2.collection.exercices.phonecontact;
+package edu.globant.day2.collection.exercices.phonebook.message;
 
 import java.util.Comparator;
 

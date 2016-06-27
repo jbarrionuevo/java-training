@@ -1,4 +1,6 @@
-package edu.globant.day2.collection.exercices.phonecontact;
+package edu.globant.day2.collection.exercices.phonebook.phonecontact.comparator;
+
+import edu.globant.day2.collection.exercices.phonebook.phonecontact.PhoneContact;
 
 public class PhoneContactNameComparator extends PhoneContactComparator {
 

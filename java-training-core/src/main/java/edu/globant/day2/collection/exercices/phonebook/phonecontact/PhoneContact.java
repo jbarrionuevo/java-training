@@ -1,4 +1,4 @@
-package edu.globant.day2.collection.exercices.phonecontact;
+package edu.globant.day2.collection.exercices.phonebook.phonecontact;
 
 import java.util.Date;
 
@@ -7,21 +7,21 @@ public class PhoneContact {
 	private String contactName;
 	private String contactNumber;
 	private Date addedDate;
-	
+
 	public PhoneContact(String name, String number, Date addedDate) {
 		this.contactName = name;
 		this.contactNumber = number;
 		this.addedDate = addedDate;
 	}
-	
+
 	public String getContactName() {
 		return contactName;
 	}
-	
+
 	public void setContactName(String contactName) {
 		this.contactName = contactName;
 	}
-	
+
 	public String getContactNumber() {
 		return contactNumber;
 	}
@@ -36,5 +36,10 @@ public class PhoneContact {
 
 	public void setAddedDate(Date addedDate) {
 		this.addedDate = addedDate;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "Name :" + this.contactName + " Number: " + this.contactNumber + " Added Date " + this.addedDate;
+	}
 }
