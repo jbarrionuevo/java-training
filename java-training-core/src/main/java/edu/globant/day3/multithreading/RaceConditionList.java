@@ -49,6 +49,7 @@ public class RaceConditionList {
 
 	public static void tryRaceCondition(List<String> list) {
 		try {
+//			list.add(getRandomString());
 			Runnable adderTask = ThreadUtils.newLoopRunnable(() -> list.add(getRandomString()), MAX_ITERATIONS );
 			Runnable removerTask = ThreadUtils.newLoopRunnable(() -> System.out.println(list.remove(0)), MAX_ITERATIONS );
 			ThreadUtils.executeTasksInThreadsAndWait(adderTask, removerTask);
