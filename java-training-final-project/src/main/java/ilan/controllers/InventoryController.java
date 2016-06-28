@@ -32,12 +32,14 @@ public class InventoryController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(value= HttpStatus.OK)
     public String getInventory(Model model) {
-		Collection<CaseWrapper> wrappers = inventoryService.getInventoryWrappers();
+		Collection<CaseWrapper> wrappers = inventoryService.getInventoryWrappers(0,5);
 		Collection<CaseDesign> designs = inventoryService.getDesigns();
 		Collection<CaseDevice> devices = inventoryService.getDevices();
+		long pageQuantity = inventoryService.getInventoryCount();
 		model.addAttribute("inventory",wrappers);
     	model.addAttribute("designs",designs);
     	model.addAttribute("devices",devices);
+    	model.addAttribute("pageQuantity",pageQuantity);
         return "inventory";
     }
 	

@@ -50,6 +50,18 @@
 			</tr>
 		</table>
 	</div>
+	
+	<select id="pageSelect">
+		<option th:each="i: ${#numbers.sequence( 1, pageQuantity)}"
+        th:value="${i}"
+        th:text="${i}"></option>
+	</select>
+	<label>Size:</label>
+	<select id="sizeSelect">
+		<option>5</option>
+		<option>10</option>
+		<option>15</option>
+	</select>
 
 	<a th:href="@{/}">Back to the homepage</a>
 </body>

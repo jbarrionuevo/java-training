@@ -9,11 +9,21 @@ $(document).ready(function(){
 		updateCases();
 	});
 	
+	$("#pageSelect").change(function() {
+		updateCases();
+	});
+	
+	$("#sizeSelect").change(function() {
+		updateCases();
+	});
+	
 	function updateCases(){
 		var design = $("#designSelect").val();
 		var device = $("#deviceSelect").val();
+		var page = parseInt($("#pageSelect").val())-1;
+		var size = parseInt($("#sizeSelect").val());
 		$.ajax({
-			   url: '/inventoryrest/design/'+design+'/device/'+device,
+			   url: '/inventoryrest/design/'+design+'/device/'+device+"?page="+page+"&size="+size,
 			   data: {
 			      format: 'json'
 			   },

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import ilan.daos.CaseProductDao;
@@ -52,8 +53,19 @@ public class InventoryService {
 		return inventoryDao.findAll().get(0);
 	}
 	
-	public Collection<CaseWrapper> getInventoryWrappers(){
-		return inventoryDao.findAll().get(0).getStock();
+	public Long getInventoryCount(){
+		return inventoryDao.count();
+	}
+	
+	public Long getCount(CaseDesign design, CaseDevice device){
+		if ( (design==null) && (device==null)) return this.getInventoryCount();
+		if(device==null) return caseWrapperDao.countByInventoryAndMyCaseDesignName(this.getInventory(),design.getName());
+		if(design==null) return caseWrapperDao.countByInventoryAndMyCaseDeviceName(this.getInventory(),device.getName());
+		return caseWrapperDao.countByInventoryAndMyCaseDesignNameAndMyCaseDeviceName(this.getInventory(),design.getName(),device.getName());
+	}
+	
+	public Collection<CaseWrapper> getInventoryWrappers(Integer page, Integer size){
+		return caseWrapperDao.findByInventory(this.getInventory(),new PageRequest(page, size));
 	}
 	
 	public Collection<CaseDesign> getDesigns(){
@@ -81,7 +93,6 @@ public class InventoryService {
 		Inventory inventory = this.getInventory();
 		try{
 			CaseWrapper wrapper = this.getInventory().getStock().stream().filter(cw->cw.getMyCase().equals(aCase)).collect(Collectors.toList()).get(0);
-//			CaseWrapper wrapper = caseWrapperDao.findOne(lookingFor.getId());
 			wrapper.setCurrentStock(wrapper.getCurrentStock()+quantity);
 			caseWrapperDao.save(wrapper);
 		}catch(IndexOutOfBoundsException e){
@@ -91,10 +102,10 @@ public class InventoryService {
 		}
 	}
 	
-	public Collection<CaseWrapper> getInventoryWithDesignAndDevice(String design,String device) {
-		if( (design.equals("all")) && (device.equals("all"))) return this.getInventoryWrappers();
-		if (design.equals("all")) return this.getInventoryWithDevice(device);
-		if (device.equals("all")) return this.getInventoryWithDesign(design);
+	public Collection<CaseWrapper> getInventoryWithDesignAndDevice(String design,String device,Integer page, Integer size) {
+		if( (design.equals("all")) && (device.equals("all"))) return this.getInventoryWrappers(page,size);
+		if (design.equals("all")) return this.getInventoryWithDevice(device,page,size);
+		if (device.equals("all")) return this.getInventoryWithDesign(design,page,size);
 		return this.getInventory().getStock().stream()
 					.filter(cw->
 							cw.getMyCase().getDesign().equals(new CaseDesign(design)) && 
@@ -102,12 +113,12 @@ public class InventoryService {
 					.collect(Collectors.toList());
 	}
 	
-	public Collection<CaseWrapper> getInventoryWithDesign(String design) {
-		return this.getInventory().getStock().stream().filter(cw->cw.getMyCase().getDesign().equals(new CaseDesign(design))).collect(Collectors.toList());
+	public Collection<CaseWrapper> getInventoryWithDesign(String design,Integer page, Integer size) {
+		return caseWrapperDao.findByInventoryAndMyCaseDesignName(this.getInventory(),design,new PageRequest(page, size));
 	}
 	
-	public Collection<CaseWrapper> getInventoryWithDevice(String device) {
-		return this.getInventory().getStock().stream().filter(cw->cw.getMyCase().getDevice().equals(new CaseDevice(device))).collect(Collectors.toList());
+	public Collection<CaseWrapper> getInventoryWithDevice(String device,Integer page, Integer size) {
+		return caseWrapperDao.findByInventoryAndMyCaseDeviceName(this.getInventory(),device,new PageRequest(page, size));
 	}
 	
 	public void decrementStock(CaseDesign design, CaseDevice device, int quantity){
