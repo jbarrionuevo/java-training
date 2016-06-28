@@ -6,42 +6,58 @@
 package edu.globant.ioncases.model;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author federico.calarco
  */
 
-public class Inventory implements Serializable {
-
+@Entity
+public class CaseInventory implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
-    @ElementCollection
-    private Map<Case, Integer> inventoryMap = new HashMap<>();
+    @OneToOne
+    private Case caseCover;
+    private int stock;
 
     public long getId() {
         return id;
     }
 
+    public CaseInventory(Case caseCover, int stock) {
+        this.caseCover = caseCover;
+        this.stock = stock;
+    }
+
+    
+    
     public void setId(long id) {
         this.id = id;
     }
 
-    public Map<Case, Integer> getInventory() {
-        return inventoryMap;
+    public Case getCaseCover() {
+        return caseCover;
     }
 
-    public void setInventory(Map<Case, Integer> inventory) {
-        this.inventoryMap = inventory;
+    public void setCaseCover(Case caseCover) {
+        this.caseCover = caseCover;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+    
+    
+    
 }

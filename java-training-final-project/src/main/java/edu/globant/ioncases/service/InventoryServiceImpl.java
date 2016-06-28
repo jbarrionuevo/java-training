@@ -10,12 +10,14 @@ import edu.globant.ioncases.model.Case;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author fedec
  */
 @Service
+@Transactional
 public class InventoryServiceImpl implements InventoryService{
 
     @Autowired
@@ -23,7 +25,7 @@ public class InventoryServiceImpl implements InventoryService{
     
     @Override
     public void addCase(Case caseCover, int quantity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       inventoryDao.addCase(caseCover, quantity);
     }
 
     @Override

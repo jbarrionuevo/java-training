@@ -6,41 +6,49 @@
 package edu.globant.ioncases.dao;
 
 import edu.globant.ioncases.model.Case;
-import java.util.HashMap;
+import edu.globant.ioncases.model.CaseInventory;
 import java.util.Map;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author fedec
  */
 @Repository
-public class InventoryDaoImpl implements InventoryDao{
+@Transactional
+public class InventoryDaoImpl implements InventoryDao {
 
-    Map<Case,Integer> inventory = new HashMap<>();
+    @Autowired
+    private SessionFactory sessionFactory;
 
-    public InventoryDaoImpl() {
-        
-        Case c = new Case("Case batman", 20);
-        c.setId(1);
-        Case c2 = new Case("Case robin", 10);
-        c2.setId(2);
-        inventory.put(c, 10);
-        inventory.put(c2, 4);
-        
-        
+    private Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
     }
-    
-    
-    
+
+//    Map<Case, Integer> inventory = new HashMap<>();
+    public InventoryDaoImpl() {
+
+//        Case c = new Case("Case batman", 20);
+//        c.setId(1);
+//        Case c2 = new Case("Case robin", 10);
+//        c2.setId(2);
+//        inventory.put(c, 10);
+//        inventory.put(c2, 4);
+    }
+
     @Override
     public void addCase(Case caseCover, int quantity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getCurrentSession().save(new CaseInventory(caseCover, quantity));
     }
 
     @Override
     public Map<Case, Integer> getAll() {
-        return inventory;
+
+        return null;
     }
-    
+
 }

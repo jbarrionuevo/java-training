@@ -15,10 +15,10 @@
         <h1>Add</h1>
 
         <div>
-            <f:form action="${pageContext.request.contextPath}/inventory/add">
+            <f:form action="${pageContext.request.contextPath}/inventory/add" modelAttribute="CaseInventory">
 
                 <div>
-                    <label for="design">Design </label><br/>
+                    <label for="design">Design </label> <br/>
                     <input type="text" name="design" id="design" class="form-control" placeholder="" required autofocus/>
                 </div>
 

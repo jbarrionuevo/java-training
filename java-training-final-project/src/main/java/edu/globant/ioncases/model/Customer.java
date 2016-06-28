@@ -5,13 +5,23 @@
  */
 package edu.globant.ioncases.model;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author fedec
  */
-public class Customer {
+
+@Entity
+public class Customer implements Serializable {
     
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String name;
     private int age;
     private char gender;
@@ -19,18 +29,17 @@ public class Customer {
 
     
     public Customer(String name, int age, char gender, String location) {
-        super();
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.location = location;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

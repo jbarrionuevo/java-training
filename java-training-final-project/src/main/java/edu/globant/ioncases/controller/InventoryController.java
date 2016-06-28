@@ -5,10 +5,13 @@
  */
 package edu.globant.ioncases.controller;
 
+import edu.globant.ioncases.model.Case;
+import edu.globant.ioncases.model.CaseInventory;
 import edu.globant.ioncases.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,8 +36,16 @@ public class InventoryController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
-
+        
+        inventoryService.addCase(new Case("desiggnnn", 20000), 99);
         return "addCaseToInventory";
     }
+    
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String add(@ModelAttribute(value = "CaseInventory") CaseInventory caseInventory){
+        
+        return "index";
+    }
+    
 
 }

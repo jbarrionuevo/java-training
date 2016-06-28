@@ -5,12 +5,19 @@
  */
 package edu.globant.ioncases.model;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author federico.calarco
  */
-public abstract class Device {
-    
+@Entity
+public abstract class Device implements Serializable {
+
+    @Id
+    private Long id;
     private String model;
 
     public Device(String model) {
@@ -24,7 +31,13 @@ public abstract class Device {
     public void setModel(String model) {
         this.model = model;
     }
-    
-    
-    
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }

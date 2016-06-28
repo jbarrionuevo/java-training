@@ -5,19 +5,32 @@
  */
 package edu.globant.ioncases.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author federico.calarco
  */
-public class Case {
+@Entity
+public class Case implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String design;
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private Set<Device> compatibleDevices = new HashSet<>();
     private double price;
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private Set<Provider> providers = new HashSet<>();
 
     public Case(String design, double price) {
