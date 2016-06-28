@@ -5,14 +5,14 @@ import java.util.List;
 
 import persistence.DAO.DTO;
 
-public class Case implements DTO{
+public class Case implements DTO {
 
 	private String ID;
 
 	private List<Device> supportedDevices;
 
 	private int waterMark;
-	
+
 	public Date orderExpected() {
 		return null;
 	}
@@ -56,7 +56,7 @@ public class Case implements DTO{
 	public void setOrderExpected(Date orderExpected) {
 	}
 
-	public  Date getOrderDelivered() {
+	public Date getOrderDelivered() {
 		return null;
 	}
 

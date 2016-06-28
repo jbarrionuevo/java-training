@@ -1,4 +1,7 @@
 top priority
+-design patterns
+-implement interfaces to abstract services
+-implement Spring injection of dependencies  
 -design pattern implementation
 
 other

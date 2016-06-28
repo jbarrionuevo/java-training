@@ -10,10 +10,10 @@ import org.hibernate.Session;
 
 import domain.BaseEntity;
 
-public abstract class AbstractDAO<T extends BaseEntity> {
+public abstract class AbstractDAO<E extends BaseEntity> {
 
 	protected Session session;
-	protected Class<T> entityClass;
+	protected Class<E> entityClass;
 
 	@SuppressWarnings("unchecked")
 	public AbstractDAO(Session session) {
@@ -26,29 +26,29 @@ public abstract class AbstractDAO<T extends BaseEntity> {
 				type = ((Class<?>) type).getGenericSuperclass();
 			}
 		}
-		entityClass = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
+		entityClass = (Class<E>) ((ParameterizedType) type).getActualTypeArguments()[0];
 	}
 
-	public void save(T entity) {
+	public void save(E entity) {
 		session.save(entity);
 	}
 
-	public T findById(Long id) {
+	public E findById(Long id) {
 		return session.find(entityClass, id);
 	}
 
-	public void update(T entity) {
+	public void update(E entity) {
 		session.update(entity);
 	}
 
-	public void delete(T entity) {
+	public void delete(E entity) {
 		session.delete(entity);
 	}
 
-	public List<T> findAll() {
+	public List<E> findAll() {
 		CriteriaBuilder builder = session.getCriteriaBuilder();
-		CriteriaQuery<T> criteria = builder.createQuery(entityClass);
-		Root<T> root = criteria.from(entityClass);
+		CriteriaQuery<E> criteria = builder.createQuery(entityClass);
+		Root<E> root = criteria.from(entityClass);
 		criteria.select(root);
 		return session.createQuery(criteria).getResultList();
 	}
