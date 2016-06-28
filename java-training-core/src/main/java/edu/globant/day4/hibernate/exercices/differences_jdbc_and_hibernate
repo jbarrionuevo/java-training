@@ -1,0 +1,4 @@
+With Hibernate, which is an ORM, its much easier to retrieve and save the objects, since
+we don't need to set and get each field as we need to do with JDBC. The resulting code its 
+smaller and easier to understand. Knowing the underlying db we are working with, which has RDBMS tables,
+we will obviously choose to work with Hibernate, so not to write all mappings manually.
