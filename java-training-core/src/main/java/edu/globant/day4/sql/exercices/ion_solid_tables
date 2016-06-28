@@ -3,19 +3,104 @@ Tables to use ion ION_SOLID:
 case_design
 CREATE TABLE `case_design` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
+  `name` varchar(255)
 )
 
 case_device
+CREATE TABLE `case_device` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255)
+)
+
 case_order
+CREATE TABLE `case_order` (
+  `id` bigint(20) NOT NULL,
+  `date_of_delivery` datetime DEFAULT NULL,
+  `date_of_request` datetime DEFAULT NULL,
+  `request_cases` tinyblob  #this is because of the hashmap
+) 
+
 case_product
+CREATE TABLE `case_product` (
+  `id` bigint(20) NOT NULL,
+  `price` double NOT NULL,
+  `design_id` bigint(20) DEFAULT NULL,
+  `device_id` bigint(20) DEFAULT NULL,
+  `provider_id` bigint(20) DEFAULT NULL
+) 
+
 case_seller
+CREATE TABLE `case_seller` (
+  `id` bigint(20) NOT NULL
+  `name` varchar(255)
+)
+
 case_wrapper
+CREATE TABLE `case_wrapper` (
+  `id` int(11) NOT NULL,
+  `current_stock` int(11) NOT NULL,
+  `minimum_stock` int(11) NOT NULL,
+  `my_case_id` bigint(20) NOT NULL,
+  `inventory_id` int(11) NOT NULL
+) 
+
 customer
+CREATE TABLE `customer` (
+  `id` bigint(20) NOT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `age` int(11) NOT NULL,
+  `gender` int(11) DEFAULT NULL
+)
+
 inventory
+CREATE TABLE `inventory` (
+  `id` int(11) NOT NULL
+)
+
 provider
+CREATE TABLE `provider` (
+  `id` bigint(20) NOT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL
+)
+
 provider_orders
+CREATE TABLE `provider_orders` (
+  `provider_id` bigint(20) NOT NULL,
+  `orders_id` bigint(20) NOT NULL
+)
+
 receipt
+CREATE TABLE `receipt` (
+  `id` bigint(20) NOT NULL,
+  `date_of_sale` datetime DEFAULT NULL,
+  `store_name` varchar(255) DEFAULT NULL,
+  `case_order_id` bigint(20) DEFAULT NULL,
+  `customer_id` bigint(20) DEFAULT NULL
+)
+
 sale
+CREATE TABLE `sale` (
+  `id` bigint(20) NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  `case_order_id` bigint(20) DEFAULT NULL,
+  `receipt_id` bigint(20) DEFAULT NULL,
+  `seller_id` bigint(20) DEFAULT NULL
+)
+
 third_party_participant
+CREATE TABLE `third_party_participant` (
+  `dtype` varchar(31) NOT NULL,
+  `id` bigint(20) NOT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `gender` int(11) DEFAULT NULL
+)
+
 third_party_participant_orders
+CREATE TABLE `third_party_participant_orders` (
+  `third_party_participant_id` bigint(20) NOT NULL,
+  `orders_id` bigint(20) NOT NULL
+)
