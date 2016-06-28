@@ -4,7 +4,11 @@ import org.apache.commons.lang3.Validate;
 
 import persistence.DAO.DTO;
 
-public class Employee implements DTO {
+public class Employee extends BaseEntity implements DTO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String type;
 

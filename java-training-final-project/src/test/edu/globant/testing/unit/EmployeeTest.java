@@ -1,4 +1,4 @@
-package src.test.java;
+package edu.globant.testing.unit;
 
 import domain.Employee;
 import org.apache.commons.lang3.StringUtils;
