@@ -1,1 +1,21 @@
 Tables to use ion ION_SOLID:
+
+case_design
+CREATE TABLE `case_design` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) DEFAULT NULL
+)
+
+case_device
+case_order
+case_product
+case_seller
+case_wrapper
+customer
+inventory
+provider
+provider_orders
+receipt
+sale
+third_party_participant
+third_party_participant_orders
