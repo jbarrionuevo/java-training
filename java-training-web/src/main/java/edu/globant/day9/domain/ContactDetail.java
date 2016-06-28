@@ -1,4 +1,4 @@
-package edu.globant.day4.hibernate.domain;
+package edu.globant.day9.domain;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-//@Entity
+@Entity
 @Table(name = "contactdetails")
 public class ContactDetail extends BaseEntity {
 

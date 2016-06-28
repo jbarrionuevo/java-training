@@ -1,4 +1,4 @@
-package edu.globant.day4.hibernate.domain;
+package edu.globant.day9.domain;
 
 import java.util.Date;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-//@Entity
+@Entity
 public class Contact extends BaseEntity {
 
 	private String firstName;
