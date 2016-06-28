@@ -6,13 +6,14 @@ import java.util.HashMap;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
-public abstract class Order {
+public class CaseOrder {
 	private HashMap<Case,Integer> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
+	private int id;
 	
-	public Order(){}
+	public CaseOrder(){}
 	
-	public Order(HashMap<Case,Integer> requestCases, Date dateOfRequest) {
+	public CaseOrder(HashMap<Case,Integer> requestCases, Date dateOfRequest) {
 		super();
 		this.requestCases = requestCases;
 		this.dateOfRequest=dateOfRequest;
@@ -48,6 +49,14 @@ public abstract class Order {
 
 	public void setRequestCases(HashMap<Case,Integer> requestCases) {
 		this.requestCases = requestCases;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

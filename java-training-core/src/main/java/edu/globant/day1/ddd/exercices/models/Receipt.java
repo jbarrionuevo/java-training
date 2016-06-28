@@ -6,11 +6,12 @@ import java.util.Date;
 
 public class Receipt {
 	private String storeName;
-	private Order order;
+	private CaseOrder order;
 	private Date dateOfSale;
 	private Customer customer;
+	private int id;
 	
-	public Receipt(String storeName, Date dateOfSale,Order order, Customer customer) {
+	public Receipt(String storeName, Date dateOfSale,CaseOrder order, Customer customer) {
 		super();
 		this.storeName = storeName;
 		this.dateOfSale = dateOfSale;
@@ -43,11 +44,11 @@ public class Receipt {
 	}
 
 
-	public Order getOrder() {
+	public CaseOrder getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(CaseOrder order) {
 		this.order = order;
 	}
 
@@ -57,6 +58,14 @@ public class Receipt {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

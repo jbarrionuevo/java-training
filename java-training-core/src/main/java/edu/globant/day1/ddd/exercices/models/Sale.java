@@ -4,13 +4,16 @@ import edu.globant.day1.oop.exercices.enums.SaleStatus;
 
 public class Sale {
 	private Receipt receipt;
-	private Order order;
+	private CaseOrder order;
 	private SaleStatus status;
+	private CaseSeller seller;
 	
-	public Sale(Order order) {
+	public Sale(CaseOrder order, Receipt receipt, CaseSeller seller) {
 		super();
 		this.order=order;
 		this.status = SaleStatus.DRAFT;
+		this.receipt=receipt;
+		this.seller=seller;
 	}
 	
 	public Receipt getReceipt() {
@@ -28,12 +31,20 @@ public class Sale {
 		this.status = status;
 	}
 
-	public Order getOrder() {
+	public CaseOrder getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(CaseOrder order) {
 		this.order = order;
+	}
+
+	public CaseSeller getSeller() {
+		return seller;
+	}
+
+	public void setSeller(CaseSeller seller) {
+		this.seller = seller;
 	}
 
 	

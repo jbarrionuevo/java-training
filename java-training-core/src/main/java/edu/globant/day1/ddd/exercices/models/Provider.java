@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Provider extends ThirdPartyParticipant{
-	private Collection<Order> orders;
+	private Collection<CaseOrder> orders;
 	
 	public Provider(String name,String location){
 		super(name,location);
-		this.orders = new ArrayList<Order>();
+		this.orders = new ArrayList<CaseOrder>();
 	}
 	
-	public Collection<Order> getOrders() {
+	public Collection<CaseOrder> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(Collection<Order> orders) {
+	public void setOrders(Collection<CaseOrder> orders) {
 		this.orders = orders;
 	}
 	
-	public void addOrder(Order order){
+	public void addOrder(CaseOrder order){
 		this.orders.add(order);
 	}	
 	
