@@ -1,0 +1,6 @@
+I have used hibernate in the past every time I needed to access a database. 
+Is the only ORM I have ever used in Java, and my experience was always successful.
+Maybe there where sometimes where the errors were not so easy to understand, therefore taking me to create
+new annotations or relations that were not necessary.
+Its a big advantage that migrating from one SQL db to a NoSQL one does not take many changes in your hibernate 
+configuration.
