@@ -14,3 +14,6 @@ VALUES
 UPDATE `case_product` 
 SET price=155.50
 WHERE id=9;
+
+DELETE `case_product` 
+WHERE id=10;
