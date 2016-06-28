@@ -1,6 +1,7 @@
 package edu.globant.day3.functional;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.unmodifiableList;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,7 +15,7 @@ class StudentWithTutor {
 
 	public StudentWithTutor(String name, List<Double> gradeList, String tutor) {
 		this.name = name;
-		this.gradeList = gradeList;
+		this.gradeList = unmodifiableList(gradeList);
 		this.tutor = tutor;
 	}
 
@@ -58,7 +59,7 @@ public class StreamsDemo {
 				studentList.stream()
 					.collect(Collectors.groupingBy(StudentWithTutor::getTutor));
 		studentsByTutor.entrySet().stream()
-			.forEach(e -> { 
+			.forEach(e -> {
 				System.out.println(e.getKey() + "'s students: ");
 				showStudents(e.getValue());
 			});
@@ -70,7 +71,7 @@ public class StreamsDemo {
 							LinkedHashMap::new,
 							Collectors.toList()));
 		studentsByTutorOrdered.entrySet().stream()
-			.forEach(e -> { 
+			.forEach(e -> {
 				System.out.println(e.getKey() + "'s students: ");
 				showStudents(e.getValue());
 			});

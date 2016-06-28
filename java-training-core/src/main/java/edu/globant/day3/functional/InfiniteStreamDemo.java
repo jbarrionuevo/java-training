@@ -19,10 +19,26 @@ public class InfiniteStreamDemo {
 			IntStream.iterate(1, x -> x * 2)
 				.map(x -> x - random.nextInt(x))
 				.skip(5)
-				.limit(10)
+				.limit(10) //limits the number of elements in the stream
 				.mapToObj(Integer::toString)
 				.collect(Collectors.joining(","))
 			);
+		/*
+		int x = 1;
+		int i = 1;
+		int j = 1;
+		List<String> values = new ArrayList<>();
+		while (true) {
+			if (i >= 5) {
+				if (j <= 10) {
+					values.add(Integer.toString(x));
+				}
+				j++;
+			}
+			x = x * 2;
+			i++;
+		}
+		*/
 	}
 
 	public static void usingSupplier() {
