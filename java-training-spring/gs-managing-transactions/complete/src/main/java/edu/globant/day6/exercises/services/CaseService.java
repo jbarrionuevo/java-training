@@ -18,9 +18,9 @@ public class CaseService {
 	@Autowired
 	CaseDAO caseDao;
 
-	public void saveCase(Case aCase) {
+	public Case save(Case aCase) {
 		log.info("Persisting Case [" + aCase + "] to database...");
-		caseDao.save(aCase);
+		return caseDao.save(aCase);
 	}
 
 	@Transactional
@@ -41,6 +41,10 @@ public class CaseService {
 
 	public Collection<Case> findAllCases() {
 		return (Collection<Case>) caseDao.findAll(); 
+	}
+	
+	public Case find(Case c) {
+		return caseDao.findOne(c.getId());
 	}
 
 }

@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.apache.commons.lang3.Validate;
+
 import edu.globant.day6.exercises.model.Design;
 import edu.globant.day6.exercises.model.Device;
 
@@ -28,6 +30,8 @@ public class Case implements Serializable {
 	}
 
 	public Case(Design design, Device device, Double price, int stock) {
+		Validate.notNull(design, "Design cannot be null");
+		Validate.notNull(device, "Device cannot be null");
 		this.design = design;
 		this.device = device;
 		this.price = price;
@@ -39,6 +43,7 @@ public class Case implements Serializable {
 	}
 
 	public void setDesign(Design design) {
+
 		this.design = design;
 	}
 
@@ -55,6 +60,7 @@ public class Case implements Serializable {
 	}
 
 	public void setPrice(double price) {
+		Validate.notNull(price, "Price cannot be null");
 		this.price = price;
 	}
 
@@ -63,6 +69,7 @@ public class Case implements Serializable {
 	}
 
 	public void setStock(int stock) {
+		Validate.notNull(stock, "Stock cannot be null");
 		this.stock = stock;
 	}
 

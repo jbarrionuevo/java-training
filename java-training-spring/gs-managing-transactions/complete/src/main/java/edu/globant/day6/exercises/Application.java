@@ -26,7 +26,7 @@ public class Application {
 		deviceService.saveDevice(dev);
 		
 		Case c = new Case(des, dev,10.0, 21);
-		caseService.saveCase(c);
+		caseService.save(c);
 	}
 
 }
