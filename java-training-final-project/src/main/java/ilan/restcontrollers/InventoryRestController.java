@@ -28,5 +28,18 @@ public class InventoryRestController {
 		return inventoryService.getInventoryWithDesign(design);
     }
 	
+	@RequestMapping(value="/device/{device}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseStatus(value= HttpStatus.OK)
+    public Collection<CaseWrapper> getInventoryWithDevice(@PathVariable String device) {
+		if(device.equals("all")) return inventoryService.getInventoryWrappers();
+		return inventoryService.getInventoryWithDevice(device);
+    }
+	
+	@RequestMapping(value="/design/{design}/device/{device}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseStatus(value= HttpStatus.OK)
+    public Collection<CaseWrapper> getInventoryWithDesignAndDevice(@PathVariable String design, @PathVariable String device) {
+		return inventoryService.getInventoryWithDesignAndDevice(design,device);
+    }
+	
 	
 }

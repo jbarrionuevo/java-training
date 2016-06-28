@@ -10,11 +10,18 @@
 </head>
 <body>
 
-	<label>Filter: </label>
+	<label>Filter Design: </label>
 	<select id="designSelect">
 		<option value="all">All</option>
 		<option th:each="design:${designs}" th:value="${design.name}"
 			th:text="${design.name}"></option>
+	</select>
+	
+	<label>Filter Device: </label>
+	<select id="deviceSelect">
+		<option value="all">All</option>
+		<option th:each="device:${devices}" th:value="${device.name}"
+			th:text="${device.name}"></option>
 	</select>
 
 	<div id="result">

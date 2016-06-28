@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import ilan.models.CaseDesign;
+import ilan.models.CaseDevice;
 import ilan.models.CaseProduct;
 import ilan.models.CaseWrapper;
 import ilan.models.Inventory;
@@ -33,8 +34,10 @@ public class InventoryController {
     public String getInventory(Model model) {
 		Collection<CaseWrapper> wrappers = inventoryService.getInventoryWrappers();
 		Collection<CaseDesign> designs = inventoryService.getDesigns();
+		Collection<CaseDevice> devices = inventoryService.getDevices();
 		model.addAttribute("inventory",wrappers);
     	model.addAttribute("designs",designs);
+    	model.addAttribute("devices",devices);
         return "inventory";
     }
 	

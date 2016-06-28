@@ -64,6 +64,14 @@ public class InventoryService {
 	    		.collect(Collectors.groupingBy(CaseProduct::getDesign)).keySet();
 	}
 	
+	public Collection<CaseDevice> getDevices() {
+		return inventoryDao.findAll().get(0).getStock()
+	    		.stream()
+	    		.map(cw -> cw.getMyCase()).collect(Collectors.toList())
+	    		.stream()
+	    		.collect(Collectors.groupingBy(CaseProduct::getDevice)).keySet();
+	}
+	
 	public int caseStock(CaseDesign design, CaseDevice device){
 		System.out.println("return the number of cases with those parameters");
 		return 0;
@@ -83,8 +91,23 @@ public class InventoryService {
 		}
 	}
 	
+	public Collection<CaseWrapper> getInventoryWithDesignAndDevice(String design,String device) {
+		if( (design.equals("all")) && (device.equals("all"))) return this.getInventoryWrappers();
+		if (design.equals("all")) return this.getInventoryWithDevice(device);
+		if (device.equals("all")) return this.getInventoryWithDesign(design);
+		return this.getInventory().getStock().stream()
+					.filter(cw->
+							cw.getMyCase().getDesign().equals(new CaseDesign(design)) && 
+							cw.getMyCase().getDevice().equals(new CaseDevice(device)))
+					.collect(Collectors.toList());
+	}
+	
 	public Collection<CaseWrapper> getInventoryWithDesign(String design) {
 		return this.getInventory().getStock().stream().filter(cw->cw.getMyCase().getDesign().equals(new CaseDesign(design))).collect(Collectors.toList());
+	}
+	
+	public Collection<CaseWrapper> getInventoryWithDevice(String device) {
+		return this.getInventory().getStock().stream().filter(cw->cw.getMyCase().getDevice().equals(new CaseDevice(device))).collect(Collectors.toList());
 	}
 	
 	public void decrementStock(CaseDesign design, CaseDevice device, int quantity){
@@ -111,5 +134,9 @@ public class InventoryService {
 	public void setCaseWrapperDao(CaseWrapperDao caseWrapperDao) {
 		this.caseWrapperDao = caseWrapperDao;
 	}
+
+	
+
+	
 
 }
