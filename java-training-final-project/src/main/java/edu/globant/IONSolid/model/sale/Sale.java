@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import edu.globant.IONSolid.model.Customer;
 import edu.globant.IONSolid.model.cases.CaseItem;
 import edu.globant.IONSolid.model.employee.SaleEmployee;
 
@@ -13,22 +14,25 @@ public class Sale {
 	private SaleEmployee seller;
 	private SaleState saleState;
 	private Date saleCreationDate;
+	private Customer saleCustomer;
 	private List<CaseItem> saleItems = null;
 
-	public Sale(String idSale, SaleEmployee saleEmployee) {
+	public Sale(String idSale, SaleEmployee saleEmployee, Customer saleCustomer) {
 		this.idSale = idSale;
 		this.seller = saleEmployee;
 		this.saleState = SaleState.DRAFT;
 		this.saleCreationDate = new Date();
-		saleItems = new ArrayList<CaseItem>();
+		this.saleItems = new ArrayList<CaseItem>();
+		this.saleCustomer = saleCustomer;
 	}
 
-	public Sale(String idSale, SaleEmployee saleEmployee, List<CaseItem> saleItems) {
+	public Sale(String idSale, SaleEmployee saleEmployee, Customer saleCustomer, List<CaseItem> saleItems) {
 		this.idSale = idSale;
 		this.seller = saleEmployee;
 		this.saleState = SaleState.DRAFT;
 		this.saleCreationDate = new Date();
 		this.saleItems = saleItems;
+		this.saleCustomer = saleCustomer;
 	}
 
 	public String getIdSale() {
@@ -61,5 +65,9 @@ public class Sale {
 
 	public void removeSaleItems(CaseItem saleItem) {
 		saleItems.removeIf(i -> i.getCaseItemId().equals(saleItem.getCaseItemId()));
+	}
+	
+	public Customer getCustomer() {
+		return this.saleCustomer;
 	}
 }
