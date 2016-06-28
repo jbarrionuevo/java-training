@@ -28,7 +28,7 @@ ON case_device (date_of_delivery)
 CREATE INDEX date_of_request_index
 ON case_device (date_of_request)
 
-case_product
+4) case_product
 CREATE TABLE `case_product` (
   `id` bigint(20) NOT NULL,
   `price` double NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `case_product` (
 ) 
 
 
-case_seller
+5) case_seller
 CREATE TABLE `case_seller` (
   `id` bigint(20) NOT NULL
   `name` varchar(255)
@@ -46,7 +46,7 @@ CREATE TABLE `case_seller` (
 CREATE INDEX name_index
 ON case_seller (name)
 
-case_wrapper
+6) case_wrapper
 CREATE TABLE `case_wrapper` (
   `id` int(11) NOT NULL,
   `current_stock` int(11) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `case_wrapper` (
   `inventory_id` int(11) NOT NULL
 ) 
 
-customer
+7) customer
 CREATE TABLE `customer` (
   `id` bigint(20) NOT NULL,
   `location` varchar(255) DEFAULT NULL,
@@ -64,12 +64,12 @@ CREATE TABLE `customer` (
   `gender` int(11) DEFAULT NULL
 )
 
-inventory
+8) inventory
 CREATE TABLE `inventory` (
   `id` int(11) NOT NULL
 )
 
-provider
+9) provider
 CREATE TABLE `provider` (
   `id` bigint(20) NOT NULL,
   `location` varchar(255) DEFAULT NULL,
@@ -78,13 +78,13 @@ CREATE TABLE `provider` (
 CREATE INDEX name_index
 ON provider (name)
 
-provider_orders
+10) provider_orders
 CREATE TABLE `provider_orders` (
   `provider_id` bigint(20) NOT NULL,
   `orders_id` bigint(20) NOT NULL
 )
 
-receipt
+11) receipt
 CREATE TABLE `receipt` (
   `id` bigint(20) NOT NULL,
   `date_of_sale` datetime DEFAULT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE `receipt` (
   `customer_id` bigint(20) DEFAULT NULL
 )
 
-sale
+12) sale
 CREATE TABLE `sale` (
   `id` bigint(20) NOT NULL,
   `status` int(11) DEFAULT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE `sale` (
 CREATE INDEX status_index
 ON sale (status)
 
-third_party_participant
+13) third_party_participant
 CREATE TABLE `third_party_participant` (
   `dtype` varchar(31) NOT NULL,
   `id` bigint(20) NOT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE `third_party_participant` (
   `gender` int(11) DEFAULT NULL
 )
 
-third_party_participant_orders
+14) third_party_participant_orders
 CREATE TABLE `third_party_participant_orders` (
   `third_party_participant_id` bigint(20) NOT NULL,
   `orders_id` bigint(20) NOT NULL
