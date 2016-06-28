@@ -137,7 +137,7 @@
 
         </div>
 
-
+        <button onclick="addCaseOrder()"></button>
 
         <script>
 
@@ -150,7 +150,7 @@
 
 
             function addCaseToSale(idCase) {
-
+                addCaseOrder(idCase);
             <c:set target="${orderSale}" property="123" value="432" />
 
                 var item = {
@@ -172,6 +172,24 @@
                 $('#orderr').add(
                         '<p><b>Welcome ' + idCase + '</b></>'
                         );
+            }
+
+            function addCaseOrder() {
+
+                var order = [{idCase: 200, quantity: 33}, {idCase: 300, quantity: 44}];
+
+                $.ajax({
+                    type: "GET",
+                    url: "${pageContext.request.contextPath}/sales/addSaleAjax",
+                    datatype: 'json',
+                    data: {sales: JSON.stringify(order)},
+                    success: function (res) {
+                        noname(res);
+                    },
+                    error: function (e) {
+                        alert('Error 2: ' + e);
+                    }
+                });
             }
 
         </script>

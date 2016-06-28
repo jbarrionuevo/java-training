@@ -6,6 +6,8 @@
 package edu.globant.ioncases.controller;
 
 import edu.globant.ioncases.model.OrderSale;
+import edu.globant.ioncases.model.OrderSale2;
+import edu.globant.ioncases.model.SaleDetail;
 import edu.globant.ioncases.service.CustomerService;
 import edu.globant.ioncases.service.InventoryService;
 import edu.globant.ioncases.service.SalesService;
@@ -15,9 +17,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -76,5 +80,22 @@ public class SalesControler {
         //   model.addAttribute("sale", salesService.addSale2(order));
         return "sale";
     }
+
+    @RequestMapping(value = "/addSaleAjax", method = RequestMethod.GET)
+    public @ResponseBody String getProv(
+            @RequestParam("sales") String sale
+    ) {
+
+        System.out.println(sale);
+        return "ajax ok";
+    }
+    
+   @RequestMapping(value="/addSale2", method = RequestMethod.POST)
+   public String addSale2(@ModelAttribute(value = "SaleDetail") SaleDetail saleDetail, Model model){
+       
+       System.out.println("-> " + saleDetail);
+       
+       return "sale";
+   }
 
 }
