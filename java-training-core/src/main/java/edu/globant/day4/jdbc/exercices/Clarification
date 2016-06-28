@@ -1,0 +1,5 @@
+To make this work, you have to create the ion_solid database in MySQL.
+The db is the same than the one used in the final project.
+You can create the db tables running the main app in final project, changing the 
+application.properties from update to create-drop, and removing the comments on the
+main app so that tables are created.
