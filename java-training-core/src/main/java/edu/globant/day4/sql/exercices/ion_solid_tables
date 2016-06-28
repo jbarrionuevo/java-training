@@ -119,3 +119,14 @@ CREATE TABLE `third_party_participant_orders` (
   `third_party_participant_id` bigint(20) NOT NULL,
   `orders_id` bigint(20) NOT NULL
 )
+
+Primary keys:
+ALTER TABLE `case_design`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `case_device`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `case_order`
+  ADD PRIMARY KEY (`id`);
+etc...

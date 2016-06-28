@@ -1,0 +1,16 @@
+Examples:
+
+INSERT INTO `third_party_participant` (`dtype`, `id`, `location`, `name`, `age`, `gender`) 
+VALUES
+('Provider', 1, 'Some St.', 'provider', NULL, NULL),
+('Provider', 2, 'Some St. 2', 'provider2', NULL, NULL);
+
+
+INSERT INTO `case_product` (`id`, `price`, `design_id`, `device_id`, `provider_id`) 
+VALUES
+(9, 150, 5, 5, 7),
+(10, 250, 6, 6, 8);
+
+UPDATE `case_product` 
+SET price=155.50
+WHERE id=9;
