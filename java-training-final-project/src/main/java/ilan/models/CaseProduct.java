@@ -44,6 +44,14 @@ public class CaseProduct implements Serializable {
 				this.getDesign().getName(), this.getDevice().getName(), this.getProvider().getName()+"("+this.getProvider().getLocation()+")");
 	}
 	
+	@Override
+	public boolean equals(Object otherCaseProduct){
+		CaseProduct other = (CaseProduct)otherCaseProduct;
+		return this.getDesign().equals(other.getDesign())
+				&& (this.getDevice().equals(other.getDevice()))
+				&& (this.getProvider().equals(other.getProvider()));
+	}
+	
 	public CaseDesign getDesign() {
 		return design;
 	}

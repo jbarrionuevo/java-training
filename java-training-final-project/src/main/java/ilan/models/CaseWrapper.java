@@ -5,8 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class CaseWrapper {
+	
 	@ManyToOne
 	private CaseProduct myCase;
 	
@@ -15,6 +18,7 @@ public class CaseWrapper {
 	private Long id;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Inventory inventory;
 	
 	private int minimumStock;
@@ -55,6 +59,14 @@ public class CaseWrapper {
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

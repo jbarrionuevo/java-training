@@ -8,46 +8,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ilan.daos.CaseDao;
+import ilan.daos.CaseProductDao;
 import ilan.models.CaseProduct;
 import ilan.models.CaseDesign;
 
 
 @Service
-public class CaseService{
+public class CaseProductService{
 	
-	private final static Logger log = LoggerFactory.getLogger(CaseService.class);
+	private final static Logger log = LoggerFactory.getLogger(CaseProductService.class);
 	
 //	@Autowired //commented to show that the injection is being taken from the beans.xml file
-	CaseDao caseDao;
+	CaseProductDao caseProductDao;
 	
 	public void saveCase(CaseProduct newCase){
-	    caseDao.save(newCase);
+	    caseProductDao.save(newCase);
 	}
 	
 	@Transactional
 	public void saveCases(CaseProduct... cases){
 		 for (CaseProduct aCase: cases) {
 	            log.info("Persisting Case [" + aCase + "] to database...");
-	            caseDao.save(aCase);
+	            caseProductDao.save(aCase);
 	     }
 	}
 	
 	public Collection<CaseProduct> findAllCases() {
-        return caseDao.findAll();
+        return caseProductDao.findAll();
 	}
 	
 	public Collection<CaseProduct> findCasesWithDesign(CaseDesign design) {
-        return caseDao.findByDesign(design);
+        return caseProductDao.findByDesign(design);
 	}
 
-	public CaseDao getCaseDao() {
-		return caseDao;
+	public CaseProductDao getCaseProductDao() {
+		return caseProductDao;
 	}
 
-	public void setCaseDao(CaseDao caseDao) {
-		this.caseDao = caseDao;
+	public void setCaseProductDao(CaseProductDao caseProductDao) {
+		this.caseProductDao = caseProductDao;
 	}
+
+	
 	
 	
 }

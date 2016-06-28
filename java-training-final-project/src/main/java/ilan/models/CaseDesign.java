@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 
 import org.thymeleaf.util.Validate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class CaseDesign implements Serializable {
 	@Id
@@ -21,6 +23,7 @@ public class CaseDesign implements Serializable {
 	private String name;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "design", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Collection<CaseProduct> cases;
 	
 	public CaseDesign(){}
@@ -34,6 +37,12 @@ public class CaseDesign implements Serializable {
 	@Override
 	public String toString(){
 		return String.format("Name: %s", this.getName());
+	}
+	
+	@Override
+	public boolean equals(Object otherCaseDesign){
+		CaseDesign other = (CaseDesign)otherCaseDesign;
+		return this.getName().equals(other.getName());
 	}
 	
 	public String getName() {

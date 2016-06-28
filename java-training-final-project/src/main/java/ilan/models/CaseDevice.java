@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 
 import org.thymeleaf.util.Validate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class CaseDevice implements Serializable {
 	@Id
@@ -21,6 +23,7 @@ public class CaseDevice implements Serializable {
 	private String name;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "device", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Collection<CaseProduct> cases;
 	
 	public CaseDevice(){}
@@ -34,6 +37,12 @@ public class CaseDevice implements Serializable {
 		Validate.notEmpty(name, "Name cannot be blank");
 		this.name = name;
 		this.cases=new ArrayList<CaseProduct>();
+	}
+	
+	@Override
+	public boolean equals(Object otherCaseDesign){
+		CaseDevice other = (CaseDevice)otherCaseDesign;
+		return this.getName().equals(other.getName());
 	}
 
 	public String getName() {

@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import ilan.models.CaseProduct;
 import ilan.models.CaseDesign;
+import ilan.models.CaseDevice;
 
-public interface CaseDao extends JpaRepository<CaseProduct,Long>{
+public interface CaseProductDao extends JpaRepository<CaseProduct,Long>{
 	Collection<CaseProduct> findByDesign(CaseDesign design);
+	CaseProduct findByDesignAndDevice(CaseDesign design,CaseDevice device);
 }

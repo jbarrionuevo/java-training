@@ -1,44 +1,49 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Cases</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Cases</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/inventory.js"></script>
 </head>
 <body>
 
 	<label>Filter: </label>
-	<select>
-		<option></option>
-		<option th:each="design:${designs}" 
-           th:value="${design.name}" th:text="${design.name}"></option>
+	<select id="designSelect">
+		<option value="all">All</option>
+		<option th:each="design:${designs}" th:value="${design.name}"
+			th:text="${design.name}"></option>
 	</select>
-	
-	<table>
-      <tr>
-      	<th>INDEX</th>
-        <th>DESIGN</th>
-        <th>DEVICE</th>
-        <th>PROVIDER</th>
-        <th>CURRENT STOCK</th>
-        <th>MINIMUM STOCK</th>
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-        	<th>DELETE</th>
-        </div>
-      </tr>
-      
-		<tr th:each="casewrapper,itrStat : ${inventory}">
-			<td th:text="${itrStat.count}"></td>
-	        <td th:text="${casewrapper.myCase.design.name}"></td>
-	        <td th:text="${casewrapper.myCase.device.name}"></td>
-	        <td th:text="${casewrapper.myCase.provider}"></td>
-	        <td th:text="${casewrapper.currentStock}"></td>
-	        <td th:text="${casewrapper.minimumStock}"></td>
-	        <div sec:authorize="hasRole('ROLE_ADMIN')">
-	        	<td><button type="button">Delete</button></td>
-	        </div>
-	    </tr>
-	 </table>
-	 
-	 <a th:href="@{/}">Back to the homepage</a>
+
+	<div id="result">
+		<table border="1">
+			<tr>
+				<th>INDEX</th>
+				<th>DESIGN</th>
+				<th>DEVICE</th>
+				<th>PROVIDER</th>
+				<th>CURRENT STOCK</th>
+				<th>MINIMUM STOCK</th>
+				<div sec:authorize="hasRole('ROLE_ADMIN')">
+					<th>DELETE</th>
+				</div>
+			</tr>		
+			<tr th:each="casewrapper,itrStat : ${inventory}">
+					<td th:text="${itrStat.count}"></td>
+					<td th:text="${casewrapper.myCase.design.name}"></td>
+					<td th:text="${casewrapper.myCase.device.name}"></td>
+					<td th:text="${casewrapper.myCase.provider}"></td>
+					<td th:text="${casewrapper.currentStock}"></td>
+					<td th:text="${casewrapper.minimumStock}"></td>
+					<div sec:authorize="hasRole('ROLE_ADMIN')">
+						<td><button type="button">Delete</button></td>
+					</div>
+			</tr>
+		</table>
+	</div>
+
+	<a th:href="@{/}">Back to the homepage</a>
 </body>
 </html>

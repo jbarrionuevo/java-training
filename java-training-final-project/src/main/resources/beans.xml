@@ -10,10 +10,10 @@
            http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 
-	<bean id="caseDao" class="ilan.daos.CaseDao" />
+	<bean id="caseProductDao" class="ilan.daos.CaseProductDao" />
 
-	<bean id="caseService" class="ilan.services.CaseService">
-		<property name="caseDao" ref="caseDao" />
+	<bean id="caseProductService" class="ilan.services.CaseProductService">
+		<property name="caseProductDao" ref="caseProductDao" />
 	</bean>
 
 </beans>

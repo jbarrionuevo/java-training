@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Provider extends ThirdPartyParticipant implements InventoryObserver{
 	
@@ -16,6 +18,7 @@ public class Provider extends ThirdPartyParticipant implements InventoryObserver
 	private Collection<CaseOrder> orders;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "provider", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Collection<CaseProduct> cases;
 	
 	public Provider(){}
@@ -28,6 +31,12 @@ public class Provider extends ThirdPartyParticipant implements InventoryObserver
 	@Override
 	public String toString(){
 		return String.format("Name: %s. Location: %s", this.getName(), this.getLocation());
+	}
+	
+	@Override
+	public boolean equals(Object otherCaseDesign){
+		Provider other = (Provider)otherCaseDesign;
+		return this.getName().equals(other.getName()) && this.getLocation().equals(other.getLocation());
 	}
 	
 	public Collection<CaseOrder> getOrders() {

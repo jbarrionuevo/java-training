@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ilan.daos.CaseProductDao;
 import ilan.daos.CaseWrapperDao;
 import ilan.daos.InventoryDao;
 import ilan.models.CaseProduct;
@@ -28,6 +29,9 @@ public class InventoryService {
 	
 	@Autowired
 	private CaseWrapperDao caseWrapperDao;
+	
+	@Autowired
+	private CaseProductDao caseProductDao;
 	
 //	public void addCase(Case aCase, int quantity){
 //		Inventory inventory = Inventory.getInstance();
@@ -66,16 +70,21 @@ public class InventoryService {
 	}
 	
 	public void incrementStock(CaseProduct aCase, int quantity){
-		CaseWrapper wrapper = caseWrapperDao.findByMyCase(aCase);
 		Inventory inventory = this.getInventory();
-		if(wrapper==null){
+		try{
+			CaseWrapper wrapper = this.getInventory().getStock().stream().filter(cw->cw.getMyCase().equals(aCase)).collect(Collectors.toList()).get(0);
+//			CaseWrapper wrapper = caseWrapperDao.findOne(lookingFor.getId());
+			wrapper.setCurrentStock(wrapper.getCurrentStock()+quantity);
+			caseWrapperDao.save(wrapper);
+		}catch(IndexOutOfBoundsException e){
+			if(caseProductDao.findByDesignAndDevice(aCase.getDesign(),aCase.getDevice())==null) caseProductDao.save(aCase);
 			inventory.addCase(aCase, quantity);
 			inventoryDao.save(inventory);
 		}
-		else{
-			wrapper.setCurrentStock(wrapper.getCurrentStock()+quantity);
-			caseWrapperDao.save(wrapper);
-		}
+	}
+	
+	public Collection<CaseWrapper> getInventoryWithDesign(String design) {
+		return this.getInventory().getStock().stream().filter(cw->cw.getMyCase().getDesign().equals(new CaseDesign(design))).collect(Collectors.toList());
 	}
 	
 	public void decrementStock(CaseDesign design, CaseDevice device, int quantity){
@@ -102,4 +111,5 @@ public class InventoryService {
 	public void setCaseWrapperDao(CaseWrapperDao caseWrapperDao) {
 		this.caseWrapperDao = caseWrapperDao;
 	}
+
 }

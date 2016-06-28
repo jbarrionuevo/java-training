@@ -16,7 +16,7 @@ import ilan.exceptions.CaseDesignNotFoundException;
 import ilan.models.CaseProduct;
 import ilan.models.CaseDesign;
 import ilan.services.CaseDesignService;
-import ilan.services.CaseService;
+import ilan.services.CaseProductService;
 
 
 @Controller
@@ -24,7 +24,7 @@ import ilan.services.CaseService;
 public class CaseController {
 
 	@Autowired
-	CaseService caseService;
+	CaseProductService caseService;
 	@Autowired
 	CaseDesignService caseDesignService;
 	
