@@ -1,9 +1,11 @@
-package edu.globant.day4.hibernate.domain;
+package edu.globant.day4.jpa.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
-//@Entity
-public class ContactDetailType extends BaseEntity {
+@Entity(name="contactDetailType")
+@Table(name = "contactDetailType")
+public class ContactDetailTypeJpa extends BaseEntity {
 	private String description;
 
 	public String getDescription() {
