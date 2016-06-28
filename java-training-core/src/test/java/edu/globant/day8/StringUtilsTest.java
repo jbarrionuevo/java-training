@@ -6,8 +6,6 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.globant.day8.StringUtils;
-
 public class StringUtilsTest {
 
 	StringUtils stringUtils;
