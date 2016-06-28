@@ -1,0 +1,8 @@
+We have already said the differences between hibernate and jdbc. 
+Hibernate is the most predominant framework which influenced the Java community to release JPA.
+Hibernate gives much more features, where standard JPA implementation doesn't. But using them
+combined is for me the best solution.
+Hibernate is more likely to change since it is maintained by JBoss (a third party library),
+but JPA is not, since it is maintained by the java community. 
+Jpa is just a specification, kind of a guide, an API, whereas hibernate is an implementation.
+If it implements the JPA api, it will be accepted for its standards. 

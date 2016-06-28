@@ -1,0 +1,3 @@
+I have used JPA in the past and the experience was very successfully.
+The main advantage is that it is already integrated with hibernate. Its better than jdbc
+since it is a standard for ORMs. Its simplicity make it easy to use.
