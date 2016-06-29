@@ -146,6 +146,20 @@ public class InventoryService {
 		this.caseWrapperDao = caseWrapperDao;
 	}
 
+	public String buyProduct(Long wrapperId, int quantity) {
+		// TODO Auto-generated method stub
+		CaseWrapper looked = caseWrapperDao.findOne(wrapperId);
+		if(looked==null) return "Case not found!";
+		if(looked.getCurrentStock()<quantity) return "That quantity of the product is not available!";
+		looked.setCurrentStock(looked.getCurrentStock()-quantity);
+		if(looked.getMinimumStock()>looked.getCurrentStock()) generateOrder(looked);
+		return "Case successfully bought!";
+	}
+	
+	public void generateOrder(CaseWrapper wrapper){
+		//TO IMPLEMENT
+	}
+
 	
 
 	

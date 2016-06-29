@@ -43,5 +43,13 @@ public class InventoryRestController {
 		return result;
     }
 	
+	@RequestMapping(value="/buy/{wrapperId}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseStatus(value= HttpStatus.OK)
+    public String buyProduct(
+    					@PathVariable Long wrapperId, 
+    					@PathVariable int quantity) {
+		return inventoryService.buyProduct(wrapperId,quantity);
+    }
+	
 	
 }

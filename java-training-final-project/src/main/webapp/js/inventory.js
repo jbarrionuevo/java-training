@@ -1,9 +1,9 @@
 $(document).ready(function(){  
 	
 	var isAdmin=false;
-	var isUser=false;
+	var isStoreSeller=false;
 	if($("#isAdmin").val()!=undefined) isAdmin=true;
-	if($("#isUser").val()!=undefined) isUser=true;
+	if($("#isStoreSeller").val()!=undefined) isStoreSeller=true;
 	
 	$("#designSelect").change(function(){
 		updateCases(false);
@@ -92,7 +92,7 @@ $(document).ready(function(){
 	  		"<th>MINIMUM STOCK</th>" +
 	  		"<th>DELETE</th>" +
 	  		"</tr>";
-		}else if(isUser){
+		}else if(isStoreSeller){
 			result += "<th>BUY</th>" +
 					"</tr>";
 		}
@@ -106,9 +106,10 @@ $(document).ready(function(){
 				  result+="<td>"+v.currentStock+"</td>";
 				  result+="<td>"+v.minimumStock+"</td>";
 				  result+="<td><button type='button'>Delete</button></td>";
-			  }	 else if(isUser) 
+			  }	 else if(isStoreSeller) 
 				  result+="<td>" +
 				  		"<label>Quantity:</label>" +
+						"<input type='hidden' id='"+v.id+"_data' value='"+v.myCase.design.name+"_"+v.myCase.device.name+"'/>"+
 				  		"<select id='"+v.id+"_quantity'>" +
 				  		"<option>1</option><option>2</option>" +
 				  		"<option>3</option><option>4</option>" +
