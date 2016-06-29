@@ -9,7 +9,6 @@ public class CreateEmployeeService {
 	private EmployeeDAO employeeDAO;
 
 	public CreateEmployeeService(EmployeeDAO employeeDAO) {
-		// TODO Auto-generated constructor stub
 		this.setEmployeeDAO(employeeDAO);
 	}
 
