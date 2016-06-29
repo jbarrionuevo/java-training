@@ -5,6 +5,7 @@ import java.util.Map;
 
 import edu.globant.IONSolid.model.Order;
 import edu.globant.IONSolid.model.registry.Registry;
+import edu.globant.IONSolid.model.registry.exception.AlreadyExistRegisterException;
 import edu.globant.IONSolid.model.registry.exception.NotFoundRegisterException;
 
 public class OrderRegistry implements Registry<Long, Order> {
@@ -26,12 +27,12 @@ public class OrderRegistry implements Registry<Long, Order> {
 	}
 
 	@Override
-	public void insertRegister(Order order) throws NotFoundRegisterException {
+	public void insertRegister(Order order) throws AlreadyExistRegisterException {
 		if(!this.orderRegistry.containsKey(order.getOrderId())) {
 			this.orderRegistry.put(order.getOrderId(), order);
 		}
 		else {
-			throw new NotFoundRegisterException("The order: " + order.getOrderId() + " was not found");
+			throw new AlreadyExistRegisterException("The order: " + order.getOrderId() + " was not found");
 		}	
 	}
 

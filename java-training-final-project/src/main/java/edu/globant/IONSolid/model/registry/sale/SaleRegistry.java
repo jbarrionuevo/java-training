@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.globant.IONSolid.model.registry.Registry;
+import edu.globant.IONSolid.model.registry.exception.AlreadyExistRegisterException;
 import edu.globant.IONSolid.model.registry.exception.NotFoundRegisterException;
 import edu.globant.IONSolid.model.sale.Sale;
 
@@ -26,18 +27,20 @@ public class SaleRegistry implements Registry<Long, Sale> {
 	}
 
 	@Override
-	public void insertRegister(Sale sale) throws NotFoundRegisterException {
+	public void insertRegister(Sale sale) throws AlreadyExistRegisterException {
 		if(!isRegisterRegistered(sale)) {
+			//Inserts new Sale
 			this.saleRegistry.put(sale.getIdSale(), sale);
 		}
 		else {
-			throw new NotFoundRegisterException("The sale: " + sale.getIdSale() + " was not found");
+			throw new AlreadyExistRegisterException("The sale: " + sale.getIdSale() + " already exists");
 		}		
 	}
 
 	@Override
 	public void updateRegister(Sale sale) throws NotFoundRegisterException {
 		if(isRegisterRegistered(sale)) {
+			//Overrides old sale
 			this.saleRegistry.put(sale.getIdSale(), sale);
 		}
 		else {
