@@ -1,12 +1,13 @@
 package persistence.DAO;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+//import java.lang.reflect.ParameterizedType;
+//import java.lang.reflect.Type;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import domain.BaseEntity;
 
@@ -15,22 +16,29 @@ public abstract class AbstractDAO<E extends BaseEntity> {
 	protected Session session;
 	protected Class<E> entityClass;
 
-	@SuppressWarnings("unchecked")
+	// TODO: solve parametrization issues
 	public AbstractDAO(Session session) {
 		this.session = session;
-		Type type = getClass().getGenericSuperclass();
-		while (!(type instanceof ParameterizedType) || ((ParameterizedType) type).getRawType() != AbstractDAO.class) {
-			if (type instanceof ParameterizedType) {
-				type = ((Class<?>) ((ParameterizedType) type).getRawType()).getGenericSuperclass();
-			} else {
-				type = ((Class<?>) type).getGenericSuperclass();
-			}
-		}
-		entityClass = (Class<E>) ((ParameterizedType) type).getActualTypeArguments()[0];
+		// Type type = getClass().getGenericSuperclass();
+		// while (!(type instanceof ParameterizedType) || ((ParameterizedType)
+		// type).getRawType() != AbstractDAO.class) {
+		// if (type instanceof ParameterizedType) {
+		// type = ((Class<?>) ((ParameterizedType)
+		// type).getRawType()).getGenericSuperclass();
+		// } else {
+		// type = ((Class<?>) type).getGenericSuperclass();
+		// }
+		// }
+		// entityClass = (Class<E>) ((ParameterizedType)
+		// type).getActualTypeArguments()[0];
+
 	}
 
 	public void save(E entity) {
+		// TODO: use Spring transactions
+		Transaction trans = session.beginTransaction();
 		session.save(entity);
+		trans.commit();
 	}
 
 	public E findById(Long id) {

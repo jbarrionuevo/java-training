@@ -1,6 +1,8 @@
 import org.hibernate.Session;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
+
+import domain.Employee;
 import edu.globant.utils.HibernateUtils;
 import edu.globant.utils.MySQLDataSourceProvider;
 import persistence.DAO.EmployeeDAO;
@@ -35,23 +37,13 @@ public class Application {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// SpringApplication.run(Application.class, args);
-
-		/*
-		 * MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
-		 * try (SessionFactory sessionFactory =
-		 * HibernateUtils.buildSessionFactory(hibernateConfigXml,
-		 * dsProvider.getMySQLDataSource(configurationPath))) { try (Scanner
-		 * scanner = new Scanner(System.in)) { Application application = new
-		 * Application(scanner, sessionFactory); } } catch (Exception e) {
-		 * LOGGER.error("Something terrible happened.", e); }
-		 */
 		
 		MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
 		
 		try (SessionFactory sessionFactory = HibernateUtils.buildSessionFactory(hibernateConfigXml, dsProvider.getMySQLDataSource(configurationPath))) {
 			Application application = new Application(sessionFactory);
 			//session = sessionFactory.getCurrentSession();
-			service = new CreateEmployeeService(new EmployeeDAO(sessionFactory.getCurrentSession()));
+			service = new CreateEmployeeService(new EmployeeDAO<Employee>(sessionFactory.getCurrentSession()));
 			service.create("Juan", "seller");
 		} catch (Exception e) {
 			LOGGER.error("Something terrible happened.", e);

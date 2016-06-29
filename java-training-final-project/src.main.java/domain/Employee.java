@@ -1,9 +1,12 @@
 package domain;
 
+import javax.persistence.Entity;
+
 import org.apache.commons.lang3.Validate;
 
 import persistence.DAO.DTO;
 
+@Entity
 public class Employee extends BaseEntity implements DTO {
 	/**
 	 * 
