@@ -3,14 +3,17 @@ package ilan.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.thymeleaf.util.Validate;
 
 import ilan.enums.SaleStatus;
 
 @Entity
+@Table(indexes = {@Index(columnList = "status", name = "sale_status")})
 public class Sale {
 	@Id
 	@GeneratedValue

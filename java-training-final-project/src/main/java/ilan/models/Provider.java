@@ -7,11 +7,14 @@ import java.util.HashMap;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(indexes = {@Index(columnList = "name", name = "provider_name")})
 public class Provider extends ThirdPartyParticipant implements InventoryObserver{
 	
 	@OneToMany

@@ -7,10 +7,14 @@ import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 import org.thymeleaf.util.Validate;
 
 @Entity
+@Table(indexes = {@Index(columnList = "dateOfRequest", name = "case_order_date_of_request"),
+				  @Index(columnList = "dateOfDelivery", name = "case_order_date_of_delivery")})
 public class CaseOrder {
 	@Id
 	@GeneratedValue

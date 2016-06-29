@@ -9,13 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.thymeleaf.util.Validate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(indexes = {@Index(columnList = "name", name = "case_device_name")})
 public class CaseDevice implements Serializable {
 	@Id
 	@GeneratedValue
