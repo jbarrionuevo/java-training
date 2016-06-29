@@ -7,7 +7,7 @@ import java.util.List;
 import edu.globant.IONSolid.model.Customer;
 import edu.globant.IONSolid.model.cases.ProductCase;
 import edu.globant.IONSolid.model.employee.Employee;
-import edu.globant.IONSolid.model.sale.exception.NotFoundProductException;
+import edu.globant.IONSolid.model.sale.exception.NotFoundProductDetailException;
 import edu.globant.IONSolid.model.sale.exception.SaleModificationException;
 
 public class Sale {
@@ -82,7 +82,7 @@ public class Sale {
 	}
 
 	public void removeSaleProducts(ProductCase product, Integer quantity)
-			throws NotFoundProductException, SaleModificationException {
+			throws NotFoundProductDetailException, SaleModificationException {
 		SaleProductDetail detail;
 		// If the sale is a draft, to remove products is allow
 		if (this.saleState.equals(SaleState.DRAFT)) {
@@ -90,7 +90,7 @@ public class Sale {
 			if (detail != null) {
 				detail.setProductQuantity(detail.getProductQuantity() - quantity);
 			} else {
-				throw new NotFoundProductException("The product detail was not found for this product");
+				throw new NotFoundProductDetailException("The product detail was not found for this product");
 			}
 
 		} else {
