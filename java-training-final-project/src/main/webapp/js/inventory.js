@@ -1,26 +1,23 @@
 $(document).ready(function(){  
 	
+	var isAdmin=false;
+	var isUser=false;
+	if($("#isAdmin").val()!=undefined) isAdmin=true;
+	if($("#isUser").val()!=undefined) isUser=true;
+	
 	$("#designSelect").change(function(){
-//		alert("designSelect");
-//	$(document).on("change",$("#designSelect"),function() {
 		updateCases(false);
 	});
 	
 	$("#deviceSelect").change(function(){
-//		alert("deviceSelect");
-//	$(document).on("change",$("#deviceSelect"),function() {
 		updateCases(false);
 	});
 	
 	$("#pageSelect").change(function(){
-//	$(document).on("change",$("#pageSelect"),function() {
-//		alert("pageSelect");
 		updateCases(false);
 	});
 	
 	$("#sizeSelect").change(function(){
-//	$(document).on("change",$("#sizeSelect"),function() {
-//		alert("sizeSelect");
 		updateCases(true);
 	});
 	
@@ -63,17 +60,22 @@ $(document).ready(function(){
 	}
 	
 	function updatePagination(data,size,page){
-		var result = "<select id='pageSelect'>";
-		if(data==0) result += "<option>1</option>";
+		$('#pageSelect').html("");
+		if(data==0)
+			$('#pageSelect').append($("<option></option>")
+	                    .attr("value",1).text(1)); 
 		else{
 			for (var i = 1; i<= data; i++) {
-				if(page==i) result += "<option selected>"+i+"</option>";
-				else result += "<option>"+i+"</option>";
+				if(page==i)
+					$('#pageSelect').append($("<option selected></option>")
+		                    .attr("value",i).text(i)); 
+
+				else
+					$('#pageSelect').append($("<option></option>")
+		                    .attr("value",i).text(i)); 
 				data = data -size;
 			}
 		}
-		result += "</select>";
-		$("#pagination").html(result);
 	}
 	
 	function updateTable(data){
@@ -83,19 +85,37 @@ $(document).ready(function(){
   		"								<tr>" +
   		"									<th>INDEX</th>" +
   		"									<th>DESIGN</th>" +
-  		"									<th>DEVICE</th>" +
-  		"									<th>PROVIDER</th>" +
-  		"									<th>CURRENT STOCK</th>" +
-  		"									<th>MINIMUM STOCK</th>" +
-  		"</tr>";
-		  $.each(data, function(i,v) {
+  		"									<th>DEVICE</th>";
+		if(isAdmin){
+			result += "<th>PROVIDER</th>" +
+	  		"<th>CURRENT STOCK</th>" +
+	  		"<th>MINIMUM STOCK</th>" +
+	  		"<th>DELETE</th>" +
+	  		"</tr>";
+		}else if(isUser){
+			result += "<th>BUY</th>" +
+					"</tr>";
+		}
+		$.each(data, function(i,v) {
 			  result+="<tr>";
 			  result+="<td>"+(i+1)+"</td>";
 			  result+="<td>"+v.myCase.design.name+"</td>";
 			  result+="<td>"+v.myCase.device.name+"</td>";
-			  result+="<td>Name: "+v.myCase.provider.name+". Location: "+v.myCase.provider.location+"</td>";
-			  result+="<td>"+v.currentStock+"</td>";
-			  result+="<td>"+v.minimumStock+"</td>";
+			  if(isAdmin){
+				  result+="<td>Name: "+v.myCase.provider.name+". Location: "+v.myCase.provider.location+"</td>";
+				  result+="<td>"+v.currentStock+"</td>";
+				  result+="<td>"+v.minimumStock+"</td>";
+				  result+="<td><button type='button'>Delete</button></td>";
+			  }	 else if(isUser) 
+				  result+="<td>" +
+				  		"<label>Quantity:</label>" +
+				  		"<select id='"+v.id+"_quantity'>" +
+				  		"<option>1</option><option>2</option>" +
+				  		"<option>3</option><option>4</option>" +
+				  		"<option>5</option>" +
+				  		"</select>" +
+				  		"<button type='button' class='buyCase' id="+v.id+">Buy!</button>" +
+				  				"</td>";
 			  result+="</tr>";
 		  });
 		  result+="</table>";
