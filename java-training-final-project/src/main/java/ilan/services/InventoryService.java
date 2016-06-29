@@ -2,7 +2,10 @@ package ilan.services;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,23 +37,12 @@ public class InventoryService {
 	@Autowired
 	private CaseProductDao caseProductDao;
 	
-//	public void addCase(Case aCase, int quantity){
-//		Inventory inventory = Inventory.getInstance();
-//		inventory.addCase(aCase, quantity);
-//		//update inventory in db
-//	}
-	
-//	public void removeCase(Case aCase, int quantity){
-//		Inventory inventory = Inventory.getInstance();
-//		inventory.removeCase(aCase, quantity);
-//		inventory.doNotify(aCase);
-//		//trigger alarm if the case stock is less than a minimum number
-//		//update inventory in db
-//	}
-//	
-	
 	public Inventory getInventory(){
 		return inventoryDao.findAll().get(0);
+	}
+	
+	public Collection<CaseWrapper> getInventoryWrappers(Integer page, Integer size){
+		return caseWrapperDao.findByInventory(this.getInventory(),new PageRequest(page, size));
 	}
 	
 	public Long getInventoryCount(){
@@ -62,10 +54,6 @@ public class InventoryService {
 		if(device==null || device.equals("all")) return caseWrapperDao.countByInventoryAndMyCaseDesignName(this.getInventory(),design);
 		if(design==null ||  design.equals("all")) return caseWrapperDao.countByInventoryAndMyCaseDeviceName(this.getInventory(),device);
 		return caseWrapperDao.countByInventoryAndMyCaseDesignNameAndMyCaseDeviceName(this.getInventory(),design,device);
-	}
-	
-	public Collection<CaseWrapper> getInventoryWrappers(Integer page, Integer size){
-		return caseWrapperDao.findByInventory(this.getInventory(),new PageRequest(page, size));
 	}
 	
 	public Collection<CaseDesign> getDesigns(){
@@ -84,12 +72,7 @@ public class InventoryService {
 	    		.collect(Collectors.groupingBy(CaseProduct::getDevice)).keySet();
 	}
 	
-	public int caseStock(CaseDesign design, CaseDevice device){
-		System.out.println("return the number of cases with those parameters");
-		return 0;
-	}
-	
-	public void incrementStock(CaseProduct aCase, int quantity){
+	public void incrementStock(CaseProduct aCase, int quantity, int minimumStock){
 		Inventory inventory = this.getInventory();
 		try{
 			CaseWrapper wrapper = this.getInventory().getStock().stream().filter(cw->cw.getMyCase().equals(aCase)).collect(Collectors.toList()).get(0);
@@ -97,7 +80,7 @@ public class InventoryService {
 			caseWrapperDao.save(wrapper);
 		}catch(IndexOutOfBoundsException e){
 			if(caseProductDao.findByDesignAndDevice(aCase.getDesign(),aCase.getDevice())==null) caseProductDao.save(aCase);
-			inventory.addCase(aCase, quantity);
+			inventory.addCase(aCase, quantity,minimumStock);
 			inventoryDao.save(inventory);
 		}
 	}
@@ -106,11 +89,20 @@ public class InventoryService {
 		if( (design.equals("all")) && (device.equals("all"))) return this.getInventoryWrappers(page,size);
 		if (design.equals("all")) return this.getInventoryWithDevice(device,page,size);
 		if (device.equals("all")) return this.getInventoryWithDesign(design,page,size);
-		return this.getInventory().getStock().stream()
-					.filter(cw->
-							cw.getMyCase().getDesign().equals(new CaseDesign(design)) && 
-							cw.getMyCase().getDevice().equals(new CaseDevice(device)))
-					.collect(Collectors.toList());
+		return caseWrapperDao.findByInventoryAndMyCaseDesignNameAndMyCaseDeviceName(this.getInventory(),design,device,new PageRequest(page, size));
+	}
+	
+	@Transactional
+	public String buyProducts(Map<Long,Integer> desire) {
+		for (Map.Entry<Long, Integer> entry : desire.entrySet()){
+			CaseWrapper looked = caseWrapperDao.findOne(entry.getKey());
+			if(looked==null) return "Error: Case not found";
+			if(looked.getCurrentStock()<entry.getValue()) return "That quantity of "+looked.getMyCase().getDesign().getName()+", "+looked.getMyCase().getDevice().getName()+" is not available!";
+			looked.setCurrentStock(looked.getCurrentStock()-entry.getValue());
+			if(looked.getMinimumStock()>looked.getCurrentStock()) generateOrder(looked);
+			caseWrapperDao.save(looked);
+		}
+		return "Case successfully bought!";
 	}
 	
 	public Collection<CaseWrapper> getInventoryWithDesign(String design,Integer page, Integer size) {
@@ -129,7 +121,11 @@ public class InventoryService {
 		System.out.println("return the number of cases provided by a specific provider");
 		return 0;
 	}
-
+	
+	public void generateOrder(CaseWrapper wrapper){
+		//TO IMPLEMENT
+	}
+	
 	public InventoryDao getInventoryDao() {
 		return inventoryDao;
 	}
@@ -144,20 +140,6 @@ public class InventoryService {
 
 	public void setCaseWrapperDao(CaseWrapperDao caseWrapperDao) {
 		this.caseWrapperDao = caseWrapperDao;
-	}
-
-	public String buyProduct(Long wrapperId, int quantity) {
-		// TODO Auto-generated method stub
-		CaseWrapper looked = caseWrapperDao.findOne(wrapperId);
-		if(looked==null) return "Case not found!";
-		if(looked.getCurrentStock()<quantity) return "That quantity of the product is not available!";
-		looked.setCurrentStock(looked.getCurrentStock()-quantity);
-		if(looked.getMinimumStock()>looked.getCurrentStock()) generateOrder(looked);
-		return "Case successfully bought!";
-	}
-	
-	public void generateOrder(CaseWrapper wrapper){
-		//TO IMPLEMENT
 	}
 
 	

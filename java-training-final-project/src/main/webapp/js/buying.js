@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$("#customerData").hide();
 	
 	var products = new Object();
+	var index = 0;
 	
 	$(document).on("click",".buyCase",function(){
 		var wrapperId= this.id;
@@ -12,10 +13,18 @@ $(document).ready(function(){
 		var device = data.split("_")[1];
 		$("#productQuantity").val(parseInt($("#productQuantity").val)+parseInt(quantity));
 		
-		products[wrapperId] = quantity;
+		var product = new Object();
+		product["wrapper_id"]=wrapperId;
+		product["quantity"]=quantity;
+		product["design"]=design;
+		product["device"]=device;
+		
+		products[wrapperId] = product;
+		index++;
 		$("#currentSale").html("");
 		$.each(products, function(i,v) {
-			$("#currentSale").append("<p>"+v+" items of "+i+"</p>" );
+			$("#currentSale").append(
+					"<p>"+v["quantity"]+" items of "+v["design"]+", "+v["device"]+"</p>" );
 		});
 	});
 	
@@ -29,8 +38,37 @@ $(document).ready(function(){
 	$(document).on("click","#confirmSale",function(){
 		if($("#productQuantity").val()==0) alert("You must add at least 1 item!");
 		else{
-			$("#customerData").show();
-			$("#customerData").css("visibility","visible");
+			if($('#customerData').is(':visible')) {
+				if($("#name").val().length === 0){
+					alert("Enter customer name!");
+					return false;
+				}
+				if($("#age").val().length === 0){
+					alert("Enter customer age!");
+					return false;
+				}
+				if($("#location").val().length === 0){
+					alert("Enter customer location!");
+					return false;
+				}
+				$.ajax({
+					   url: '/inventoryrest/buy/'+JSON.stringify(products),
+//					   data: {
+//					      format: 'json'
+//					   },
+					   error: function() {
+					      $('#result').html('<p>An error has occurred</p>');
+					   },
+					   success: function(data) {
+						  alert(data);
+					   },
+					   type: 'GET'
+				 });
+			}
+			else{
+				$("#customerData").show();
+				$("#customerData").css("visibility","visible");
+			}
 		}
 	});
 });

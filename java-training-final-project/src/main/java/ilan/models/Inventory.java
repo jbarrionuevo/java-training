@@ -43,8 +43,8 @@ public class Inventory {
 //	}
 	
 	
-	public void addCase(CaseProduct aCase, int quantity){
-		CaseWrapper wrapper = new CaseWrapper(aCase, 0, quantity, this);
+	public void addCase(CaseProduct aCase, int quantity, int minimumStock){
+		CaseWrapper wrapper = new CaseWrapper(aCase, minimumStock, quantity, this);
 		this.stock.add(wrapper);
 	}
 	
