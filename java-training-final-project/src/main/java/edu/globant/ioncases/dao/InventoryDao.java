@@ -5,7 +5,9 @@
  */
 package edu.globant.ioncases.dao;
 
-import edu.globant.ioncases.model.Case;
+import edu.globant.ioncases.model.CaseCover;
+import edu.globant.ioncases.model.CaseInventory;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,6 +16,6 @@ import java.util.Map;
  */
 public interface InventoryDao {
     
-    void addCase(Case caseCover,int quantity);
-    Map<Case,Integer> getAll();
+    void addCase(CaseCover caseCover,int quantity);
+    List<CaseInventory> getAll();
 }

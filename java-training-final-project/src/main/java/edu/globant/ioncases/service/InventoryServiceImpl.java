@@ -6,7 +6,9 @@
 package edu.globant.ioncases.service;
 
 import edu.globant.ioncases.dao.InventoryDao;
-import edu.globant.ioncases.model.Case;
+import edu.globant.ioncases.model.CaseCover;
+import edu.globant.ioncases.model.CaseInventory;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,12 +26,12 @@ public class InventoryServiceImpl implements InventoryService{
     InventoryDao inventoryDao;
     
     @Override
-    public void addCase(Case caseCover, int quantity) {
+    public void addCase(CaseCover caseCover, int quantity) {
        inventoryDao.addCase(caseCover, quantity);
     }
 
     @Override
-    public Map<Case, Integer> getAll() {
+    public List<CaseInventory> getAll() {
         return inventoryDao.getAll();
     }
     

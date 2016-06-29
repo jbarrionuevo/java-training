@@ -15,7 +15,7 @@ import java.util.Map;
 public class OrderSale2 {
 
     private long id;
-    private Map<Case, Integer> order = new HashMap<>();
+    private Map<CaseCover, Integer> order = new HashMap<>();
     private Customer customer;
     private Seller seller;
 
@@ -30,15 +30,15 @@ public class OrderSale2 {
         this.id = id;
     }
 
-    public Map<Case, Integer> getOrder() {
+    public Map<CaseCover, Integer> getOrder() {
         return order;
     }
 
-    public void setOrder(Map<Case, Integer> order) {
+    public void setOrder(Map<CaseCover, Integer> order) {
         this.order = order;
     }
 
-    public void addCaseToOrder(Case caseCover, int amount) {
+    public void addCaseToOrder(CaseCover caseCover, int amount) {
         // TODO: add amount not negative,  etc...
         order.put(caseCover, amount);
 

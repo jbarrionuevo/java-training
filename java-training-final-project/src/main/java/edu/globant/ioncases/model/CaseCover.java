@@ -21,22 +21,24 @@ import javax.persistence.OneToMany;
  * @author federico.calarco
  */
 @Entity
-public class Case implements Serializable {
+public class CaseCover implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String design;
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Device> compatibleDevices = new HashSet<>();
     private double price;
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Provider> providers = new HashSet<>();
 
-    public Case(String design, double price) {
+    public CaseCover(String design, double price) {
         this.design = design;
         this.price = price;
     }
+    
+    private CaseCover(){}
 
     public long getId() {
         return id;
@@ -81,7 +83,6 @@ public class Case implements Serializable {
     public Set<Provider> getProvider() {
         return providers;
     }
-
 
     public void addCompatibleDevices(Device device) {
         compatibleDevices.add(device);

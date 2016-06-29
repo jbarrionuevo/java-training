@@ -6,9 +6,7 @@
 package edu.globant.ioncases.dao;
 
 import edu.globant.ioncases.model.CaseCover;
-import edu.globant.ioncases.model.CaseInventory;
 import java.util.List;
-import java.util.Map;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author fedec
+ * @author federico.calarco
  */
 @Repository
 @Transactional
-public class InventoryDaoImpl implements InventoryDao {
+public class CaseDaoImpl implements CaseDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -31,15 +29,20 @@ public class InventoryDaoImpl implements InventoryDao {
     }
 
     @Override
-    public void addCase(CaseCover caseCover, int quantity) {
-        CaseInventory ci = new CaseInventory(caseCover,quantity);
-        getCurrentSession().save(ci);
+    public void addCase(CaseCover caseCover) {
+        System.out.println("-> " + getCurrentSession().toString());
+        System.out.println("---------------> add CASE: " + caseCover.getDesign());
+        getCurrentSession().save(caseCover);
     }
 
     @Override
-    public List<CaseInventory> getAll() {
-        return getCurrentSession().createCriteria(CaseInventory.class).list();
+    public CaseCover getCaseById(long id) {
+        return (CaseCover) getCurrentSession().get(CaseCover.class, id);
     }
 
+    @Override
+    public List<CaseCover> getAllCase() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

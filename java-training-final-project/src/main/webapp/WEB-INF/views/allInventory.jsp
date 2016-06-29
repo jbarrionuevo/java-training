@@ -27,11 +27,11 @@
                     </thead>
                     <tbody>
                         <c:forEach items="${inventory}" var="inventory">
-                            <tr onclick="addCaseToSale(${inventory.key.getId()})">
+                            <tr>
 
-                                <td>${inventory.key.getId()}</td>
-                                <td>${inventory.key.getDesign()}</td>
-                                <td>${inventory.value}</td>
+                                <td>${inventory.getId()}</td>
+                                <td>${inventory.caseCover.getDesign()}</td>
+                                <td>${inventory.stock}</td>
 
                             </tr>
                         </c:forEach>

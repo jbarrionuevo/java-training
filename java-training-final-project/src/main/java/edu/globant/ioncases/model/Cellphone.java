@@ -5,16 +5,21 @@
  */
 package edu.globant.ioncases.model;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author federico.calarco
  */
-public class Cellphone extends Device{
+@Entity
+public class Cellphone extends Device {
     
     public Cellphone(String model) {
         super(model);
     }
-    
 
-    
+    private Cellphone() {
+        super("undefined");
+    }
+
 }

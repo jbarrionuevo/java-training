@@ -5,14 +5,21 @@
  */
 package edu.globant.ioncases.model;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author federico.calarco
  */
+@Entity
 public class Tablet extends Device{
     
     public Tablet(String model) {
         super(model);
+    }
+    
+    private Tablet(){
+        super("undefined");
     }
     
 }

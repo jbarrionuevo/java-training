@@ -26,7 +26,7 @@ public class Inventory implements Serializable {
     private long id;
     
     @ElementCollection
-    private Map<Case, Integer> inventoryMap = new HashMap<>();
+    private Map<CaseCover, Integer> inventoryMap = new HashMap<>();
 
     public long getId() {
         return id;
@@ -36,11 +36,11 @@ public class Inventory implements Serializable {
         this.id = id;
     }
 
-    public Map<Case, Integer> getInventory() {
+    public Map<CaseCover, Integer> getInventory() {
         return inventoryMap;
     }
 
-    public void setInventory(Map<Case, Integer> inventory) {
+    public void setInventory(Map<CaseCover, Integer> inventory) {
         this.inventoryMap = inventory;
     }
 

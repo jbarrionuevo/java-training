@@ -6,7 +6,7 @@
 package edu.globant.ioncases.service;
 
 import edu.globant.ioncases.dao.SaleDao;
-import edu.globant.ioncases.model.Case;
+import edu.globant.ioncases.model.CaseCover;
 import edu.globant.ioncases.model.Customer;
 import edu.globant.ioncases.model.OrderSale;
 import edu.globant.ioncases.model.OrderSale2;
@@ -44,7 +44,7 @@ public class SalesServiceImpl implements SalesService {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private double calculateTotalPrice(Map<Case, Integer> orderSale) {
+    private double calculateTotalPrice(Map<CaseCover, Integer> orderSale) {
         return 0;
     }
 

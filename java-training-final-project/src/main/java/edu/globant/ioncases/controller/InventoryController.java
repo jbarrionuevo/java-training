@@ -5,8 +5,14 @@
  */
 package edu.globant.ioncases.controller;
 
-import edu.globant.ioncases.model.Case;
+import edu.globant.ioncases.dao.CaseDao;
+import edu.globant.ioncases.dao.CaseDaoImpl;
+import edu.globant.ioncases.model.CaseCover;
 import edu.globant.ioncases.model.CaseInventory;
+import edu.globant.ioncases.model.Cellphone;
+import edu.globant.ioncases.model.Device;
+import edu.globant.ioncases.model.Provider;
+import edu.globant.ioncases.model.Tablet;
 import edu.globant.ioncases.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +32,9 @@ public class InventoryController {
     @Autowired
     InventoryService inventoryService;
 
+    @Autowired
+    CaseDao caseDao;
+
     @RequestMapping(value = "/showAll", method = RequestMethod.GET)
     public String show(Model model) {
 
@@ -36,16 +45,37 @@ public class InventoryController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
+
+        Device tablet = new Tablet("Ipad 5");
+        Device celu = new Cellphone("Iphone 5");
         
-        inventoryService.addCase(new Case("desiggnnn", 20000), 99);
+        CaseCover c = new CaseCover("testDesiign", 13);
+        
+        c.addCompatibleDevices(tablet);
+        c.addCompatibleDevices(celu);
+        
+        Provider prov = new Provider();
+        prov.setName("Provedor cases apple");
+        
+        c.addProvider(prov);
+        caseDao.addCase(c);
+
+        CaseCover c2 = caseDao.getCaseById(1);
+        System.out.println("9999999999999> " + c2.getDesign() + " - " + c2.getPrice());
+        
+        inventoryService.addCase(c2, 22);
+        
+
+        
+        
+        
         return "addCaseToInventory";
     }
-    
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute(value = "CaseInventory") CaseInventory caseInventory){
-        
+    public String add(@ModelAttribute(value = "CaseInventory") CaseInventory caseInventory) {
+
         return "index";
     }
-    
 
 }

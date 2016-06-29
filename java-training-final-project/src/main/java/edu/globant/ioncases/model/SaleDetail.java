@@ -11,10 +11,10 @@ package edu.globant.ioncases.model;
  */
 public class SaleDetail {
     private long id;
-    private Case caseCover;
+    private CaseCover caseCover;
     private int quantity;
 
-    public SaleDetail(Case caseCover, int quantity) {
+    public SaleDetail(CaseCover caseCover, int quantity) {
         this.caseCover = caseCover;
         this.quantity = quantity;
     }
@@ -27,11 +27,11 @@ public class SaleDetail {
         this.id = id;
     }
 
-    public Case getCaseCover() {
+    public CaseCover getCaseCover() {
         return caseCover;
     }
 
-    public void setCaseCover(Case caseCover) {
+    public void setCaseCover(CaseCover caseCover) {
         this.caseCover = caseCover;
     }
 

@@ -16,37 +16,36 @@ import javax.persistence.OneToOne;
  *
  * @author federico.calarco
  */
-
 @Entity
 public class CaseInventory implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToOne
-    private Case caseCover;
+    private CaseCover caseCover;
     private int stock;
 
     public long getId() {
         return id;
     }
 
-    public CaseInventory(Case caseCover, int stock) {
+    public CaseInventory(CaseCover caseCover, int stock) {
         this.caseCover = caseCover;
         this.stock = stock;
     }
+    
+    private CaseInventory(){};
 
-    
-    
     public void setId(long id) {
         this.id = id;
     }
 
-    public Case getCaseCover() {
+    public CaseCover getCaseCover() {
         return caseCover;
     }
 
-    public void setCaseCover(Case caseCover) {
+    public void setCaseCover(CaseCover caseCover) {
         this.caseCover = caseCover;
     }
 
@@ -57,7 +56,5 @@ public class CaseInventory implements Serializable {
     public void setStock(int stock) {
         this.stock = stock;
     }
-    
-    
-    
+
 }
