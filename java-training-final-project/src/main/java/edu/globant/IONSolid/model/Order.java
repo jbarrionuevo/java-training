@@ -39,6 +39,4 @@ public class Order {
 	public List<ProductCase> getOrderItems() {
 		return orderItems;
 	}
-	
-
 }

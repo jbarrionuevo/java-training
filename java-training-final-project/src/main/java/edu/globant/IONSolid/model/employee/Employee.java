@@ -1,6 +1,6 @@
 package edu.globant.IONSolid.model.employee;
 
-public abstract class Employee {
+public class Employee {
 
 	private Long employeeId;
 	private String name;
@@ -13,6 +13,7 @@ public abstract class Employee {
 	private EmployeeDepartment role;
 	
 	public Employee(Long id, String name, String lastName, int age, boolean gender, String adress, EmployeeDepartment role) {
+		this.employeeId = id;
 		this.setName(name);
 		this.setLastName(lastName);
 		this.setAge(age);

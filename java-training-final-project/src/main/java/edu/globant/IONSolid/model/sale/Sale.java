@@ -3,6 +3,7 @@ package edu.globant.IONSolid.model.sale;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edu.globant.IONSolid.model.Customer;
 import edu.globant.IONSolid.model.cases.ProductCase;
@@ -96,6 +97,10 @@ public class Sale {
 		} else {
 			throw new SaleModificationException("Modifications for this sale are not allow. State: " + this.saleState);
 		}
+	}
+	
+	public List<SaleProductDetail> getSaleDetails() {
+		return saleProductDetails.stream().collect(Collectors.toList());
 	}
 
 	public Long getIdSale() {

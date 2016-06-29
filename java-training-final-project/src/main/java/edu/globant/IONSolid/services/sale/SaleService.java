@@ -1,12 +1,15 @@
-package edu.globant.IONSolid.services;
+package edu.globant.IONSolid.services.sale;
 
+import edu.globant.IONSolid.model.registry.Registry;
+import edu.globant.IONSolid.model.registry.sale.SaleRegistry;
 import edu.globant.IONSolid.model.sale.Sale;
 import edu.globant.IONSolid.model.sale.SaleState;
+import edu.globant.IONSolid.services.warehouse.WarehouseService;
 
 public class SaleService {
 
 	private WarehouseService warehouseService;
-	private Registry<Sale> saleRegistry;
+	private Registry<Long, Sale> saleRegistry;
 	
 	public SaleService(WarehouseService warehouseService, SaleRegistry saleRegistry) {
 		this.warehouseService = warehouseService;
