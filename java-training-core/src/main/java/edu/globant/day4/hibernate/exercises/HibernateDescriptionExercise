@@ -1,0 +1,5 @@
+I only used hibernate when i was doing the java bootcamp, as my last project´s backend was like a black box i didn`t used it there.
+I think the benefits are that its easier to do all queries to database since we don't need to get and set every field like with JDBC.
+Another benefit is about coding, it`s easier and cleaner. 
+The big differences i see is JDBC needs more code and do some stuff that hibernate solves for you, in other hand JDBC can be useful to
+understand how frameworks works.  

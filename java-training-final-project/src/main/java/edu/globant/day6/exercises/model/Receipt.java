@@ -1,14 +1,25 @@
-package edu.globant.day1.ddd.exercises.model;
+package edu.globant.day6.exercises.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Receipt {
 
+	@Id
+	@GeneratedValue
+	private Long id;
+	@ManyToOne
 	private Customer customer;
 	private Date dateOfSale;
+	@OneToOne
 	private Order order;
 	private String store;
-	private int id;
 
 	public Customer getCustomer() {
 		return customer;
@@ -40,11 +51,6 @@ public class Receipt {
 
 	public void setOrder(Order order) {
 		this.order = order;
-	}
-
-	public int getId() {
-		// TODO Auto-generated method stub
-		return id;
 	}
 
 }

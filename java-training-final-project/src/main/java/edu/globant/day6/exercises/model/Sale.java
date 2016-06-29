@@ -1,17 +1,21 @@
-package edu.globant.day1.ddd.exercises.model;
+package edu.globant.day6.exercises.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import edu.globant.day6.exercises.enums.Status;
+
+@Entity
 public class Sale {
-
+	@Id
+	@GeneratedValue
+	private Long id;
+	@OneToOne
 	private Receipt receipt;
 	private Status status;
 	private double total;
-	private int id;
-
-	public Sale(Receipt receipt, Status status, double total) {
-		this.receipt = receipt;
-		this.status = status;
-		this.total = total;
-	}
 
 	public Status getStatus() {
 		return status;
@@ -35,14 +39,6 @@ public class Sale {
 
 	public void setTotal(double total) {
 		this.total = total;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 }
