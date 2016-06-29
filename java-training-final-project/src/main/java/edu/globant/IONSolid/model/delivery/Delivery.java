@@ -3,7 +3,7 @@ package edu.globant.IONSolid.model.delivery;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import edu.globant.IONSolid.model.cases.Case;
+import edu.globant.IONSolid.model.cases.CaseModel;
 import edu.globant.IONSolid.model.provider.Provider;
 
 public class Delivery {
@@ -11,7 +11,7 @@ public class Delivery {
 	private Provider provider;
 	private Date deliverDate;
 	private DeliveryStatus status; 
-	private ArrayList<Case> cases;
+	private ArrayList<CaseModel> cases;
 	
 	public Delivery(Provider provider, Date date) {
 		this.setProvider(provider);
@@ -20,7 +20,7 @@ public class Delivery {
 		this.setStatus(DeliveryStatus.ON_DATE); 
 	}
 	
-	public void addCases(Case newCase) {
+	public void addCases(CaseModel newCase) {
 		if(this.getDeliveryAmount() + 1 < this.getDeliveryAmount()) {
 			this.cases.add(newCase);
 		} else {

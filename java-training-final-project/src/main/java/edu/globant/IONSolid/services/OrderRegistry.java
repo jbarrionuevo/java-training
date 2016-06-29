@@ -7,14 +7,14 @@ import edu.globant.IONSolid.model.Order;
 
 public class OrderRegistry implements Registry<Order> {
 	
-	private Map<String, Order> orderRegistry;
+	private Map<Long, Order> orderRegistry;
 	
 	public OrderRegistry() {
-		this.orderRegistry = new HashMap<String, Order>();
+		this.orderRegistry = new HashMap<Long, Order>();
 	}
 	
 	@Override
-	public Order getRegister(String id) {
+	public Order getRegister(Long id) {
 		if(this.orderRegistry.containsKey(id)) {
 			return this.orderRegistry.get(id);
 		} 

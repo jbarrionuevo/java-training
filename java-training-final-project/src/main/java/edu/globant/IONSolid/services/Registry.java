@@ -2,7 +2,7 @@ package edu.globant.IONSolid.services;
 
 public interface Registry<T> {
 	
-	public T getRegister(String id);
+	public T getRegister(Long id);
 	
 	public void insertRegister(T object);
 	

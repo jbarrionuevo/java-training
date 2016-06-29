@@ -7,14 +7,14 @@ import edu.globant.IONSolid.model.sale.Sale;
 
 public class SaleRegistry implements Registry<Sale> {
 
-	private Map<String, Sale> saleRegistry;
+	private Map<Long, Sale> saleRegistry;
 	
 	public SaleRegistry() {
-		this.saleRegistry = new HashMap<String, Sale>();
+		this.saleRegistry = new HashMap<Long, Sale>();
 	}
 	
 	@Override
-	public Sale getRegister(String id) {
+	public Sale getRegister(Long id) {
 		if(this.saleRegistry.containsKey(id)) {
 			return this.saleRegistry.get(id);
 		} 

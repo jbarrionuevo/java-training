@@ -5,69 +5,116 @@ import java.util.Date;
 import java.util.List;
 
 import edu.globant.IONSolid.model.Customer;
-import edu.globant.IONSolid.model.cases.CaseItem;
-import edu.globant.IONSolid.model.employee.SaleEmployee;
+import edu.globant.IONSolid.model.cases.ProductCase;
+import edu.globant.IONSolid.model.employee.Employee;
+import edu.globant.IONSolid.model.sale.exception.NotFoundProductException;
+import edu.globant.IONSolid.model.sale.exception.SaleModificationException;
 
 public class Sale {
 
-	private String idSale;
-	private SaleEmployee seller;
+	private Long idSale;
+	private Employee seller;
 	private SaleState saleState;
 	private Date saleCreationDate;
 	private Customer saleCustomer;
-	private List<CaseItem> saleItems = null;
+	private List<SaleProductDetail> saleProductDetails;
 
-	public Sale(String idSale, SaleEmployee saleEmployee, Customer saleCustomer) {
+	public Sale(Long idSale, Employee saleEmployee, Customer saleCustomer) {
 		this.idSale = idSale;
 		this.seller = saleEmployee;
 		this.saleState = SaleState.DRAFT;
+		// set with the date of the draft creation
 		this.saleCreationDate = new Date();
-		this.saleItems = new ArrayList<CaseItem>();
+		this.saleProductDetails = new ArrayList<SaleProductDetail>();
 		this.saleCustomer = saleCustomer;
 	}
 
-	public Sale(String idSale, SaleEmployee saleEmployee, Customer saleCustomer, List<CaseItem> saleItems) {
-		this.idSale = idSale;
-		this.seller = saleEmployee;
-		this.saleState = SaleState.DRAFT;
-		this.saleCreationDate = new Date();
-		this.saleItems = saleItems;
-		this.saleCustomer = saleCustomer;
+	public void setNewSaleState(SaleState newState) {
+		if (newState.equals(SaleState.PAID)) {
+			// Override the draft creation date with the payment one
+			saleCreationDate = new Date();
+		}
+		this.saleState = newState;
 	}
 
-	public String getIdSale() {
+	public Double getSaleTotal() {
+		return saleProductDetails.stream().
+				mapToDouble(s -> s.getTotalPrice()).sum();
+	}
+
+	public void addProducts(ProductCase newProduct, Integer quantity) throws SaleModificationException {
+		// If the sale is a draft, new products are allow
+		if (this.saleState.equals(SaleState.DRAFT)) {
+			addSaleDetail(newProduct, quantity);
+		} else {
+			throw new SaleModificationException("Modifications for this sale are not allow. State: " + this.saleState);
+		}
+	}
+
+	public SaleProductDetail getSaleProductDetail(ProductCase newProduct) {
+		for (SaleProductDetail s : this.saleProductDetails) {
+			boolean cond = s.getProductCase().getCaseProductId().equals(newProduct.getCaseProductId());
+			if (cond) {
+				return s;
+			}
+		}
+		return null;
+	}
+
+	private void addSaleDetail(ProductCase newProduct, Integer quantity) {
+		SaleProductDetail detail = getSaleProductDetail(newProduct);
+		// If the detail for the product exists
+		if (detail != null) {
+			detail.setProductQuantity(detail.getProductQuantity() + quantity);
+		} else {
+			saleProductDetails.add(new SaleProductDetail(newProduct, quantity));
+		}
+	}
+
+	public void removeSaleDetail(ProductCase product) throws SaleModificationException {
+		// If the sale is a draft, to remove products is allow
+		if (this.saleState.equals(SaleState.DRAFT)) {
+			saleProductDetails.removeIf(s -> s.getProductCase().
+					getCaseProductId().equals(product.getCaseProductId()));
+		} else {
+			throw new SaleModificationException("Modifications for this sale are not allow. State: " + this.saleState);
+		}
+	}
+
+	public void removeSaleProducts(ProductCase product, Integer quantity)
+			throws NotFoundProductException, SaleModificationException {
+		SaleProductDetail detail;
+		// If the sale is a draft, to remove products is allow
+		if (this.saleState.equals(SaleState.DRAFT)) {
+			detail = getSaleProductDetail(product);
+			if (detail != null) {
+				detail.setProductQuantity(detail.getProductQuantity() - quantity);
+			} else {
+				throw new NotFoundProductException("The product detail was not found for this product");
+			}
+
+		} else {
+			throw new SaleModificationException("Modifications for this sale are not allow. State: " + this.saleState);
+		}
+	}
+
+	public Long getIdSale() {
 		return idSale;
 	}
+	
+	public Customer getCustomer() {
+		return this.saleCustomer;
+	}
 
-	public SaleEmployee getSeller() {
+	public Employee getSeller() {
 		return seller;
 	}
 
 	public SaleState getSaleState() {
 		return saleState;
 	}
-	
-	public void setNewSaleState(SaleState newState) {
-		this.saleState = newState;
-	}
 
 	public Date getSaleCreationDate() {
-		return saleCreationDate;
-	}
-
-	public Double getSellAmount() {
-		return saleItems.stream().mapToDouble(i -> i.getPrice()).sum();
-	}
-
-	public void addSaleItems(CaseItem newItem) {
-		saleItems.add(newItem);
-	}
-
-	public void removeSaleItems(CaseItem saleItem) {
-		saleItems.removeIf(i -> i.getCaseItemId().equals(saleItem.getCaseItemId()));
-	}
-	
-	public Customer getCustomer() {
-		return this.saleCustomer;
+		return this.saleCreationDate;
 	}
 }

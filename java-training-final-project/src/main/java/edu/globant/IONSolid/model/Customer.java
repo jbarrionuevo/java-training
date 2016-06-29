@@ -2,20 +2,26 @@ package edu.globant.IONSolid.model;
 
 public class Customer {
 
+	private Long customerId;
 	private String name;
 	private String lastName;
 	private int age;
-	//true -- male
-	//false -- woman
+	// true -- male
+	// false -- woman
 	private boolean gender;
 	private String location;
-	
-	public Customer(String name, String lastName, int age, boolean gender, String location) {
+
+	public Customer(Long customerId, String name, String lastName, int age, boolean gender, String location) {
+		this.customerId = customerId;
 		this.setName(name);
 		this.setLastName(lastName);
 		this.setAge(age);
 		this.setGender(gender);
 		this.setLocation(location);
+	}
+
+	public Long getCustomerId() {
+		return customerId;
 	}
 
 	public String getName() {
@@ -57,5 +63,5 @@ public class Customer {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
+
 }

@@ -2,20 +2,27 @@ package edu.globant.IONSolid.model.employee;
 
 public abstract class Employee {
 
+	private Long employeeId;
 	private String name;
 	private String lastName;
 	private int age;
 	//true -- male
 	//false -- woman
 	private boolean gender;
-	private String adress;
+	private String address;
+	private EmployeeDepartment role;
 	
-	public Employee(String name, String lastName, int age, boolean gender, String adress) {
+	public Employee(Long id, String name, String lastName, int age, boolean gender, String adress, EmployeeDepartment role) {
 		this.setName(name);
 		this.setLastName(lastName);
 		this.setAge(age);
 		this.setGender(gender);
 		this.setAdress(adress);
+		this.role = role;
+	}
+	
+	public Long getEmployeeId() {
+		return this.employeeId;
 	}
 
 	public String getName() {
@@ -51,11 +58,15 @@ public abstract class Employee {
 	}
 
 	public String getAdress() {
-		return adress;
+		return address;
 	}
 
 	public void setAdress(String adress) {
-		this.adress = adress;
+		this.address = adress;
+	}
+	
+	public EmployeeDepartment getRole() {
+		return this.role;
 	}
 	
 }

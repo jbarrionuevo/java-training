@@ -7,11 +7,11 @@ import edu.globant.IONSolid.model.cases.*;
 
 public class WarehouseInventory {
 
-	private Map<String, Case> warehouseItems;
+	private Map<String, CaseModel> warehouseItems;
 	private static WarehouseInventory instance; 
 	
 	private WarehouseInventory() {
-		warehouseItems = new HashMap<String, Case>();
+		warehouseItems = new HashMap<String, CaseModel>();
 	}
 	
 	public static WarehouseInventory getInstance() {

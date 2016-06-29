@@ -23,7 +23,7 @@ public class SaleService {
 		}
 	}
 	
-	public Sale getASale(String saleId) {
+	public Sale getASale(Long saleId) {
 		return this.saleRegistry.getRegister(saleId);
 	}
 	

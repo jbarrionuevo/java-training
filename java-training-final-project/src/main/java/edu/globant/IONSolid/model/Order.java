@@ -2,18 +2,19 @@ package edu.globant.IONSolid.model;
 
 import java.util.List;
 
-import edu.globant.IONSolid.model.cases.CaseItem;
+import edu.globant.IONSolid.model.cases.ProductCase;
 import edu.globant.IONSolid.model.delivery.Delivery;
 import edu.globant.IONSolid.model.provider.Provider;
 
 public class Order {
 
-	private String orderId;
+	private Long orderId;
 	private Provider orderProvider;
 	private Delivery orderDelivery;
-	private List<CaseItem> orderItems;
+	private List<ProductCase> orderItems;
+	private Double price;
 	
-	public Order(String orderId, Provider orderProvider, List<CaseItem> orderItems) {
+	public Order(Long orderId, Provider orderProvider, List<ProductCase> orderItems) {
 		this.orderId = orderId;
 		this.orderProvider = orderProvider;
 		this.orderItems = orderItems;
@@ -27,7 +28,7 @@ public class Order {
 		this.orderDelivery = orderDelivery;
 	}
 
-	public String getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
 
@@ -35,7 +36,7 @@ public class Order {
 		return orderProvider;
 	}
 
-	public List<CaseItem> getOrderItems() {
+	public List<ProductCase> getOrderItems() {
 		return orderItems;
 	}
 	

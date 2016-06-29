@@ -1,17 +1,29 @@
 package edu.globant.IONSolid.model.provider;
 
+import java.util.List;
+
+import edu.globant.IONSolid.model.cases.CaseDesign;
+
 public class Provider {
 	
+	private Long providerId;
 	private String name;
 	private String phoneNumber;
-	private String providerType; 
+	private List<CaseDesign> providerDesignTypes; 
 	
-	public Provider(String name, String phoneNumber, String providerType) {
+	public Provider(Long providerId, String name, String phoneNumber, CaseDesign ...designs) {
+		this.providerId = providerId;
 		this.setName(name);
 		this.setPhoneNumber(phoneNumber);
-		this.setProviderType(providerType);
+		for(CaseDesign c : designs) {
+			this.addProviderCaseDesignType(c);
+		}
 	}
 
+	public Long getProviderId() {
+		return providerId;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -28,11 +40,11 @@ public class Provider {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getProviderType() {
-		return providerType;
+	public List<CaseDesign> getProviderType() {
+		return providerDesignTypes;
 	}
 
-	public void setProviderType(String providerType) {
-		this.providerType = providerType;
+	public void addProviderCaseDesignType(CaseDesign design) {
+		this.providerDesignTypes.add(design);
 	}
 }
