@@ -1,6 +1,7 @@
 package ilan.services;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -13,13 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import ilan.daos.CaseOrderDao;
 import ilan.daos.CaseProductDao;
 import ilan.daos.CaseWrapperDao;
 import ilan.daos.InventoryDao;
+import ilan.exceptions.CaseWrapperNotFoundException;
 import ilan.models.CaseProduct;
 import ilan.models.CaseWrapper;
 import ilan.models.CaseDesign;
 import ilan.models.CaseDevice;
+import ilan.models.CaseOrder;
 import ilan.models.Inventory;
 import ilan.models.Provider;
 
@@ -36,6 +40,9 @@ public class InventoryService {
 	
 	@Autowired
 	private CaseProductDao caseProductDao;
+	
+	@Autowired
+	private CaseOrderDao caseOrderDao;
 	
 	public Inventory getInventory(){
 		return inventoryDao.findAll().get(0);
@@ -72,6 +79,13 @@ public class InventoryService {
 	    		.collect(Collectors.groupingBy(CaseProduct::getDevice)).keySet();
 	}
 	
+	public void setMinimumStock(int minimumStock, CaseProduct aCase){
+		CaseWrapper wrapper = caseWrapperDao.findByMyCase(aCase);
+		if(wrapper==null) throw new CaseWrapperNotFoundException(aCase.toString());
+		wrapper.setMinimumStock(minimumStock);
+		caseWrapperDao.save(wrapper);
+	}
+	
 	public void incrementStock(CaseProduct aCase, int quantity, int minimumStock){
 		Inventory inventory = this.getInventory();
 		try{
@@ -99,7 +113,9 @@ public class InventoryService {
 			if(looked==null) return "Error: Case not found";
 			if(looked.getCurrentStock()<entry.getValue()) return "That quantity of "+looked.getMyCase().getDesign().getName()+", "+looked.getMyCase().getDevice().getName()+" is not available!";
 			looked.setCurrentStock(looked.getCurrentStock()-entry.getValue());
-			if(looked.getMinimumStock()>looked.getCurrentStock()) generateOrder(looked);
+			if(looked.getMinimumStock()>looked.getCurrentStock()){
+				//generateOrder(looked);
+			}
 			caseWrapperDao.save(looked);
 		}
 		return "Case successfully bought!";
@@ -122,10 +138,6 @@ public class InventoryService {
 		return 0;
 	}
 	
-	public void generateOrder(CaseWrapper wrapper){
-		//TO IMPLEMENT
-	}
-	
 	public InventoryDao getInventoryDao() {
 		return inventoryDao;
 	}
@@ -140,6 +152,14 @@ public class InventoryService {
 
 	public void setCaseWrapperDao(CaseWrapperDao caseWrapperDao) {
 		this.caseWrapperDao = caseWrapperDao;
+	}
+
+	public CaseOrderDao getCaseOrderDao() {
+		return caseOrderDao;
+	}
+
+	public void setCaseOrderDao(CaseOrderDao caseOrderDao) {
+		this.caseOrderDao = caseOrderDao;
 	}
 
 	
