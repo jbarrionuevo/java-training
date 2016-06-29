@@ -7,8 +7,8 @@ import edu.globant.finalProject.model.Provider.Provider;
 
 public class TabletCase extends Case{
 
-	public TabletCase(int id, String name, TreeSet<Provider> providers,ArrayList<Device> devices, Design design, double price, int minimum) {
-		super(id, name, providers, devices, design, price, minimum);
+	public TabletCase(String name, ArrayList<Device> devices, Design design, double price) {
+		super(name, devices, design, price);
 	}
 
 	

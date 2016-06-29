@@ -1,18 +1,23 @@
 package edu.globant.finalProject.model.Inventory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.globant.finalProject.model.Case.Case;
 
 public class Inventory{
-	private HashMap<Case,Integer> cases;
 
-	public HashMap<Case, Integer> getCases() {
-		return cases;
+	@Autowired
+	private ArrayList<CaseStock> casesStock;
+
+	public ArrayList<CaseStock> getCasesStock() {
+		return casesStock;
 	}
 
-	public void setCases(HashMap<Case, Integer> cases) {
-		this.cases = cases;
+	public void setCasesStock(ArrayList<CaseStock> casesStock) {
+		this.casesStock = casesStock;
 	}
 	
 }

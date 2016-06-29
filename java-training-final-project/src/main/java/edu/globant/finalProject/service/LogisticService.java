@@ -1,10 +1,13 @@
 package edu.globant.finalProject.service;
 
+import java.util.ArrayList;
+
 import edu.globant.finalProject.model.Case.Case;
+import edu.globant.finalProject.model.Provider.Order;
 import edu.globant.finalProject.model.Provider.Provider;
-import edu.globant.finalProject.model.Sale.Sale;
 
 public interface LogisticService {
-	public void orderToProvider(Provider p, Case c);
-	public void registerASale(Sale s);
+	public Order createAnOrder(Provider provider);
+	public Order orderToProvider(Order order,ArrayList<Case> cases);
+	public void registerAnOrder(Order order);
 }

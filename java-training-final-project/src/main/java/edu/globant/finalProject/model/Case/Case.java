@@ -5,43 +5,29 @@ import java.util.TreeSet;
 
 import org.apache.commons.lang3.Validate;
 
+import edu.globant.finalProject.hibernate.BaseEntity;
 import edu.globant.finalProject.model.Provider.Provider;
 
-public class Case {
-
-	private int id;
+public class Case extends BaseEntity{
+	
 	private String name;
-	private TreeSet<Provider> providers;
+	//TODO: debería autoasignarse
+	private Provider provider;
 	private ArrayList<Device> devices;
 	private Design design;
 	protected double price;
-	protected int MINIMUM_QUANTITY;
 
-	public Case(int id, String name, TreeSet<Provider> providers,ArrayList<Device> devices, Design design, double price, int minimum) {
+	public Case(String name,ArrayList<Device> devices, Design design, double price) {
 		
-		Validate.notNull(id,"The id cannot be null");
 		Validate.notBlank(name,"The name cannot be blank");
-		Validate.notEmpty(providers,"It must have at least one provider");
 		Validate.notEmpty(devices,"It must have at least one device");
 		Validate.notNull(design,"The design cannot be null");
 		Validate.notNull(price,"The price cannot be null");
-		Validate.notNull(minimum,"The minimum quantity cannot be null");
 		
-		this.id = id;
 		this.name = name;
-		this.MINIMUM_QUANTITY = minimum;
-		this.providers = providers;
 		this.devices = devices;
 		this.design = design;
 		this.price = price;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public Design getDesign() {
@@ -60,12 +46,12 @@ public class Case {
 		this.devices = devices;
 	}
 
-	public TreeSet<Provider> getProviders() {
-		return providers;
+	public Provider getProvider() {
+		return provider;
 	}
 
-	public void setProviders(TreeSet<Provider> providers) {
-		this.providers = providers;
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 
 	public double getPrice() {
@@ -74,14 +60,6 @@ public class Case {
 
 	public void setPrice(double price) {
 		this.price = price;
-	}
-
-	public int getMINIMUM_QUANTITY() {
-		return MINIMUM_QUANTITY;
-	}
-
-	public void setMINIMUM_QUANTITY(int mINIMUM_QUANTITY) {
-		MINIMUM_QUANTITY = mINIMUM_QUANTITY;
 	}
 
 	public String getName() {

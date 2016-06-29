@@ -1,26 +1,38 @@
 package edu.globant.finalProject.service;
 
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import edu.globant.finalProject.dao.EmployeeDAO;
 import edu.globant.finalProject.model.Case.Case;
+import edu.globant.finalProject.model.Provider.Order;
 import edu.globant.finalProject.model.Provider.Provider;
 import edu.globant.finalProject.model.Sale.Sale;
 
+@Service
 public class LogisticServiceImpl implements LogisticService{
+	
+	@Autowired
+	EmployeeDAO employeeDAO;
 
 	@Override
-	public void orderToProvider(Provider p, Case c) {
-		System.out.println("making an order to: "+p.getName()+" of case: "+c.getName());
-	}
-
-	@Override
-	public void registerASale(Sale s) {
-		System.out.println("Registering a sale: "+s.toString());
-		
-		//TODO: cómo hago para consultarle el lowStock? porque no lo tiene Case, lo tiene el ServiceCaseImpl
-//		for (Case c : s.getReceipt().getCases()) {
-//			if(c.hasLowStock()){
-//				
-//			}
-//		}
+	public Order createAnOrder(Provider provider) {
+		//TODO: está bien esto? como lo podría manejar con el Autowired para que siempre cree una nueva instancia?
+		return new Order(provider);
 	}
 	
+	@Override
+	public Order orderToProvider(Order order, ArrayList<Case> cases) {
+		order.setCases(cases);
+		return order;
+	}
+
+	@Transactional
+	@Override
+	public void registerAnOrder(Order order) {
+		employeeDAO.registerOrder(order);
+	}
 }

@@ -1,28 +1,22 @@
 package edu.globant.finalProject.model.Employee;
 
 import java.util.Date;
-import org.apache.commons.lang3.Validate;
 
-public class Employee{
-	private TypeOfEmployee typeOfEmployee;
+import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public abstract class Employee{
+	
 	private String name;
 	private String lastName;
 	private Date birthDate;
 	
-	public Employee(final String name,TypeOfEmployee typeOfEmployee){
+	public Employee(final String name){
 		Validate.notBlank(name,"The name cannot be blank");
-		Validate.notNull(typeOfEmployee,"The type of employee cannot be null");
 		
 		this.name = name;
-		this.typeOfEmployee = typeOfEmployee;
 	}
 	
-	public TypeOfEmployee getTypeOfEmployee() {
-		return typeOfEmployee;
-	}
-	public void setTypeOfEmployee(TypeOfEmployee typeOfEmployee) {
-		this.typeOfEmployee = typeOfEmployee;
-	}
 	public String getName() {
 		return name;
 	}

@@ -3,11 +3,14 @@ package edu.globant.finalProject.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.globant.finalProject.dao.CaseDAO;
 import edu.globant.finalProject.model.Case.Case;
 import edu.globant.finalProject.model.Inventory.Inventory;
 
+@Service
 public class CaseServiceImpl implements CaseService{
 	
 	@Autowired
@@ -16,6 +19,7 @@ public class CaseServiceImpl implements CaseService{
 	@Autowired
 	Inventory inventory;
 
+	@Transactional
 	@Override
 	public void create(Case c) {
 		caseDAO.save(c);
@@ -29,26 +33,18 @@ public class CaseServiceImpl implements CaseService{
 
 	@Override
 	public Case get(int id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public void update(Case c) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public int checkStock(Case c) {
-		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	//TODO: cómo resolver esto? hasLowStock puede estar en el DTO de Case o tiene que estar en el servicio?
-	@Override
-	public boolean hasLowStock(Case c) {
-		return inventory.getCases().get(c) <= c.getMINIMUM_QUANTITY();
 	}
 
 }

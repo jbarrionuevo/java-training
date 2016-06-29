@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import edu.globant.finalProject.model.Sale.Sale;
 
 
-public class Seller implements TypeOfEmployee{
-	private ArrayList<Sale> sales;
+public class Seller extends Employee{
 	
-	public Seller(){
-		super();
+	public Seller(String name) {
+		super(name);
 	}
+
+	private ArrayList<Sale> sales;
 	
 	public ArrayList<Sale> getSales() {
 		return sales;
