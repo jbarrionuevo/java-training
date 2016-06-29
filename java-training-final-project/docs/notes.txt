@@ -1,0 +1,5 @@
+2016-06-29T01:13:01.109283Z 1 [Note] A temporary password 
+is generated for root@localhost: &#XdpHiS+0,y
+
+If you lose this password, please consult the section How to 
+Reset the Root Password in the MySQL reference manual.

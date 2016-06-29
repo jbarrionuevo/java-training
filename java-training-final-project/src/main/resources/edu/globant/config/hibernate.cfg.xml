@@ -6,6 +6,9 @@
 
 	<session-factory>
 		<!-- Database connection settings -->
+		<!-- Added by jbarrionuevo 
+		<property name="hbm2ddl.auto">create</property>
+		-->
 		<!-- Delegated to the data source -->
 
 		<!-- SQL dialect -->
@@ -18,5 +21,7 @@
 		<property name="current_session_context_class">thread</property>
 		<property name="hibernate.jdbc.batch_size">50</property>
 		<property name="hibernate.jdbc.batch_versioned_data">true</property>
+		
+		
 	</session-factory>
 </hibernate-configuration>
