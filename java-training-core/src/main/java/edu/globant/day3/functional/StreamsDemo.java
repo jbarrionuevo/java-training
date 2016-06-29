@@ -1,6 +1,7 @@
 package edu.globant.day3.functional;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.unmodifiableList;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,7 +15,7 @@ class StudentWithTutor {
 
 	public StudentWithTutor(String name, List<Double> gradeList, String tutor) {
 		this.name = name;
-		this.gradeList = gradeList;
+		this.gradeList = unmodifiableList(gradeList);
 		this.tutor = tutor;
 	}
 
@@ -49,6 +50,7 @@ public class StreamsDemo {
 				.collect(Collectors.toList());
 		showStudents(studentsWithGradeAbove10);
 		System.out.println("----------------------------------------------------------");
+<<<<<<< HEAD
 		Map<String, List<StudentWithTutor>> studentsByTutor = studentList.stream()
 				.collect(Collectors.groupingBy(StudentWithTutor::getTutor));
 		studentsByTutor.entrySet().stream().forEach(e -> {
@@ -62,6 +64,28 @@ public class StreamsDemo {
 			System.out.println(e.getKey() + "'s students: ");
 			showStudents(e.getValue());
 		});
+=======
+		Map<String, List<StudentWithTutor>> studentsByTutor =
+				studentList.stream()
+					.collect(Collectors.groupingBy(StudentWithTutor::getTutor));
+		studentsByTutor.entrySet().stream()
+			.forEach(e -> {
+				System.out.println(e.getKey() + "'s students: ");
+				showStudents(e.getValue());
+			});
+		System.out.println("----------------------------------------------------------");
+		Map<String, List<StudentWithTutor>> studentsByTutorOrdered =
+				studentList.stream()
+					.collect(Collectors.groupingBy(
+							StudentWithTutor::getTutor,
+							LinkedHashMap::new,
+							Collectors.toList()));
+		studentsByTutorOrdered.entrySet().stream()
+			.forEach(e -> {
+				System.out.println(e.getKey() + "'s students: ");
+				showStudents(e.getValue());
+			});
+>>>>>>> master
 		System.out.println("----------------------------------------------------------");
 		Double classAverageGrade = studentList.stream().flatMap(s -> s.getGradeList().stream())
 				.mapToDouble(Double::doubleValue).average().orElse(10d);

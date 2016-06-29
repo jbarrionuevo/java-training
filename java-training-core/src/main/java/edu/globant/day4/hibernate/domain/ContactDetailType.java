@@ -2,7 +2,7 @@ package edu.globant.day4.hibernate.domain;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class ContactDetailType extends BaseEntity {
 	private String description;
 
