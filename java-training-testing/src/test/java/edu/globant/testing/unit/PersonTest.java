@@ -22,7 +22,6 @@ public class PersonTest {
     @Test
     public void createWithValidName() {
         Person person = new Person("test");
-
         assertThat("The name of the person just created does not match",
                 person.getName(), equalTo("test"));
     }
@@ -37,7 +36,6 @@ public class PersonTest {
     @Test(expected = IllegalArgumentException.class)
     public void sayHelloWithBlankMessage() {
         Person person = new Person("test");
-
         person.sayHello(StringUtils.EMPTY);
     }
 
