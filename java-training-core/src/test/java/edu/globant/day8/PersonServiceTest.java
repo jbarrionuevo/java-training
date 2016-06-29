@@ -11,10 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import edu.globant.day8.Person;
-import edu.globant.day8.PersonDao;
-import edu.globant.day8.PersonService;
-
 public class PersonServiceTest {
 
 	PersonService personService;

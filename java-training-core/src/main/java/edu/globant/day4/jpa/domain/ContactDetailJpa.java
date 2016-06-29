@@ -1,4 +1,4 @@
-package edu.globant.day4.hibernate.domain;
+package edu.globant.day4.jpa.domain;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
@@ -10,25 +10,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-//@Entity
+@Entity
 @Table(name = "contactdetails")
-public class ContactDetail extends BaseEntity {
+public class ContactDetailJpa extends BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "contactId")
-	private Contact contact;
+	private ContactJpa contact;
 	private String details;
 	@Temporal(TIMESTAMP)
 	private Date creationDate;
 	@ManyToOne(optional=false)
 	@JoinColumn(name = "contactDetailType", insertable=true, updatable=false)
-	private ContactDetailType contactDetailType;
+	private ContactDetailTypeJpa contactDetailType;
 
-	public Contact getContact() {
+	public ContactJpa getContact() {
 		return contact;
 	}
 
-	public void setContact(Contact contact) {
+	public void setContact(ContactJpa contact) {
 		this.contact = contact;
 	}
 
@@ -48,11 +48,11 @@ public class ContactDetail extends BaseEntity {
 		this.creationDate = creationDate;
 	}
 
-	public ContactDetailType getContactDetailType() {
+	public ContactDetailTypeJpa getContactDetailType() {
 		return contactDetailType;
 	}
 
-	public void setContactDetailType(ContactDetailType contactDetailType) {
+	public void setContactDetailType(ContactDetailTypeJpa contactDetailType) {
 		this.contactDetailType = contactDetailType;
 	}
 

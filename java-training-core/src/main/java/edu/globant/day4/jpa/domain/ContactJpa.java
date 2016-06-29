@@ -1,4 +1,4 @@
-package edu.globant.day4.hibernate.domain;
+package edu.globant.day4.jpa.domain;
 
 import java.util.Date;
 import java.util.List;
@@ -6,11 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-//@Entity
-public class Contact extends BaseEntity {
+@Entity
+@Table(name="contact")
+public class ContactJpa extends BaseEntity {
 
 	private String firstName;
 	private String lastName;
@@ -20,7 +22,7 @@ public class Contact extends BaseEntity {
 	private Date creationDate;
 
 	@OneToMany(mappedBy = "contact", cascade=CascadeType.ALL)
-	private List<ContactDetail> contactDetailList;
+	private List<ContactDetailJpa> contactDetailList;
 
 	public String getFirstName() {
 		return firstName;
@@ -54,11 +56,11 @@ public class Contact extends BaseEntity {
 		this.creationDate = creationDate;
 	}
 
-	public List<ContactDetail> getContactDetailList() {
+	public List<ContactDetailJpa> getContactDetailList() {
 		return contactDetailList;
 	}
 
-	public void setContactDetailList(List<ContactDetail> contactDetailList) {
+	public void setContactDetailList(List<ContactDetailJpa> contactDetailList) {
 		this.contactDetailList = contactDetailList;
 	}
 
