@@ -9,6 +9,7 @@ import edu.globant.ioncases.model.CaseCover;
 import edu.globant.ioncases.model.CaseInventory;
 import java.util.List;
 import java.util.Map;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class InventoryDaoImpl implements InventoryDao {
 
     @Override
     public List<CaseInventory> getAll() {
-        return getCurrentSession().createCriteria(CaseInventory.class).list();
+        return getCurrentSession().createCriteria(CaseInventory.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
     }
 
 
