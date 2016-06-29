@@ -35,7 +35,9 @@ public class InventoryController {
 		Collection<CaseWrapper> wrappers = inventoryService.getInventoryWrappers(0,5);
 		Collection<CaseDesign> designs = inventoryService.getDesigns();
 		Collection<CaseDevice> devices = inventoryService.getDevices();
-		long pageQuantity = inventoryService.getInventoryCount();
+		long count = inventoryService.getInventoryCount();
+		long pageQuantity = count / 5;
+		if((count % 5) != 0) pageQuantity++;
 		model.addAttribute("inventory",wrappers);
     	model.addAttribute("designs",designs);
     	model.addAttribute("devices",devices);

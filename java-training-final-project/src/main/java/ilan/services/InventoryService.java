@@ -54,14 +54,14 @@ public class InventoryService {
 	}
 	
 	public Long getInventoryCount(){
-		return inventoryDao.count();
+		return caseWrapperDao.countByInventory(this.getInventory());
 	}
 	
-	public Long getCount(CaseDesign design, CaseDevice device){
-		if ( (design==null) && (device==null)) return this.getInventoryCount();
-		if(device==null) return caseWrapperDao.countByInventoryAndMyCaseDesignName(this.getInventory(),design.getName());
-		if(design==null) return caseWrapperDao.countByInventoryAndMyCaseDeviceName(this.getInventory(),device.getName());
-		return caseWrapperDao.countByInventoryAndMyCaseDesignNameAndMyCaseDeviceName(this.getInventory(),design.getName(),device.getName());
+	public Long getCount(String design, String device){
+		if ( (design==null || design.equals("all")) && (device==null || device.equals("all"))) return this.getInventoryCount();
+		if(device==null || device.equals("all")) return caseWrapperDao.countByInventoryAndMyCaseDesignName(this.getInventory(),design);
+		if(design==null ||  design.equals("all")) return caseWrapperDao.countByInventoryAndMyCaseDeviceName(this.getInventory(),device);
+		return caseWrapperDao.countByInventoryAndMyCaseDesignNameAndMyCaseDeviceName(this.getInventory(),design,device);
 	}
 	
 	public Collection<CaseWrapper> getInventoryWrappers(Integer page, Integer size){

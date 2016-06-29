@@ -1,40 +1,79 @@
 $(document).ready(function(){  
 	
-	
-	$("#designSelect").change(function() {
-		updateCases();
+	$("#designSelect").change(function(){
+//		alert("designSelect");
+//	$(document).on("change",$("#designSelect"),function() {
+		updateCases(false);
 	});
 	
-	$("#deviceSelect").change(function() {
-		updateCases();
+	$("#deviceSelect").change(function(){
+//		alert("deviceSelect");
+//	$(document).on("change",$("#deviceSelect"),function() {
+		updateCases(false);
 	});
 	
-	$("#pageSelect").change(function() {
-		updateCases();
+	$("#pageSelect").change(function(){
+//	$(document).on("change",$("#pageSelect"),function() {
+//		alert("pageSelect");
+		updateCases(false);
 	});
 	
-	$("#sizeSelect").change(function() {
-		updateCases();
+	$("#sizeSelect").change(function(){
+//	$(document).on("change",$("#sizeSelect"),function() {
+//		alert("sizeSelect");
+		updateCases(true);
 	});
 	
-	function updateCases(){
+	function updateCases(resetPage){
 		var design = $("#designSelect").val();
 		var device = $("#deviceSelect").val();
-		var page = parseInt($("#pageSelect").val())-1;
+		var currentPage = parseInt($("#pageSelect").val());
+		var page = currentPage-1;
 		var size = parseInt($("#sizeSelect").val());
+		if(resetPage){
+			page=0;
+			currentPage=1;
+		}
 		$.ajax({
-			   url: '/inventoryrest/design/'+design+'/device/'+device+"?page="+page+"&size="+size,
-			   data: {
-			      format: 'json'
-			   },
-			   error: function() {
-			      $('#result').html('<p>An error has occurred</p>');
-			   },
-			   success: function(data) {
-				  $("#result").html(updateTable(data));
-			   },
-			   type: 'GET'
+		   url: '/inventoryrest/count?design='+design+'&device='+device,
+		   data: {
+		      format: 'json'
+		   },
+		   error: function() {
+		      $('#result').html('<p>An error has occurred</p>');
+		   },
+		   success: function(data) {
+			   updatePagination(data,size,currentPage);
+			   $.ajax({
+				   url: '/inventoryrest/?design='+design+'&device='+device+"&page="+page+"&size="+size,
+				   data: {
+				      format: 'json'
+				   },
+				   error: function() {
+				      $('#result').html('<p>An error has occurred</p>');
+				   },
+				   success: function(data) {
+					  $("#result").html(updateTable(data));
+				   },
+				   type: 'GET'
+			   });
+		   },
+		   type: 'GET'
 		});
+	}
+	
+	function updatePagination(data,size,page){
+		var result = "<select id='pageSelect'>";
+		if(data==0) result += "<option>1</option>";
+		else{
+			for (var i = 1; i<= data; i++) {
+				if(page==i) result += "<option selected>"+i+"</option>";
+				else result += "<option>"+i+"</option>";
+				data = data -size;
+			}
+		}
+		result += "</select>";
+		$("#pagination").html(result);
 	}
 	
 	function updateTable(data){

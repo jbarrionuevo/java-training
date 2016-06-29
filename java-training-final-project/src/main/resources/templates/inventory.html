@@ -51,11 +51,13 @@
 		</table>
 	</div>
 	
-	<select id="pageSelect">
-		<option th:each="i: ${#numbers.sequence( 1, pageQuantity)}"
-        th:value="${i}"
-        th:text="${i}"></option>
-	</select>
+	<div id="pagination">
+		<select id="pageSelect">
+			<option th:each="i: ${#numbers.sequence( 1, pageQuantity)}"
+	        th:value="${i}"
+	        th:text="${i}"></option>
+		</select>
+	</div>
 	<label>Size:</label>
 	<select id="sizeSelect">
 		<option>5</option>

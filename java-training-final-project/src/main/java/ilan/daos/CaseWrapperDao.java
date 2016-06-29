@@ -17,6 +17,7 @@ public interface CaseWrapperDao extends JpaRepository<CaseWrapper,Long>{
 	List<CaseWrapper> findByInventory(Inventory inventory, Pageable pageable);
 	List<CaseWrapper> findByInventoryAndMyCaseDesignName(Inventory inventory, String caseDesignName, Pageable pageable);
 	List<CaseWrapper> findByInventoryAndMyCaseDeviceName(Inventory inventory, String caseDeviceName, Pageable pageable);
+	long countByInventory(Inventory inventory);
 	long countByInventoryAndMyCaseDesignName(Inventory inventory, String caseDesignName);
 	long countByInventoryAndMyCaseDeviceName(Inventory inventory, String caseDeviceName);
 	long countByInventoryAndMyCaseDesignNameAndMyCaseDeviceName(Inventory inventory, String caseDesignName, String caseDeviceName);
