@@ -1,6 +1,6 @@
 $(document).ready(function(){  
 	
-	$("#customerData").hide();
+//	$("#customerData").hide();
 	
 	var products = new Object();
 	var index = 0;
@@ -32,65 +32,69 @@ $(document).ready(function(){
 		products = new Object();
 		$("#currentSale").html("No product added");
 		$("#productQuantity").val("0");
-		$("#customerData").hide();
+//		$("#customerData").hide();
 	});
 	
 	$(document).on("click","#confirmSale",function(){
 		if($("#productQuantity").val()==0) alert("You must add at least 1 item!");
 		else{
-			if($('#customerData').is(':visible')) {
-				if($("#name").val().length === 0){
-					alert("Enter customer name!");
-					return false;
-				}
-				if($("#age").val().length === 0){
-					alert("Enter customer age!");
-					return false;
-				}
-				if($("#location").val().length === 0){
-					alert("Enter customer location!");
-					return false;
-				}
+//			if($('#customerData').is(':visible')) {
+//				if($("#name").val().length === 0){
+//					alert("Enter customer name!");
+//					return false;
+//				}
+//				if($("#age").val().length === 0){
+//					alert("Enter customer age!");
+//					return false;
+//				}
+//				if($("#location").val().length === 0){
+//					alert("Enter customer location!");
+//					return false;
+//				}
 				var saleDTO = {
 						"caseOrder":{
-						    "requestCases":[
-						        {"1":"1000"},
-						        {"2":"3000"}
-						   ],
+						    "requestCases":{
+						        "1":"1000",
+						        "2":"3000"
+						    },
 						    "dateOfRequest":"2016-10-10"
 						},
-						"receipts":[
-						    {
-						        "storeName":"store", //actually should get it from seller
-						        "dateOfSale":"2016-10-10", //must be today!!
-						        "customer":{  //then check that its not an already existent customer!
-						            "name":$("#name").val(),
-						            "location":$("#location").val(),
-						            "age":parseInt($("#age").val()),
-						            "gender":$("#gender").val()
-						        }
-						    }
-						 ]
+						"receipts":[]
 				};
+//						"receipts":[
+//						    {
+//						        "storeName":"store",
+//						        "dateOfSale":null,
+//						        "customer":{
+//						            "name":"ilan",
+//						            "location":"53 y 2",
+//						            "age":21,
+//						            "gender":"M"
+//						        }
+//						    		}
+//						 ]
+//					};
 				var sellerId = 1;  //actually should get it from seller
 				$.ajax({
 					   url: '/caseSellers/'+sellerId+'/addSale',
-					   data: {
-						   saleDTO : saleDto
-					   },
+					   headers: { 
+					        'Accept': 'application/json',
+					        'Content-Type': 'application/json' 
+					    },
+					   data: JSON.stringify(saleDTO),
 					   error: function() {
 					      $('#result').html('<p>An error has occurred</p>');
 					   },
 					   success: function(data) {
-						  alert(data);
+						  alert("Draft Sale registered succesfully!");
 					   },
-					   type: 'POST'
+					   type: 'PUT'
 				 });
 			}
-			else{
-				$("#customerData").show();
-				$("#customerData").css("visibility","visible");
-			}
-		}
+//			else{
+//				$("#customerData").show();
+//				$("#customerData").css("visibility","visible");
+//			}
+		});
 	});
-});
+//});

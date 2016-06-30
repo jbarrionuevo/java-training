@@ -25,6 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/salesView").hasAnyRole("ROLE_STORE_SELLER","ROLE_DELIVERY_SELLER","ROLE_COMPLETE_SELLER")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
