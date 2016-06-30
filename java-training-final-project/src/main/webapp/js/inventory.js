@@ -32,7 +32,7 @@ $(document).ready(function(){
 			currentPage=1;
 		}
 		$.ajax({
-		   url: '/inventoryrest/count?design='+design+'&device='+device,
+		   url: '/inventory/count?design='+design+'&device='+device,
 		   data: {
 		      format: 'json'
 		   },
@@ -42,7 +42,7 @@ $(document).ready(function(){
 		   success: function(data) {
 			   updatePagination(data,size,currentPage);
 			   $.ajax({
-				   url: '/inventoryrest/?design='+design+'&device='+device+"&page="+page+"&size="+size,
+				   url: '/inventory/?design='+design+'&device='+device+"&page="+page+"&size="+size,
 				   data: {
 				      format: 'json'
 				   },

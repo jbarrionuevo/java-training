@@ -23,7 +23,7 @@ import ilan.models.Inventory;
 import ilan.services.InventoryService;
 
 @Controller
-@RequestMapping("/inventory")
+@RequestMapping("/inventoryView")
 public class InventoryController {
 	
 	@Autowired

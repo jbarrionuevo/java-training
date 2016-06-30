@@ -52,7 +52,8 @@ $(document).ready(function(){
 					return false;
 				}
 				$.ajax({
-					   url: '/inventoryrest/buy/'+JSON.stringify(products),
+					   url: 'sales/'
+//					   url: '/inventory/buy/'+JSON.stringify(products),
 //					   data: {
 //					      format: 'json'
 //					   },

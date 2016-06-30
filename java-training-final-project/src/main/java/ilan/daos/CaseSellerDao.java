@@ -8,6 +8,5 @@ import ilan.models.CaseSeller;
 
 
 public interface CaseSellerDao extends JpaRepository<CaseSeller,Long>{
-
-
+	
 }

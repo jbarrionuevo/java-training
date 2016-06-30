@@ -20,7 +20,7 @@ import ilan.services.InventoryService;
 import net.minidev.json.parser.ParseException;
 
 @RestController
-@RequestMapping("/inventoryrest")
+@RequestMapping("/inventory")
 public class InventoryRestController {
 	
 	@Autowired

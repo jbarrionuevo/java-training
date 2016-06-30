@@ -16,9 +16,7 @@ public abstract class CaseSeller extends Employee {
 	
 	//whenever a caseSeller receives an order, its a new sale with the DRAFT status; if then, the sale is not
 	//succesfull, its marked as CANCELLED; otherwise, its marked as PAID, and it could then be REFUND
-	@Id
-	@GeneratedValue
-	private Long id;
+	
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "seller", cascade = CascadeType.ALL)
 	private Collection<Sale> sales;
@@ -45,15 +43,4 @@ public abstract class CaseSeller extends Employee {
 	public void setSales(Collection<Sale> sales) {
 		this.sales = sales;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	
-	
 }
