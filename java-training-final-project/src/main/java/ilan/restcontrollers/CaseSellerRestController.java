@@ -1,5 +1,8 @@
 package ilan.restcontrollers;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import ilan.dtos.SaleDTO;
+import ilan.models.CaseOrder;
+import ilan.models.Receipt;
 import ilan.models.Sale;
 import ilan.services.CaseSellerService;
 
@@ -27,7 +32,9 @@ public class CaseSellerRestController {
 	@RequestMapping(value="/{caseSellerId}/addSale",method = RequestMethod.PUT)
 	@ResponseStatus(value= HttpStatus.OK)
 	public void addSale(@PathVariable Long caseSellerId, @RequestBody SaleDTO saleDTO){
-		caseSellerService.addSale(caseSellerId, mapper.map(saleDTO, Sale.class));
+		Collection<Receipt> receipts = new ArrayList<Receipt>(){{add(mapper.map(saleDTO.getReceipts().iterator().next(), Receipt.class));}};
+		CaseOrder order = mapper.map(saleDTO.getCaseOrder(), CaseOrder.class);
+		caseSellerService.addSale(caseSellerId, new Sale(order, receipts));
 	}
 
 	

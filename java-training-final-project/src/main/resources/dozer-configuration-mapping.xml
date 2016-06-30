@@ -4,12 +4,12 @@
           xsi:schemaLocation="http://dozer.sourceforge.net
           http://dozer.sourceforge.net/schema/beanmapping.xsd">
   <configuration>
-    <custom-converters> <!-- these are always bi-directional -->
-      <converter type="com.example.mapping.SaleCustomConverter" >
-        <class-a>ilan.dtos.SaleDTO</class-a>
-        <class-b>ilan.models.Sale</class-b>
-      </converter>
-    </custom-converters>     
+<!--     <custom-converters> these are always bi-directional -->
+<!--       <converter type="ilan.mapping.SaleCustomConverter" > -->
+<!--         <class-a>ilan.dtos.SaleDTO</class-a> -->
+<!--         <class-b>ilan.models.Sale</class-b> -->
+<!--       </converter> -->
+<!--     </custom-converters>      -->
   </configuration>
 
 </mappings>

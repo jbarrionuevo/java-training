@@ -13,8 +13,7 @@ public class SaleDTO {
 	public SaleDTO(){}
 	
 	public SaleDTO(CaseOrderDTO caseOrder, Collection<ReceiptDTO> receipts) {
-		super();
-		this.setReceipts(receipts);
+		this.receipts=receipts;
 		this.caseOrder=caseOrder;
 		this.status = SaleStatus.DRAFT;
 	}

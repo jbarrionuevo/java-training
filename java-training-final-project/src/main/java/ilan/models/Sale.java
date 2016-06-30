@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 import org.thymeleaf.util.Validate;
 
+import ilan.dtos.ReceiptDTO;
 import ilan.enums.SaleStatus;
 
 @Entity
@@ -38,12 +39,12 @@ public class Sale {
 	
 	public Sale(){}
 	
-	public Sale(CaseOrder order) {
+	public Sale(CaseOrder order,Collection<Receipt> receipts) {
 		super();
 		Validate.notNull(order,"Order cannot be null");
 		this.caseOrder=order;
 		this.status = SaleStatus.DRAFT;
-		this.receipts=new ArrayList<Receipt>();
+		this.receipts=receipts;
 	}
 
 	public Collection<Receipt> getReceipts() {
