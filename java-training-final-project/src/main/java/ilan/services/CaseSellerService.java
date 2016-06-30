@@ -53,19 +53,19 @@ public class CaseSellerService {
 	public void addSale(Long caseSellerId, Sale sale) {
 		CaseSeller looked = caseSellerDao.findOne(caseSellerId);
 		if(looked==null) throw new CaseSellerNotFoundException(caseSellerId);
-//		if(sale.getReceipts().iterator().next().getCustomer().getId()!=null){
-//			Customer lookedCustomer = customerDao.findOne(sale.getReceipts().iterator().next().getCustomer().getId());
-//			if(lookedCustomer==null) throw new CustomerNotFoundException(sale.getReceipts().iterator().next().getCustomer().getId());
-//		}else{
-//			customerDao.save(sale.getReceipts().iterator().next().getCustomer());
-//		}
+		if(sale.getReceipts().iterator().next().getCustomer().getId()!=null){
+			Customer lookedCustomer = customerDao.findOne(sale.getReceipts().iterator().next().getCustomer().getId());
+			if(lookedCustomer==null) throw new CustomerNotFoundException(sale.getReceipts().iterator().next().getCustomer().getId());
+		}else{
+			customerDao.save(sale.getReceipts().iterator().next().getCustomer());
+		}
 		for (Map.Entry<Long, Integer> entry : sale.getOrder().getRequestCases().entrySet()){
 			CaseWrapper wrapper = caseWrapperDao.findOne(entry.getKey());
 			if(wrapper==null) throw new CaseWrapperNotFoundException(entry.getKey());
 //			if(wrapper.getCurrentStock()<entry.getValue()) throw new NotEnoughStockException(wrapper.getMyCase().toString());
 	    }
 		caseOrderDao.save(sale.getOrder());
-//		sale.getReceipts().iterator().next().setSale(sale);
+		sale.getReceipts().iterator().next().setSale(sale);
 		sale.setSeller(looked);
 		sale.setStatus(SaleStatus.DRAFT);
 		looked.addSale(sale);

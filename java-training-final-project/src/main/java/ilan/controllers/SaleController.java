@@ -27,7 +27,6 @@ public class SaleController {
 	public String getSalesFromCaseSeller(@PathVariable Long sellerId, Model model){
 		Collection<Sale> sales = saleService.getSalesFromCaseSeller(sellerId);
 		model.addAttribute("sales",sales);
-		model.addAttribute("requestCases",null);
 		return "sellerSales";
 	}
 }

@@ -19,7 +19,7 @@
 				<th>CUSTOMER</th>
 				<th>STATUS</th>
 				<th>DATE OF REQUEST</th>
-				<th>REQUEST CASES</th>
+				<th>TOTAL PRICE</th>
 				<th>CONFIRM</th>
 				<th>CANCEL</th>
 			</tr>		
@@ -29,20 +29,20 @@
 					<td th:text="${sale.getCustomer()}"></td>
 					<td th:text="${sale.Status}"></td>
 					<td th:text="${sale.caseOrder.dateOfRequest}"></td>
-					<td th:text="${requestCases}"></td>
+					<td th:text="${sale.totalPrice}"></td>
 					<td><button type="button">CONFIRM</button></td>
 					<td><button type="button">CANCEL</button></td>
 			</tr>
 		</table>
 	</div>
 	
-	<select id="pageSelect">
+<!-- 	<select id="pageSelect"> -->
 <!-- 	<div id="pagination"> -->
-			<option th:each="i: ${#numbers.sequence( 1, pageQuantity)}"
-	        th:value="${i}"
-	        th:text="${i}"></option>
+<!-- 			<option th:each="i: ${#numbers.sequence( 1, pageQuantity)}" -->
+<!-- 	        th:value="${i}" -->
+<!-- 	        th:text="${i}"></option> -->
 <!-- 	</div> -->
-	</select>
+<!-- 	</select> -->
 	
 	<label>Size:</label>
 	<select id="sizeSelect">

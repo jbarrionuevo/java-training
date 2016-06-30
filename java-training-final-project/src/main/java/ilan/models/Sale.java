@@ -37,14 +37,17 @@ public class Sale {
 	
 	private SaleStatus status;
 	
+	private double totalPrice;
+	
 	public Sale(){}
 	
-	public Sale(CaseOrder order, Collection<Receipt> receipts) {
+	public Sale(CaseOrder order, Collection<Receipt> receipts, double totalPrice) {
 		super();
 		Validate.notNull(order,"Order cannot be null");
 		this.caseOrder=order;
 		this.status = SaleStatus.DRAFT;
 		this.receipts=receipts;
+		this.totalPrice=totalPrice;
 	}
 
 	public Customer getCustomer(){
@@ -81,6 +84,30 @@ public class Sale {
 
 	public void setSeller(CaseSeller seller) {
 		this.seller = seller;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public CaseOrder getCaseOrder() {
+		return caseOrder;
+	}
+
+	public void setCaseOrder(CaseOrder caseOrder) {
+		this.caseOrder = caseOrder;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	

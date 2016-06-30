@@ -25,12 +25,12 @@ public class SaleTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation() {
-		new Sale(null,null);
+		new Sale(null,null,10);
 	}
 	
 	@Test
 	public void testCreation() {
-		Sale sale = new Sale(orderMock,receipts);
+		Sale sale = new Sale(orderMock,receipts,10);
 		assertThat("Sale was wrongly instantiated", sale.getOrder(),is(orderMock));
 	}
 	

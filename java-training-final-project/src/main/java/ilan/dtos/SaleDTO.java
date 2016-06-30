@@ -9,13 +9,15 @@ public class SaleDTO {
 	private Collection<ReceiptDTO> receipts;
 	private CaseOrderDTO caseOrder;
 	private SaleStatus status;
+	private double totalPrice;
 	
 	public SaleDTO(){}
 	
-	public SaleDTO(CaseOrderDTO caseOrder, Collection<ReceiptDTO> receipts) {
+	public SaleDTO(CaseOrderDTO caseOrder, Collection<ReceiptDTO> receipts, double totalPrice) {
 		this.receipts=receipts;
 		this.caseOrder=caseOrder;
 		this.status = SaleStatus.DRAFT;
+		this.totalPrice=totalPrice;
 	}
 
 	public SaleStatus getStatus() {
@@ -49,5 +51,13 @@ public class SaleDTO {
 
 	public void setReceipts(Collection<ReceiptDTO> receipts) {
 		this.receipts = receipts;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 }

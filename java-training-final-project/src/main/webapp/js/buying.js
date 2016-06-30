@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$("#customerData").hide();
 	
 	var products = new Object();
+	var requestCases = new Object();
 	var index = 0;
 	
 	$(document).on("click",".buyCase",function(){
@@ -18,6 +19,8 @@ $(document).ready(function(){
 		product["quantity"]=quantity;
 		product["design"]=design;
 		product["device"]=device;
+		
+		requestCases["wrapper_id"]=quantity;
 		
 		products[wrapperId] = product;
 		index++;
@@ -51,23 +54,31 @@ $(document).ready(function(){
 					alert("Enter customer location!");
 					return false;
 				}
+				var casesJson="{";
+				var first=true;
+				var totalPrice=0;
+				$.each(products, function(i,v) {
+					if(!(first)) casesJson += ",";
+					else first=false;
+					casesJson += '"'+v["wrapper_id"]+'":"'+v["quantity"]+'"';
+//					totalPrice+=ACA TIENE QE IR EL PRECIO, ENCONTRARLO
+				});
+				casesJson+="}";
 				var saleDTO = {
 						"caseOrder":{
-						    "requestCases":{
-						        "1":"1000",
-						        "2":"3000"
-						    },
+						    "requestCases":JSON.parse(casesJson),
 						    "dateOfRequest":"2016-10-10"
 						},
+						"totalPrice":
 						"receipts":[
 						    {
 						        "storeName":"store",
 						        "dateOfSale":null,
 						        "customer":{
-						            "name":"ilan",
-						            "location":"53 y 2",
-						            "age":21,
-						            "gender":"M"
+						            "name":$("#name").val(),
+						            "location":$("#location").val(),
+						            "age":$("#age").val(),
+						            "gender":$("#gender").val()
 						        }
 						    		}
 						 ]
@@ -94,5 +105,5 @@ $(document).ready(function(){
 		}
 	}
 	});
-s});
+});
 //});
