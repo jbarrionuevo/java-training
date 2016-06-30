@@ -53,11 +53,20 @@ $(document).ready(function(){
 				}
 				var saleDTO = {
 						"caseOrder":{},
-						"receipts":{
-							{}
-						}
+						"receipts":[
+						    {
+						        "storeName":"store", //actually should get it from seller
+						        "dateOfSale":"2016-10-10", //must be today!!
+						        "customer":{  //then check that its not an already existent customer!
+						            "name":$("#name").val(),
+						            "location":$("#location").val(),
+						            "age":parseInt($("#age").val()),
+						            "gender":$("#gender").val()
+						        }
+						    }
+						 ]
 				};
-				var sellerId = 1;
+				var sellerId = 1;  //actually should get it from seller
 				$.ajax({
 					   url: '/caseSellers/'+sellerId+'/addSale',
 					   data: {
