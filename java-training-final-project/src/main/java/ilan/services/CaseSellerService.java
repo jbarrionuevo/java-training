@@ -1,18 +1,23 @@
 package ilan.services;
-import java.util.Collection;
+import java.util.Map;
+
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import ilan.daos.CaseSellerDao;
+import ilan.daos.CaseWrapperDao;
 import ilan.daos.CustomerDao;
 import ilan.enums.SaleStatus;
 import ilan.exceptions.CaseSellerNotFoundException;
+import ilan.exceptions.CaseWrapperNotFoundException;
 import ilan.exceptions.CustomerNotFoundException;
+import ilan.exceptions.NotEnoughStockException;
 import ilan.models.CaseSeller;
+import ilan.models.CaseWrapper;
 import ilan.models.Customer;
 import ilan.models.Sale;
 
@@ -26,8 +31,8 @@ public class CaseSellerService {
 	CaseSellerDao caseSellerDao;
 	@Autowired
 	CustomerDao customerDao;
-	
-	
+	@Autowired
+	CaseWrapperDao caseWrapperDao;
 	
 	public CaseSellerDao getCaseSellerDao() {
 		return caseSellerDao;
@@ -41,6 +46,7 @@ public class CaseSellerService {
 		caseSellerDao.save(caseSeller);
 	}
 
+	@Transactional
 	public void addSale(Long caseSellerId, Sale sale) {
 		CaseSeller looked = caseSellerDao.findOne(caseSellerId);
 		if(looked==null) throw new CaseSellerNotFoundException(caseSellerId);
@@ -50,6 +56,11 @@ public class CaseSellerService {
 		}else{
 			customerDao.save(sale.getReceipts().iterator().next().getCustomer());
 		}
+		for (Map.Entry<Long, Integer> entry : sale.getOrder().getRequestCases().entrySet()){
+			CaseWrapper wrapper = caseWrapperDao.findOne(entry.getKey());
+			if(wrapper==null) throw new CaseWrapperNotFoundException(entry.getKey());
+			if(wrapper.getCurrentStock()<entry.getValue()) throw new NotEnoughStockException(wrapper.getMyCase().toString());
+	    }
 		sale.getReceipts().iterator().next().setSale(sale);
 		sale.setSeller(looked);
 		sale.setStatus(SaleStatus.DRAFT);

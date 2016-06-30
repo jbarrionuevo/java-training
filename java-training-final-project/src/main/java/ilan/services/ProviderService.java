@@ -39,7 +39,7 @@ public class ProviderService {
 		return providerDao.findAll();
 	}
 	
-	public void generateOrder(Long providerId, HashMap<CaseProduct,Integer> requestCases){
+	public void generateOrder(Long providerId, HashMap<Long,Integer> requestCases){
 		Provider provider = providerDao.findOne(providerId);
 		if(provider==null) throw new ProviderNotFoundException(providerId.toString());
 		provider.addOrder(new CaseOrder(requestCases, new Date()));

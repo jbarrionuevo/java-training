@@ -20,12 +20,12 @@ public class CaseOrder {
 	@GeneratedValue
 	private Long id;
 	
-	private HashMap<CaseProduct,Integer> requestCases;
+	private HashMap<Long,Integer> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
 	
 	public CaseOrder(){}
 	
-	public CaseOrder(HashMap<CaseProduct,Integer> requestCases, Date dateOfRequest) {
+	public CaseOrder(HashMap<Long,Integer> requestCases, Date dateOfRequest) {
 		super();
 		Validate.notNull(dateOfRequest, "Date of request cannot be null");
 		Validate.notNull(requestCases, "Request cases cannot be null");
@@ -45,8 +45,8 @@ public class CaseOrder {
 	@Override
 	public String toString(){
 		String items = "";
-		for (Map.Entry<CaseProduct, Integer> entry : this.getRequestCases().entrySet()) {
-			items = items.concat(entry.getValue()+" items of "+entry.getKey()+"\n");
+		for (Map.Entry<Long, Integer> entry : this.getRequestCases().entrySet()) {
+			items = items.concat(entry.getValue()+" items of product with id "+entry.getKey()+"\n");
 		}
 		return String.format("Date of request: %s. \nOrder: \n%s", 
 				this.getDateOfRequest(),items );
@@ -68,11 +68,11 @@ public class CaseOrder {
 		this.dateOfDelivery = dateOfDelivery;
 	}
 
-	public HashMap<CaseProduct,Integer> getRequestCases() {
+	public HashMap<Long,Integer> getRequestCases() {
 		return requestCases;
 	}
 
-	public void setRequestCases(HashMap<CaseProduct,Integer> requestCases) {
+	public void setRequestCases(HashMap<Long,Integer> requestCases) {
 		this.requestCases = requestCases;
 	}
 	

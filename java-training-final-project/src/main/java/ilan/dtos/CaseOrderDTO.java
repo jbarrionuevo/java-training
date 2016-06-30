@@ -7,12 +7,12 @@ import org.thymeleaf.util.Validate;
 
 public class CaseOrderDTO {
 	private Long id;
-	private HashMap<Integer,CaseProductDTO> requestCases;
+	private HashMap<Long,Integer> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
 	
 	public CaseOrderDTO(){}
 	
-	public CaseOrderDTO(HashMap<Integer,CaseProductDTO> requestCases, Date dateOfRequest) {
+	public CaseOrderDTO(HashMap<Long,Integer> requestCases, Date dateOfRequest) {
 		super();
 		this.requestCases = requestCases;
 		this.dateOfRequest=dateOfRequest;
@@ -42,11 +42,11 @@ public class CaseOrderDTO {
 		this.id = id;
 	}
 
-	public HashMap<Integer,CaseProductDTO> getRequestCases() {
+	public HashMap<Long,Integer> getRequestCases() {
 		return requestCases;
 	}
 
-	public void setRequestCases(HashMap<Integer,CaseProductDTO> requestCases) {
+	public void setRequestCases(HashMap<Long,Integer> requestCases) {
 		this.requestCases = requestCases;
 	}
 
