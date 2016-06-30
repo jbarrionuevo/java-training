@@ -1,0 +1,334 @@
+﻿
+Servidor: localhost
+-- 
+Tiempo de generación: 30-06-2016 a las 04:44:40
+-- 
+Versión del servidor: 5.5.24-log
+-- 
+Versión de PHP: 5.4.3
+
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+
+/*!40101 SET NAMES utf8 */;
+
+
+--
+-- Base de datos: `ionsoliddb`
+
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `customers`
+--
+
+
+CREATE TABLE IF NOT EXISTS `customers` 
+(
+  `customerId` int(11) NOT NULL,
+  
+`name` varchar(15) NOT NULL,
+  
+`lastName` varchar(15) NOT NULL,
+  
+`age` int(3) NOT NULL,
+  
+`gender` tinyint(1) NOT NULL,
+  
+`location` varchar(15) NOT NULL,
+  
+PRIMARY KEY (`customerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `employees`
+--
+
+
+CREATE TABLE IF NOT EXISTS `employees` 
+(
+  `employeeId` int(11) NOT NULL,
+  
+`name` varchar(15) NOT NULL,
+  
+`lastName` varchar(15) NOT NULL,
+  
+`age` int(3) NOT NULL,
+  
+`gender` tinyint(1) NOT NULL,
+  
+`address` varchar(15) NOT NULL,
+  
+`department` varchar(15) NOT NULL,
+  
+PRIMARY KEY (`employeeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orderdetails`
+--
+
+
+CREATE TABLE IF NOT EXISTS `orderdetails` 
+(
+  `orderId` int(11) NOT NULL,
+  
+`productId` int(11) NOT NULL,
+  
+`quantity` int(10) NOT NULL,
+  
+KEY `orderId` (`orderId`),
+  KEY `productId` (`productId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orders`
+--
+
+
+CREATE TABLE IF NOT EXISTS `orders` 
+(
+  `orderId` int(11) NOT NULL,
+  
+`total` float NOT NULL,
+  
+`createdDate` date NOT NULL,
+  
+`deliverDate` date NOT NULL,
+  
+`providerId` int(11) NOT NULL,
+  
+`logisticId` int(11) NOT NULL,
+  
+PRIMARY KEY (`orderId`),
+  
+KEY `logisticId` (`logisticId`),
+  
+KEY `providerId` (`providerId`),
+ 
+KEY `providerId_2` (`providerId`),
+  
+KEY `logisticId_2` (`logisticId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `priceshistory`
+--
+
+
+CREATE TABLE IF NOT EXISTS `priceshistory` 
+(
+  `priceId` int(11) NOT NULL,
+  
+`price` int(11) NOT NULL,
+  
+`productId` int(11) NOT NULL,
+  
+PRIMARY KEY (`priceId`),
+  KEY `productId` (`productId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productproviders`
+--
+
+
+CREATE TABLE IF NOT EXISTS `productproviders` 
+(
+  `providerId` int(11) NOT NULL,
+  
+`productId` int(11) NOT NULL,
+  
+`designtype` varchar(15) NOT NULL,
+  
+KEY `providerId` (`providerId`),
+  
+KEY `productId` (`productId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `products`
+--
+
+
+CREATE TABLE IF NOT EXISTS `products` 
+(
+  `productId` int(11) NOT NULL,
+  
+`name` varchar(15) NOT NULL,
+  
+`device` varchar(15) NOT NULL,
+  
+`stock` int(11) NOT NULL,
+  
+PRIMARY KEY (`productId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `providers`
+--
+
+
+CREATE TABLE IF NOT EXISTS `providers` 
+(
+  `providerId` int(11) NOT NULL,
+  
+`name` varchar(15) NOT NULL,
+  
+`phoneNumber` varchar(15) NOT NULL,
+  
+`providerDesignTypesId` int(11) NOT NULL,
+  
+PRIMARY KEY (`providerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `saledetails`
+--
+
+
+CREATE TABLE IF NOT EXISTS `saledetails` 
+(
+  `saleId` int(11) NOT NULL,
+  
+`productId` int(11) NOT NULL,
+  
+`quantity` int(11) NOT NULL,
+  
+KEY `saleId` (`saleId`),
+  
+KEY `productId` (`productId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sales`
+--
+
+
+CREATE TABLE IF NOT EXISTS `sales` 
+(
+  `saleId` int(11) NOT NULL,
+  
+`date` date NOT NULL,
+  
+`detailsId` varchar(15) NOT NULL,
+  
+`saleState` int(11) NOT NULL,
+  
+`sellerId` int(11) NOT NULL,
+  
+`customerId` int(11) NOT NULL,
+  
+PRIMARY KEY (`saleId`),
+  
+KEY `sellerId` (`sellerId`),
+  
+KEY `customerId` (`customerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `orderdetails`
+--
+
+ALTER TABLE `orderdetails`
+  ADD CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`productId`) REFERENCES `products` (`productId`),
+  
+ADD CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`);
+
+
+--
+-- Filtros para la tabla `orders`
+--
+
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`providerId`) REFERENCES `providers` (`providerId`),
+  
+ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`logisticId`) REFERENCES `employees` (`employeeId`);
+
+
+--
+-- Filtros para la tabla `priceshistory`
+--
+
+ALTER TABLE `priceshistory`
+  ADD CONSTRAINT `priceshistory_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `products` (`productId`);
+
+
+--
+-- Filtros para la tabla `productproviders`
+--
+
+ALTER TABLE `productproviders`
+  ADD CONSTRAINT `productproviders_ibfk_2` FOREIGN KEY (`productId`) REFERENCES `products` (`productId`),
+  
+ADD CONSTRAINT `productproviders_ibfk_1` FOREIGN KEY (`providerId`) REFERENCES `providers` (`providerId`);
+
+
+--
+-- Filtros para la tabla `saledetails`
+--
+
+ALTER TABLE `saledetails`
+  ADD CONSTRAINT `saledetails_ibfk_2` FOREIGN KEY (`productId`) REFERENCES `products` (`productId`),
+  
+ADD CONSTRAINT `saledetails_ibfk_1` FOREIGN KEY (`saleId`) REFERENCES `sales` (`saleId`);
+
+
+--
+-- Filtros para la tabla `sales`
+--
+
+ALTER TABLE `sales`
+  ADD CONSTRAINT `sales_ibfk_2` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
+  
+ADD CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`sellerId`) REFERENCES `employees` (`employeeId`);
+
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
