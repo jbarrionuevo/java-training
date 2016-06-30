@@ -3,7 +3,6 @@ package ilan.dtos;
 import java.util.Collection;
 
 import ilan.enums.SaleStatus;
-import ilan.models.Receipt;
 
 public class SaleDTO {
 	private Long id;

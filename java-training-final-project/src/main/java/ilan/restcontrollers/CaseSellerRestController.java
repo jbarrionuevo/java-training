@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import ilan.dtos.SaleDTO;
-import ilan.dtos.TestDTO;
 import ilan.models.Sale;
 import ilan.services.CaseSellerService;
 
@@ -30,11 +29,6 @@ public class CaseSellerRestController {
 	public void addSale(@PathVariable Long caseSellerId, @RequestBody SaleDTO saleDTO){
 		caseSellerService.addSale(caseSellerId, mapper.map(saleDTO, Sale.class));
 	}
-	
-//	@RequestMapping(value="/{caseSellerId}/addSale",method = RequestMethod.PUT)
-//	@ResponseStatus(value= HttpStatus.OK)
-//	public void addSale(@PathVariable Long caseSellerId, @RequestBody TestDTO testDTO){
-//		
-//	}
+
 	
 }
