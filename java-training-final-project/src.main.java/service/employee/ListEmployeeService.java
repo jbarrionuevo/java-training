@@ -6,13 +6,13 @@ import persistence.DAO.EmployeeDAO;
 
 public class ListEmployeeService {
 
-	private EmployeeDAO<Employee> employeeDAO;
+	private EmployeeDAO employeeDAO;
 
-	public ListEmployeeService(EmployeeDAO<Employee> employeeDAO) {
+	public ListEmployeeService(EmployeeDAO employeeDAO) {
 		setEmployeeDAO(employeeDAO);
 	}
 
-	private void setEmployeeDAO(EmployeeDAO<Employee> employeeDAO) {
+	private void setEmployeeDAO(EmployeeDAO employeeDAO) {
 		this.employeeDAO = employeeDAO;
 	}
 

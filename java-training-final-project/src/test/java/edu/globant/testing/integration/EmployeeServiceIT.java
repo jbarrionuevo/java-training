@@ -38,7 +38,7 @@ public class EmployeeServiceIT {
 
 		session = sessionFactory.openSession();
 
-		EmployeeDAO<Employee> employeeDAO = new EmployeeDAO<Employee>(session);
+		EmployeeDAO employeeDAO = new EmployeeDAO(session);
 
 		createEmployeeService = new CreateEmployeeService(employeeDAO);
 		listEmployeeService = new ListEmployeeService(employeeDAO);
@@ -50,15 +50,13 @@ public class EmployeeServiceIT {
 	public void createAndList() {
 		createEmployeeService.create(employee1);
 		createEmployeeService.create(employee2);
-		System.out.println("************employee1.getId() = " + employee1.getId());
-		System.out.println("************employee2.getId() = " + employee2.getId());
 
 		Employee employee1DB = listEmployeeService.findById(employee1.getId());
-
-		// assertThat(listEmployeeService.findById(employee1.getId()),
-		// equalTo(employee1.getId()));
-		// assertThat(employee1, equalTo(employee1DB));
-		// assertThat(employee1DB, not(equalTo(employee2)));
+		Employee employee2DB = listEmployeeService.findById(employee2.getId());
+		
+		assertThat(employee1DB , equalTo(employee1));
+		assertThat(employee1DB , not(equalTo(employee2)));
+		assertThat(employee2 , equalTo(employee2DB));
+		assertThat(employee1DB , not(equalTo(employee2DB)));
 	}
-
 }

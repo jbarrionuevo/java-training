@@ -11,25 +11,23 @@ import org.hibernate.Transaction;
 
 import domain.BaseEntity;
 
-
 public abstract class AbstractDAO<E extends BaseEntity> {
 
 	protected Session session;
 	protected Class<E> entityClass;
 
-	// TODO: solve parametrization issues
 	@SuppressWarnings("unchecked")
 	public AbstractDAO(Session session) {
 		this.session = session;
 		Type type = getClass().getGenericSuperclass();
-/*		while (!(type instanceof ParameterizedType) || ((ParameterizedType) type).getRawType() != AbstractDAO.class) {
+		while (!(type instanceof ParameterizedType) || ((ParameterizedType) type).getRawType() != AbstractDAO.class) {
 			if (type instanceof ParameterizedType) {
 				type = ((Class<?>) ((ParameterizedType) type).getRawType()).getGenericSuperclass();
 			} else {
 				type = ((Class<?>) type).getGenericSuperclass();
 			}
 		}
-		entityClass = (Class<E>)((ParameterizedType) type).getActualTypeArguments()[0];*/
+		entityClass = (Class<E>) ((ParameterizedType) type).getActualTypeArguments()[0];
 	}
 
 	public void save(E entity) {

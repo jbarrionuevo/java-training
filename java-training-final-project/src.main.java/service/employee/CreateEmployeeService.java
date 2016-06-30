@@ -5,9 +5,9 @@ import persistence.DAO.EmployeeDAO;
 
 public class CreateEmployeeService {
 
-	private EmployeeDAO<Employee> employeeDAO;
+	private EmployeeDAO employeeDAO;
 
-	public CreateEmployeeService(EmployeeDAO<Employee> employeeDAO) {
+	public CreateEmployeeService(EmployeeDAO employeeDAO) {
 		this.employeeDAO = employeeDAO;
 	}
 
