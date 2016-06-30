@@ -70,6 +70,14 @@ public class Sale {
 		this.caseOrder = order;
 	}
 
+	public CaseSeller getSeller() {
+		return seller;
+	}
+
+	public void setSeller(CaseSeller seller) {
+		this.seller = seller;
+	}
+
 	
 	
 	

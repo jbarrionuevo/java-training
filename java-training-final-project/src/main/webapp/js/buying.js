@@ -51,12 +51,10 @@ $(document).ready(function(){
 					alert("Enter customer location!");
 					return false;
 				}
-				var orderDTO = {
-						"requestCases":{},
-						"dateOfRequest":Date()
-				};
+				var saleDTO = {};
+				var sellerId = 1;
 				$.ajax({
-					   url: '/sales',
+					   url: '/caseSellers/'+sellerId+'/addSale',
 					   data: {
 						   saleDTO : saleDto
 					   },

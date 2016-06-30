@@ -37,6 +37,7 @@ public class CaseSellerService {
 	public void addSale(Long caseSellerId, Sale sale) {
 		CaseSeller looked = caseSellerDao.findOne(caseSellerId);
 		if(looked==null) throw new CaseSellerNotFoundException(caseSellerId);
+		sale.setSeller(looked);
 		looked.addSale(sale);
 		caseSellerDao.save(looked);
 	}
