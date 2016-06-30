@@ -36,6 +36,8 @@ public class Sale {
 	
 	private SaleStatus status;
 	
+	public Sale(){}
+	
 	public Sale(CaseOrder order) {
 		super();
 		Validate.notNull(order,"Order cannot be null");
