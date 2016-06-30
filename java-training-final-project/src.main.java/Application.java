@@ -44,7 +44,7 @@ public class Application {
 			Application application = new Application(sessionFactory);
 			//session = sessionFactory.getCurrentSession();
 			service = new CreateEmployeeService(new EmployeeDAO<Employee>(sessionFactory.getCurrentSession()));
-			service.create("Juan", "seller");
+			service.create(new Employee("Juan", "seller"));
 		} catch (Exception e) {
 			LOGGER.error("Something terrible happened.", e);
 		}

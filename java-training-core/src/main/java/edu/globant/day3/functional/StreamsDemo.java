@@ -50,7 +50,7 @@ public class StreamsDemo {
 				.collect(Collectors.toList());
 		showStudents(studentsWithGradeAbove10);
 		System.out.println("----------------------------------------------------------");
-<<<<<<< HEAD
+
 		Map<String, List<StudentWithTutor>> studentsByTutor = studentList.stream()
 				.collect(Collectors.groupingBy(StudentWithTutor::getTutor));
 		studentsByTutor.entrySet().stream().forEach(e -> {
@@ -64,17 +64,17 @@ public class StreamsDemo {
 			System.out.println(e.getKey() + "'s students: ");
 			showStudents(e.getValue());
 		});
-=======
-		Map<String, List<StudentWithTutor>> studentsByTutor =
+
+		/*Map<String, List<StudentWithTutor>> studentsByTutor =
 				studentList.stream()
 					.collect(Collectors.groupingBy(StudentWithTutor::getTutor));
 		studentsByTutor.entrySet().stream()
 			.forEach(e -> {
 				System.out.println(e.getKey() + "'s students: ");
 				showStudents(e.getValue());
-			});
+			});*/
 		System.out.println("----------------------------------------------------------");
-		Map<String, List<StudentWithTutor>> studentsByTutorOrdered =
+		/*Map<String, List<StudentWithTutor>> studentsByTutorOrdered =
 				studentList.stream()
 					.collect(Collectors.groupingBy(
 							StudentWithTutor::getTutor,
@@ -84,8 +84,8 @@ public class StreamsDemo {
 			.forEach(e -> {
 				System.out.println(e.getKey() + "'s students: ");
 				showStudents(e.getValue());
-			});
->>>>>>> master
+			});*/
+
 		System.out.println("----------------------------------------------------------");
 		Double classAverageGrade = studentList.stream().flatMap(s -> s.getGradeList().stream())
 				.mapToDouble(Double::doubleValue).average().orElse(10d);
