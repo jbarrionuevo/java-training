@@ -4,24 +4,35 @@ import java.util.Date;
 
 import org.thymeleaf.util.Validate;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import ilan.models.Sale;
+
 public class ReceiptDTO {
 	private Long id;
 	private String storeName;
-	private CaseOrderDTO caseOrder;
 	private Date dateOfSale;
 	private CustomerDTO customer;
+	private SaleDTO sale;
 	
-	public ReceiptDTO(String storeName, Date dateOfSale,CaseOrderDTO order, CustomerDTO customer) {
-		super();
-		Validate.notNull(dateOfSale,"Date of sale cannot be null");
-		Validate.notEmpty(storeName,"Store Name cannot be blank");
-		Validate.notNull(order,"Order cannot be null");
-		Validate.notNull(customer,"Customer cannot be null");
-		this.storeName = storeName;
+	@JsonCreator
+	public ReceiptDTO(){}
+	
+	@JsonCreator
+	public ReceiptDTO(@JsonProperty("storeName") String storeName,
+			@JsonProperty("dateOfSale") Date dateOfSale,
+			@JsonProperty("customer") CustomerDTO customer){
 		this.dateOfSale = dateOfSale;
-		this.caseOrder=order;
+		this.storeName = storeName;
 		this.customer=customer;
 	}
+//	
+//	public ReceiptDTO(String storeName, Date dateOfSale,CustomerDTO customer) {
+//		this.storeName = storeName;
+//		this.dateOfSale = dateOfSale;
+//		this.customer=customer;
+//	}
 	
 	public String getStoreName() {
 		return storeName;
@@ -47,20 +58,20 @@ public class ReceiptDTO {
 		this.id = id;
 	}
 
-	public CaseOrderDTO getCaseOrder() {
-		return caseOrder;
-	}
-
-	public void setCaseOrder(CaseOrderDTO caseOrder) {
-		this.caseOrder = caseOrder;
-	}
-
 	public CustomerDTO getCustomer() {
 		return customer;
 	}
 
 	public void setCustomer(CustomerDTO customer) {
 		this.customer = customer;
+	}
+
+	public SaleDTO getSale() {
+		return sale;
+	}
+
+	public void setSale(SaleDTO sale) {
+		this.sale = sale;
 	}
 
 

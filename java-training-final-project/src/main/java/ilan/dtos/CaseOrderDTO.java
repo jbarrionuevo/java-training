@@ -7,16 +7,13 @@ import org.thymeleaf.util.Validate;
 
 public class CaseOrderDTO {
 	private Long id;
-	private HashMap<CaseProductDTO,Integer> requestCases;
+	private HashMap<Integer,CaseProductDTO> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
 	
 	public CaseOrderDTO(){}
 	
-	public CaseOrderDTO(HashMap<CaseProductDTO,Integer> requestCases, Date dateOfRequest) {
+	public CaseOrderDTO(HashMap<Integer,CaseProductDTO> requestCases, Date dateOfRequest) {
 		super();
-		Validate.notNull(dateOfRequest, "Date of request cannot be null");
-		Validate.notNull(requestCases, "Request cases cannot be null");
-		Validate.containsNoEmpties((Iterable<String>) requestCases, "There must be at least 1 request case");
 		this.requestCases = requestCases;
 		this.dateOfRequest=dateOfRequest;
 	}
@@ -45,11 +42,11 @@ public class CaseOrderDTO {
 		this.id = id;
 	}
 
-	public HashMap<CaseProductDTO, Integer> getRequestCases() {
+	public HashMap<Integer,CaseProductDTO> getRequestCases() {
 		return requestCases;
 	}
 
-	public void setRequestCases(HashMap<CaseProductDTO, Integer> requestCases) {
+	public void setRequestCases(HashMap<Integer,CaseProductDTO> requestCases) {
 		this.requestCases = requestCases;
 	}
 

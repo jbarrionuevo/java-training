@@ -5,9 +5,12 @@ import java.util.Collection;
 
 import org.thymeleaf.util.Validate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class CaseDeviceDTO {
 	private Long id;
 	private String name;
+	@JsonIgnore
 	private Collection<CaseProductDTO> cases;
 	
 	public CaseDeviceDTO(){}

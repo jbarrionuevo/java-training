@@ -3,9 +3,13 @@ package ilan.dtos;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class ProviderDTO {
 	
+	@JsonIgnore
 	private Collection<CaseOrderDTO> orders;
+	@JsonIgnore
 	private Collection<CaseProductDTO> cases;
 	private String name,location;
 	

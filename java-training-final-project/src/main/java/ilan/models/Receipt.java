@@ -20,30 +20,29 @@ public class Receipt {
 	
 	private String storeName;
 	
-	@OneToOne
-	private CaseOrder caseOrder;
 	private Date dateOfSale;
+	
+	@ManyToOne
+	Sale sale;
 	
 	@ManyToOne
 	private Customer customer;
 	
-	public Receipt(String storeName, Date dateOfSale,CaseOrder order, Customer customer) {
+	public Receipt(String storeName, Date dateOfSale, Customer customer) {
 		super();
 		Validate.notNull(dateOfSale,"Date of sale cannot be null");
 		Validate.notEmpty(storeName,"Store Name cannot be blank");
-		Validate.notNull(order,"Order cannot be null");
 		Validate.notNull(customer,"Customer cannot be null");
 		this.storeName = storeName;
 		this.dateOfSale = dateOfSale;
-		this.caseOrder=order;
 		this.customer=customer;
 	}
 	
 	@Override
 	public String toString(){
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		return String.format("Receipt: Store name: %s; Quantity: %d; Customer: [%s];"
-				+ "Date: %s", this.getStoreName(), this.getOrder().getQuantity(),
+		return String.format("Receipt: Store name: %s; Customer: [%s];"
+				+ "Date: %s", this.getStoreName(),
 				this.getCustomer(), df.format(this.getDateOfSale()));
 	}
 
@@ -61,15 +60,6 @@ public class Receipt {
 
 	public void setDateOfSale(Date dateOfSale) {
 		this.dateOfSale = dateOfSale;
-	}
-
-
-	public CaseOrder getOrder() {
-		return caseOrder;
-	}
-
-	public void setOrder(CaseOrder order) {
-		this.caseOrder = order;
 	}
 
 	public Customer getCustomer() {

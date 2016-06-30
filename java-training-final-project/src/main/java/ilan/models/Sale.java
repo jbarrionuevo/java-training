@@ -1,10 +1,16 @@
 package ilan.models;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,8 +24,9 @@ public class Sale {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToOne
-	private Receipt receipt;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sale", cascade = CascadeType.ALL)
+	private Collection<Receipt> receipts;
 	
 	@OneToOne
 	private CaseOrder caseOrder;
@@ -34,13 +41,15 @@ public class Sale {
 		Validate.notNull(order,"Order cannot be null");
 		this.caseOrder=order;
 		this.status = SaleStatus.DRAFT;
+		this.receipts=new ArrayList<Receipt>();
 	}
-	
-	public Receipt getReceipt() {
-		return receipt;
+
+	public Collection<Receipt> getReceipts() {
+		return receipts;
 	}
-	public void setReceipt(Receipt receipt) {
-		this.receipt = receipt;
+
+	public void setReceipts(Collection<Receipt> receipts) {
+		this.receipts = receipts;
 	}
 
 	public SaleStatus getStatus() {
