@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author fedec
  */
 @Service
-@Transactional
 public class InventoryServiceImpl implements InventoryService{
 
     @Autowired

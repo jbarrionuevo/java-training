@@ -14,6 +14,9 @@ import edu.globant.ioncases.model.Device;
 import edu.globant.ioncases.model.Provider;
 import edu.globant.ioncases.model.Tablet;
 import edu.globant.ioncases.service.InventoryService;
+import edu.globant.ioncases.service.ProviderService;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +38,11 @@ public class InventoryController {
     @Autowired
     CaseDao caseDao;
 
+    @Autowired
+    ProviderService providerService;
+    
+    
+
     @RequestMapping(value = "/showAll", method = RequestMethod.GET)
     public String show(Model model) {
 
@@ -48,27 +56,23 @@ public class InventoryController {
 
         Device tablet = new Tablet("Ipad 5");
         Device celu = new Cellphone("Iphone 5");
-        
+
         CaseCover c = new CaseCover("testDesiign", 13);
-        
+
         c.addCompatibleDevices(tablet);
         c.addCompatibleDevices(celu);
-        
+
         Provider prov = new Provider();
         prov.setName("Provedor cases apple");
-        
+
         c.addProvider(prov);
         caseDao.addCase(c);
 
         CaseCover c2 = caseDao.getCaseById(1);
         System.out.println("9999999999999> " + c2.getDesign() + " - " + c2.getPrice());
-        
-        inventoryService.addCase(c2, 22);
-        
 
-        
-        
-        
+        inventoryService.addCase(c2, 22);
+
         return "addCaseToInventory";
     }
 
@@ -77,5 +81,42 @@ public class InventoryController {
 
         return "index";
     }
+
+    @RequestMapping(value = "/addProvider", method = RequestMethod.GET)
+    public String addProvider(Model model) {
+
+        Provider prov1 = new Provider();
+        prov1.setName("Provider 1");
+
+        Device tablet = new Tablet("Ipad 5");
+        Device celu = new Cellphone("Iphone 5");
+
+        CaseCover c = new CaseCover("testDesiign", 13);
+
+        c.addCompatibleDevices(tablet);
+        c.addCompatibleDevices(celu);
+        c.addProvider(prov1);
+
+        prov1.addCases(c);
+
+        providerService.newProvider(prov1);
+
+        return "index";
+    }
+    
+        @RequestMapping(value = "/addOrderToProvider", method = RequestMethod.GET)
+    public String addOrderToProvider(Model model) {
+        
+        
+        Map<Long,Integer> order = new HashMap<>();
+        
+        order.put(1L, 20);
+        
+        
+        
+        
+        return "index";
+    }
+    
 
 }
