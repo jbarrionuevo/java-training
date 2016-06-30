@@ -4,25 +4,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.globant.IONSolid.model.productcases.*;
+import edu.globant.IONSolid.model.registry.Registry;
 import edu.globant.IONSolid.services.warehouse.exception.NotFoundProductException;
 
-public class WarehouseInventory {
+public class WarehouseInventoryService {
 
-	private Map<Long, ProductStock> warehouseProducts;
-	private static WarehouseInventory instance; 
+	private Registry<Long, ProductStock> inventoryRegistry;
+	//This class should have its dao
 	
-	private WarehouseInventory() {
-		warehouseProducts = new HashMap<Long, ProductStock>();
+	public  WarehouseInventoryService() {
+		inventoryRegistry = new Registry<Long, ProductStock>();
 	}
 	
-	public static WarehouseInventory getInstance() {
-		if(instance == null) {
-			return new WarehouseInventory();
-		}
-		return instance;
+	public void addProductToStock(ProductStock product) {
+		inventoryRegistry.insertRegister(product.getProductDetail().getCaseProductId(), product);
 	}
 	
-	public void addProductToStock
 	public void increaseProductCaseStock(ProductCase product, Integer quantity) {
 		
 	}
