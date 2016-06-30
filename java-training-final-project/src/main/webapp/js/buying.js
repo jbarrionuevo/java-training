@@ -52,7 +52,13 @@ $(document).ready(function(){
 					return false;
 				}
 				var saleDTO = {
-						"caseOrder":{},
+						"caseOrder":{
+						    "requestCases":[
+						        {"1":"1000"},
+						        {"2":"3000"}
+						   ],
+						    "dateOfRequest":"2016-10-10"
+						},
 						"receipts":[
 						    {
 						        "storeName":"store", //actually should get it from seller
