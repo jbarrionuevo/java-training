@@ -15,7 +15,7 @@ public abstract class BaseEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	protected Long id;
-
+	
 	public Long getId() {
 		return id;
 	}

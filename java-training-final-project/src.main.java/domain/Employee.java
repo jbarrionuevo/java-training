@@ -3,7 +3,6 @@ package domain;
 import javax.persistence.Entity;
 
 import org.apache.commons.lang3.Validate;
-import org.hibernate.annotations.DynamicUpdate;
 
 import persistence.DAO.DTO;
 
@@ -12,6 +11,10 @@ public class Employee extends BaseEntity implements DTO {
 
 	private String name;
 	private String type;
+
+	// default constructor
+	public Employee() {
+	}
 
 	public Employee(String name, String type) {
 		Validate.notBlank(name, "The name cannot be blank.");
