@@ -1,0 +1,4 @@
+I never worked with JPA, before the class i think was just a specification. I prefer hibernate, because is a JPA implementation and i think is 
+going better and better but i can`t said too much as i only used hibernate. I will prefer JPA standard over JDBC because in general with an ORM
+you need to write less code, so you can focus in business rules and behavior instead writing a lot of code that seems to be the same all the time.
+Is good to know there are another implementations, usually most people goes for most common option, in this case hibernate. 
