@@ -35,8 +35,8 @@ public class CaseOrderService{
 	     }
 	}
 	
-	public void saveOrder(CaseOrder order){
-		orderDao.save(order);
+	public CaseOrder save(CaseOrder order){
+		return orderDao.save(order);
 	}
 	
 	public Collection<CaseOrder> findAllOrders() {

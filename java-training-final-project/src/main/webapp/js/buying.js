@@ -51,11 +51,12 @@ $(document).ready(function(){
 					alert("Enter customer location!");
 					return false;
 				}
-				var saleDto =  {"caseOrder": null,"caseSeller": null,"receipt": null};
+				var orderDTO = {
+						"requestCases":{},
+						"dateOfRequest":Date()
+				};
 				$.ajax({
-					   url: 'sales',
-//					   url: '/inventory/buy/'+JSON.stringify(products),
-//					   dataType: "json",
+					   url: '/sales',
 					   data: {
 						   saleDTO : saleDto
 					   },
