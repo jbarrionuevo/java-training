@@ -1,30 +1,20 @@
 package ilan.dtos;
 
 import ilan.enums.SaleStatus;
-import ilan.models.CaseOrder;
-import ilan.models.CaseSeller;
-import ilan.models.Receipt;
 
 public class SaleDTO {
 	private Long id;
-	private Receipt receipt;
-	private CaseOrder caseOrder;
-	private CaseSeller caseSeller;
+	private ReceiptDTO receipt;
+	private CaseOrderDTO caseOrder;
+	private CaseSellerDTO caseSeller;
 	private SaleStatus status;
 	
-	public SaleDTO(CaseOrder caseOrder, CaseSeller caseSeller, Receipt receipt) {
+	public SaleDTO(CaseOrderDTO caseOrder, CaseSellerDTO caseSeller, ReceiptDTO receipt) {
 		super();
-		this.receipt=receipt;
-		this.caseOrder=caseOrder;
+		this.setReceipt(receipt);
+		this.setCaseOrder(caseOrder);
 		this.setCaseSeller(caseSeller);
 		this.status = SaleStatus.DRAFT;
-	}
-	
-	public Receipt getReceipt() {
-		return receipt;
-	}
-	public void setReceipt(Receipt receipt) {
-		this.receipt = receipt;
 	}
 
 	public SaleStatus getStatus() {
@@ -35,21 +25,7 @@ public class SaleDTO {
 		this.status = status;
 	}
 
-	public CaseOrder getOrder() {
-		return caseOrder;
-	}
-
-	public void setOrder(CaseOrder order) {
-		this.caseOrder = order;
-	}
-
-	public CaseSeller getCaseSeller() {
-		return caseSeller;
-	}
-
-	public void setCaseSeller(CaseSeller caseSeller) {
-		this.caseSeller = caseSeller;
-	}
+	
 
 	public Long getId() {
 		return id;
@@ -57,5 +33,29 @@ public class SaleDTO {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public ReceiptDTO getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(ReceiptDTO receipt) {
+		this.receipt = receipt;
+	}
+
+	public CaseOrderDTO getCaseOrder() {
+		return caseOrder;
+	}
+
+	public void setCaseOrder(CaseOrderDTO caseOrder) {
+		this.caseOrder = caseOrder;
+	}
+
+	public CaseSellerDTO getCaseSeller() {
+		return caseSeller;
+	}
+
+	public void setCaseSeller(CaseSellerDTO caseSeller) {
+		this.caseSeller = caseSeller;
 	}
 }
