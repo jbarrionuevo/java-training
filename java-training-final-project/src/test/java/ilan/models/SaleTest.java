@@ -15,7 +15,8 @@ public class SaleTest {
 
 	@Mock
 	CaseOrder orderMock;
-
+	@Mock
+	Collection<Receipt> receipts;
 	
 	@Before
     public void setup() {
@@ -24,12 +25,12 @@ public class SaleTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation() {
-		new Sale(null);
+		new Sale(null,null);
 	}
 	
 	@Test
 	public void testCreation() {
-		Sale sale = new Sale(orderMock);
+		Sale sale = new Sale(orderMock,receipts);
 		assertThat("Sale was wrongly instantiated", sale.getOrder(),is(orderMock));
 	}
 	

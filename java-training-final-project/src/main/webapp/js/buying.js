@@ -1,6 +1,6 @@
 $(document).ready(function(){  
 	
-//	$("#customerData").hide();
+	$("#customerData").hide();
 	
 	var products = new Object();
 	var index = 0;
@@ -32,25 +32,25 @@ $(document).ready(function(){
 		products = new Object();
 		$("#currentSale").html("No product added");
 		$("#productQuantity").val("0");
-//		$("#customerData").hide();
+		$("#customerData").hide();
 	});
 	
 	$(document).on("click","#confirmSale",function(){
 		if($("#productQuantity").val()==0) alert("You must add at least 1 item!");
 		else{
-//			if($('#customerData').is(':visible')) {
-//				if($("#name").val().length === 0){
-//					alert("Enter customer name!");
-//					return false;
-//				}
-//				if($("#age").val().length === 0){
-//					alert("Enter customer age!");
-//					return false;
-//				}
-//				if($("#location").val().length === 0){
-//					alert("Enter customer location!");
-//					return false;
-//				}
+			if($('#customerData').is(':visible')) {
+				if($("#name").val().length === 0){
+					alert("Enter customer name!");
+					return false;
+				}
+				if($("#age").val().length === 0){
+					alert("Enter customer age!");
+					return false;
+				}
+				if($("#location").val().length === 0){
+					alert("Enter customer location!");
+					return false;
+				}
 				var saleDTO = {
 						"caseOrder":{
 						    "requestCases":{
@@ -59,21 +59,19 @@ $(document).ready(function(){
 						    },
 						    "dateOfRequest":"2016-10-10"
 						},
-						"receipts":[]
+						"receipts":[
+						    {
+						        "storeName":"store",
+						        "dateOfSale":null,
+						        "customer":{
+						            "name":"ilan",
+						            "location":"53 y 2",
+						            "age":21,
+						            "gender":"M"
+						        }
+						    		}
+						 ]
 				};
-//						"receipts":[
-//						    {
-//						        "storeName":"store",
-//						        "dateOfSale":null,
-//						        "customer":{
-//						            "name":"ilan",
-//						            "location":"53 y 2",
-//						            "age":21,
-//						            "gender":"M"
-//						        }
-//						    		}
-//						 ]
-//					};
 				var sellerId = 1;  //actually should get it from seller
 				$.ajax({
 					   url: '/caseSellers/'+sellerId+'/addSale',
@@ -89,12 +87,12 @@ $(document).ready(function(){
 						  alert("Draft Sale registered succesfully!");
 					   },
 					   type: 'PUT'
-				 });
-			}
-//			else{
-//				$("#customerData").show();
-//				$("#customerData").css("visibility","visible");
-//			}
-		});
+				});
+		}else{
+				$("#customerData").show();
+				$("#customerData").css("visibility","visible");
+		}
+	}
 	});
+s});
 //});
