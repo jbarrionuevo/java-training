@@ -1,5 +1,6 @@
 package ilan.dtos;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class CaseSellerDTO {
@@ -10,6 +11,7 @@ public class CaseSellerDTO {
 	
 	public CaseSellerDTO(String name){
 		this.name=name;
+		this.sales=new ArrayList<SaleDTO>();
 	}
 	
 	public CaseSellerDTO(String name, Collection<SaleDTO> sales) {

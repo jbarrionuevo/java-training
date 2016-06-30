@@ -7,23 +7,25 @@ public class SaleDTO {
 	private ReceiptDTO receipt;
 	private CaseOrderDTO caseOrder;
 	private CaseSellerDTO caseSeller;
-	private SaleStatus status;
+//	private SaleStatus status;
+	
+	public SaleDTO(){}
 	
 	public SaleDTO(CaseOrderDTO caseOrder, CaseSellerDTO caseSeller, ReceiptDTO receipt) {
 		super();
 		this.setReceipt(receipt);
 		this.setCaseOrder(caseOrder);
 		this.setCaseSeller(caseSeller);
-		this.status = SaleStatus.DRAFT;
+//		this.status = SaleStatus.DRAFT;
 	}
 
-	public SaleStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(SaleStatus status) {
-		this.status = status;
-	}
+//	public SaleStatus getStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(SaleStatus status) {
+//		this.status = status;
+//	}
 
 	
 

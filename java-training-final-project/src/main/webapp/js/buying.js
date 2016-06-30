@@ -51,19 +51,21 @@ $(document).ready(function(){
 					alert("Enter customer location!");
 					return false;
 				}
+				var saleDto =  {"caseOrder": null,"caseSeller": null,"receipt": null};
 				$.ajax({
-					   url: 'sales/'
+					   url: 'sales',
 //					   url: '/inventory/buy/'+JSON.stringify(products),
-//					   data: {
-//					      format: 'json'
-//					   },
+//					   dataType: "json",
+					   data: {
+						   saleDTO : saleDto
+					   },
 					   error: function() {
 					      $('#result').html('<p>An error has occurred</p>');
 					   },
 					   success: function(data) {
 						  alert(data);
 					   },
-					   type: 'GET'
+					   type: 'POST'
 				 });
 			}
 			else{
