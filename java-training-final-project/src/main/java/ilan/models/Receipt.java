@@ -28,6 +28,8 @@ public class Receipt {
 	@ManyToOne
 	private Customer customer;
 	
+	public Receipt(){}
+	
 	public Receipt(String storeName, Date dateOfSale, Customer customer) {
 		super();
 		Validate.notNull(dateOfSale,"Date of sale cannot be null");
@@ -68,6 +70,14 @@ public class Receipt {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public Sale getSale() {
+		return sale;
+	}
+
+	public void setSale(Sale sale) {
+		this.sale = sale;
 	}
 	
 	

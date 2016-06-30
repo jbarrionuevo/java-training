@@ -41,4 +41,14 @@ public class ThirdPartyParticipant implements Serializable{
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 }

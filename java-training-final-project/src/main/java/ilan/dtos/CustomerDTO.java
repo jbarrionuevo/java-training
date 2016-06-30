@@ -2,6 +2,9 @@ package ilan.dtos;
 
 import org.thymeleaf.util.Validate;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import ilan.enums.Gender;
 
 public class CustomerDTO {
@@ -9,7 +12,13 @@ public class CustomerDTO {
 	private Gender gender;
 	private String name,location;
 	
-	public CustomerDTO(String name, String location, int age, Gender gender) {
+	public CustomerDTO(){}
+	
+	@JsonCreator
+	public CustomerDTO(@JsonProperty("name") String name,
+			@JsonProperty("location")String location, 
+			@JsonProperty("age")int age, 
+			@JsonProperty("gender")Gender gender) {
 		this.name=name;
 		this.location=location;
 		Validate.notNull(gender, "Gender cannot be blank");

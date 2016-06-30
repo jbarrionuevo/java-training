@@ -15,6 +15,8 @@ public class Customer extends ThirdPartyParticipant{
 	private int age;
 	private Gender gender;
 	
+	public Customer(){}
+	
 	public Customer(String name, String location, int age, Gender gender) {
 		super(name,location);
 		Validate.notNull(gender, "Gender cannot be blank");

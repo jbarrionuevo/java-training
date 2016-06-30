@@ -51,7 +51,12 @@ $(document).ready(function(){
 					alert("Enter customer location!");
 					return false;
 				}
-				var saleDTO = {};
+				var saleDTO = {
+						"caseOrder":{},
+						"receipts":{
+							{}
+						}
+				};
 				var sellerId = 1;
 				$.ajax({
 					   url: '/caseSellers/'+sellerId+'/addSale',
