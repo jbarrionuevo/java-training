@@ -1,8 +1,10 @@
 package edu.globant.IONSolid.model.sale;
 
-import edu.globant.IONSolid.model.cases.ProductCase;
+import java.util.Date;
 
 import org.apache.commons.validator.GenericValidator;
+
+import edu.globant.IONSolid.model.productcases.ProductCase;
 
 public class SaleProductDetail {
 
@@ -32,7 +34,7 @@ public class SaleProductDetail {
 		return productCase;
 	}
 	
-	public Double getTotalPrice() {
-		return productCase.getUnitPrice() * productQuantity;
+	public Double getTotalPrice(Date date) {
+		return productCase.getUnitPriceForDate(date, this.productQuantity);
 	}
 }

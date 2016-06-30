@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import edu.globant.IONSolid.model.Customer;
-import edu.globant.IONSolid.model.cases.ProductCase;
 import edu.globant.IONSolid.model.employee.Employee;
+import edu.globant.IONSolid.model.productcases.ProductCase;
 import edu.globant.IONSolid.model.sale.exception.NotFoundProductDetailException;
 import edu.globant.IONSolid.model.sale.exception.SaleModificationException;
 
@@ -40,7 +40,7 @@ public class Sale {
 
 	public Double getSaleTotal() {
 		return saleProductDetails.stream().
-				mapToDouble(s -> s.getTotalPrice()).sum();
+				mapToDouble(s -> s.getTotalPrice(this.saleCreationDate)).sum();
 	}
 
 	public void addProducts(ProductCase newProduct, Integer quantity) throws SaleModificationException {

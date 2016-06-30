@@ -2,8 +2,8 @@ package edu.globant.IONSolid.model;
 
 import java.util.List;
 
-import edu.globant.IONSolid.model.cases.ProductCase;
 import edu.globant.IONSolid.model.delivery.Delivery;
+import edu.globant.IONSolid.model.productcases.ProductCase;
 import edu.globant.IONSolid.model.provider.Provider;
 
 public class Order {

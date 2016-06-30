@@ -2,7 +2,7 @@ package edu.globant.IONSolid.model.provider;
 
 import java.util.List;
 
-import edu.globant.IONSolid.model.cases.CaseDesign;
+import edu.globant.IONSolid.model.productcases.CaseDesign;
 
 public class Provider {
 	

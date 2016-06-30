@@ -3,7 +3,7 @@ package edu.globant.IONSolid.model.delivery;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import edu.globant.IONSolid.model.cases.CaseModel;
+import edu.globant.IONSolid.model.productcases.CaseModel;
 import edu.globant.IONSolid.model.provider.Provider;
 
 public class Delivery {
