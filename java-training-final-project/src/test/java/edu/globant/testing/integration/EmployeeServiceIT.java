@@ -4,7 +4,6 @@ import persistence.DAO.EmployeeDAO;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -31,7 +30,7 @@ public class EmployeeServiceIT {
 	MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
 	Employee employee1;
 	Employee employee2;
-	Employee employeeMock;
+	
 	Session session;
 
 	@Before
@@ -49,7 +48,7 @@ public class EmployeeServiceIT {
 		employee1 = new Employee("Juan", "seller");
 		employee2 = new Employee("Jimena", "logistics");
 
-		employeeMock = Mockito.mock(Employee.class);
+		
 	}
 
 	// @Test
@@ -76,26 +75,5 @@ public class EmployeeServiceIT {
 
 		Employee employee1DB = listEmployeeService.findById(employeeSpring1.getId());
 		assertThat(employee1DB, equalTo(employeeSpring1));
-
-		System.out.println(String.format("***************employeeSpring1: name %s - type %s", employeeSpring1.getName(),
-				employeeSpring1.getType()));
 	}
-
-	@Test
-	public void createAndListMock() {
-		createEmployeeService.create(employeeMock);
-		createEmployeeService.create(employee2);
-
-		Employee employee1DB = listEmployeeService.findById(employeeMock.getId());
-		Employee employee2DB = listEmployeeService.findById(employee2.getId());
-
-		assertThat(employee1DB, equalTo(employeeMock));
-		assertThat(employee1DB, not(equalTo(employee2)));
-		assertThat(employee2, equalTo(employee2DB));
-		assertThat(employee1DB, not(equalTo(employee2DB)));
-
-		System.out.println(String.format("***************employeeSpring1: name %s - type %s", employeeMock.getName(),
-				employeeMock.getType()));
-	}
-
 }
