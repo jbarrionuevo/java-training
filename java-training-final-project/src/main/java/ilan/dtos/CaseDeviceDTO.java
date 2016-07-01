@@ -10,15 +10,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class CaseDeviceDTO {
 	private Long id;
 	private String name;
-	@JsonIgnore
-	private Collection<CaseProductDTO> cases;
+//	@JsonIgnore
+//	private Collection<CaseProductDTO> cases;
 	
 	public CaseDeviceDTO(){}
 	
 	public CaseDeviceDTO(String name) {
 		Validate.notEmpty(name, "Name cannot be blank");
 		this.name = name;
-		this.cases=new ArrayList<CaseProductDTO>();
+//		this.cases=new ArrayList<CaseProductDTO>();
 	}
 	
 	public String getName() {
@@ -37,13 +37,13 @@ public class CaseDeviceDTO {
 		this.id = id;
 	}
 
-	public Collection<CaseProductDTO> getCases() {
-		return cases;
-	}
-
-	public void setCases(Collection<CaseProductDTO> cases) {
-		this.cases = cases;
-	}
+//	public Collection<CaseProductDTO> getCases() {
+//		return cases;
+//	}
+//
+//	public void setCases(Collection<CaseProductDTO> cases) {
+//		this.cases = cases;
+//	}
 
 	
 }
