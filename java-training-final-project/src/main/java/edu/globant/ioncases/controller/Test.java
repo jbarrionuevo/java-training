@@ -22,7 +22,7 @@ public class Test {
 
     public static void main(String[] args) {
 
-//        Employee e = new StoreSeller("Fede", new Store("store"));
+//        Employee e = new StoreSeller("Fede", new Store("store")); d
 //        
         CaseCover c = new CaseCover("desiggnnn", 20000);
 //        
