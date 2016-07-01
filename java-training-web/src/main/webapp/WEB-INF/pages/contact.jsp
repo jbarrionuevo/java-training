@@ -26,7 +26,7 @@
 		<div>
 			<span>Birthday:</span>
 			<span>
-				<ftm:formatDate pattern="yyyy-MM-dd" value="${contact.firstName}" />
+				<ftm:formatDate pattern="yyyy-MM-dd" value="${contact.birthday}" />
 			</span>
 		</div>
 		<div>
