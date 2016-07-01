@@ -74,7 +74,7 @@ $(document).ready(function(){
 				var saleDTO = {
 						"caseOrder":{
 						    "requestCases":JSON.parse(casesJson),
-						    "dateOfRequest":"2016-10-10"
+						    "dateOfRequest":getCurrentDate()
 						},
 						"totalPrice":totalPrice,
 						"receipts":[
@@ -114,4 +114,14 @@ $(document).ready(function(){
 	}
 	});
 });
-//});
+
+
+function getCurrentDate(){
+	var today = new Date();
+	var dd = today.getDate(); 
+	if(dd<10) dd = "0"+dd;
+	var mm = today.getMonth()+1; 
+	if(mm<10) mm = "0"+mm;
+	var yyyy = today.getFullYear(); 
+	return (yyyy+"-"+mm+"-"+dd);
+}
