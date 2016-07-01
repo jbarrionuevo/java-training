@@ -31,6 +31,7 @@ public class CaseSellerRestController {
 	
 	@RequestMapping(value="/{caseSellerId}/addSale",method = RequestMethod.PUT)
 	@ResponseStatus(value= HttpStatus.OK)
+	//returns the id of the new Sale
 	public Long addSale(@PathVariable Long caseSellerId, @RequestBody SaleDTO saleDTO){
 		Collection<Receipt> receipts = new ArrayList<Receipt>(){{add(mapper.map(saleDTO.getReceipts().iterator().next(), Receipt.class));}};
 		CaseOrder order = mapper.map(saleDTO.getCaseOrder(), CaseOrder.class);

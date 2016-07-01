@@ -4,6 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value=HttpStatus.NOT_FOUND, reason = "Provider not found")
-public class ProviderNotFoundException {
-	public ProviderNotFoundException(String id){}
+public class ProviderNotFoundException extends RuntimeException{
+	public ProviderNotFoundException(Long id){}
 }

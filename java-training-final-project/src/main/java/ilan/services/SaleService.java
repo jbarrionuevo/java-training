@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ilan.daos.CaseSellerDao;
 import ilan.daos.SaleDao;
+import ilan.enums.SaleStatus;
 import ilan.exceptions.CaseSellerNotFoundException;
+import ilan.exceptions.SaleNotFoundException;
 import ilan.models.CaseSeller;
 import ilan.models.Sale;
 
@@ -39,6 +41,22 @@ public class SaleService {
 		CaseSeller seller = caseSellerDao.findOne(caseSellerId);
 		if(seller==null) throw new CaseSellerNotFoundException(caseSellerId);
 		return saleDao.findBySeller(seller);
+	}
+
+	public void update(Long saleId, String status) {
+		Sale sale = saleDao.findOne(saleId);
+		if(sale==null) throw new SaleNotFoundException(saleId);
+		switch (status) {
+		case "paid":
+			sale.setStatus(SaleStatus.PAID);
+			break;
+		case "cancelled":
+			sale.setStatus(SaleStatus.CANCELLED);
+		default:
+			sale.setStatus(SaleStatus.REFUND);
+			break;
+		}
+		saleDao.save(sale);
 	}
 
 	

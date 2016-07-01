@@ -29,12 +29,20 @@ function updateSale(status){
 		      $('#result').html('<p>An error has occurred</p>');
 		   },
 		   success: function(data) {
-			   updateView(data);
+			   var sellerId=1; //see this!
+			   $.ajax({
+				   url: '/sales/seller/'+sellerId,
+				   error: function() {},
+				   success: function(data) {
+					   updateView(data);
+				   },
+				   type: 'GET'
+			   }); 
 		   },
 		   type: 'PUT'
 	});
 }
 
 function updateView(data){
-	
+	alert(data);
 }
