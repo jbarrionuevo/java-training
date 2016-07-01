@@ -6,7 +6,6 @@
 package edu.globant.ioncases.service;
 
 import edu.globant.ioncases.model.CaseCover;
-import edu.globant.ioncases.model.Provider;
 import java.util.Map;
 
 /**
@@ -15,5 +14,5 @@ import java.util.Map;
  */
 public interface LogisticService {
     
-    void addOrderToProvider(Map<CaseCover,Integer> order, Provider provider);
+    void addOrderToProvider(Map<Long,Integer> order, Long idProvider);
 }

@@ -32,7 +32,7 @@
                                 <td>${inventory.getId()}</td>
                                 <td>${inventory.caseCover.getDesign()}</td>
                                 <td>${inventory.stock}</td>
-
+                                <td> <a href="<c:url value="/inventory/describeCase?caseId=${inventory.getId()}"/>">Show details</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>

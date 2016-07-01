@@ -5,9 +5,11 @@
  */
 package edu.globant.ioncases.service;
 
-import edu.globant.ioncases.model.CaseCover;
+import edu.globant.ioncases.dao.CaseDao;
+import edu.globant.ioncases.dao.ProviderDao;
 import edu.globant.ioncases.model.Provider;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,12 +17,23 @@ import org.springframework.stereotype.Service;
  * @author federico.calarco
  */
 @Service
-public class LogisticServiceImpl implements LogisticService{
+public class LogisticServiceImpl implements LogisticService {
+
+    @Autowired
+    ProviderDao providerDao;
+
+    @Autowired
+    InventoryService invetoryService;
+
+    @Autowired
+    CaseDao caseDao;
 
     @Override
-    public void addOrderToProvider(Map<CaseCover, Integer> order, Provider provider) {
+    public void addOrderToProvider(Map<Long, Integer> order, Long idProvider) {
 
-        
+   //     Provider provider = providerDao.getById(idProvider);
+
+        order.forEach((k, v) -> invetoryService.addCase(caseDao.getCaseById(k), v));
     }
-    
+
 }

@@ -14,6 +14,7 @@ import edu.globant.ioncases.model.Device;
 import edu.globant.ioncases.model.Provider;
 import edu.globant.ioncases.model.Tablet;
 import edu.globant.ioncases.service.InventoryService;
+import edu.globant.ioncases.service.LogisticService;
 import edu.globant.ioncases.service.ProviderService;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -40,8 +42,9 @@ public class InventoryController {
 
     @Autowired
     ProviderService providerService;
-    
-    
+
+    @Autowired
+    LogisticService logisticService;
 
     @RequestMapping(value = "/showAll", method = RequestMethod.GET)
     public String show(Model model) {
@@ -103,20 +106,25 @@ public class InventoryController {
 
         return "index";
     }
-    
-        @RequestMapping(value = "/addOrderToProvider", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/addOrderToProvider", method = RequestMethod.GET)
     public String addOrderToProvider(Model model) {
-        
-        
-        Map<Long,Integer> order = new HashMap<>();
-        
+
+        Map<Long, Integer> order = new HashMap<>();
+
         order.put(1L, 20);
-        
-        
-        
-        
+
+        logisticService.addOrderToProvider(order, 1L);
+
         return "index";
     }
-    
+
+    // describeCase
+    @RequestMapping(value = "/describeCase", method = RequestMethod.GET)
+    public String describeCase(@RequestParam(value = "caseId") Long caseId, Model model) {
+
+        model.addAttribute("caseCover", caseDao.getCaseById(caseId));
+        return "describeCase";
+    }
 
 }
