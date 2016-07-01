@@ -1,23 +1,19 @@
 package ilan.restcontrollers;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.stream.Collectors;
 
-import org.json.JSONObject;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import ilan.models.CaseWrapper;
+import ilan.dtos.CaseWrapperDTO;
 import ilan.services.InventoryService;
-import net.minidev.json.parser.ParseException;
 
 @RestController
 @RequestMapping("/inventory")
@@ -26,14 +22,19 @@ public class InventoryRestController {
 	@Autowired
 	InventoryService inventoryService;
 	
+	@Autowired
+	private Mapper mapper;
+	
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseStatus(value= HttpStatus.OK)
-    public Collection<CaseWrapper> getInventoryWithDesignAndDevice(
+    public Collection<CaseWrapperDTO> getInventoryWithDesignAndDevice(
     							@RequestParam (value="design", required=false) String design, 
     							@RequestParam (value="device", required=false) String device,
     							@RequestParam(value = "page", required = false, defaultValue="0") Integer page,
     							@RequestParam(value = "size", required = false, defaultValue="5") Integer size) {
-		return inventoryService.getInventoryWithDesignAndDevice(design,device,page,size);
+		return inventoryService.getInventoryWithDesignAndDevice(design,device,page,size)
+				.stream()
+				.map(cw->mapper.map(cw,CaseWrapperDTO.class)).collect(Collectors.toList());
     }
 	
 	@RequestMapping(value="/count", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
