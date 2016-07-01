@@ -10,6 +10,7 @@ import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
 import edu.globant.day10.dto.ContactDto;
+import edu.globant.day10.dto.ContactDtoList;
 import edu.globant.day10.mapper.Mapper;
 import edu.globant.day10.ws.ContactWs;
 import edu.globant.day9.domain.Contact;
@@ -29,7 +30,7 @@ public class ContactWsImpl implements ContactWs {
 	}
 
 	@Override
-	public List<ContactDto> getContactList() {
+	public ContactDtoList getContactList() {
 		ServiceFactory serviceFactory = getServiceFactory();
 		ContactService contactService = serviceFactory.createContactService();
 		List<Contact> contactList = contactService.findAll();
@@ -38,6 +39,8 @@ public class ContactWsImpl implements ContactWs {
 		for (Contact contact : contactList) {
 			contactDtoList.add(mapper.getContactDto(contact));
 		}
-		return contactDtoList;
+		ContactDtoList result = new ContactDtoList();
+		result.setContactList(contactDtoList);
+		return result;
 	}
 }

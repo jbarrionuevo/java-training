@@ -12,7 +12,6 @@
 		<c:forEach items="${contactList}" var="contact">
 		<li>
 			<c:out value="${contact.firstName} ${contact.lastName}" />
-			<a href="contacts?id=${contact.id}">View details</a>
 		</li>
 		</c:forEach>
 	</ul>
