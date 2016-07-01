@@ -85,7 +85,8 @@ $(document).ready(function(){
   		"								<tr>" +
   		"									<th>INDEX</th>" +
   		"									<th>DESIGN</th>" +
-  		"									<th>DEVICE</th>";
+  		"									<th>DEVICE</th>"+
+  		"									<th>PRICE</th>";
 		if(isAdmin){
 			result += "<th>PROVIDER</th>" +
 	  		"<th>CURRENT STOCK</th>" +
@@ -101,6 +102,7 @@ $(document).ready(function(){
 			  result+="<td>"+(i+1)+"</td>";
 			  result+="<td>"+v.myCase.design.name+"</td>";
 			  result+="<td>"+v.myCase.device.name+"</td>";
+			  result+="<td>$"+v.myCase.price+"</td>";
 			  if(isAdmin){
 				  result+="<td>Name: "+v.myCase.provider.name+". Location: "+v.myCase.provider.location+"</td>";
 				  result+="<td>"+v.currentStock+"</td>";
@@ -109,7 +111,7 @@ $(document).ready(function(){
 			  }	 else if(isStoreSeller) 
 				  result+="<td>" +
 				  		"<label>Quantity:</label>" +
-						"<input type='hidden' id='"+v.id+"_data' value='"+v.myCase.design.name+"_"+v.myCase.device.name+"'/>"+
+						"<input type='hidden' id='"+v.id+"_data' value='"+v.myCase.design.name+"_"+v.myCase.device.name+"_"+v.myCase.price+"'/>"+
 				  		"<select id='"+v.id+"_quantity'>" +
 				  		"<option>1</option><option>2</option>" +
 				  		"<option>3</option><option>4</option>" +

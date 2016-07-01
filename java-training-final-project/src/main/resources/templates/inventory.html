@@ -39,6 +39,7 @@
 				<th>INDEX</th>
 				<th>DESIGN</th>
 				<th>DEVICE</th>
+				<th>PRICE</th>
 				<div sec:authorize="hasRole('ROLE_STORE_SELLER')">
 					<th>BUY</th>
 				</div>
@@ -53,10 +54,11 @@
 					<td th:text="${itrStat.count}"></td>
 					<td th:text="${casewrapper.myCase.design.name}"></td>
 					<td th:text="${casewrapper.myCase.device.name}"></td>
+					<td th:text="'$'+${casewrapper.myCase.price}"></td>
 					<div sec:authorize="hasRole('ROLE_STORE_SELLER')">
 						<td>
 							<label>Quantity:</label>
-							<input type="hidden" th:id="${casewrapper.id}+'_data'" th:value= "${casewrapper.myCase.design.name}+'_'+${casewrapper.myCase.device.name}"/>
+							<input type="hidden" th:id="${casewrapper.id}+'_data'" th:value= "${casewrapper.myCase.design.name}+'_'+${casewrapper.myCase.device.name}+'_'+${casewrapper.myCase.price}"/>
 							<select th:id="${casewrapper.id}+'_quantity'">
 								<option>1</option>
 								<option>2</option>
