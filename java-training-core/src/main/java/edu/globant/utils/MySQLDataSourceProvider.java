@@ -5,9 +5,10 @@ import javax.sql.DataSource;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-public final class MySQLDataSourceProvider {
+public final class MySQLDataSourceProvider implements DataSourceProvider {
 
-	public DataSource getMySQLDataSource(String configurationPath) {
+	@Override
+	public DataSource getDataSource(String configurationPath) {
 		HikariConfig hikariConfig = new HikariConfig(configurationPath);
 		return new HikariDataSource(hikariConfig);
 	}

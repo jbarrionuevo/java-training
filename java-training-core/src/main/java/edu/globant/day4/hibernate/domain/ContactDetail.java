@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-@Entity
+//@Entity
 @Table(name = "contactdetails")
 public class ContactDetail extends BaseEntity {
 

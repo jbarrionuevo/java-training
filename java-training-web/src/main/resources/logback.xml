@@ -26,7 +26,7 @@
 	<!-- <logger name="org.hibernate" level="INFO"/> -->
 	<!-- <logger name="org.springframework" level="INFO"/> -->
 
-	<root level="DEBUG">
+	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE" />
 	</root>

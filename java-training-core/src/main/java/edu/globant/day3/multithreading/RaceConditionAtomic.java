@@ -31,9 +31,9 @@ public class RaceConditionAtomic {
 	static final int MAX_ITERATIONS = 100;
 
 	public static void main(String[] args) {
-		generateAndCheckSeeds(new BasicSeeder());
-		System.out.println("---------------------------------------------------------------");
-//		generateAndCheckSeeds(new AtomicSeeder());
+//		generateAndCheckSeeds(new BasicSeeder());
+//		System.out.println("---------------------------------------------------------------");
+		generateAndCheckSeeds(new AtomicSeeder());
 	}
 
 	public static void generateAndCheckSeeds(Seeder seeder) {

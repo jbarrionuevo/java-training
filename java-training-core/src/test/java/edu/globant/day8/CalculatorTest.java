@@ -7,8 +7,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import edu.globant.day8.Calculator;
-
 public class CalculatorTest {
 
 	Calculator calculator;
