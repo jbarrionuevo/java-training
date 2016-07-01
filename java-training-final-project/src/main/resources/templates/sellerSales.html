@@ -6,8 +6,7 @@
 <title>My Sales</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="js/inventory.js"></script>
-<script type="text/javascript" src="js/buying.js"></script>
+<script type="text/javascript" src="../../js/sales.js"></script>
 </head>
 <body>
 
@@ -30,8 +29,8 @@
 					<td th:text="${sale.Status}"></td>
 					<td th:text="${#dates.format(sale.caseOrder.dateOfRequest,'dd/MM/yyyy')}"></td>
 					<td th:text="'$'+${sale.totalPrice}"></td>
-					<td><button type="button">CONFIRM</button></td>
-					<td><button type="button">CANCEL</button></td>
+					<td><button type="button" class="confirmSale" th:id="${sale.id}">CONFIRM</button></td>
+					<td><button type="button" class="cancelSale" th:id="${sale.id}">CANCEL</button></td>
 			</tr>
 		</table>
 	</div>

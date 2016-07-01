@@ -45,18 +45,18 @@ public class InventoryRestController {
 		return result;
     }
 	
-	@RequestMapping(value="/buy/{products}", method = RequestMethod.GET, produces = "text/plain")
-	@ResponseStatus(value= HttpStatus.OK)
-    public String buyProduct(@PathVariable String products) throws ParseException {
-		JSONObject  object = new JSONObject(products);
-		Iterator<?> keys = object.keys(); //each one is a CaseWrapper
-		Map<Long,Integer> desire = new HashMap<Long,Integer>();
-		while( keys.hasNext() ) {
-		    String key = (String)keys.next();
-		    desire.put(Long.parseLong(key), Integer.parseInt((String) ((JSONObject)object.get(key)).get("quantity")));
-		}
-		return inventoryService.buyProducts(desire);
-    }
+//	@RequestMapping(value="/buy/{products}", method = RequestMethod.GET, produces = "text/plain")
+//	@ResponseStatus(value= HttpStatus.OK)
+//    public String buyProduct(@PathVariable String products) throws ParseException {
+//		JSONObject  object = new JSONObject(products);
+//		Iterator<?> keys = object.keys(); //each one is a CaseWrapper
+//		Map<Long,Integer> desire = new HashMap<Long,Integer>();
+//		while( keys.hasNext() ) {
+//		    String key = (String)keys.next();
+//		    desire.put(Long.parseLong(key), Integer.parseInt((String) ((JSONObject)object.get(key)).get("quantity")));
+//		}
+//		return inventoryService.buyProducts(desire);
+//    }
 	
 	
 }
