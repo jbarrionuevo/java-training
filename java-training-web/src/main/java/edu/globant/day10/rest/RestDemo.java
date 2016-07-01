@@ -28,5 +28,5 @@ public class RestDemo {
 		result.put("sayHello", "hello " + pathVariable);
 		return Response.ok(result).build();
 	}
-	
+
 }
