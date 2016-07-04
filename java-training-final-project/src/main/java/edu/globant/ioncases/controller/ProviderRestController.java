@@ -5,6 +5,7 @@
  */
 package edu.globant.ioncases.controller;
 
+import edu.globant.ioncases.model.CaseCover;
 import edu.globant.ioncases.model.Provider;
 import edu.globant.ioncases.service.ProviderService;
 import java.util.List;
@@ -25,12 +26,25 @@ public class ProviderRestController {
 
     @Autowired
     ProviderService providerService;
-    
-    
+
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Provider> getAllProviders() {
+        return providerService.getAll();
+    }
+
     @RequestMapping(value = "/getAllCases", method = RequestMethod.GET)
     @ResponseBody
-    public List<Provider> getAllCases() {
-        return providerService.getAll();
+    public List<CaseCover> getAllCases(@RequestParam (value="providerId") Long idProvider) {
+        System.out.println("-----> " + idProvider);
+        
+        Provider provider = providerService.getProviderById(idProvider);
+        
+        List<CaseCover> caseCover = provider.getCases();
+        
+        
+        
+        return provider.getCases();
 
     }
 }

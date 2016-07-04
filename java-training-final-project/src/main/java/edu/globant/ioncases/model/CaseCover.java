@@ -5,6 +5,7 @@
  */
 package edu.globant.ioncases.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,9 +28,11 @@ public class CaseCover implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String design;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Device> compatibleDevices = new HashSet<>();
     private double price;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Provider> providers = new HashSet<>();
 

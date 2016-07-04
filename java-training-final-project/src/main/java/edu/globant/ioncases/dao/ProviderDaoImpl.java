@@ -5,6 +5,7 @@
  */
 package edu.globant.ioncases.dao;
 
+import edu.globant.ioncases.model.CaseCover;
 import edu.globant.ioncases.model.Provider;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -31,7 +32,7 @@ public class ProviderDaoImpl implements ProviderDao {
 
     @Override
     public Provider getById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Provider) getCurrentSession().get(Provider.class, id);
     }
 
     @Override
@@ -42,6 +43,13 @@ public class ProviderDaoImpl implements ProviderDao {
     @Override
     public List<Provider> getAll() {
         return getCurrentSession().createCriteria(Provider.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+    }
+
+    @Override
+    public List<CaseCover> casesAvailablesByProviderId() {
+//        return getCurrentSession().createQuery
+//        ("FROM edu.globant.ioncases.model.Provider.cases").list()g;
+        return null;
     }
 
 }

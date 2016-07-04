@@ -5,6 +5,7 @@
  */
 package edu.globant.ioncases.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +28,12 @@ public class Provider implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CaseCover> cases = new ArrayList<>();
-    
-    
-    public Provider(){}
+
+    public Provider() {
+    }
 
     public Long getId() {
         return id;
@@ -56,10 +58,9 @@ public class Provider implements Serializable {
     public void setCases(List<CaseCover> cases) {
         this.cases = cases;
     }
-    
-    public void addCases(CaseCover caseCover){
+
+    public void addCases(CaseCover caseCover) {
         cases.add(caseCover);
     }
-    
 
 }

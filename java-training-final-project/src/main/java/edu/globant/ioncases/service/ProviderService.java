@@ -18,5 +18,8 @@ public interface ProviderService {
     
     void newProvider(Provider provider);
     
+    Provider getProviderById(Long id);
+    
+    
     
 }

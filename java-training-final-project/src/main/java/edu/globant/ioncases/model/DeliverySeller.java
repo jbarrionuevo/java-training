@@ -5,23 +5,14 @@
  */
 package edu.globant.ioncases.model;
 
-
-
-
 /**
  *
  * @author fedec
  */
-public class DeliverySeller extends Seller{
+public class DeliverySeller extends Seller {
 
- 
     public DeliverySeller(String fullname, Store store) {
-        super(store,fullname, "Delivery Seller");
+        super(store, fullname, "Delivery Seller");
     }
-    
 
-
-
-
-    
 }

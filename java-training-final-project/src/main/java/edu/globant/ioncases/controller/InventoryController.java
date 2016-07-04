@@ -89,15 +89,17 @@ public class InventoryController {
     public String addProvider(Model model) {
 
         Provider prov1 = new Provider();
-        prov1.setName("Provider 1");
+        prov1.setName("Real Case");
+        
+        // Provider has a List<CaseCover> casesCover
+        
+        Device samsungS6 = new Cellphone("Samsung S6");
+        Device iphone5 = new Cellphone("Iphone 5");
 
-        Device tablet = new Tablet("Ipad 5");
-        Device celu = new Cellphone("Iphone 5");
+        CaseCover c = new CaseCover("The Beatles case", 10);
 
-        CaseCover c = new CaseCover("testDesiign", 13);
-
-        c.addCompatibleDevices(tablet);
-        c.addCompatibleDevices(celu);
+        c.addCompatibleDevices(samsungS6);
+        c.addCompatibleDevices(iphone5);
         c.addProvider(prov1);
 
         prov1.addCases(c);
@@ -110,13 +112,17 @@ public class InventoryController {
     @RequestMapping(value = "/addOrderToProvider", method = RequestMethod.GET)
     public String addOrderToProvider(Model model) {
 
-        Map<Long, Integer> order = new HashMap<>();
+        // when i want make a order to provider, i have 
+//        
+//        Map<Long, Integer> order = new HashMap<>();
+//
+//        order.put(1L, 20);
+//
+//        logisticService.addOrderToProvider(order, 1L);
 
-        order.put(1L, 20);
+        model.addAttribute("providers", providerService.getAll());
 
-        logisticService.addOrderToProvider(order, 1L);
-
-        return "index";
+        return "addOrderToProvider";
     }
 
     // describeCase
