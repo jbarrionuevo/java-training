@@ -29,8 +29,8 @@ public class EmployeeServiceIT {
 	private static final String hibernateConfigXml = "/edu/globant/config/hibernate.cfg.xml";
 	MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
 	ApplicationContext context;
-	Employee employee1;
-	Employee employee2;
+	private Employee employee1;
+	private Employee employee2;
 
 	Session session;
 
@@ -50,7 +50,6 @@ public class EmployeeServiceIT {
 		listEmployeeService = new ListEmployeeService(employeeDAO);
 		employee1 = new Employee("Juan", "seller");
 		employee2 = new Employee("Jimena", "logistics");
-
 	}
 
 	@Test
@@ -66,7 +65,7 @@ public class EmployeeServiceIT {
 		assertThat(employee2, equalTo(employee2DB));
 		assertThat(employee1DB, not(equalTo(employee2DB)));
 	}
-
+	
 	@Test
 	public void createAndListWithSpring() {
 
