@@ -1,4 +1,4 @@
-package edu.globant.IONSolid.model.productcases;
+package edu.globant.day4.jdbc.exercises.product;
 
 import java.util.Date;
 

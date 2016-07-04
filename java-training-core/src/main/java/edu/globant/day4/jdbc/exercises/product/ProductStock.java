@@ -1,11 +1,17 @@
-package edu.globant.IONSolid.model.productcases;
+package edu.globant.day4.jdbc.exercises.product;
 
 public class ProductStock {
 
+	private ProductCase productDetail;
 	private Integer currentProductStock;
 	
-	public ProductStock(Integer stock) {
+	public ProductStock(ProductCase product, Integer stock) {
+		this.productDetail = product;
 		this.currentProductStock = stock;
+	}
+
+	public ProductCase getProductDetail() {
+		return productDetail;
 	}
 
 	public Integer getCurrentProductStock() {

@@ -1,4 +1,4 @@
-package edu.globant.IONSolid.model.productcases;
+package edu.globant.day4.jdbc.exercises.product;
 
 import java.util.Date;
 import java.util.Deque;
@@ -13,11 +13,9 @@ public class ProductCase {
 	private String name;
 	private CaseDevice device;
 	private CaseDesign design;
-	private ProductStock productDetail;
-	
+
 	public ProductCase(Long itemId, String name, CaseDevice device, CaseDesign design, Price price, Integer stock) {
 		this.unitPriceHistory = new LinkedList<Price>();
-		this.productDetail = new ProductStock(stock);
 		this.caseProductId = itemId;
 		this.unitPriceHistory.add(price);
 		this.device = device;
@@ -80,13 +78,5 @@ public class ProductCase {
 
 	public CaseDesign getDesign() {
 		return design;
-	}
-	
-	public Integer getStock() {
-		return this.productDetail.getCurrentProductStock();
-	}
-	
-	public ProductStock  getProductDetail() {
-		return this.productDetail;
 	}
 }

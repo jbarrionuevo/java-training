@@ -6,15 +6,15 @@ import java.util.Map;
 import edu.globant.IONSolid.model.registry.exception.AlreadyExistRegisterException;
 import edu.globant.IONSolid.model.registry.exception.NotFoundRegisterException;
 
-public class Registry<T1, T> {
+public class Registry<PK, T> {
 
-	private Map<T1, T> registry;
+	private Map<PK, T> registry;
 
 	public Registry() {
-		this.registry = new HashMap<T1, T>();
+		this.registry = new HashMap<PK, T>();
 	}
 
-	public T getRegister(T1 id) throws NotFoundRegisterException {
+	public T getRegister(PK id) throws NotFoundRegisterException {
 		if (isRegisterRegistered(id)) {
 			return this.registry.get(id);
 		} else {
@@ -22,7 +22,7 @@ public class Registry<T1, T> {
 		}
 	}
 
-	public void insertRegister(T1 id, T object) throws AlreadyExistRegisterException {
+	public void insertRegister(PK id, T object) throws AlreadyExistRegisterException {
 		if (!isRegisterRegistered(id)) {
 			// Inserts new Sale
 			this.registry.put(id, object);
@@ -31,7 +31,7 @@ public class Registry<T1, T> {
 		}
 	}
 
-	public void updateRegister(T1 id, T object) throws NotFoundRegisterException {
+	public void updateRegister(PK id, T object) throws NotFoundRegisterException {
 		if (isRegisterRegistered(id)) {
 			// Overrides old sale
 			this.registry.put(id, object);
@@ -40,12 +40,12 @@ public class Registry<T1, T> {
 		}
 	}
 
-	public boolean isRegisterRegistered(T1 id) {
+	public boolean isRegisterRegistered(PK id) {
 		return this.registry.containsKey(id);
 
 	}
 
-	public Map<T1, T> getAllRegisters() {
+	public Map<PK, T> getAllRegisters() {
 		return this.registry;
 	}
 }
