@@ -6,7 +6,10 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-	<!--
+	
+	<display-name>Spring + JAX-WS</display-name>
+	
+	
 	<listener>
 		<listener-class>edu.globant.day9.controller.listener.ApplicationListener</listener-class>
 	</listener>
@@ -27,5 +30,5 @@
 		<servlet-name>ContactListServlet</servlet-name>
 		<servlet-class>edu.globant.day9.controller.servlet.ContactListServlet</servlet-class>
 	</servlet>
-	-->
+	
 </web-app>
