@@ -3,7 +3,7 @@ package edu.globant.day10.rest.client;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 
-import edu.globant.day10.dto.ContactDto;
+import edu.globant.day10.dto.EmployeeDto;
 
 public class ContactRestClient {
 
@@ -13,7 +13,7 @@ public class ContactRestClient {
 				.routeParam("id", "1")
 				.asString().getBody();
 		ObjectMapper mapper = new ObjectMapper();
-		ContactDto contactDto = mapper.readValue(resultFromGetToBaseUrl, ContactDto.class);
+		EmployeeDto contactDto = mapper.readValue(resultFromGetToBaseUrl, EmployeeDto.class);
 		System.out.println(String.format("%s %s", contactDto.getFirstName(), contactDto.getLastName()));
 	}
 }
