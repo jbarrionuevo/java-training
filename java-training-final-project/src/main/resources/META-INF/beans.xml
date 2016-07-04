@@ -8,6 +8,7 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-	<bean id="employee" class="domain.Employee"></bean>
+	<bean id="employee" class="edu.globant.domain.Employee">
+	</bean>
 
 </beans> 

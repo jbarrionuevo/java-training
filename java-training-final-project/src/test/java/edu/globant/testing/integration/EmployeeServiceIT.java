@@ -28,9 +28,10 @@ public class EmployeeServiceIT {
 	private static final String configurationPath = "/edu/globant/config/database.properties";
 	private static final String hibernateConfigXml = "/edu/globant/config/hibernate.cfg.xml";
 	MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
+	ApplicationContext context;
 	Employee employee1;
 	Employee employee2;
-	
+
 	Session session;
 
 	@Before
@@ -38,6 +39,8 @@ public class EmployeeServiceIT {
 
 		SessionFactory sessionFactory = HibernateUtils.buildSessionFactory(hibernateConfigXml,
 				dsProvider.getMySQLDataSource(configurationPath));
+
+		context = new ClassPathXmlApplicationContext("META-INF/beans.xml");
 
 		session = sessionFactory.openSession();
 
@@ -48,10 +51,9 @@ public class EmployeeServiceIT {
 		employee1 = new Employee("Juan", "seller");
 		employee2 = new Employee("Jimena", "logistics");
 
-		
 	}
 
-	// @Test
+	@Test
 	public void createAndList() {
 		createEmployeeService.create(employee1);
 		createEmployeeService.create(employee2);
@@ -67,9 +69,11 @@ public class EmployeeServiceIT {
 
 	@Test
 	public void createAndListWithSpring() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/beans.xml");
+
 		BeanFactory factory = context;
 		Employee employeeSpring1 = (Employee) factory.getBean("employee");
+		employeeSpring1.setName("Pedro");
+		employeeSpring1.setType("Logistics");
 
 		createEmployeeService.create(employeeSpring1);
 
