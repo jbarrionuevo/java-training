@@ -6,5 +6,5 @@ import ilan.models.Provider;
 
 
 public interface ProviderDao extends JpaRepository<Provider,Long>{
-
+	
 }

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.ProviderNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,9 +37,11 @@ public class ProviderService {
 	     }
 	}
 	
-	public Collection<Provider> findAllProviders(){
-		return providerDao.findAll();
+	public Page<Provider> findAllProviders(Integer page, Integer size){
+		return providerDao.findAll(new PageRequest(page, size));
 	}
+	
+	
 	
 	public void generateOrder(Long providerId, HashMap<Long,Integer> requestCases){
 		Provider provider = providerDao.findOne(providerId);

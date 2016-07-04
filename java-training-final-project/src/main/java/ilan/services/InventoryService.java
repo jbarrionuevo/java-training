@@ -43,7 +43,7 @@ public class InventoryService {
 	
 	@Autowired
 	private CaseOrderDao caseOrderDao;
-	
+		
 	public Inventory getInventory(){
 		return inventoryDao.findAll().get(0);
 	}

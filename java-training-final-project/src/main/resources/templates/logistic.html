@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Logistic View</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<div id="result">
+		<table border="1">
+			<tr>
+				<th>INDEX</th>
+				<th>PROVIDER</th>
+				<th>NEW REQUEST</th>
+			</tr>		
+			<tr th:each="provider,itrStat : ${providers}">
+				<td th:text="${itrStat.count}"></td>
+				<td th:text="${provider}"></td>
+				<td>
+					<label>Design: </label>
+					<select id="designSelect">
+						<option th:each="design:${designs}" th:value="${design.name}"
+							th:text="${design.name}"></option>
+					</select>
+					
+					<label>Device: </label>
+					<select id="deviceSelect">
+						<option th:each="device:${devices}" th:value="${device.name}"
+							th:text="${device.name}"></option>
+					</select>
+					
+					<label>Quantity:</label>
+					<input type="number" id="quantity"/>
+					<button type="button" id="makeRequest">CONFIRM REQUEST</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+    
+</body>
+</html>

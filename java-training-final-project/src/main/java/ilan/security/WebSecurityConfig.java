@@ -25,7 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/salesView").hasAnyRole("ROLE_STORE_SELLER","ROLE_DELIVERY_SELLER","ROLE_COMPLETE_SELLER")
+                .antMatchers("/salesView/**").hasAnyRole("STORE_SELLER","DELIVERY_SELLER","COMPLETE_SELLER")
+                .antMatchers("/logisticView/**").hasRole("LOGISTIC")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -45,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         final Properties users = new Properties();
-        users.put("user","pass,ROLE_USER,enabled"); 
+        users.put("logistic","logistic,ROLE_LOGISTIC,enabled"); 
         users.put("ilan","ilan,ROLE_STORE_SELLER,enabled");
         users.put("john","john,ROLE_USER,disabled"); //you wont be able to enter with this one
         users.put("super","super,ROLE_ADMIN,enabled"); //this has the privilege of deleting cases (deletion not yet implemented)
