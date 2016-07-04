@@ -39,6 +39,10 @@
 		</table>
 	</div>
 	
+	<h3>Alerts: </h3>
+	<ul>
+	  <li th:each="alert : ${alerts}" th:text="'We need '+${alert.quantity}+' items of '+${alert.description}+'!'"></li>
+	</ul>
     
 </body>
 </html>

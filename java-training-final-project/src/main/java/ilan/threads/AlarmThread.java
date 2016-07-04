@@ -18,12 +18,14 @@ public class AlarmThread {
 	@Autowired
 	OrderAlertDao orderAlertDao;
 	
-	 @Scheduled(fixedRate = 1000)
+	 @Scheduled(fixedRate = 60000)
 	 public void checkAlarms() {
 		 Collection<CaseWrapper> wrappers = caseWrapperDao.findAll();
 		 for(CaseWrapper wr : wrappers){
 			 if(wr.getCurrentStock()<wr.getMinimumStock())
-				 orderAlertDao.save(new OrderAlert(wr.getMinimumStock()-wr.getCurrentStock()+100, wr.getMyCase().getId()));
+				 if(orderAlertDao.findByProductId(wr.getMyCase().getId())==null)
+					 orderAlertDao.save(new OrderAlert(wr.getMinimumStock()-wr.getCurrentStock()+100, wr.getMyCase().getId(), 
+						 "Design: "+wr.getMyCase().getDesign()+". Device: "+wr.getMyCase().getDevice()));
 		 }
 		
 	 }

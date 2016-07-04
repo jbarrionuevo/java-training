@@ -11,11 +11,13 @@ public class OrderAlert {
 	private Long id;
 	private int quantity;
 	private Long productId;
+	private String description;
 	
 	public OrderAlert(){}
 	
-	public OrderAlert(int quantity, Long productId) {
+	public OrderAlert(int quantity, Long productId, String description) {
 		super();
+		this.description=description;
 		this.quantity = quantity;
 		this.productId = productId;
 	}
@@ -37,6 +39,14 @@ public class OrderAlert {
 	}
 	public void setProductId(Long productId) {
 		this.productId = productId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

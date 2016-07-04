@@ -2,3 +2,9 @@ You can enter the app with one of these users:
 - user: super pass:super  The super admin. Can check the stock of the products
 - user: ilan pass:ilan   A store seller. Can register sales, check their receipts, and change sales status
 - user: logistic pass: logistic   A logistic team member. Can make orders to the providers.
+
+To generate alerts to the logistic team when some case stock is to low, I've implemented the component AlarmThread,
+which has a scheduled task called 'checkAlarms', which checks for each casewrapper if its current stock is lower than
+its minimum; if true, it generates an alarm containing the product id, and the quantity needed (I've set this quantity 
+as the stock needed for recovering the minimum plus 100). This task is executed once a minute, but this delay can be
+configured as you like.
