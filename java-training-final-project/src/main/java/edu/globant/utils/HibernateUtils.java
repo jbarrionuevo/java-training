@@ -9,7 +9,7 @@ import org.hibernate.cfg.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import domain.Employee;
+import edu.globant.domain.Employee;
 
 public final class HibernateUtils {
 

@@ -1,6 +1,6 @@
 package edu.globant.testing.unit;
 
-import domain.Employee;
+import edu.globant.domain.Employee;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;

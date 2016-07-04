@@ -1,6 +1,6 @@
 package edu.globant.testing.integration;
 
-import persistence.DAO.EmployeeDAO;
+import edu.globant.persistence.DAO.EmployeeDAO;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import domain.Employee;
+import edu.globant.domain.Employee;
 import edu.globant.utils.HibernateUtils;
 import edu.globant.utils.MySQLDataSourceProvider;
 
@@ -18,8 +18,8 @@ import static org.junit.Assert.assertThat;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import service.employee.CreateEmployeeService;
-import service.employee.ListEmployeeService;
+import edu.globant.service.employee.CreateEmployeeService;
+import edu.globant.service.employee.ListEmployeeService;
 
 public class EmployeeServiceIT {
 
