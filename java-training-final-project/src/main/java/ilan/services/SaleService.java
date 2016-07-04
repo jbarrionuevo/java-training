@@ -96,5 +96,11 @@ public class SaleService {
 		return saleDao.findOne(saleId);
 	}
 
+	public Receipt getSaleReceipt(Long saleId) {
+		Sale sale = saleDao.findOne(saleId);
+		if(sale==null) throw new SaleNotFoundException(saleId);
+		return sale.getReceipts().iterator().next();
+	}
+
 	
 }

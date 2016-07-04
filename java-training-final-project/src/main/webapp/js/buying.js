@@ -102,7 +102,7 @@ $(document).ready(function(){
 					      $('#result').html('<p>An error has occurred</p>');
 					   },
 					   success: function(data) {
-						  alert("Draft Sale registered succesfully with id "+data+". You can confirm the sale in sales menu.");
+						  alert("Draft Sale registered succesfully. You can confirm the sale in sales menu.");
 						  $("#resetSale").click();
 					   },
 					   type: 'PUT'

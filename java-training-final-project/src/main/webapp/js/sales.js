@@ -1,6 +1,7 @@
 $(document).ready(function(){  
 	
-	var sellerId=1;
+	var sellerId=1; //load it from logged user!!
+	$("#receiptDetails").hide();
 	
 	$(document).on("click",".confirmSale",function(){
 		var saleId = this.id;
@@ -16,6 +17,30 @@ $(document).ready(function(){
 		 }
 	});
 	
+	$(document).on("click",".saleReceipt",function(){
+		var saleId = this.id;
+		$.ajax({
+			   url: '/sales/'+saleId+'/receipt',
+			   data: {
+				 saleId : saleId
+			   },
+			   error: function() {
+			      $('#result').html('<p>An error has occurred</p>');
+			   },
+			   success: function(receipt) {
+				   $("#receiptDetails").show();
+				   $("#receiptDetails").css("visibility","visible");
+				   var result="<h3>Sale "+saleId+": Receipt details</h3>";
+				   result+="<p>Store name: "+receipt.storeName+"</p>";
+				   result+="<p>Date of sale: "+receipt.dateOfSale+"</p>";
+				   result+="<p>Customer: Name: "+receipt.customer.name+", Location: "+receipt.customer.location+", Age: "+receipt.customer.age+", Gender: "+receipt.customer.gender+"</p>";
+				   $("#receiptDetails").html(result);
+			   },
+			   type: 'GET'
+		});
+	});
+	
+	
 	$("#statusSelect").change(function(){
 		updateSales(false);
 	});
@@ -29,6 +54,7 @@ $(document).ready(function(){
 	});
 	
 	function updateSales(resetPage){
+		$("#receiptDetails").hide();
 		var status = $("#statusSelect").val();
 		var currentPage = parseInt($("#pageSelect").val());
 		var page = currentPage-1;
@@ -98,7 +124,6 @@ $(document).ready(function(){
 			      $('#result').html('<p>An error has occurred</p>');
 			   },
 			   success: function(data) {
-//				   var sellerId=1; //see this!
 				   $.ajax({
 					   url: '/sales/seller/'+sellerId,
 					   error: function() {},

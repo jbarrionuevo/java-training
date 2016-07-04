@@ -91,7 +91,7 @@ $(document).ready(function(){
 			result += "<th>PROVIDER</th>" +
 	  		"<th>CURRENT STOCK</th>" +
 	  		"<th>MINIMUM STOCK</th>" +
-	  		"<th>DELETE</th>" +
+//	  		"<th>DELETE</th>" +
 	  		"</tr>";
 		}else if(isStoreSeller){
 			result += "<th>BUY</th>" +
@@ -107,7 +107,7 @@ $(document).ready(function(){
 				  result+="<td>Name: "+v.myCase.provider.name+". Location: "+v.myCase.provider.location+"</td>";
 				  result+="<td>"+v.currentStock+"</td>";
 				  result+="<td>"+v.minimumStock+"</td>";
-				  result+="<td><button type='button'>Delete</button></td>";
+//				  result+="<td><button type='button'>Delete</button></td>";
 			  }	 else if(isStoreSeller) 
 				  result+="<td>" +
 				  		"<label>Quantity:</label>" +

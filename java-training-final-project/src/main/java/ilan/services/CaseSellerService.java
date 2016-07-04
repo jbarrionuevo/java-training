@@ -50,7 +50,7 @@ public class CaseSellerService {
 	}
 
 	@Transactional
-	public Long addSale(Long caseSellerId, Sale sale) {
+	public void addSale(Long caseSellerId, Sale sale) {
 		CaseSeller looked = caseSellerDao.findOne(caseSellerId);
 		if(looked==null) throw new CaseSellerNotFoundException(caseSellerId);
 		if(sale.getReceipts().iterator().next().getCustomer().getId()!=null){
@@ -69,7 +69,7 @@ public class CaseSellerService {
 		sale.setSeller(looked);
 		sale.setStatus(SaleStatus.DRAFT);
 		looked.addSale(sale);
-		return caseSellerDao.save(looked).getId();
+		caseSellerDao.save(looked);
 	}
 	
 }

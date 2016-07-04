@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import ilan.dtos.ReceiptDTO;
 import ilan.dtos.SaleDTO;
 import ilan.models.Sale;
 import ilan.services.SaleService;
@@ -40,6 +41,12 @@ public class SaleRestController {
 	@ResponseStatus(value= HttpStatus.OK)
 	public SaleDTO getSale(@PathVariable Long saleId){
 		return mapper.map(saleService.getSale(saleId),SaleDTO.class);
+	}
+	
+	@RequestMapping(value="/{saleId}/receipt",method = RequestMethod.GET)
+	@ResponseStatus(value= HttpStatus.OK)
+	public ReceiptDTO getSaleReceipt(@PathVariable Long saleId){
+		return mapper.map(saleService.getSaleReceipt(saleId),ReceiptDTO.class);
 	}
 	
 	@RequestMapping(value="/{saleId}",method = RequestMethod.PUT)

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class CaseOrder {
 	@GeneratedValue
 	private Long id;
 	
+	@Column(columnDefinition = "LONGBLOB")
 	private HashMap<Long,Integer> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
 	
