@@ -23,5 +23,7 @@ public interface ContactService {
 		
 	@WebMethod
 	public void createContact(ContactDTO contactDTO);		
-		
+	
+	@WebMethod
+	public ContactDTO getContact(Long id);
 }
