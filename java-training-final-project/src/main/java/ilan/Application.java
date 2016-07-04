@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import ilan.models.CaseProduct;
 import ilan.models.CaseSeller;
@@ -38,9 +39,10 @@ import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 @ImportResource("classpath:beans.xml")
+@EnableScheduling
 public class Application {
 	
-private static final Logger log = LoggerFactory.getLogger(Application.class);
+	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
 	/** UNCOMMENT THIS THE FIRST TIME TO CREATE THE TABLES **/
 //	@Bean

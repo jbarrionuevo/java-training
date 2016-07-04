@@ -22,6 +22,7 @@ import ilan.enums.SaleStatus;
 import ilan.exceptions.CaseProductNotFoundException;
 import ilan.exceptions.CaseSellerNotFoundException;
 import ilan.exceptions.CaseWrapperNotFoundException;
+import ilan.exceptions.NotEnoughStockException;
 import ilan.exceptions.SaleNotFoundException;
 import ilan.models.CaseProduct;
 import ilan.models.CaseSeller;
@@ -116,6 +117,8 @@ public class SaleService {
 						.filter(cw -> cw.getMyCase().equals(product)).collect(Collectors.toList()).get(0);
 				if (wrapper == null)
 					throw new CaseWrapperNotFoundException(product.toString());
+				if(wrapper.getCurrentStock()<(Integer)pair.getValue())
+					throw new NotEnoughStockException(product.toString());
 				wrapper.setCurrentStock(wrapper.getCurrentStock() - (Integer)pair.getValue());
 				caseWrapperDao.save(wrapper);
 			}
