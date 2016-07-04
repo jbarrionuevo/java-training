@@ -19,6 +19,7 @@ import edu.globant.day4.hibernate.dao.ContactDetailTypeDao;
 import edu.globant.day4.hibernate.domain.Contact;
 import edu.globant.day4.hibernate.domain.ContactDetail;
 import edu.globant.day4.hibernate.domain.ContactDetailType;
+import edu.globant.utils.DataSourceProvider;
 import edu.globant.utils.DateUtils;
 import edu.globant.utils.MySQLDataSourceProvider;
 
@@ -30,9 +31,9 @@ public class ContactDemo {
 	private static final String hibernateConfigXml = "/edu/globant/day4/config/hibernate.cfg.xml";
 
 	public static void main(String[] args) {
-		MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
+		DataSourceProvider dsProvider = new MySQLDataSourceProvider();
 		try (SessionFactory sessionFactory = HibernateUtils.buildSessionFactory(hibernateConfigXml,
-				dsProvider.getMySQLDataSource(configurationPath))) {
+				dsProvider.getDataSource(configurationPath))) {
 			try (Scanner scanner = new Scanner(System.in)) {
 				ContactDemo contactDemo = new ContactDemo(scanner, sessionFactory);
 				while (contactDemo.isLive()) {
@@ -142,9 +143,9 @@ public class ContactDemo {
 				contact.setCreationDate(new Date());
 
 				Optional<ContactDetail> contactDetail = generateContactDetailType(session);
-				contactDetail.ifPresent(x -> {
-					contact.setContactDetailList(asList(x));
-					x.setContact(contact);
+				contactDetail.ifPresent(conDet -> {
+					contact.setContactDetailList(asList(conDet));
+					conDet.setContact(contact);
 				});
 
 				contactDao.save(contact);

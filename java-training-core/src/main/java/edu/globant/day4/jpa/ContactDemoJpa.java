@@ -35,7 +35,7 @@ public class ContactDemoJpa {
 		MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
 		EntityManagerFactory emf = null;
 		try {
-			emf = JpaUtils.getEntityManagerFactory(persistenceUnitName, dsProvider.getMySQLDataSource(configurationPath));
+			emf = JpaUtils.getEntityManagerFactory(persistenceUnitName, dsProvider.getDataSource(configurationPath));
 			try (Scanner scanner = new Scanner(System.in)) {
 				ContactDemoJpa contactDemo = new ContactDemoJpa(scanner, emf);
 				while (contactDemo.isLive()) {

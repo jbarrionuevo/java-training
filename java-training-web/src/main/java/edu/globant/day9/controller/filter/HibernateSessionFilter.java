@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,27 +34,38 @@ public class HibernateSessionFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		logger.info("Executing the Hibernate filter...");
-		ServletContext ctx = request.getServletContext();
-		SessionFactory sessionFactory = (SessionFactory)ctx.getAttribute("sessionFactory");
-		try (Session session = sessionFactory.openSession()) {
-			try {
-				session.getTransaction().begin();
-				DaoFactory daoFactory = new DaoFactoryHibernateImpl(session);
-				ServiceFactory serviceFactory = new ServiceFactoryImpl(daoFactory);
-//				logger.factory("");
-				request.setAttribute("serviceFactory", serviceFactory);
-				
-				chain.doFilter(request, response);
-				
-				session.getTransaction().commit();
-			} catch (Exception e) {
-				if (session.getTransaction().isActive()) {
-					session.getTransaction().rollback();
+
+		HttpServletRequest req = (HttpServletRequest)request;
+		if (matchesUri(req.getRequestURI())) {
+
+			logger.info("Executing the Hibernate filter...");
+			ServletContext ctx = request.getServletContext();
+			SessionFactory sessionFactory = (SessionFactory)ctx.getAttribute("sessionFactory");
+			try (Session session = sessionFactory.openSession()) {
+				try {
+					session.getTransaction().begin();
+					DaoFactory daoFactory = new DaoFactoryHibernateImpl(session);
+					ServiceFactory serviceFactory = new ServiceFactoryImpl(daoFactory);
+	//				logger.factory("");
+					request.setAttribute("serviceFactory", serviceFactory);
+
+					chain.doFilter(request, response);
+
+					session.getTransaction().commit();
+				} catch (Exception e) {
+					if (session.getTransaction().isActive()) {
+						session.getTransaction().rollback();
+					}
+					logger.error("An error occurred while processing the transaction.", e);
 				}
-				logger.error("An error occurred while processing the transaction.", e);
 			}
+		} else {
+			chain.doFilter(request, response);
 		}
+	}
+
+	public boolean matchesUri(String uri) {
+		return true;
 	}
 
 	@Override

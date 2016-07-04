@@ -9,7 +9,7 @@ public class MySQLSimpleConnectionProvider {
 	public Connection getConnection() throws SQLException {
 		String url = String.format("jdbc:mysql://localhost:3306/training");
 		String user = "root";
-		String password = ""; //set your password here
+		String password = "lmendozaj"; //set your password here
 		return DriverManager.getConnection(url, user, password);
 	}
 }

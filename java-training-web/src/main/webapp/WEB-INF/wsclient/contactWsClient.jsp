@@ -12,6 +12,11 @@
 		<c:forEach items="${contactList}" var="contact">
 		<li>
 			<c:out value="${contact.firstName} ${contact.lastName}" />
+			<ul>
+			<c:forEach items="${contact.contactDetailList}" var="contactDetail">
+				<li>${contactDetail.contactDetailType.description}: ${contactDetail.details} </li>
+			</c:forEach>
+			</ul>
 		</li>
 		</c:forEach>
 	</ul>

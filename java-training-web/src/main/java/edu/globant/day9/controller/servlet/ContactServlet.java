@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import edu.globant.day9.domain.Contact;
 import edu.globant.day9.factory.ServiceFactory;
 
-@WebServlet("/contacts")
+@WebServlet("/app/contacts")
 public class ContactServlet extends HttpServlet {
 
 	@Override

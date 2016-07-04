@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,5 +35,24 @@ public class DataSourceServlet extends HttpServlet {
 		} catch (SQLException e) {
 			logger.error("Error while processing request.", e);
 		}
+	}
+
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String method = req.getMethod();
+		if (method.equals("PATCH")) {
+			//....
+		} else {
+			super.service(req, resp);
+		}
+	}
+
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+	}
+
+	@Override
+	public void destroy() {
+		super.destroy();
 	}
 }
