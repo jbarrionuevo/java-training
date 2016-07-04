@@ -42,7 +42,7 @@ $(document).ready(function(){
 		   success: function(data) {
 			   updatePagination(data,size,currentPage);
 			   $.ajax({
-				   url: '/inventory/?design='+design+'&device='+device+"&page="+page+"&size="+size,
+				   url: '/inventory?design='+design+'&device='+device+"&page="+page+"&size="+size,
 				   data: {
 				      format: 'json'
 				   },

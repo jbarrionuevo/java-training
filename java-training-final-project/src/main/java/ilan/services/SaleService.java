@@ -1,10 +1,12 @@
 package ilan.services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,7 @@ import ilan.enums.SaleStatus;
 import ilan.exceptions.CaseSellerNotFoundException;
 import ilan.exceptions.SaleNotFoundException;
 import ilan.models.CaseSeller;
+import ilan.models.Receipt;
 import ilan.models.Sale;
 
 @Service
@@ -37,10 +40,37 @@ public class SaleService {
 	    return saleDao.save(newSale);
 	}
 	
-	public Collection<Sale> getSalesFromCaseSeller(Long caseSellerId){
+	public Long getCount(Long sellerId, String status){
+		CaseSeller seller = caseSellerDao.findOne(sellerId);
+		if(seller==null) throw new CaseSellerNotFoundException(sellerId);
+		if (status==null || status.equals("all")) return this.getSalesCountBySeller(sellerId);
+		return saleDao.countBySellerAndStatus(seller, this.getStatusFromString(status));
+	}
+	
+	public Long getSalesCountBySeller(Long sellerId){
+		CaseSeller seller = caseSellerDao.findOne(sellerId);
+		if(seller==null) throw new CaseSellerNotFoundException(sellerId);
+		return saleDao.countBySeller(seller);
+	}
+	
+	public Collection<Sale> getSalesFromCaseSeller(Long caseSellerId,String status,Integer page, Integer size){
 		CaseSeller seller = caseSellerDao.findOne(caseSellerId);
 		if(seller==null) throw new CaseSellerNotFoundException(caseSellerId);
-		return saleDao.findBySeller(seller);
+		if (status==null || status.equals("all")) return saleDao.findBySeller(seller,new PageRequest(page, size));
+		return saleDao.findBySellerAndStatus(seller,this.getStatusFromString(status),new PageRequest(page, size));
+	}
+	
+	private SaleStatus getStatusFromString(String status){
+		switch (status.toLowerCase()) {
+		case "paid":
+			return SaleStatus.PAID;
+		case "cancelled":
+			return SaleStatus.CANCELLED;
+		case "refund":
+			return SaleStatus.REFUND;
+		default:
+			return SaleStatus.DRAFT;
+		}
 	}
 
 	public void update(Long saleId, String status) {
@@ -49,14 +79,21 @@ public class SaleService {
 		switch (status) {
 		case "paid":
 			sale.setStatus(SaleStatus.PAID);
+			Receipt receipt = sale.getReceipts().iterator().next();
+			receipt.setDateOfSale(new Date());
 			break;
 		case "cancelled":
 			sale.setStatus(SaleStatus.CANCELLED);
+			break;
 		default:
 			sale.setStatus(SaleStatus.REFUND);
 			break;
 		}
 		saleDao.save(sale);
+	}
+
+	public Sale getSale(Long saleId) {
+		return saleDao.findOne(saleId);
 	}
 
 	

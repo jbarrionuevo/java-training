@@ -1,0 +1,60 @@
+package ilan.mapping;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.dozer.CustomConverter;
+import org.dozer.MappingException;
+
+import ilan.dtos.CaseOrderDTO;
+import ilan.dtos.CustomerDTO;
+import ilan.dtos.ReceiptDTO;
+import ilan.dtos.SaleDTO;
+import ilan.models.CaseOrder;
+import ilan.models.Customer;
+import ilan.models.Receipt;
+import ilan.models.Sale;
+
+public class SaleCustomConverter implements CustomConverter{
+	@Override
+	public Object convert(Object destination, Object source, 
+		      Class destClass, Class sourceClass) {
+		if (source == null) {
+		      return null;
+		}
+		SaleDTO dest = null;
+	    if (source instanceof Sale) {
+	      if (destination == null) {
+	        dest = new SaleDTO();
+	      } else {
+	        dest = (SaleDTO) destination;
+	      }
+	      Sale sourceSale = (Sale)source;
+	      CaseOrderDTO caseOrder = new CaseOrderDTO(sourceSale.getOrder().getRequestCases(), sourceSale.getOrder().getDateOfRequest());
+	      Collection<ReceiptDTO> receipts = new ArrayList<ReceiptDTO>();
+	      for(Receipt receipt: sourceSale.getReceipts()){
+	    	  Customer c = receipt.getCustomer();
+	    	  receipts.add(new ReceiptDTO(receipt.getStoreName(), receipt.getDateOfSale(), new CustomerDTO(c.getName(), c.getLocation(), c.getAge(), c.getGender())));
+	      }
+	      SaleDTO result = new SaleDTO(caseOrder,receipts,sourceSale.getTotalPrice());
+	      result.setId(sourceSale.getId());
+	      result.setStatus(sourceSale.getStatus());
+	      return result;
+	    } else if (source instanceof SaleDTO) {
+	    	SaleDTO sourceSaleDTO = (SaleDTO)source;
+	    	CaseOrder caseOrder = new CaseOrder(sourceSaleDTO.getCaseOrder().getRequestCases(), sourceSaleDTO.getCaseOrder().getDateOfRequest());
+	    	Collection<Receipt> receipts = new ArrayList<Receipt>();
+		    for(ReceiptDTO receiptDTO: sourceSaleDTO.getReceipts()){
+		    	  CustomerDTO c = receiptDTO.getCustomer();
+		    	  receipts.add(new Receipt(receiptDTO.getStoreName(), receiptDTO.getDateOfSale(), new Customer(c.getName(), c.getLocation(), c.getAge(), c.getGender())));
+		    }
+		    Sale result = new Sale(caseOrder, receipts, sourceSaleDTO.getTotalPrice());
+		    result.setStatus(sourceSaleDTO.getStatus());
+	    	return result;
+	    } else {
+	      throw new MappingException("Converter ProductCustomConverter "
+	          + "used incorrectly. Arguments passed in were:"
+	          + destination + " and " + source);
+	 }
+	}
+}

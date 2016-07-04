@@ -21,8 +21,6 @@ import ilan.models.Sale;
 public class CaseOrderCustomConverter {
 //	implements CustomConverter{
 	
-	@Autowired
-	private Mapper mapper;
 	
 //	@Override
 //	public Object convert(Object destination, Object source, 

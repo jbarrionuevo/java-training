@@ -36,6 +36,12 @@ public class SaleRestController {
 		return savedEntityDTO;
 	}
 	
+	@RequestMapping(value="/{saleId}",method = RequestMethod.GET)
+	@ResponseStatus(value= HttpStatus.OK)
+	public SaleDTO getSale(@PathVariable Long saleId){
+		return mapper.map(saleService.getSale(saleId),SaleDTO.class);
+	}
+	
 	@RequestMapping(value="/{saleId}",method = RequestMethod.PUT)
 	@ResponseStatus(value= HttpStatus.CREATED)
 	public void updateStatus(@PathVariable Long saleId, @RequestParam (value="status", required=true) String status){
@@ -44,7 +50,20 @@ public class SaleRestController {
 	
 	@RequestMapping(value="/seller/{sellerId}",method = RequestMethod.GET)
 	@ResponseStatus(value= HttpStatus.OK)
-	public Collection<SaleDTO> getSalesFromCaseSeller(@PathVariable Long sellerId){
-		return saleService.getSalesFromCaseSeller(sellerId).stream().map(s->mapper.map(s, SaleDTO.class)).collect(Collectors.toList());
+	public Collection<SaleDTO> getSalesFromCaseSeller(@PathVariable Long sellerId,
+			@RequestParam (value="status", required=false) String status,
+			@RequestParam(value = "page", required = false, defaultValue="0") Integer page,
+			@RequestParam(value = "size", required = false, defaultValue="5") Integer size){
+		Collection<SaleDTO> sales = saleService.getSalesFromCaseSeller(sellerId,status,page,size).stream().map(s->mapper.map(s, SaleDTO.class)).collect(Collectors.toList());
+		return sales;
 	}
+	
+	@RequestMapping(value="/seller/{sellerId}/count", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseStatus(value= HttpStatus.OK)
+    public Long getSalesCountWithStatus(
+    					@PathVariable Long sellerId,
+			    		@RequestParam (value="status", required=true) String status) {
+		long result = saleService.getCount(sellerId, status);
+		return result;
+    }
 }

@@ -42,8 +42,7 @@ public class InventoryRestController {
     public Long getInventoryCountWithDesignAndDevice(
 			    		@RequestParam (value="design", required=true) String design, 
 						@RequestParam (value="device", required=true) String device) {
-		Long result = inventoryService.getCount(design, device);
-		return result;
+		return inventoryService.getCount(design, device);
     }
 	
 //	@RequestMapping(value="/buy/{products}", method = RequestMethod.GET, produces = "text/plain")
