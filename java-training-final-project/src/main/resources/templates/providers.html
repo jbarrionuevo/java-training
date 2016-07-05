@@ -11,12 +11,13 @@
 <body>
 
 	<label>Provider: </label>
-	<select id="designSelect">
-		<option value="all">All</option>
+	<select id="providerSelect">
+		<option value="none"></option>
 		<option th:each="provider:${providers}" th:value="${provider}"
 			th:text="${provider}"></option>
 	</select>
 
+	<label id="help">Select a provider to see its stadistics</label>
 	<div id="result">
 		<table border="1">
 			<tr>
