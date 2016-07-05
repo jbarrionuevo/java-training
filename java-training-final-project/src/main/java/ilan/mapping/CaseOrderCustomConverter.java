@@ -19,13 +19,12 @@ import ilan.models.CaseProduct;
 import ilan.models.Sale;
 
 public class CaseOrderCustomConverter {
-//	implements CustomConverter{
+//implements CustomConverter{
 	
 	
 //	@Override
 //	public Object convert(Object destination, Object source, 
 //		      Class destClass, Class sourceClass) {
-		// TODO Auto-generated method stub
 //		if (source == null) {
 //		      return null;
 //		}
@@ -36,18 +35,21 @@ public class CaseOrderCustomConverter {
 //	      } else {
 //	        dest = (CaseOrderDTO) destination;
 //	      }
+//	      
 //	      CaseOrder sourceCaseOrder = (CaseOrder)source;
 //	      dest.setDateOfRequest(((CaseOrder) source).getDateOfRequest());
-//	      HashMap<Integer,CaseProductDTO> requestCases = new HashMap<Integer,CaseProductDTO>();
-//	      for (Map.Entry<CaseProduct, Integer> entry : sourceCaseOrder.getRequestCases().entrySet()){
-//	    	  requestCases.put(entry.getValue(), mapper.map(entry.getKey(),CaseProductDTO.class));
+//	      
+//	      HashMap<String,Integer> requestCases = new HashMap<String,Integer>();
+//	      for (Map.Entry<Long, Integer> entry : sourceCaseOrder.getRequestCases().entrySet()){
+//	    	  requestCases.put(String.valueOf(entry.getKey()), entry.getValue());
 //	      }
 //	      dest.setRequestCases(requestCases);
 //	      return dest;
 //	    } else if (source instanceof CaseOrderDTO) {
 //	    	CaseOrderDTO sourceCaseOrderDTO = (CaseOrderDTO)source;
-//	    	HashMap<CaseProduct,Integer> requestCases = new HashMap<CaseProduct,Integer>();
-//		    for (Map.Entry<Integer, CaseProductDTO> entry : sourceCaseOrderDTO.getRequestCases().entrySet()){
+//	    	HashMap<Long,Integer> requestCases = new HashMap<Long,Integer>();
+//		    for (Map.Entry<String, Integer> entry : sourceCaseOrderDTO.getRequestCases().entrySet()){
+//		    	
 //		    	  requestCases.put(mapper.map(entry.getValue(),CaseProduct.class),entry.getKey());
 //		    }
 //	    	return new CaseOrder(requestCases, sourceCaseOrderDTO.getDateOfRequest());

@@ -2,6 +2,9 @@ package ilan.mapping;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.dozer.CustomConverter;
 import org.dozer.MappingException;
@@ -30,7 +33,13 @@ public class SaleCustomConverter implements CustomConverter{
 	        dest = (SaleDTO) destination;
 	      }
 	      Sale sourceSale = (Sale)source;
-	      CaseOrderDTO caseOrder = new CaseOrderDTO(sourceSale.getOrder().getRequestCases(), sourceSale.getOrder().getDateOfRequest());
+	      HashMap<String,Integer> requestCases = new HashMap<String,Integer>();
+	      Iterator it = sourceSale.getOrder().getRequestCases().entrySet().iterator();
+	      while (it.hasNext()) {
+	          Map.Entry pair = (Map.Entry)it.next();
+	          requestCases.put(Long.toString((long) pair.getKey()), (Integer)pair.getValue());
+	      }
+	      CaseOrderDTO caseOrder = new CaseOrderDTO(requestCases, sourceSale.getOrder().getDateOfRequest());
 	      Collection<ReceiptDTO> receipts = new ArrayList<ReceiptDTO>();
 	      for(Receipt receipt: sourceSale.getReceipts()){
 	    	  Customer c = receipt.getCustomer();
@@ -42,7 +51,13 @@ public class SaleCustomConverter implements CustomConverter{
 	      return result;
 	    } else if (source instanceof SaleDTO) {
 	    	SaleDTO sourceSaleDTO = (SaleDTO)source;
-	    	CaseOrder caseOrder = new CaseOrder(sourceSaleDTO.getCaseOrder().getRequestCases(), sourceSaleDTO.getCaseOrder().getDateOfRequest());
+	    	HashMap<Long,Integer> requestCases = new HashMap<Long,Integer>();
+		    Iterator it = sourceSaleDTO.getCaseOrder().getRequestCases().entrySet().iterator();
+		      while (it.hasNext()) {
+		          Map.Entry pair = (Map.Entry)it.next();
+		          requestCases.put(Long.parseLong((String) pair.getKey()), (Integer)pair.getValue());
+		    }
+	    	CaseOrder caseOrder = new CaseOrder(requestCases, sourceSaleDTO.getCaseOrder().getDateOfRequest());
 	    	Collection<Receipt> receipts = new ArrayList<Receipt>();
 		    for(ReceiptDTO receiptDTO: sourceSaleDTO.getReceipts()){
 		    	  CustomerDTO c = receiptDTO.getCustomer();
@@ -57,4 +72,5 @@ public class SaleCustomConverter implements CustomConverter{
 	          + destination + " and " + source);
 	 }
 	}
+	
 }
