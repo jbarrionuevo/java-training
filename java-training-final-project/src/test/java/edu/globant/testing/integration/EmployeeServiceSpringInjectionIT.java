@@ -1,8 +1,10 @@
 package edu.globant.testing.integration;
 
-import edu.globant.persistence.DAO.EmployeeDAO;
-import edu.globant.persistence.DAO.hibernate.utils.HibernateUtils;
-
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertThat;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
@@ -10,19 +12,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.globant.domain.Employee;
-import edu.globant.utils.MySQLDataSourceProvider;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
+import edu.globant.persistence.DAO.hibernate.utils.HibernateUtils;
 import edu.globant.service.employee.CreateEmployeeService;
 import edu.globant.service.employee.ListEmployeeService;
+import edu.globant.utils.MySQLDataSourceProvider;
 
-public class EmployeeServiceIT {
-
+public class EmployeeServiceSpringInjectionIT {
 	private CreateEmployeeService createEmployeeService;
 	private ListEmployeeService listEmployeeService;
 	private static final String configurationPath = "/edu/globant/config/database.properties";
@@ -36,7 +31,7 @@ public class EmployeeServiceIT {
 
 	@Before
 	public void setUp() {
-			
+
 		SessionFactory sessionFactory = HibernateUtils.buildSessionFactory(hibernateConfigXml,
 				dsProvider.getMySQLDataSource(configurationPath));
 
@@ -63,7 +58,7 @@ public class EmployeeServiceIT {
 		assertThat(employee2, equalTo(employee2DB));
 		assertThat(employee1DB, not(equalTo(employee2DB)));
 	}
-	
+
 	@Test
 	public void createAndListWithSpring() {
 
@@ -77,4 +72,5 @@ public class EmployeeServiceIT {
 		Employee employee1DB = listEmployeeService.findById(employeeSpring1.getId());
 		assertThat(employee1DB, equalTo(employeeSpring1));
 	}
+
 }

@@ -1,4 +1,5 @@
-package edu.globant.utils;
+package edu.globant;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
@@ -12,8 +13,8 @@ public class EmployeeRestClient {
 		String resultFromGetToBaseUrl = Unirest.get(baseUrl + "/{id}")
 				.routeParam("id", "1")
 				.asString().getBody();
-		ObjectMapper dtoMapper = new ObjectMapper();
-		EmployeeDto contactDto = dtoMapper.readValue(resultFromGetToBaseUrl, EmployeeDto.class);
+		ObjectMapper mapper = new ObjectMapper();
+		EmployeeDto contactDto = mapper.readValue(resultFromGetToBaseUrl, EmployeeDto.class);
 		System.out.println(String.format("%s %s", contactDto.getName(), contactDto.getType()));
 	}
 }

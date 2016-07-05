@@ -1,4 +1,4 @@
-package edu.globant.utils;
+package edu.globant.persistence.DAO.hibernate.utils;
 
 import javax.sql.DataSource;
 
