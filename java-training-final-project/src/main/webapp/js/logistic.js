@@ -20,7 +20,7 @@ $(document).ready(function(){
 				    },
 				   data: JSON.stringify(jsonOrder),
 				   error: function (request, status, error) {
-				        alert(request.responseText);
+				        alert("Error. Order may have already been done. Refresh the page to check it!");
 				    },
 				   success: function() {
 					   alert("Order succesfully registered to the corresponding provider!")

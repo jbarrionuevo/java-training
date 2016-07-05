@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ilan.daos.OrderAlertDao;
 import ilan.daos.ProviderDao;
 import ilan.exceptions.OrderAlertNotFoundException;
+import ilan.exceptions.OrderAlreadyMadeException;
 import ilan.models.CaseOrder;
 import ilan.models.CaseProduct;
 import ilan.models.OrderAlert;
@@ -55,6 +56,7 @@ public class ProviderService {
 		if(orderAlertId!=0){
 			OrderAlert orderAlert = orderAlertDao.findOne(orderAlertId);
 			if(orderAlert==null) throw new OrderAlertNotFoundException(orderAlertId);
+			if(orderAlert.isMade()) throw new OrderAlreadyMadeException(orderAlertId);
 			orderAlert.setMade(true);
 			orderAlertDao.save(orderAlert);
 		}
