@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.thymeleaf.util.Validate;
@@ -24,6 +25,7 @@ public class CaseOrder {
 	@Column(columnDefinition = "LONGBLOB")
 	private HashMap<Long,Integer> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
+	
 	
 	public CaseOrder(){}
 	
@@ -77,5 +79,6 @@ public class CaseOrder {
 	public void setRequestCases(HashMap<Long,Integer> requestCases) {
 		this.requestCases = requestCases;
 	}
+
 	
 }

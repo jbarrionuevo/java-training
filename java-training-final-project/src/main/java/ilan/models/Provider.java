@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,12 +18,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(indexes = {@Index(columnList = "name", name = "provider_name")})
 public class Provider extends ThirdPartyParticipant implements InventoryObserver{
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Collection<CaseOrder> orders;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "provider", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Collection<CaseProduct> cases;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "provider_id")
+	private Collection<CaseOrder> orders;
 	
 	public Provider(){}
 	
@@ -41,23 +44,23 @@ public class Provider extends ThirdPartyParticipant implements InventoryObserver
 		Provider other = (Provider)otherCaseDesign;
 		return this.getName().equals(other.getName()) && this.getLocation().equals(other.getLocation());
 	}
-	
-	public Collection<CaseOrder> getOrders() {
-		return orders;
-	}
 
-	public void setOrders(Collection<CaseOrder> orders) {
-		this.orders = orders;
+	@Override
+	public void doUpdate(CaseProduct aCase) {
+		System.out.println("Check if the provider contains aCase; if true,"
+				+ "generate an auto-order for provide that case");
 	}
 	
 	public void addOrder(CaseOrder order){
 		this.orders.add(order);
 	}
 
-	@Override
-	public void doUpdate(CaseProduct aCase) {
-		System.out.println("Check if the provider contains aCase; if true,"
-				+ "generate an auto-order for provide that case");
+	public Collection<CaseOrder> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Collection<CaseOrder> orders) {
+		this.orders = orders;
 	}
 
 	public Collection<CaseProduct> getCases() {
@@ -66,7 +69,7 @@ public class Provider extends ThirdPartyParticipant implements InventoryObserver
 
 	public void setCases(Collection<CaseProduct> cases) {
 		this.cases = cases;
-	}	
-	
+	}
+
 	
 }

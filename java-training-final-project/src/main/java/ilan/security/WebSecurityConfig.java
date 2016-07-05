@@ -50,8 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         final Properties users = new Properties();
         users.put("logistic","logistic,ROLE_LOGISTIC,enabled"); 
         users.put("ilan","ilan,ROLE_ADMIN,enabled");
-        users.put("seller","seller,ROLE_STORE_SELLER,disabled"); //you wont be able to enter with this one
-        users.put("super","super,ROLE_ADMIN,enabled"); //this has the privilege of deleting cases (deletion not yet implemented)
+        users.put("seller","seller,ROLE_STORE_SELLER,enabled"); 
+        users.put("super","super,ROLE_ADMIN,enabled"); 
         return new InMemoryUserDetailsManager(users);
     }
     

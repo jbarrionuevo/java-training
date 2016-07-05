@@ -9,6 +9,8 @@ import org.thymeleaf.util.Validate;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import ilan.models.ThirdPartyParticipant;
+
 public class CaseOrderDTO {
 	private Long id;
 	private HashMap<String,Integer> requestCases;
@@ -19,7 +21,7 @@ public class CaseOrderDTO {
 	
 	@JsonCreator
 	public CaseOrderDTO(@JsonProperty("requestCases") HashMap<String,Integer> requestCases, 
-			@JsonProperty("dateOfRequest") Date dateOfRequest) {
+			@JsonProperty("dateOfRequest") Date dateOfRequest){
 		super();
 		this.requestCases = requestCases;
 		this.dateOfRequest=dateOfRequest;
