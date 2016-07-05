@@ -111,7 +111,7 @@ $(document).ready(function(){
 			  }	 else if(isStoreSeller) 
 				  result+="<td>" +
 				  		"<label>Quantity:</label>" +
-						"<input type='hidden' id='"+v.id+"_data' value='"+v.myCase.design.name+"_"+v.myCase.device.name+"_"+v.myCase.price+"'/>"+
+						"<input type='hidden' id='"+v.id+"_data' value='"+v.myCase.design.name+"_"+v.myCase.device.name+"_"+v.myCase.price+"_"+v.myCase.id+"'/>"+
 				  		"<select id='"+v.id+"_quantity'>" +
 				  		"<option>1</option><option>2</option>" +
 				  		"<option>3</option><option>4</option>" +

@@ -3,6 +3,7 @@ package ilan.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class OrderAlert {
@@ -10,16 +11,15 @@ public class OrderAlert {
 	@GeneratedValue
 	private Long id;
 	private int quantity;
-	private Long productId;
-	private String description;
+	@ManyToOne
+	private CaseProduct product;
 	
 	public OrderAlert(){}
 	
-	public OrderAlert(int quantity, Long productId, String description) {
+	public OrderAlert(int quantity, CaseProduct product) {
 		super();
-		this.description=description;
 		this.quantity = quantity;
-		this.productId = productId;
+		this.product=product;
 	}
 	
 	public Long getId() {
@@ -34,19 +34,13 @@ public class OrderAlert {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Long getProductId() {
-		return productId;
-	}
-	public void setProductId(Long productId) {
-		this.productId = productId;
+
+	public CaseProduct getProduct() {
+		return product;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setProduct(CaseProduct product) {
+		this.product = product;
 	}
 	
 	

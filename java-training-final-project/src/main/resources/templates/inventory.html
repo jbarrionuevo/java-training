@@ -58,7 +58,7 @@
 					<div sec:authorize="hasRole('ROLE_STORE_SELLER')">
 						<td>
 							<label>Quantity:</label>
-							<input type="hidden" th:id="${casewrapper.id}+'_data'" th:value= "${casewrapper.myCase.design.name}+'_'+${casewrapper.myCase.device.name}+'_'+${casewrapper.myCase.price}"/>
+							<input type="hidden" th:id="${casewrapper.id}+'_data'" th:value= "${casewrapper.myCase.design.name}+'_'+${casewrapper.myCase.device.name}+'_'+${casewrapper.myCase.price}+'_'+${casewrapper.myCase.id}"/>
 							<select th:id="${casewrapper.id}+'_quantity'">
 								<option>1</option>
 								<option>2</option>

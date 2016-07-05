@@ -14,6 +14,8 @@ import ilan.models.Inventory;
 
 public interface CaseWrapperDao extends JpaRepository<CaseWrapper,Long>{
 	CaseWrapper findByMyCase(CaseProduct myCase);
+	CaseWrapper findByMyCaseId(Long myCaseId);
+	CaseWrapper findByInventoryAndMyCase(Inventory inventory, CaseProduct myCase);
 	List<CaseWrapper> findByInventory(Inventory inventory, Pageable pageable);
 	List<CaseWrapper> findByInventoryAndMyCaseDesignName(Inventory inventory, String caseDesignName, Pageable pageable);
 	List<CaseWrapper> findByInventoryAndMyCaseDeviceName(Inventory inventory, String caseDeviceName, Pageable pageable);

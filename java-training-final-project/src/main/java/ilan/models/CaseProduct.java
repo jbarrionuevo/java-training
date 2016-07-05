@@ -1,12 +1,16 @@
 package ilan.models;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.thymeleaf.util.Validate;
 
@@ -24,6 +28,8 @@ public class CaseProduct implements Serializable {
 	private double price;
 	@ManyToOne
 	private Provider provider;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade = CascadeType.ALL)
+	private Collection<OrderAlert> alerts;
 	
 	public CaseProduct(){}
 	
@@ -88,6 +94,14 @@ public class CaseProduct implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Collection<OrderAlert> getAlerts() {
+		return alerts;
+	}
+
+	public void setAlerts(Collection<OrderAlert> alerts) {
+		this.alerts = alerts;
 	}
 	
 	

@@ -106,6 +106,7 @@ public class SaleService {
 			sale.setStatus(SaleStatus.PAID);
 			Receipt receipt = sale.getReceipts().iterator().next();
 			receipt.setDateOfSale(new Date());
+			sale.getCaseOrder().setDateOfDelivery(new Date());
 			Iterator it = sale.getOrder().getRequestCases().entrySet().iterator();
 			while (it.hasNext()) {
 				Map.Entry pair = (Map.Entry) it.next();
@@ -113,14 +114,14 @@ public class SaleService {
 				if (product == null)
 					throw new CaseProductNotFoundException((Long) pair.getKey());
 				Inventory inventory = inventoryDao.findAll().get(0);
-				CaseWrapper wrapper = inventory.getStock().stream()
-						.filter(cw -> cw.getMyCase().equals(product)).collect(Collectors.toList()).get(0);
+				CaseWrapper wrapper = caseWrapperDao.findByInventoryAndMyCase(inventory, product);
 				if (wrapper == null)
 					throw new CaseWrapperNotFoundException(product.toString());
 				if(wrapper.getCurrentStock()<(Integer)pair.getValue())
 					throw new NotEnoughStockException(product.toString());
 				wrapper.setCurrentStock(wrapper.getCurrentStock() - (Integer)pair.getValue());
 				caseWrapperDao.save(wrapper);
+				
 			}
 			break;
 		case "cancelled":

@@ -13,6 +13,7 @@ $(document).ready(function(){
 		var design = data.split("_")[0];
 		var device = data.split("_")[1];
 		var price = data.split("_")[2];
+		var prod_id = data.split("_")[3];
 		$("#productQuantity").val(parseInt($("#productQuantity").val)+parseInt(quantity));
 		
 		var product = new Object();
@@ -21,6 +22,7 @@ $(document).ready(function(){
 		product["design"]=design;
 		product["device"]=device;
 		product["price"]=price;
+		product["prod_id"]=prod_id;
 		
 		requestCases["wrapper_id"]=quantity;
 		
@@ -67,7 +69,7 @@ $(document).ready(function(){
 				$.each(products, function(i,v) {
 					if(!(first)) casesJson += ",";
 					else first=false;
-					casesJson += '"'+v["wrapper_id"]+'":"'+v["quantity"]+'"';
+					casesJson += '"'+v["prod_id"]+'":"'+v["quantity"]+'"';
 					totalPrice+=(v["quantity"]*v["price"]);
 				});
 				casesJson+="}";

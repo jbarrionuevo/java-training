@@ -13,6 +13,7 @@ import ilan.daos.CaseSellerDao;
 import ilan.daos.CaseWrapperDao;
 import ilan.daos.CustomerDao;
 import ilan.enums.SaleStatus;
+import ilan.exceptions.CaseProductNotFoundException;
 import ilan.exceptions.CaseSellerNotFoundException;
 import ilan.exceptions.CaseWrapperNotFoundException;
 import ilan.exceptions.CustomerNotFoundException;
@@ -60,8 +61,10 @@ public class CaseSellerService {
 			customerDao.save(sale.getReceipts().iterator().next().getCustomer());
 		}
 		for (Map.Entry<Long, Integer> entry : sale.getOrder().getRequestCases().entrySet()){
-			CaseWrapper wrapper = caseWrapperDao.findOne(entry.getKey());
-			if(wrapper==null) throw new CaseWrapperNotFoundException(entry.getKey());
+			Long caseId = entry.getKey();
+			CaseWrapper wrapper = caseWrapperDao.findByMyCaseId(entry.getKey());
+//			CaseWrapper wrapper = caseWrapperDao.findOne(entry.getKey());
+			if(wrapper==null) throw new CaseProductNotFoundException(entry.getKey());
 //			if(wrapper.getCurrentStock()<entry.getValue()) throw new NotEnoughStockException(wrapper.getMyCase().toString());
 	    }
 		caseOrderDao.save(sale.getOrder());

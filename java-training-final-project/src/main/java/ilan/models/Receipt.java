@@ -32,7 +32,6 @@ public class Receipt {
 	
 	public Receipt(String storeName, Date dateOfSale, Customer customer) {
 		super();
-		Validate.notNull(dateOfSale,"Date of sale cannot be null");
 		Validate.notEmpty(storeName,"Store Name cannot be blank");
 		Validate.notNull(customer,"Customer cannot be null");
 		this.storeName = storeName;

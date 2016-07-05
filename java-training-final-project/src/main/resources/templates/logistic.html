@@ -5,6 +5,8 @@
 <head>
     <title>Logistic View</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/logistic.js"></script>
 </head>
 <body>
 
@@ -20,29 +22,39 @@
 				<td th:text="${provider}"></td>
 				<td>
 					<label>Design: </label>
-					<select id="designSelect">
+					<select th:id="${provider.id}+'_'+designSelect" class="designSelect">
 						<option th:each="design:${designs}" th:value="${design.name}"
 							th:text="${design.name}"></option>
 					</select>
 					
 					<label>Device: </label>
-					<select id="deviceSelect">
+					<select id="${provider.id}+'_'+deviceSelect" class="deviceSelect">
 						<option th:each="device:${devices}" th:value="${device.name}"
 							th:text="${device.name}"></option>
 					</select>
 					
 					<label>Quantity:</label>
-					<input type="number" id="quantity"/>
-					<button type="button" id="makeRequest">CONFIRM REQUEST</button>
+					<input type="number" th:id="${provider.id}+'_'+quantity" class="quantity"/>
+					<button type="button" th:id="${provider.id}+'_'+makeRequest" class="makeRequest">CONFIRM REQUEST</button>
 				</td>
 			</tr>
 		</table>
 	</div>
 	
 	<h3>Alerts: </h3>
-	<ul>
-	  <li th:each="alert : ${alerts}" th:text="'We need '+${alert.quantity}+' items of '+${alert.description}+'!'"></li>
-	</ul>
+	<table>
+		<tr th:each="alert : ${alerts}">
+	   	 	<td th:text="'We need '+${alert.quantity}+' items of '+${alert.product}"></td>
+	   	 	<td><button type="button" class="makeAlertRequest" th:id="${alert.product.id}+'_'+${alert.quantity}+'_'+${alert.product.provider.id}">MAKE REQUEST</button></td>
+	   	</tr>
+   	</table>
     
+<!-- 	<ul> -->
+<!-- 	  <li th:each="alert : ${alerts}" th:text="'We need '+${alert.quantity}+' items of '+${alert.product}"> -->
+<!-- 	  	<button type="button" class="makeAlertRequest" th:id="${alert.id}+'_alertRequest'">MAKE REQUEST</button> -->
+<!-- 	  </li> -->
+<!-- 	</ul> -->
+    
+    <a th:href="@{/}">Back to the homepage</a>
 </body>
 </html>
