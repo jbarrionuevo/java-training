@@ -5,6 +5,7 @@ $(document).ready(function(){
 			 var productId = this.id.split("_")[0].toString();
 			 var quantity = this.id.split("_")[1];
 			 var providerId = this.id.split("_")[2];
+			 var alertId = this.id.split("_")[3];
 			 var casesJson = '{"'+productId+'":"'+quantity+'"}';
 			 var jsonOrder = {
 						    "requestCases":JSON.parse(casesJson),
@@ -12,7 +13,7 @@ $(document).ready(function(){
 			 };
 			 $.ajax({
 				   type: 'POST',
-				   url: '/providers/'+providerId+'/order',
+				   url: '/providers/'+providerId+'/order?orderAlertId='+alertId,
 				   headers: { 
 				        'Accept': 'application/json',
 				        'Content-Type': 'application/json' 

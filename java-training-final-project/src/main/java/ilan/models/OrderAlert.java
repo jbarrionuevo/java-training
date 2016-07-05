@@ -13,6 +13,7 @@ public class OrderAlert {
 	private int quantity;
 	@ManyToOne
 	private CaseProduct product;
+	private boolean made;
 	
 	public OrderAlert(){}
 	
@@ -20,6 +21,7 @@ public class OrderAlert {
 		super();
 		this.quantity = quantity;
 		this.product=product;
+		this.made=false;
 	}
 	
 	public Long getId() {
@@ -41,6 +43,14 @@ public class OrderAlert {
 
 	public void setProduct(CaseProduct product) {
 		this.product = product;
+	}
+
+	public boolean isMade() {
+		return made;
+	}
+
+	public void setMade(boolean made) {
+		this.made = made;
 	}
 	
 	
