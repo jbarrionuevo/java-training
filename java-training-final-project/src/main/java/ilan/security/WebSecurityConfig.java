@@ -27,6 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/salesView/**").hasAnyRole("STORE_SELLER","DELIVERY_SELLER","COMPLETE_SELLER")
                 .antMatchers("/logisticView/**").hasRole("LOGISTIC")
+                .antMatchers("/inventoryView/**").hasAnyRole("STORE_SELLER","DELIVERY_SELLER","COMPLETE_SELLER, ADMIN")
+                .antMatchers("/providersView/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -48,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         final Properties users = new Properties();
         users.put("logistic","logistic,ROLE_LOGISTIC,enabled"); 
         users.put("ilan","ilan,ROLE_LOGISTIC,enabled");
-        users.put("john","john,ROLE_USER,disabled"); //you wont be able to enter with this one
+        users.put("seller","seller,ROLE_STORE_SELLER,disabled"); //you wont be able to enter with this one
         users.put("super","super,ROLE_ADMIN,enabled"); //this has the privilege of deleting cases (deletion not yet implemented)
         return new InMemoryUserDetailsManager(users);
     }

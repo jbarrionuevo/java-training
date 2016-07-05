@@ -2,9 +2,9 @@ Create a db called ion_solid in MySQL. Then, uncomment the code in Application.j
 it will create the tables the first time you run the app; for further runnings, comment again that code.
 
 You can enter the app with one of these users:
-- user: super pass:super  The super admin. Can check the stock of the products
-- user: ilan pass:ilan   A store seller. Can register sales, check their receipts, and change sales status
-- user: logistic pass: logistic   A logistic team member. Can make orders to the providers.
+- user: super pass:super  The super admin. Can check the stock of the products and providers stadistics.
+- user: seller pass:seller   A store seller. Can register sales, check their receipts, and change sales status
+- user: logistic pass: logistic   A logistic team member. Can make orders to the providers, and checks the generated alarms due to low stock of products.
 
 To generate alerts to the logistic team when some case stock is to low, I've implemented the component AlarmThread,
 which has a scheduled task called 'checkAlarms', which checks for each casewrapper if its current stock is lower than

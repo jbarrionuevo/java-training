@@ -37,29 +37,30 @@ $(document).ready(function(){
 			return false;
 		}
 		 if (confirm('Confirm the order?')) {
-			 var design = $("#"+providerId+"_designSelect").val();
-			 var device = $("#"+providerId+"_deviceSelect").val();
-			 //obtain the product id
-			 var quantity = $("#"+providerId+"_quantity").val();
-			 var caseOrderDTO = {
-					 dateOfRequest: getCurrentDate(),
-					 requestCases : {
-						 productId:quantity
-					 }
-			};
-			 $.ajax({
-				   url: '/providers/'+providerId+'/order',
-				   data: {
-					   caseOrderDTO: caseOrderDTO
-				   },
-				   error: function() {
-				      $('#result').html('<p>An error has occurred</p>');
-				   },
-				   success: function(data) {
-					   
-				   },
-				   type: 'PUT'
-			});
+			 alert("Not implemented!");
+//			 var design = $("#"+providerId+"_designSelect").val();
+//			 var device = $("#"+providerId+"_deviceSelect").val();
+//			 //obtain the product id
+//			 var quantity = $("#"+providerId+"_quantity").val();
+//			 var caseOrderDTO = {
+//					 dateOfRequest: getCurrentDate(),
+//					 requestCases : {
+//						 productId:quantity
+//					 }
+//			};
+//			 $.ajax({
+//				   url: '/providers/'+providerId+'/order',
+//				   data: {
+//					   caseOrderDTO: caseOrderDTO
+//				   },
+//				   error: function() {
+//				      $('#result').html('<p>An error has occurred</p>');
+//				   },
+//				   success: function(data) {
+//					   
+//				   },
+//				   type: 'PUT'
+//			});
 		 }
 	});
 });

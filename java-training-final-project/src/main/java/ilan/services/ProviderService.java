@@ -43,6 +43,9 @@ public class ProviderService {
 	     }
 	}
 	
+	public Collection<Provider> findAllProviders(){
+		return providerDao.findAll();
+	}
 	public Page<Provider> findAllProviders(Integer page, Integer size){
 		return providerDao.findAll(new PageRequest(page, size));
 	}

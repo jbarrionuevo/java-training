@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Providers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/providers.js"></script>
+</head>
+<body>
+
+	<label>Provider: </label>
+	<select id="designSelect">
+		<option value="all">All</option>
+		<option th:each="provider:${providers}" th:value="${provider}"
+			th:text="${provider}"></option>
+	</select>
+
+	<div id="result">
+		<table border="1">
+			<tr>
+				<th>INDEX</th>
+				<th>PROVIDER</th>
+				<th>ORDER</th>
+				<th>ORDER DATE OF REQUEST</th>
+				<th>ORDER DATE OF DELIVERY</th>
+				<th>DELAY</th>
+			</tr>		
+		</table>
+	</div>
+	
+	
+	<a th:href="@{/}">Back to the homepage</a>
+</body>
+</html>
