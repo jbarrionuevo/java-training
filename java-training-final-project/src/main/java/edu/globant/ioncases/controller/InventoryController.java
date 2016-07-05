@@ -50,6 +50,15 @@ public class InventoryController {
 
         return "allInventory";
     }
+    
+    
+    @RequestMapping(value="/addPost", method = RequestMethod.POST)
+    public String addPost(@RequestParam String s){
+        
+        System.out.println("-----> " + s);
+        
+        return "index";
+    }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {

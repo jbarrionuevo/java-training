@@ -47,4 +47,13 @@ public class ProviderRestController {
         return provider.getCases();
 
     }
+    
+    
+        @RequestMapping(value="/addPost", method = RequestMethod.POST)
+    public String addPost(@RequestParam(value="order") String s){
+        
+        System.out.println("-----> " + s);
+        
+        return "index";
+    }
 }

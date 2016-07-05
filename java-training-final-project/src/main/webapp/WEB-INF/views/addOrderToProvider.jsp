@@ -65,7 +65,7 @@
             $.ajax({
             type: "GET",
                     url: "${pageContext.request.contextPath}/provider/getAllCasesByProvider",
-                    datatype: 'json',
+                    datatype: 'text',
                     data: {providerId},
                     success: function (listCases) {
                     chargeCases(listCases);
@@ -94,21 +94,21 @@
             }
 
             $("#sendOrder").click(function () {
-            var order = $('#order').serializeArray();
-            
+            var order = $('#order').serialize();
+            console.log(order);
             $.ajax({
             type: "POST",
-                    url: "${pageContext.request.contextPath}/provider/addOrder",
+                    url: "${pageContext.request.contextPath}/inventory/addPost",
                     datatype: 'json',
-                    data: {providerId},
-                    success: function (listCases) {
-                    chargeCases(listCases);
+                    data: {order},
+                    success: function (cond) {
+                    alert(cond);
                     },
                     error: function (e) {
                     alert('Error 2: ' + e);
     }
             });
-            console.log(order);
+     
             });
 
         </script>
