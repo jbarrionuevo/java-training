@@ -12,8 +12,6 @@ $(document).ready(function(){
 				$("#help").hide();
 				var providerId = $("#providerSelect").val().split("_")[0];
 				var providerInfo = $("#providerSelect").val().split("_")[1];
-				alert(providerId);
-				alert(providerInfo);
 				$.ajax({
 					   type: 'GET',
 					   url: '/providers/'+providerId+'/orders',
@@ -31,6 +29,10 @@ $(document).ready(function(){
 
 function updateTable(data,providerInfo){
 	var result="<h2>Orders from "+providerInfo+"</h3>";
+	if(data.length==0) {
+		result+= "<h3>There are no orders from this provider</h3>"; 
+		return result;
+	}
 	result += "<table border='1'>" +
 		"<tr>" +
 		"									<th>INDEX</th>" +
