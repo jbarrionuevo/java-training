@@ -20,29 +20,24 @@ public class CaseServiceImpl implements CaseService{
 	Inventory inventory;
 
 	@Transactional
-	@Override
 	public void create(Case c) {
 		caseDAO.save(c);
 	}
 
-	@Override
 	public ArrayList<Case> getAll() {
 		ArrayList<Case> cases = caseDAO.getAll();
 		return cases; 
 	}
 
-	@Override
 	public Case get(int id) {
 		return null;
 	}
 
 	@Transactional
-	@Override
 	public void update(Case c) {
 		
 	}
 
-	@Override
 	public int checkStock(Case c) {
 		return 0;
 	}

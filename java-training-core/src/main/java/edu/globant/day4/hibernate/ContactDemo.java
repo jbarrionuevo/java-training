@@ -26,8 +26,8 @@ public class ContactDemo {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ContactDemo.class);
 
-	private static final String configurationPath = "/edu/globant/day4/config/database.properties";
-	private static final String hibernateConfigXml = "/edu/globant/day4/config/hibernate.cfg.xml";
+	private static final String configurationPath = "/config/database.properties";
+	private static final String hibernateConfigXml = "/config/hibernate.cfg.xml";
 
 	public static void main(String[] args) {
 		MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();

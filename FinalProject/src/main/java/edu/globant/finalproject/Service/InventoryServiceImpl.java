@@ -1,14 +1,15 @@
-package edu.globant.finalProject.service;
+package edu.globant.finalproject.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.globant.finalProject.dao.InventoryDAO;
-import edu.globant.finalProject.model.Case.Case;
-import edu.globant.finalProject.model.Inventory.CaseStock;
+import edu.globant.finalproject.dao.InventoryDAO;
+import edu.globant.finalproject.hibernate.Case;
+import edu.globant.finalproject.hibernate.CaseStock;
 
 @Service
 public class InventoryServiceImpl implements InventoryService{
@@ -17,11 +18,13 @@ public class InventoryServiceImpl implements InventoryService{
 	InventoryDAO inventoryDAO;
 
 	@Transactional
+	@Override
 	public void add(Case c) {
 		inventoryDAO.add(c);
 	}
 
-	public ArrayList<CaseStock> getAll() {
+	@Override
+	public List<CaseStock> getAll() {
 		return inventoryDAO.getAll();
 	}
 	

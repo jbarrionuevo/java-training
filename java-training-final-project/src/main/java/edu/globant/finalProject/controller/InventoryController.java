@@ -17,7 +17,7 @@ public class InventoryController {
 	@RequestMapping(value = "/showTotalInventory")
     public String showTotalInventory(Model model) {
 		model.addAttribute("inventory",inventoryService.getAll());
-        return "Inventory";
+        return "index";
     }
 
 }
