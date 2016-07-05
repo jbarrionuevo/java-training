@@ -3,16 +3,23 @@ package ilan.dtos;
 import java.util.Date;
 import java.util.HashMap;
 
+
 import org.thymeleaf.util.Validate;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CaseOrderDTO {
 	private Long id;
-	private HashMap<Long,Integer> requestCases;
+	private HashMap<String,Integer> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
 	
+	@JsonCreator
 	public CaseOrderDTO(){}
 	
-	public CaseOrderDTO(HashMap<Long,Integer> requestCases, Date dateOfRequest) {
+	@JsonCreator
+	public CaseOrderDTO(@JsonProperty("requestCases") HashMap<String,Integer> requestCases, 
+			@JsonProperty("dateOfRequest") Date dateOfRequest) {
 		super();
 		this.requestCases = requestCases;
 		this.dateOfRequest=dateOfRequest;
@@ -42,11 +49,11 @@ public class CaseOrderDTO {
 		this.id = id;
 	}
 
-	public HashMap<Long,Integer> getRequestCases() {
+	public HashMap<String,Integer> getRequestCases() {
 		return requestCases;
 	}
 
-	public void setRequestCases(HashMap<Long,Integer> requestCases) {
+	public void setRequestCases(HashMap<String,Integer> requestCases) {
 		this.requestCases = requestCases;
 	}
 
