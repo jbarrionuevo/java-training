@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(indexes = {@Index(columnList = "name", name = "provider_name")})
 public class Provider extends ThirdPartyParticipant implements InventoryObserver{
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Collection<CaseOrder> orders;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "provider", cascade = CascadeType.ALL)

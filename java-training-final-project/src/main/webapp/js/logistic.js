@@ -5,7 +5,7 @@ $(document).ready(function(){
 			 var productId = this.id.split("_")[0].toString();
 			 var quantity = this.id.split("_")[1];
 			 var providerId = this.id.split("_")[2];
-			 var casesJson += '{"'+productId+'":"'+quantity+'"}';
+			 var casesJson = '{"'+productId+'":"'+quantity+'"}';
 			 var jsonOrder = {
 						    "requestCases":JSON.parse(casesJson),
 						    "dateOfRequest":getCurrentDate()
@@ -13,15 +13,17 @@ $(document).ready(function(){
 			 $.ajax({
 				   type: 'POST',
 				   url: '/providers/'+providerId+'/order',
+				   headers: { 
+				        'Accept': 'application/json',
+				        'Content-Type': 'application/json' 
+				    },
 				   data: JSON.stringify(jsonOrder),
-				   error: function() {
-				      $('#result').html('<p>An error has occurred</p>');
-				   },
-				   success: function(data) {
-					   
-				   },
-				   contentType: "application/json",
-				   dataType: 'json'
+				   error: function (request, status, error) {
+				        alert(request.responseText);
+				    },
+				   success: function() {
+					   alert("Order succesfully registered to the corresponding provider!")
+				   }
 			 });
 		}
 	});

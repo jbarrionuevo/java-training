@@ -48,12 +48,9 @@
 	   	 	<td><button type="button" class="makeAlertRequest" th:id="${alert.product.id}+'_'+${alert.quantity}+'_'+${alert.product.provider.id}">MAKE REQUEST</button></td>
 	   	</tr>
    	</table>
+   	
+   	<div id="alertResult"></div>
     
-<!-- 	<ul> -->
-<!-- 	  <li th:each="alert : ${alerts}" th:text="'We need '+${alert.quantity}+' items of '+${alert.product}"> -->
-<!-- 	  	<button type="button" class="makeAlertRequest" th:id="${alert.id}+'_alertRequest'">MAKE REQUEST</button> -->
-<!-- 	  </li> -->
-<!-- 	</ul> -->
     
     <a th:href="@{/}">Back to the homepage</a>
 </body>

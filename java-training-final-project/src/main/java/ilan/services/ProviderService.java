@@ -41,14 +41,6 @@ public class ProviderService {
 		return providerDao.findAll(new PageRequest(page, size));
 	}
 	
-	
-	
-//	public void generateOrder(Long providerId, HashMap<Long,Integer> requestCases){
-//		Provider provider = providerDao.findOne(providerId);
-//		if(provider==null) throw new ProviderNotFoundException(providerId.toString());
-//		provider.addOrder(new CaseOrder(requestCases, new Date()));
-//		providerDao.save(provider);
-//	}
 
 	public void addOrder(Long providerId, CaseOrder caseOrder) {
 		Provider provider = providerDao.findOne(providerId);
