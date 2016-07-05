@@ -1,7 +1,9 @@
 package ilan.restcontrollers;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +29,17 @@ public class ProviderRestController {
 	@Autowired
 	private Mapper mapper;
 
-	@RequestMapping(value = "/{providerId}/order", method = RequestMethod.POST)
+	@RequestMapping(value = "/{providerId}/orders", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void createOrder(@PathVariable Long providerId, 
 							@RequestBody CaseOrderDTO caseOrderDTO, 
 							@RequestParam (value="orderAlertId", required=false, defaultValue="0") Long orderAlertId) {
 		providerService.addOrder(providerId, mapper.map(caseOrderDTO, CaseOrder.class), orderAlertId);
+	}
+	
+	@RequestMapping(value = "/{providerId}/orders", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public Collection<CaseOrderDTO> getOrders(@PathVariable Long providerId) {
+		return providerService.getOrders(providerId).stream().map(o->mapper.map(o,CaseOrderDTO.class)).collect(Collectors.toList());
 	}
 }

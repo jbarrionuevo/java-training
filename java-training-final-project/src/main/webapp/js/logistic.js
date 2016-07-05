@@ -13,7 +13,7 @@ $(document).ready(function(){
 			 };
 			 $.ajax({
 				   type: 'POST',
-				   url: '/providers/'+providerId+'/order?orderAlertId='+alertId,
+				   url: '/providers/'+providerId+'/orders?orderAlertId='+alertId,
 				   headers: { 
 				        'Accept': 'application/json',
 				        'Content-Type': 'application/json' 

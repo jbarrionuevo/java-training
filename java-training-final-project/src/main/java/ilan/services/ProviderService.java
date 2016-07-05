@@ -64,5 +64,12 @@ public class ProviderService {
 			orderAlertDao.save(orderAlert);
 		}
 	}
+
+	public Collection<CaseOrder> getOrders(Long providerId) {
+		Provider provider = providerDao.findOne(providerId);
+		if(provider==null) throw new ProviderNotFoundException(providerId.toString());
+		Collection<CaseOrder> orders = provider.getOrders();
+		return orders;
+	}
 	
 }

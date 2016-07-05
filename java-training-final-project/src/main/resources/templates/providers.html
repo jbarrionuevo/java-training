@@ -13,23 +13,12 @@
 	<label>Provider: </label>
 	<select id="providerSelect">
 		<option value="none"></option>
-		<option th:each="provider:${providers}" th:value="${provider}"
+		<option th:each="provider:${providers}" th:value="${provider.id}+'_'+${provider}"
 			th:text="${provider}"></option>
 	</select>
 
 	<label id="help">Select a provider to see its stadistics</label>
-	<div id="result">
-		<table border="1">
-			<tr>
-				<th>INDEX</th>
-				<th>PROVIDER</th>
-				<th>ORDER</th>
-				<th>ORDER DATE OF REQUEST</th>
-				<th>ORDER DATE OF DELIVERY</th>
-				<th>DELAY</th>
-			</tr>		
-		</table>
-	</div>
+	<div id="result"></div>
 	
 	
 	<a th:href="@{/}">Back to the homepage</a>
