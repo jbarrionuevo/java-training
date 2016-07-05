@@ -6,7 +6,6 @@
 package edu.globant.ioncases.controller;
 
 import edu.globant.ioncases.dao.CaseDao;
-import edu.globant.ioncases.dao.CaseDaoImpl;
 import edu.globant.ioncases.model.CaseCover;
 import edu.globant.ioncases.model.CaseInventory;
 import edu.globant.ioncases.model.Cellphone;
@@ -16,8 +15,6 @@ import edu.globant.ioncases.model.Tablet;
 import edu.globant.ioncases.service.InventoryService;
 import edu.globant.ioncases.service.LogisticService;
 import edu.globant.ioncases.service.ProviderService;
-import java.util.HashMap;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

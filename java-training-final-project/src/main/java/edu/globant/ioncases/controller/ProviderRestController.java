@@ -33,7 +33,7 @@ public class ProviderRestController {
         return providerService.getAll();
     }
 
-    @RequestMapping(value = "/getAllCases", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAllCasesByProvider", method = RequestMethod.GET)
     @ResponseBody
     public List<CaseCover> getAllCases(@RequestParam (value="providerId") Long idProvider) {
         System.out.println("-----> " + idProvider);

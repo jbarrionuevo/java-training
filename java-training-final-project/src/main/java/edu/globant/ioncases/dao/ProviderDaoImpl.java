@@ -48,7 +48,9 @@ public class ProviderDaoImpl implements ProviderDao {
     @Override
     public List<CaseCover> casesAvailablesByProviderId() {
 //        return getCurrentSession().createQuery
-//        ("FROM edu.globant.ioncases.model.Provider.cases").list()g;
+//        ("SELECT FROM edu.globant.ioncases.model.Provider.cases").list()g;
+
+// ("SELECT c.cases FROM edu.globant.ioncases.model.Provider WHERE c.id=" + providerId)
         return null;
     }
 
