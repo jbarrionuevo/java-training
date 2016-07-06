@@ -47,7 +47,11 @@ function updateTable(data,providerInfo){
 		  result+="<td>"+getDateString(new Date(o.dateOfRequest))+"</td>";
 		  if(o.dateOfDelivery==null) result+="<td>Not yet delivered</td>";
 		  else result+="<td>"+getDateString(new Date(o.dateOfDelivery))+"</td>";
-		  result+="<td>"+delay(new Date(o.dateOfRequest),new Date(o.dateOfDelivery))+"</td>";
+		  var deliveryDelay = delay(new Date(o.dateOfRequest),o.dateOfDelivery);
+		  var delayDetails = "(On Time)";
+		  if(deliveryDelay>3)
+			  delayDetails = "("+(deliveryDelay-3)+" days delay)";
+		  result+="<td>"+deliveryDelay+" days "+delayDetails+"</td>";
 		  result+="</tr>";
 	  });
 	  result+="</table>";
@@ -64,5 +68,13 @@ function getDateString(date){
 }
 
 function delay(dateOfRequest,dateOfDelivery){
-	return 0;
+	if(dateOfDelivery==null) dateOfDelivery = new Date();
+	else {
+		dateOfDelivery= new Date(dateOfDelivery);
+		if(getDateString(dateOfRequest)==getDateString(dateOfDelivery)) return 0;
+	}
+	var timeDiff = Math.abs((new Date(dateOfDelivery)).getTime() - (dateOfRequest.getTime()));
+	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+	return diffDays;
+//	return Math.floor(( new Date(dateOfDelivery) - new Date(dateOfRequest) ) / 86400000);
 }
