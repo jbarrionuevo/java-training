@@ -50,6 +50,7 @@ as PAID, and the corresponding stock will be decreased from the inventory.
 
 
 //TO DO:
+//SEE FOR EACH PROVIDER ORDER IF IT WAS DELIVERED ON TIME AND ITS DELAY
 //REFUND PRODUCT (MAKE IT AVAILABLE IF DATE OF SALE IS LESS THAN A MONTH AGO)
 //MAKE THE CUSTOMER CHOOSE ANOTHER MODEL (NEW SALE), THE SAME ONE OR ONLY GET HIS MONEY BACK (CASE RETURNED)
 6) In order to save time for the application development, the delivery sellers have to go back to the store to register their sales. 
