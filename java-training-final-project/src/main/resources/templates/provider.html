@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>My Orders</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+</head>
+<body>
+
+	<label>Type: </label>
+	<select id="typeSelect">
+		<option value="all">All</option>
+		<option value="pending">Pending</option>
+		<option value="attended">Attended</option>
+	</select>
+	
+	<a th:href="@{/}">Back to the homepage</a>
+</body>
+</html>

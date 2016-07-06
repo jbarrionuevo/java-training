@@ -120,7 +120,7 @@ public class Application {
 //		inventoryService.incrementStock(case8, 80,0);
 //		inventoryService.incrementStock(case9, 160,180);
 //		
-//		caseSellerService.save(new StoreSeller("store seller 1"));
+//		caseSellerService.save(new StoreSeller("store seller 1","Store"));
 		
 		/**THEN USE THIS TO UPDATE THE STOCK **/
 //		Collection<CaseProduct> cases = caseProductService.findAllCases();

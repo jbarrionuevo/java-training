@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -22,5 +23,12 @@ public class ProviderController {
     public String getProviders(Model model) {
 		model.addAttribute("providers",providerService.findAllProviders());
 		return "providers";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/{providerId}")
+	@ResponseStatus(value= HttpStatus.OK)
+    public String getProviderOrders(@PathVariable Long providerId, Model model) {
+		model.addAttribute("orders",providerService.getProviderOrders(providerId));
+		return "provider";
 	}
 }

@@ -1,5 +1,6 @@
 package ilan.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -25,12 +26,9 @@ public abstract class CaseSeller extends Employee {
 	
 	public CaseSeller(String name){
 		super(name);
+		this.sales=new ArrayList<Sale>();
 	}
 	
-	public CaseSeller(String name, Collection<Sale> sales) {
-		super(name);
-		this.sales = sales;
-	}
 
 	public void addSale(Sale sale){
 		this.sales.add(sale);

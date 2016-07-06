@@ -28,7 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/salesView/**").hasAnyRole("STORE_SELLER","DELIVERY_SELLER","COMPLETE_SELLER")
                 .antMatchers("/logisticView/**").hasRole("LOGISTIC")
                 .antMatchers("/inventoryView/**").hasAnyRole("STORE_SELLER","DELIVERY_SELLER","COMPLETE_SELLER", "ADMIN")
-                .antMatchers("/providersView/**").hasRole("ADMIN")
+                .antMatchers("/providersView/").hasRole("ADMIN")
+                .antMatchers("/providersView/{providerId}").hasRole("PROVIDER")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -48,10 +49,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         final Properties users = new Properties();
-        users.put("logistic","logistic,ROLE_LOGISTIC,enabled"); 
-        users.put("ilan","ilan,ROLE_ADMIN,enabled");
+        users.put("logistic","logistic,ROLE_LOGISTIC,enabled");
+        users.put("provider","provider,ROLE_PROVIDER,enabled"); 
         users.put("seller","seller,ROLE_STORE_SELLER,enabled"); 
         users.put("super","super,ROLE_ADMIN,enabled"); 
+        users.put("ilan","ilan,ROLE_ADMIN,enabled");
+        
         return new InMemoryUserDetailsManager(users);
     }
     

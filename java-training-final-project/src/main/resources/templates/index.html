@@ -30,6 +30,9 @@
 		<div th:if="${#authorization.expression('hasRole(''ROLE_LOGISTIC'')')}">
 			<a th:href="@{/logisticView}">Providers</a>
 		</div>
+		<div th:if="${#authorization.expression('hasRole(''ROLE_PROVIDER'')')}">
+			<a th:href="@{/providersView/1}">My orders</a>
+		</div>
 	    
 	</div>
     

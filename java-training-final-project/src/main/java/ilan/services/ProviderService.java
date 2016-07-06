@@ -69,7 +69,7 @@ public class ProviderService {
 		}
 	}
 
-	public Collection<CaseOrder> getOrders(Long providerId) {
+	public Collection<CaseOrder> getProviderOrders(Long providerId) {
 		Provider provider = providerDao.findOne(providerId);
 		if(provider==null) throw new ProviderNotFoundException(providerId.toString());
 		Collection<CaseOrder> orders = caseOrderDao.findByThirdPartyParticipant(provider);

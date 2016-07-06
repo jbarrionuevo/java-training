@@ -20,9 +20,8 @@ public class StoreSeller extends CaseSeller implements StoreSellerInterface{
 		super(name);
 	}
 	
-	public StoreSeller(String name,Collection<Sale> sales, String store){
-		super(name,sales);
-		Validate.notEmpty(store,"Store cannot be empty");
+	public StoreSeller(String name, String store){
+		super(name);
 		this.store=store;
 	}
 

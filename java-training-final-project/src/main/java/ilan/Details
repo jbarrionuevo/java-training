@@ -2,12 +2,18 @@ Create a db called ion_solid in MySQL. Then, uncomment the code in Application.j
 it will create the tables the first time you run the app; for further runnings, comment again that code.
 
 You can enter the app with one of these users:
-- user: super pass:super  The super admin. Can check the stock of the products and providers stadistics.
-- user: seller pass:seller   A store seller. Can register sales, check their receipts, and change sales status
+- user: super pass:super  The super admin. Can check the stock of the products and providers statistics.
+- user: seller pass:seller   A store seller. Can register sales, check their receipts, and change sales status. Its id is harcoded to 1, so it represents 
+seller 1 (which is saved in Application.java). Due to the lack of time, I didnt represent the users in the db, only in memory, but this could be a future
+work.
 - user: logistic pass: logistic   A logistic team member. Can make orders to the providers, and checks the generated alarms due to low stock of products.
+- user: provider pass: provider   A provider. Can check its orders and replace the products he has been ordered. Its id is harcoded to 1, so it represents 
+provider 1 (which is saved in Application.java). Due to the lack of time, I didnt represent the users in the db, only in memory, but this could be a future
+work.
 
 To generate alerts to the logistic team when some case stock is to low, I've implemented the component AlarmThread,
 which has a scheduled task called 'checkAlarms', which checks for each casewrapper if its current stock is lower than
 its minimum; if true, it generates an alarm containing the product id, and the quantity needed (I've set this quantity 
-as the stock needed for recovering the minimum plus 100). This task is executed once a minute, but this delay can be
-configured as you like.
+as the stock needed for recovering the minimum plus 100); if false, it checks if there's a current alarm for that product (meaning
+it was previously generated and it has already been attended); if there's one, it deletes it.
+This task is executed once a second, but this delay can be configured as you like.
