@@ -23,7 +23,7 @@ $(document).ready(function(){
 				        alert("Error. Order may have already been done. Refresh the page to check it!");
 				    },
 				   success: function() {
-					   alert("Order succesfully registered to the corresponding provider!")
+					   alert("Order succesfully registered to the corresponding provider!");
 				   }
 			 });
 		}
@@ -31,36 +31,46 @@ $(document).ready(function(){
 	
 	$(document).on("click",".makeRequest",function(){
 		var providerId = this.id.split("_")[0];
-		var quantity = $("#"+providerId+"_quantity");
-		if ((quantity.val().length === 0) || (quantity.val()<=0)){
+		var quantity = $("#"+providerId+"_quantity").val();
+		if ((quantity.length === 0) || (quantity<=0)){
 			alert("Must enter a quantity to order!");
 			return false;
 		}
 		 if (confirm('Confirm the order?')) {
-			 alert("Not implemented!");
-//			 var design = $("#"+providerId+"_designSelect").val();
-//			 var device = $("#"+providerId+"_deviceSelect").val();
-//			 //obtain the product id
-//			 var quantity = $("#"+providerId+"_quantity").val();
-//			 var caseOrderDTO = {
-//					 dateOfRequest: getCurrentDate(),
-//					 requestCases : {
-//						 productId:quantity
-//					 }
-//			};
-//			 $.ajax({
-//				   url: '/providers/'+providerId+'/order',
-//				   data: {
-//					   caseOrderDTO: caseOrderDTO
-//				   },
-//				   error: function() {
-//				      $('#result').html('<p>An error has occurred</p>');
-//				   },
-//				   success: function(data) {
-//					   
-//				   },
-//				   type: 'PUT'
-//			});
+			 var design = $("#"+providerId+"_designSelect").val();
+			 var device = $("#"+providerId+"_deviceSelect").val();
+			 $.ajax({
+				  type: 'GET',
+				   url: '/products?design='+design+'&device='+device,
+				   data: {},
+				   error: function() {
+					   alert("Error: there's no product with that design and device");
+				   },
+				   success: function(product) {
+					     var casesJson = '{"'+product.id+'":"'+quantity+'"}';
+						 var jsonOrder = {
+								    "requestCases":JSON.parse(casesJson),
+								    "dateOfRequest":getCurrentDate()
+						 };
+						 $.ajax({
+							  type: 'POST',
+							   url: '/providers/'+providerId+'/orders',
+							   headers: { 
+							        'Accept': 'application/json',
+							        'Content-Type': 'application/json' 
+							    },
+							   data: JSON.stringify(jsonOrder),
+							   error: function() {
+								   alert("Error");
+							   },
+							   success: function(data) {
+								   alert("Order succesfully registered to the corresponding provider!");
+							   }
+							  
+						});
+				   }
+				  
+			});
 		 }
 	});
 });

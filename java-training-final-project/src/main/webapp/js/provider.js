@@ -7,7 +7,7 @@ $(document).ready(function(){
 				   url: '/inventory/supply/'+orderId,
 				   data: {},
 				   error: function (request, status, error) {
-				        alert("Error in the request");
+				        alert("Error in the request; Order may have already been delivered. Refresh your page!");
 				   },
 				   success: function(data) {
 					  alert("Order successfully processed! Refresh the page")

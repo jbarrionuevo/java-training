@@ -28,7 +28,7 @@
 					</select>
 					
 					<label>Device: </label>
-					<select id="${provider.id}+'_'+deviceSelect" class="deviceSelect">
+					<select th:id="${provider.id}+'_'+deviceSelect" class="deviceSelect">
 						<option th:each="device:${devices}" th:value="${device.name}"
 							th:text="${device.name}"></option>
 					</select>

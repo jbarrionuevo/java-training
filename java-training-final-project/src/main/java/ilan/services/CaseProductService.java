@@ -49,6 +49,10 @@ public class CaseProductService{
 		this.caseProductDao = caseProductDao;
 	}
 
+	public CaseProduct findCaseWithDesignAndDevice(String design, String device) {
+		return caseProductDao.findByDesignNameAndDeviceName(design, device);
+	}
+
 	
 	
 	
