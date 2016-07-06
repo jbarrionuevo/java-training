@@ -44,14 +44,23 @@ function updateTable(data,providerInfo){
 	$.each(data, function(i,o) {
 		  result+="<tr>";
 		  result+="<td>"+(i+1)+"</td>";
-		  result+="<td>"+o.dateOfRequest+"</td>";
+		  result+="<td>"+getDateString(new Date(o.dateOfRequest))+"</td>";
 		  if(o.dateOfDelivery==null) result+="<td>Not yet delivered</td>";
-		  else result+="<td>"+o.dateOfDelivery+"</td>";
-		  result+="<td>"+delay(o.dateOfRequest)+"</td>";
+		  else result+="<td>"+getDateString(new Date(o.dateOfDelivery))+"</td>";
+		  result+="<td>"+delay(new Date(o.dateOfRequest),new Date(o.dateOfDelivery))+"</td>";
 		  result+="</tr>";
 	  });
 	  result+="</table>";
 	  return result;
+}
+
+function getDateString(date){
+	var dd = date.getDate(); 
+	if(dd<10) dd = "0"+dd;
+	var mm = date.getMonth()+1; 
+	if(mm<10) mm = "0"+mm;
+	var yyyy = date.getFullYear(); 
+	return (yyyy+"-"+mm+"-"+dd);
 }
 
 function delay(dateOfRequest,dateOfDelivery){

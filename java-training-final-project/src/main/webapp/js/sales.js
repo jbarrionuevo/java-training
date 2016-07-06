@@ -37,7 +37,7 @@ $(document).ready(function(){
 				   $("#receiptDetails").css("visibility","visible");
 				   var result="<h3>Sale "+saleId+": Receipt details</h3>";
 				   result+="<p>Store name: "+receipt.storeName+"</p>";
-				   result+="<p>Date of sale: "+receipt.dateOfSale+"</p>";
+				   result+="<p>Date of sale: "+getDateString(new Date(receipt.dateOfSale))+"</p>";
 				   result+="<p>Customer: Name: "+receipt.customer.name+", Location: "+receipt.customer.location+", Age: "+receipt.customer.age+", Gender: "+receipt.customer.gender+"</p>";
 				   $("#receiptDetails").html(result);
 			   },
@@ -165,7 +165,7 @@ $(document).ready(function(){
 			  var customer = s.receipts[0].customer;
 			  result+="<td>Name: "+customer.name+", Location: "+customer.location+", Age: "+customer.age+", Gender: "+customer.gender+"</td>";
 			  result+="<td>"+s.status+"</td>";
-			  result+="<td>"+s.caseOrder.dateOfRequest+"</td>";
+			  result+="<td>"+getDateString(new Date(s.caseOrder.dateOfRequest))+"</td>";
 			  result+="<td>$"+s.totalPrice+"</td>";
 			  if(isStoreSeller) {
 				  if(s.status.toLowerCase()=='paid'){
@@ -189,4 +189,13 @@ $(document).ready(function(){
 		  return result;
 	}
 });
+
+function getDateString(date){
+	var dd = date.getDate(); 
+	if(dd<10) dd = "0"+dd;
+	var mm = date.getMonth()+1; 
+	if(mm<10) mm = "0"+mm;
+	var yyyy = date.getFullYear(); 
+	return (yyyy+"-"+mm+"-"+dd);
+}
 
