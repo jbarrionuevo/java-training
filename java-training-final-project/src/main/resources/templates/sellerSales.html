@@ -10,6 +10,14 @@
 </head>
 <body>
 
+	<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+        <input type="hidden" id="isAdmin" value="true"/>
+    </div>
+    
+    <div th:if="${#authorization.expression('hasRole(''ROLE_STORE_SELLER'')')}">
+        <input type="hidden" id="isStoreSeller" value="true"/>
+    </div>
+    
 	<label>Sale status: </label>
 	<select id="statusSelect">
 		<option value="all">All</option>
@@ -26,8 +34,10 @@
 				<th>STATUS</th>
 				<th>DATE OF REQUEST</th>
 				<th>TOTAL PRICE</th>
-				<th>CONFIRM</th>
-				<th>CANCEL</th>
+				<div th:if="${#authorization.expression('hasRole(''ROLE_STORE_SELLER'')')}">
+					<th>CONFIRM</th>
+					<th>CANCEL</th>
+				</div>
 			</tr>		
 			<tr th:each="sale,itrStat : ${sales}">
 					<td th:text="${itrStat.count}"></td>
@@ -37,24 +47,27 @@
 					<td th:text="${#dates.format(sale.caseOrder.dateOfRequest,'dd/MM/yyyy')}"></td>
 					<td th:text="'$'+${sale.totalPrice}"></td>
 					
-					<div th:if="${#strings.toLowerCase(sale.Status)=='paid'}">
-					   <td><button type="button" class="refundSale" th:id="${sale.id}">REFUND</button></td>
-					   <td><button type="button" class="saleReceipt" th:id="${sale.id}">SEE RECEIPT</button></td>
+					<div th:if="${#authorization.expression('hasRole(''ROLE_STORE_SELLER'')')}">
+						<div th:if="${#strings.toLowerCase(sale.Status)=='paid'}">
+						   <td><button type="button" class="refundSale" th:id="${sale.id}">REFUND</button></td>
+						   <td><button type="button" class="saleReceipt" th:id="${sale.id}">SEE RECEIPT</button></td>
+						</div>
+						
+						<div th:if="${#strings.toLowerCase(sale.Status)=='cancelled'}">
+						   <td></td><td></td>
+						</div>
+						
+						<div th:if="${#strings.toLowerCase(sale.Status)=='refund'}">
+						   <td><button type="button" class="saleDetail" th:id="${sale.id}">DETAIL</button></td>
+						   <td></td>
+						</div>
+						
+						
+						<div th:if="${#strings.toLowerCase(sale.Status)=='draft'}">
+							  <td><button type="button" class="confirmSale" th:id="${sale.id}">CONFIRM</button></td>
+							<td><button type="button" class="cancelSale" th:id="${sale.id}">CANCEL</button></td>
+						</div> 
 					</div>
-					
-					<div th:if="${#strings.toLowerCase(sale.Status)=='cancelled'}">
-					   <td></td><td></td>
-					</div>
-					
-					<div th:if="${#strings.toLowerCase(sale.Status)=='refund'}">
-					   <td><button type="button" class="saleDetail" th:id="${sale.id}">DETAIL</button></td>
-					   <td></td>
-					</div>
-
-					<div th:if="${#strings.toLowerCase(sale.Status)=='draft'}">
-					  	<td><button type="button" class="confirmSale" th:id="${sale.id}">CONFIRM</button></td>
-						<td><button type="button" class="cancelSale" th:id="${sale.id}">CANCEL</button></td>
-					</div> 
 			</tr>
 		</table>
 	</div>

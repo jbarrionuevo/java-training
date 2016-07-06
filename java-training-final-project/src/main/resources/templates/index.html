@@ -22,6 +22,7 @@
 		<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
 			<a th:href="@{/inventoryView}">Check Stock</a>
 			<a th:href="@{/providersView}">Check Providers Stadistics</a>
+			<a th:href="@{/salesView/seller/1}">Check Sales</a>
 		</div>
 		<div th:if="${#authorization.expression('hasRole(''ROLE_STORE_SELLER'')')}">
 			<a th:href="@{/inventoryView}">New Sale</a>

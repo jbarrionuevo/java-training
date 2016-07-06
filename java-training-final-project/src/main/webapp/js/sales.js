@@ -3,6 +3,11 @@ $(document).ready(function(){
 	var sellerId=1; //load it from logged user!!
 	$("#receiptDetails").hide();
 	
+	var isAdmin=false;
+	var isStoreSeller=false;
+	if($("#isAdmin").val()!=undefined) isAdmin=true;
+	if($("#isStoreSeller").val()!=undefined) isStoreSeller=true;
+	
 	$(document).on("click",".confirmSale",function(){
 		var saleId = this.id;
 		 if (confirm('Sure to confirm the sale?')) {
@@ -139,17 +144,19 @@ $(document).ready(function(){
 
 	function updateTable(data){
 		var result="";
-		result = "<table border='1'>" +
+		result += "<table border='1'>" +
 			"								<tr>" +
 			"									<th>INDEX</th>" +
 			"									<th>SALE ID</th>" +
 			"									<th>CUSTOMER</th>"+
 			"									<th>STATUS</th>"+
 			"									<th>DATE OF REQUEST</th>"+
-			"									<th>TOTAL PRICE</th>"+
-			"									<th>CONFIRM</th>"+
-			"									<th>CANCEL</th>" +
-			"</tr>";
+			"									<th>TOTAL PRICE</th>";
+		if(isStoreSeller) {
+			result +="									<th>CONFIRM</th>"+
+			"									<th>CANCEL</th>";
+		}
+		result +="</tr>";
 		
 		$.each(data, function(i,s) {
 			  result+="<tr>";
@@ -160,19 +167,21 @@ $(document).ready(function(){
 			  result+="<td>"+s.status+"</td>";
 			  result+="<td>"+s.caseOrder.dateOfRequest+"</td>";
 			  result+="<td>$"+s.totalPrice+"</td>";
-			  if(s.status.toLowerCase()=='paid'){
-				  result+="<td><button type='button' class='refundSale' id="+s.id+">REFUND</button></td>";
-				  result+="<td><button type='button' class='saleReceipt' id="+s.id+">SEE RECEIPT</button></td>";
-			  }
-			  else if(s.status.toLowerCase()=='draft'){
-				  result+="<td><button type='button' class='confirmSale' id="+s.id+">CONFIRM</button></td>";
-				  result+="<td><button type='button' class='cancelSale' id="+s.id+">CANCEL</button></td>";
-			  }
-			  else if (s.status.toLowerCase()=='cancelled'){
-				  result+="<td></td><td></td>";
-			  }
-			  else{
-				  result+="<td><button type='button' class='saleDetail' id="+s.id+">DETAIL</button></td><td></td>";
+			  if(isStoreSeller) {
+				  if(s.status.toLowerCase()=='paid'){
+					  result+="<td><button type='button' class='refundSale' id="+s.id+">REFUND</button></td>";
+					  result+="<td><button type='button' class='saleReceipt' id="+s.id+">SEE RECEIPT</button></td>";
+				  }
+				  else if(s.status.toLowerCase()=='draft'){
+					  result+="<td><button type='button' class='confirmSale' id="+s.id+">CONFIRM</button></td>";
+					  result+="<td><button type='button' class='cancelSale' id="+s.id+">CANCEL</button></td>";
+				  }
+				  else if (s.status.toLowerCase()=='cancelled'){
+					  result+="<td></td><td></td>";
+				  }
+				  else{
+					  result+="<td><button type='button' class='saleDetail' id="+s.id+">DETAIL</button></td><td></td>";
+				  }
 			  }
 			  result+="</tr>";
 		  });
