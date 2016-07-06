@@ -5,8 +5,6 @@
  */
 package edu.globant.ioncases.model;
 
-import edu.globant.ioncases.model.Device;
-import edu.globant.ioncases.model.Provider;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
