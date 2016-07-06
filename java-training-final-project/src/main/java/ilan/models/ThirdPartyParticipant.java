@@ -23,7 +23,9 @@ public class ThirdPartyParticipant implements Serializable{
 	
 	private String name,location;
 	
-	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "thirdPartyParticipant", cascade = CascadeType.ALL)
+//	@JoinColumn(name = "provider_id")
+	private Collection<CaseOrder> orders;
 	
 	public ThirdPartyParticipant(){}
 	
@@ -32,8 +34,21 @@ public class ThirdPartyParticipant implements Serializable{
 		Validate.notEmpty(location, "Location cannot be empty");
 		this.name=name;
 		this.location=location;
+		this.orders = new ArrayList<CaseOrder>();
 	}
 
+	public void addOrder(CaseOrder order){
+		this.orders.add(order);
+	}
+
+	public Collection<CaseOrder> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Collection<CaseOrder> orders) {
+		this.orders = orders;
+	}
+	
 	public String getName() {
 		return name;
 	}

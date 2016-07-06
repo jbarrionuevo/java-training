@@ -23,15 +23,11 @@ public class Provider extends ThirdPartyParticipant implements InventoryObserver
 	@JsonIgnore
 	private Collection<CaseProduct> cases;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "provider_id")
-	private Collection<CaseOrder> orders;
 	
 	public Provider(){}
 	
 	public Provider(String name,String location){
 		super(name,location);
-		this.orders = new ArrayList<CaseOrder>();
 	}
 	
 	@Override
@@ -49,18 +45,6 @@ public class Provider extends ThirdPartyParticipant implements InventoryObserver
 	public void doUpdate(CaseProduct aCase) {
 		System.out.println("Check if the provider contains aCase; if true,"
 				+ "generate an auto-order for provide that case");
-	}
-	
-	public void addOrder(CaseOrder order){
-		this.orders.add(order);
-	}
-
-	public Collection<CaseOrder> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Collection<CaseOrder> orders) {
-		this.orders = orders;
 	}
 
 	public Collection<CaseProduct> getCases() {

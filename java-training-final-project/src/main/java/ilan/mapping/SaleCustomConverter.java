@@ -57,7 +57,9 @@ public class SaleCustomConverter implements CustomConverter{
 		          Map.Entry pair = (Map.Entry)it.next();
 		          requestCases.put(Long.parseLong((String) pair.getKey()), (Integer)pair.getValue());
 		    }
-	    	CaseOrder caseOrder = new CaseOrder(requestCases, sourceSaleDTO.getCaseOrder().getDateOfRequest());
+		    CustomerDTO sourceCustomer = sourceSaleDTO.getReceipts().iterator().next().getCustomer();
+		    Customer customer = new Customer(sourceCustomer.getName(), sourceCustomer.getLocation(), sourceCustomer.getAge(), sourceCustomer.getGender());
+	    	CaseOrder caseOrder = new CaseOrder(requestCases, sourceSaleDTO.getCaseOrder().getDateOfRequest(), customer);
 	    	Collection<Receipt> receipts = new ArrayList<Receipt>();
 		    for(ReceiptDTO receiptDTO: sourceSaleDTO.getReceipts()){
 		    	  CustomerDTO c = receiptDTO.getCustomer();

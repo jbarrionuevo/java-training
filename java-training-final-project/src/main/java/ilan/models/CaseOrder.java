@@ -26,16 +26,20 @@ public class CaseOrder {
 	private HashMap<Long,Integer> requestCases;
 	private Date dateOfRequest, dateOfDelivery;
 	
+	@ManyToOne
+	private ThirdPartyParticipant thirdPartyParticipant;
+	
 	
 	public CaseOrder(){}
 	
-	public CaseOrder(HashMap<Long,Integer> requestCases, Date dateOfRequest) {
+	public CaseOrder(HashMap<Long,Integer> requestCases, Date dateOfRequest, ThirdPartyParticipant thirdPartyParticipant) {
 		super();
 		Validate.notNull(dateOfRequest, "Date of request cannot be null");
 		Validate.notNull(requestCases, "Request cases cannot be null");
 //		Validate.containsNoEmpties((Iterable<String>) requestCases, "There must be at least 1 request case");
 		this.requestCases = requestCases;
 		this.dateOfRequest=dateOfRequest;
+		this.thirdPartyParticipant=thirdPartyParticipant;
 	}
 	
 	public int getQuantity(){
@@ -78,6 +82,14 @@ public class CaseOrder {
 
 	public void setRequestCases(HashMap<Long,Integer> requestCases) {
 		this.requestCases = requestCases;
+	}
+
+	public ThirdPartyParticipant getThirdPartyParticipant() {
+		return thirdPartyParticipant;
+	}
+
+	public void setThirdPartyParticipant(ThirdPartyParticipant thirdPartyParticipant) {
+		this.thirdPartyParticipant = thirdPartyParticipant;
 	}
 
 	

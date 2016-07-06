@@ -12,6 +12,7 @@ import org.springframework.security.authentication.ProviderNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ilan.daos.CaseOrderDao;
 import ilan.daos.OrderAlertDao;
 import ilan.daos.ProviderDao;
 import ilan.exceptions.OrderAlertNotFoundException;
@@ -30,6 +31,8 @@ public class ProviderService {
 	private ProviderDao providerDao;
 	@Autowired
 	private OrderAlertDao orderAlertDao;
+	@Autowired
+	private CaseOrderDao caseOrderDao;
 	
 	public void saveProvider(Provider newProvider){
 		providerDao.save(newProvider);
@@ -54,6 +57,7 @@ public class ProviderService {
 	public void addOrder(Long providerId, CaseOrder caseOrder, Long orderAlertId) {
 		Provider provider = providerDao.findOne(providerId);
 		if(provider==null) throw new ProviderNotFoundException(providerId.toString());
+		caseOrder.setThirdPartyParticipant(provider);
 		provider.addOrder(caseOrder);
 		providerDao.save(provider);
 		if(orderAlertId!=0){
@@ -68,7 +72,7 @@ public class ProviderService {
 	public Collection<CaseOrder> getOrders(Long providerId) {
 		Provider provider = providerDao.findOne(providerId);
 		if(provider==null) throw new ProviderNotFoundException(providerId.toString());
-		Collection<CaseOrder> orders = provider.getOrders();
+		Collection<CaseOrder> orders = caseOrderDao.findByThirdPartyParticipant(provider);
 		return orders;
 	}
 	

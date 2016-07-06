@@ -18,6 +18,7 @@ import ilan.exceptions.CaseSellerNotFoundException;
 import ilan.exceptions.CaseWrapperNotFoundException;
 import ilan.exceptions.CustomerNotFoundException;
 import ilan.exceptions.NotEnoughStockException;
+import ilan.models.CaseOrder;
 import ilan.models.CaseSeller;
 import ilan.models.CaseWrapper;
 import ilan.models.Customer;
@@ -54,11 +55,12 @@ public class CaseSellerService {
 	public void addSale(Long caseSellerId, Sale sale) {
 		CaseSeller looked = caseSellerDao.findOne(caseSellerId);
 		if(looked==null) throw new CaseSellerNotFoundException(caseSellerId);
-		if(sale.getReceipts().iterator().next().getCustomer().getId()!=null){
-			Customer lookedCustomer = customerDao.findOne(sale.getReceipts().iterator().next().getCustomer().getId());
-			if(lookedCustomer==null) throw new CustomerNotFoundException(sale.getReceipts().iterator().next().getCustomer().getId());
+		Customer customer;
+		if(sale.getReceipts().iterator().next().getCustomer().getId()!=null){ //NOT YET IMPLEMENTED
+			customer = customerDao.findOne(sale.getReceipts().iterator().next().getCustomer().getId());
+			if(customer==null) throw new CustomerNotFoundException(sale.getReceipts().iterator().next().getCustomer().getId());
 		}else{
-			customerDao.save(sale.getReceipts().iterator().next().getCustomer());
+			customer = customerDao.save(sale.getReceipts().iterator().next().getCustomer());
 		}
 		for (Map.Entry<Long, Integer> entry : sale.getOrder().getRequestCases().entrySet()){
 			Long caseId = entry.getKey();
@@ -67,7 +69,9 @@ public class CaseSellerService {
 			if(wrapper==null) throw new CaseProductNotFoundException(entry.getKey());
 //			if(wrapper.getCurrentStock()<entry.getValue()) throw new NotEnoughStockException(wrapper.getMyCase().toString());
 	    }
-		caseOrderDao.save(sale.getOrder());
+		CaseOrder order = sale.getOrder();
+		order.setThirdPartyParticipant(customer);
+		caseOrderDao.save(order);
 		sale.getReceipts().iterator().next().setSale(sale);
 		sale.setSeller(looked);
 		sale.setStatus(SaleStatus.DRAFT);
