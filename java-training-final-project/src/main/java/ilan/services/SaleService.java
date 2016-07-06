@@ -101,27 +101,25 @@ public class SaleService {
 		Sale sale = saleDao.findOne(saleId);
 		if (sale == null)
 			throw new SaleNotFoundException(saleId);
+		Inventory inventory = inventoryDao.findAll().get(0);
+		Iterator it = sale.getOrder().getRequestCases().entrySet().iterator();
 		switch (status) {
 		case "paid":
 			sale.setStatus(SaleStatus.PAID);
 			Receipt receipt = sale.getReceipts().iterator().next();
 			receipt.setDateOfSale(new Date());
 			sale.getCaseOrder().setDateOfDelivery(new Date());
-			Iterator it = sale.getOrder().getRequestCases().entrySet().iterator();
 			while (it.hasNext()) {
 				Map.Entry pair = (Map.Entry) it.next();
 				CaseProduct product = caseProductDao.findOne((Long) pair.getKey());
 				if (product == null)
 					throw new CaseProductNotFoundException((Long) pair.getKey());
-				Inventory inventory = inventoryDao.findAll().get(0);
 				CaseWrapper wrapper = caseWrapperDao.findByInventoryAndMyCase(inventory, product);
 				if (wrapper == null)
 					throw new CaseWrapperNotFoundException(product.toString());
 				if(wrapper.getCurrentStock()<(Integer)pair.getValue())
 					throw new NotEnoughStockException(product.toString());
 				wrapper.setCurrentStock(wrapper.getCurrentStock() - (Integer)pair.getValue());
-				caseWrapperDao.save(wrapper);
-				
 			}
 			break;
 		case "cancelled":
@@ -129,8 +127,22 @@ public class SaleService {
 			break;
 		default:
 			sale.setStatus(SaleStatus.REFUND);
+			//return the case to the inventory
+			while (it.hasNext()) {
+				Map.Entry pair = (Map.Entry) it.next();
+				CaseProduct product = caseProductDao.findOne((Long) pair.getKey());
+				if (product == null)
+					throw new CaseProductNotFoundException((Long) pair.getKey());
+				CaseWrapper wrapper = caseWrapperDao.findByInventoryAndMyCase(inventory, product);
+				if (wrapper == null)
+					throw new CaseWrapperNotFoundException(product.toString());
+				if(wrapper.getCurrentStock()<(Integer)pair.getValue())
+					throw new NotEnoughStockException(product.toString());
+				wrapper.setCurrentStock(wrapper.getCurrentStock() + (Integer)pair.getValue());
+			}
 			break;
 		}
+		inventoryDao.save(inventory);
 		saleDao.save(sale);
 	}
 

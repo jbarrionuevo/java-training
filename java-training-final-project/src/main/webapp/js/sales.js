@@ -31,7 +31,20 @@ $(document).ready(function(){
 			return false;
 		}
 		if (confirm('Sure to refund the sale?')) {
-			 updateSale("refund",saleId);
+			var refundType = $("#"+saleId+"_refundType").val();
+			switch (refundType) {
+			    case "justrefund":
+			    	updateSale("refund",saleId);
+			        break;
+			    case "chooseother":
+			    	//do something
+			    	alert("do something..");
+			        break;
+			    case "samemodel":
+			    	//do something
+			    	alert("do something..");
+			        break;
+			}
 		}
 	});
 	
@@ -148,6 +161,7 @@ $(document).ready(function(){
 					   error: function() {},
 					   success: function(data) {
 						   $('#result').html(updateTable(data));
+						   if(status=="refund") alert("Sell cases were returned to the inventory!");
 					   },
 					   type: 'GET'
 				   }); 
@@ -186,7 +200,14 @@ $(document).ready(function(){
 					  var saleDelay = delay(new Date(s.caseOrder.dateOfRequest),null);
 					  if(saleDelay>30)
 						  result+="<td>WARRANTY EXPIRED</td>";
-					  else result+="<td><button type='button' class='refundSale' id="+s.id+">REFUND</button></td>";
+					  else {
+						  result+="<td>";
+						  result+="<select id='"+s.id+"_refundType'>" +
+						  		"<option value='justrefund'>Just Refund</option>" +
+						  		"<option value='chooseother'>Choose other model</option>" +
+						  		"<option value='samemodel'>Choose same model</option>" +
+						  		"</select><button type='button' class='refundSale' id='"+s.id+"_"+s.caseOrder.dateOfRequest+"'>REFUND</button></td>";
+					  }
 					  result+="<td><button type='button' class='saleReceipt' id="+s.id+">SEE RECEIPT</button></td>";
 				  }
 				  else if(s.status.toLowerCase()=='draft'){
