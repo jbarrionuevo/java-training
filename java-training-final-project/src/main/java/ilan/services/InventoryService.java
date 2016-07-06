@@ -3,6 +3,7 @@ package ilan.services;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,10 @@ import ilan.daos.CaseOrderDao;
 import ilan.daos.CaseProductDao;
 import ilan.daos.CaseWrapperDao;
 import ilan.daos.InventoryDao;
+import ilan.exceptions.CaseProductNotFoundException;
 import ilan.exceptions.CaseWrapperNotFoundException;
+import ilan.exceptions.OrderAlreadyProcessedException;
+import ilan.exceptions.OrderNotFoundException;
 import ilan.models.CaseProduct;
 import ilan.models.CaseWrapper;
 import ilan.models.CaseDesign;
@@ -121,6 +125,26 @@ public class InventoryService {
 		return "Case successfully bought!";
 	}
 	
+	@Transactional
+	public void supplyStock(Long orderId) {
+		CaseOrder order = caseOrderDao.findOne(orderId);
+		if(order==null) throw new OrderNotFoundException(orderId);
+		if(order.getDateOfDelivery()!=null) throw new OrderAlreadyProcessedException(orderId);
+		order.setDateOfDelivery(new Date());
+		Inventory inventory = this.getInventory();
+		Iterator it = order.getRequestCases().entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        CaseProduct product = caseProductDao.findOne(Long.parseLong((String)pair.getKey()));
+	        if(product==null) throw new CaseProductNotFoundException(Long.parseLong((String)pair.getKey()));
+	        CaseWrapper wrapper = caseWrapperDao.findByInventoryAndMyCase(inventory, product);
+	        if(wrapper==null) throw new CaseWrapperNotFoundException(product.toString());
+	        wrapper.setCurrentStock(wrapper.getCurrentStock()+(Integer.parseInt((String)pair.getValue())));
+//	        caseWrapperDao.save(wrapper);
+	    }
+	    inventoryDao.save(inventory);
+	}
+	
 	public Collection<CaseWrapper> getInventoryWithDesign(String design,Integer page, Integer size) {
 		return caseWrapperDao.findByInventoryAndMyCaseDesignName(this.getInventory(),design,new PageRequest(page, size));
 	}
@@ -161,6 +185,8 @@ public class InventoryService {
 	public void setCaseOrderDao(CaseOrderDao caseOrderDao) {
 		this.caseOrderDao = caseOrderDao;
 	}
+
+	
 
 	
 

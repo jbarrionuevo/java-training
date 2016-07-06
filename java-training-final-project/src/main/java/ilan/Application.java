@@ -110,7 +110,7 @@ public class Application {
 //			log.info("So far, Case [" + aCase + "] is persisted.");
 //		}
 //		
-//		inventoryService.incrementStock(case1, 20, 0);
+//		inventoryService.incrementStock(case1, 20, 100);
 //		inventoryService.incrementStock(case2, 30, 0);
 //		inventoryService.incrementStock(case3, 300, 100);
 //		inventoryService.incrementStock(case4, 170, 20);
