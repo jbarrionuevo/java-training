@@ -14,6 +14,5 @@ work.
 To generate alerts to the logistic team when some case stock is to low, I've implemented the component AlarmThread,
 which has a scheduled task called 'checkAlarms', which checks for each casewrapper if its current stock is lower than
 its minimum; if true, it generates an alarm containing the product id, and the quantity needed (I've set this quantity 
-as the stock needed for recovering the minimum plus 100); if false, it checks if there's a current alarm for that product (meaning
-it was previously generated and it has already been attended); if there's one, it deletes it.
+as the stock needed for recovering the minimum plus 100).
 This task is executed once a second, but this delay can be configured as you like.

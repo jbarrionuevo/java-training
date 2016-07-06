@@ -21,4 +21,8 @@ public class OrderAlertService {
 		return orderAlertDao.findAll();
 	}
 
+	public Collection<OrderAlert> findNotMadeAlerts() {
+		return orderAlertDao.findByMade(false);
+	}
+
 }

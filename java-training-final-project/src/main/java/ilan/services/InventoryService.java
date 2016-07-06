@@ -139,7 +139,7 @@ public class InventoryService {
 	        if(product==null) throw new CaseProductNotFoundException(Long.parseLong((String)pair.getKey()));
 	        CaseWrapper wrapper = caseWrapperDao.findByInventoryAndMyCase(inventory, product);
 	        if(wrapper==null) throw new CaseWrapperNotFoundException(product.toString());
-	        wrapper.setCurrentStock(wrapper.getCurrentStock()+(Integer.parseInt((String)pair.getValue())));
+	        wrapper.setCurrentStock(wrapper.getCurrentStock()+((Integer)pair.getValue()));
 //	        caseWrapperDao.save(wrapper);
 	    }
 	    inventoryDao.save(inventory);

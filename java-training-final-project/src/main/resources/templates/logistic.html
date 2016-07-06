@@ -44,14 +44,10 @@
 	<h3>Alerts: </h3>
 	<table>
 		<tr th:each="alert : ${alerts}">
-	   	 	<td th:text="'We need '+${alert.quantity}+' items of '+${alert.product}"></td>
-	   	 	
-			<div th:switch="${alert.made}">
-				<td th:case="true"> (Order already made!)</td>
-				<td th:case="false">
+				<td th:text="'We need '+${alert.quantity}+' items of '+${alert.product}"></td>
+				<td>
 					<button type="button" class="makeAlertRequest" th:id="${alert.product.id}+'_'+${alert.quantity}+'_'+${alert.product.provider.id}+'_'+${alert.id}">MAKE REQUEST</button>
 				</td>
-			</div>
 	   	</tr>
    	</table>
    	

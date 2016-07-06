@@ -58,6 +58,10 @@ public class CaseProduct implements Serializable {
 				&& (this.getProvider().equals(other.getProvider()));
 	}
 	
+	public void removeAlert(OrderAlert alert){
+		this.alerts.remove(alert);
+	}
+	
 	public CaseDesign getDesign() {
 		return design;
 	}

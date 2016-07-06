@@ -29,7 +29,7 @@ public class LogisticController {
 		model.addAttribute("designs", inventoryService.getDesigns());
     	model.addAttribute("devices",inventoryService.getDevices());
 		model.addAttribute("providers",providerService.findAllProviders(0,5));
-		model.addAttribute("alerts",orderAlertService.findAll());
+		model.addAttribute("alerts",orderAlertService.findNotMadeAlerts());
 		return "logistic";
 	}
 }
