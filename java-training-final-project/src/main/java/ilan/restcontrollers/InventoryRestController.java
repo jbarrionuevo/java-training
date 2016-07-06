@@ -7,13 +7,16 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import ilan.dtos.CaseOrderDTO;
 import ilan.dtos.CaseWrapperDTO;
+import ilan.models.CaseWrapper;
 import ilan.services.InventoryService;
 
 @RestController
@@ -38,7 +41,7 @@ public class InventoryRestController {
 				.map(cw->mapper.map(cw,CaseWrapperDTO.class)).collect(Collectors.toList());
     }
 	
-	@RequestMapping(method = RequestMethod.GET, value="/wrappers", produces = "application/json;charset=UTF-8")
+	@RequestMapping(value="/wrappers", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseStatus(value= HttpStatus.OK)
     public Collection<CaseWrapperDTO> getInventoryWrappers() {
 		return inventoryService.getAllInventoryWrappers()
@@ -61,9 +64,9 @@ public class InventoryRestController {
 		inventoryService.supplyStock(orderId);
 	}
 	
-	@RequestMapping(value="/caseWrappers/{caseWrapperId}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value="/caseWrappers/{caseWrapperId}/minimumStock", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
 	@ResponseStatus(value= HttpStatus.OK)
-	public void updateCaseWrapper(@PathVariable Long caseWrapperId){
-		inventoryService.updateCaseWrapper(caseWrapperId);
+	public void updateCaseWrapperMinimumStock(@PathVariable Long caseWrapperId, @RequestBody Integer newStock){
+		inventoryService.updateCaseWrapper(caseWrapperId,newStock);
 	}
 }

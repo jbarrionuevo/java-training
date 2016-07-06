@@ -2,7 +2,6 @@ package ilan.services;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,13 +20,14 @@ import ilan.daos.CaseWrapperDao;
 import ilan.daos.InventoryDao;
 import ilan.exceptions.CaseProductNotFoundException;
 import ilan.exceptions.CaseWrapperNotFoundException;
+import ilan.exceptions.NotEnoughStockException;
 import ilan.exceptions.OrderAlreadyProcessedException;
 import ilan.exceptions.OrderNotFoundException;
-import ilan.models.CaseProduct;
-import ilan.models.CaseWrapper;
 import ilan.models.CaseDesign;
 import ilan.models.CaseDevice;
 import ilan.models.CaseOrder;
+import ilan.models.CaseProduct;
+import ilan.models.CaseWrapper;
 import ilan.models.Inventory;
 import ilan.models.Provider;
 
@@ -115,18 +115,20 @@ public class InventoryService {
 	}
 	
 	@Transactional
-	public String buyProducts(Map<Long,Integer> desire) {
+	public void buyProducts(Map<Long,Integer> desire) {
 		for (Map.Entry<Long, Integer> entry : desire.entrySet()){
 			CaseWrapper looked = caseWrapperDao.findOne(entry.getKey());
-			if(looked==null) return "Error: Case not found";
-			if(looked.getCurrentStock()<entry.getValue()) return "That quantity of "+looked.getMyCase().getDesign().getName()+", "+looked.getMyCase().getDevice().getName()+" is not available!";
+			if(looked==null) throw new CaseWrapperNotFoundException(entry.getKey());
+			if(looked.getCurrentStock()<entry.getValue()) 
+				throw new NotEnoughStockException(looked.getMyCase().toString());
+//			"That quantity of "+looked.getMyCase().getDesign().getName()+", "+looked.getMyCase().getDevice().getName()+" is not available!";
 			looked.setCurrentStock(looked.getCurrentStock()-entry.getValue());
 			if(looked.getMinimumStock()>looked.getCurrentStock()){
 				//generateOrder(looked);
 			}
 			caseWrapperDao.save(looked);
 		}
-		return "Case successfully bought!";
+//		return "Case successfully bought!";
 	}
 	
 	@Transactional
@@ -147,6 +149,23 @@ public class InventoryService {
 //	        caseWrapperDao.save(wrapper);
 	    }
 	    inventoryDao.save(inventory);
+	}
+	
+	public void updateCaseWrapper(Long caseWrapperId, CaseWrapper caseWrapper) {
+		Inventory inventory = this.getInventory();
+		CaseWrapper wrapper = caseWrapperDao.findOne(caseWrapperId);
+        if(wrapper==null) throw new CaseWrapperNotFoundException(caseWrapperId);
+        wrapper = caseWrapper;
+        caseWrapperDao.save(wrapper);
+	}
+	
+
+	public void updateCaseWrapper(Long caseWrapperId, Integer newStock) {
+		Inventory inventory = this.getInventory();
+		CaseWrapper wrapper = caseWrapperDao.findOne(caseWrapperId);
+        if(wrapper==null) throw new CaseWrapperNotFoundException(caseWrapperId);
+        wrapper.setMinimumStock(newStock);
+        caseWrapperDao.save(wrapper);
 	}
 	
 	public Collection<CaseWrapper> getInventoryWithDesign(String design,Integer page, Integer size) {
@@ -189,6 +208,9 @@ public class InventoryService {
 	public void setCaseOrderDao(CaseOrderDao caseOrderDao) {
 		this.caseOrderDao = caseOrderDao;
 	}
+
+
+
 
 	
 
