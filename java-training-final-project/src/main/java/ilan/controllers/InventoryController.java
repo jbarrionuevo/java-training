@@ -45,4 +45,12 @@ public class InventoryController {
         return "inventory";
     }
 	
+	@RequestMapping(method = RequestMethod.GET, value="/wrappers")
+	@ResponseStatus(value= HttpStatus.OK)
+    public String getInventoryWrappers(Model model) {
+		Collection<CaseWrapper> wrappers = inventoryService.getAllInventoryWrappers();
+		model.addAttribute("inventory",wrappers);
+        return "updateStocks";
+    }
+	
 }

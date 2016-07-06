@@ -56,6 +56,10 @@ public class InventoryService {
 		return caseWrapperDao.findByInventory(this.getInventory(),new PageRequest(page, size));
 	}
 	
+	public Collection<CaseWrapper> getAllInventoryWrappers() {
+		return caseWrapperDao.findByInventory(this.getInventory());
+	}
+	
 	public Long getInventoryCount(){
 		return caseWrapperDao.countByInventory(this.getInventory());
 	}
@@ -185,6 +189,8 @@ public class InventoryService {
 	public void setCaseOrderDao(CaseOrderDao caseOrderDao) {
 		this.caseOrderDao = caseOrderDao;
 	}
+
+	
 
 	
 

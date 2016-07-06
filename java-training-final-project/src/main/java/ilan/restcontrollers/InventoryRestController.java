@@ -38,6 +38,14 @@ public class InventoryRestController {
 				.map(cw->mapper.map(cw,CaseWrapperDTO.class)).collect(Collectors.toList());
     }
 	
+	@RequestMapping(method = RequestMethod.GET, value="/wrappers", produces = "application/json;charset=UTF-8")
+	@ResponseStatus(value= HttpStatus.OK)
+    public Collection<CaseWrapperDTO> getInventoryWrappers() {
+		return inventoryService.getAllInventoryWrappers()
+				.stream()
+				.map(cw->mapper.map(cw,CaseWrapperDTO.class)).collect(Collectors.toList());
+    }
+	
 	@RequestMapping(value="/count", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseStatus(value= HttpStatus.OK)
     public Long getInventoryCountWithDesignAndDevice(
@@ -51,5 +59,11 @@ public class InventoryRestController {
 	@ResponseStatus(value= HttpStatus.OK)
 	public void supplyStock(@PathVariable Long orderId){
 		inventoryService.supplyStock(orderId);
+	}
+	
+	@RequestMapping(value="/caseWrappers/{caseWrapperId}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+	@ResponseStatus(value= HttpStatus.OK)
+	public void updateCaseWrapper(@PathVariable Long caseWrapperId){
+		inventoryService.updateCaseWrapper(caseWrapperId);
 	}
 }

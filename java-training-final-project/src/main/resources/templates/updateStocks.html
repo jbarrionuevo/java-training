@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Cases</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../js/updateStocks.js"></script>
+</head>
+<body>
+
+	<div id="result">
+		<table border="1">
+			<tr>
+				<th>INDEX</th>
+				<th>DESIGN</th>
+				<th>DEVICE</th>
+				<th>PRICE</th>
+				<th>PROVIDER</th>
+				<th>CURRENT STOCK</th>
+				<th>MINIMUM STOCK</th>
+				<th>NEW MINIMUM STOCK</th>
+			</tr>		
+			<tr th:each="casewrapper,itrStat : ${inventory}">
+				<td th:text="${itrStat.count}"></td>
+				<td th:text="${casewrapper.myCase.design.name}"></td>
+				<td th:text="${casewrapper.myCase.device.name}"></td>
+				<td th:text="'$'+${casewrapper.myCase.price}"></td>
+				<td th:text="${casewrapper.myCase.provider}"></td>
+				<td th:text="${casewrapper.currentStock}"></td>
+				<td th:text="${casewrapper.minimumStock}"></td>
+				<td>
+					<label>Enter new minimum: </label>
+					<input type="number" th:id="${casewrapper.id}+'_newMinimumStock'"/>
+					<button type="button" class="confirmNewStock" th:id="${casewrapper.id}">CONFIRM</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<a th:href="@{/}">Back to the homepage</a>
+</body>
+</html>
+					
