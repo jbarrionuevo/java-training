@@ -64,9 +64,9 @@ public class InventoryRestController {
 		inventoryService.supplyStock(orderId);
 	}
 	
-	@RequestMapping(value="/caseWrappers/{caseWrapperId}/minimumStock", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value="/caseWrappers/{caseWrapperId}/minimumStock/{newStock}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
 	@ResponseStatus(value= HttpStatus.OK)
-	public void updateCaseWrapperMinimumStock(@PathVariable Long caseWrapperId, @RequestBody Integer newStock){
+	public void updateCaseWrapperMinimumStock(@PathVariable Long caseWrapperId, @PathVariable Integer newStock){
 		inventoryService.updateCaseWrapper(caseWrapperId,newStock);
 	}
 }

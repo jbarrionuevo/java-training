@@ -9,10 +9,8 @@ $(document).ready(function(){
 		}
 		if (confirm('Sure to update de stock?')) {
 			$.ajax({
-				   url: '/inventory/caseWrappers/'+caseWrapperId+'/minimumStock',
-				   data: {
-					   newStock:newStock
-				   },
+				   url: '/inventory/caseWrappers/'+caseWrapperId+'/minimumStock/'+newStock,
+				   data: {},
 				   error: function() {
 				      alert("An error has ocurred");
 				   },
