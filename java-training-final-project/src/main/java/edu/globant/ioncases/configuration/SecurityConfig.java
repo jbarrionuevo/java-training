@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/inventory/*").access("hasRole('LOGISTIC')")
                 .antMatchers("/resources/**").permitAll()
                 .and().formLogin();
+                
+                http.csrf().disable();
 
     }
 

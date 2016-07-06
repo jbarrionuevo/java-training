@@ -17,9 +17,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
         <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+
         <title>ION SOLID</title>
     </head>
     <body>
@@ -94,21 +96,45 @@
             }
 
             $("#sendOrder").click(function () {
-            var order = $('#order').serialize();
-            console.log(order);
+
+
+
+
+            $.fn.serializeObject = function()
+            {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function() {
+            if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+            o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+            } else {
+            o[this.name] = this.value || '';
+            }
+            });
+            return o;
+            };
+            
+            
+
+            var data = JSON.stringify($('#order').serializeObject());
+            
+//            var order = $('#order');
+//            var data = order.serializeObject();
+            console.log(data);
             $.ajax({
             type: "POST",
-                    url: "${pageContext.request.contextPath}/inventory/addPost",
-                    datatype: 'json',
-                    data: {order},
+                    url: "${pageContext.request.contextPath}/provider/addPost",
+                    data: {data},
                     success: function (cond) {
                     alert(cond);
                     },
                     error: function (e) {
-                    alert('Error 2: ' + e);
-    }
+                    alert('Error 23: ' + e);
+                    }
             });
-     
             });
 
         </script>

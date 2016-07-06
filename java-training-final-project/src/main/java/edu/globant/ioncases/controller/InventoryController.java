@@ -15,6 +15,7 @@ import edu.globant.ioncases.model.Tablet;
 import edu.globant.ioncases.service.InventoryService;
 import edu.globant.ioncases.service.LogisticService;
 import edu.globant.ioncases.service.ProviderService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,9 +54,15 @@ public class InventoryController {
     
     
     @RequestMapping(value="/addPost", method = RequestMethod.POST)
-    public String addPost(@RequestParam String s){
+    public String addPost(@RequestParam(value = "order") String orderStr){
         
-        System.out.println("-----> " + s);
+        System.out.println("-----> " + orderStr);
+        
+         JSONObject jObj = new JSONObject(orderStr);
+         
+         System.out.println("-> " + jObj.get("order").toString());
+        
+        
         
         return "index";
     }

@@ -14,17 +14,19 @@ import java.util.List;
  *
  * @author federico.calarco
  */
-public class CaseCover {
+
+
+public class CaseProduct {
     private Long id;
     private List<Device> compatibleDevices = new ArrayList<>();
     private double price;
     private int stock;
     private Provider provider;
 
-    public CaseCover() {
+    public CaseProduct() {
     }
 
-    public CaseCover(double price, int stock, Provider provider) {
+    public CaseProduct(double price, int stock, Provider provider) {
         this.price = price;
         this.stock = stock;
         this.provider = provider;

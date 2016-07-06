@@ -29,9 +29,12 @@ public class LogisticServiceImpl implements LogisticService {
     CaseDao caseDao;
 
     @Override
-    public void addOrderToProvider(Map<Long, Integer> order, Long idProvider) {
+    public void addOrderToProvider(Map<Long, Integer> order) {
 
    //     Provider provider = providerDao.getById(idProvider);
+   
+   // If the case exist -> update quantity stock
+   // else -> create new caseInventory
 
         order.forEach((k, v) -> invetoryService.addCase(caseDao.getCaseById(k), v));
     }

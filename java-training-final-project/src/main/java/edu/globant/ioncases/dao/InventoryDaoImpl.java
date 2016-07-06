@@ -34,7 +34,7 @@ public class InventoryDaoImpl implements InventoryDao {
     @Override
     public void addCase(CaseCover caseCover, int quantity) {
         CaseInventory ci = new CaseInventory(caseCover,quantity);
-        getCurrentSession().save(ci);
+        getCurrentSession().saveOrUpdate(ci);
     }
 
     @Override

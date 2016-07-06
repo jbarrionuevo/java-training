@@ -14,5 +14,5 @@ import java.util.Map;
  */
 public interface LogisticService {
     
-    void addOrderToProvider(Map<Long,Integer> order, Long idProvider);
+    void addOrderToProvider(Map<Long,Integer> order);
 }
