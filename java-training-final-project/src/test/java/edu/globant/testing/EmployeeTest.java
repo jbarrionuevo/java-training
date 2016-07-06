@@ -1,4 +1,4 @@
-package edu.globant.testing.unit;
+package edu.globant.testing;
 
 import edu.globant.domain.Employee;
 import org.apache.commons.lang3.StringUtils;

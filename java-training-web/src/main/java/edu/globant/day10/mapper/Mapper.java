@@ -5,15 +5,15 @@ import java.util.List;
 
 import edu.globant.day10.dto.ContactDetailDto;
 import edu.globant.day10.dto.ContactDetailTypeDto;
-import edu.globant.day10.dto.EmployeeDto;
+import edu.globant.day10.dto.ContactDto;
 import edu.globant.day9.domain.Contact;
 import edu.globant.day9.domain.ContactDetail;
 import edu.globant.day9.domain.ContactDetailType;
 
 public class Mapper {
 
-	public EmployeeDto getContactDto(Contact contact) {
-		EmployeeDto dto = new EmployeeDto();
+	public ContactDto getContactDto(Contact contact) {
+		ContactDto dto = new ContactDto();
 		dto.setId(contact.getId());
 		dto.setFirstName(contact.getFirstName());
 		dto.setLastName(contact.getLastName());

@@ -3,7 +3,7 @@ package edu.globant;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 
-import edu.globant.service.employee.CreateEmployeeService;
+import edu.globant.service.employee.CreateEmployeeServiceImpl;
 import edu.globant.domain.Employee;
 import edu.globant.utils.MySQLDataSourceProvider;
 import edu.globant.persistence.DAO.EmployeeDAO;
@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 @EnableAutoConfiguration
 // @ComponentScan
 public class Application {
-	private static CreateEmployeeService service;
+	private static CreateEmployeeServiceImpl service;
 	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 	private static final String configurationPath = "/edu/globant/config/database.properties";
 	private static final String hibernateConfigXml = "/edu/globant/config/hibernate.cfg.xml";
@@ -44,7 +44,7 @@ public class Application {
 			Application application = new Application(sessionFactory);
 
 			EmployeeDAO employeeDAO = new EmployeeDAOImpl(sessionFactory.openSession());
-			service = new CreateEmployeeService(employeeDAO);
+			service = new CreateEmployeeServiceImpl(employeeDAO);
 			
 			service.create(new Employee("Juan", "seller"));
 		} catch (Exception e) {

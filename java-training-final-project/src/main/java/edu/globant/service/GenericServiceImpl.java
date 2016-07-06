@@ -3,14 +3,14 @@ package edu.globant.service;
 import java.util.List;
 
 import edu.globant.domain.BaseEntity;
-import edu.globant.persistence.DAO.AbstractDAO;
+import edu.globant.persistence.DAO.GenericDAO;
 
 public abstract class GenericServiceImpl<T, E extends BaseEntity> implements Service<T, E> {
 
-	private AbstractDAO<BaseEntity> dao;
+	public abstract GenericDAO<E> getDao();
 
 	public void save(E entity) {
-		dao.save(entity);
+		getDao().save(entity);
 	}
 
 	public E findById(T id) {
@@ -27,5 +27,5 @@ public abstract class GenericServiceImpl<T, E extends BaseEntity> implements Ser
 
 	public List<E> findAll() {
 		return null;
-	}
+	}	
 }

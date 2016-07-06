@@ -4,29 +4,29 @@ import java.util.List;
 import edu.globant.domain.Employee;
 import edu.globant.persistence.DAO.EmployeeDAO;
 import edu.globant.persistence.DAO.hibernate.utils.HibernateFactory;
-import edu.globant.service.employee.CreateEmployeeService;
-import edu.globant.service.employee.ListEmployeeService;
+import edu.globant.service.employee.CreateEmployeeServiceImpl;
+import edu.globant.service.employee.ListEmployeeServiceImpl;
 import edu.globant.service.spring.DependencyInjectorSpring;
 
 public class EmployeeServiceFacade implements DependencyInjectorSpring, HibernateFactory {
 
-	private CreateEmployeeService createEmployeeService;
-	private ListEmployeeService listEmployeeService;
+	private CreateEmployeeServiceImpl createEmployeeService;
+	private ListEmployeeServiceImpl listEmployeeService;
 
 	public EmployeeServiceFacade(EmployeeDAO employeeDAO) {
-		createEmployeeService = new CreateEmployeeService(employeeDAO);
-		listEmployeeService = new ListEmployeeService(employeeDAO);
+		createEmployeeService = new CreateEmployeeServiceImpl(employeeDAO);
+		listEmployeeService = new ListEmployeeServiceImpl(employeeDAO);
 	}
 
 	public void addEmployee(Employee employee) {
 		createEmployeeService.create(employee);
 	}
 
-	public List<String> ListAllEmployees() {
-		return listEmployeeService.findAllEmployees();
+	public List<Employee> listAllEmployees() {
+		return listEmployeeService.findAll();
 	}
 
-	public Employee ListEmployee(Long id) {
+	public Employee listEmployee(Long id) {
 		return listEmployeeService.findById(id);
 	}
 }

@@ -1,9 +1,10 @@
-package edu.globant.testing.integration;
+package edu.globant.testing;
 
-import edu.globant.persistence.DAO.EmployeeDAO;
-import edu.globant.persistence.DAO.EmployeeDAOImpl;
-import edu.globant.persistence.DAO.hibernate.utils.HibernateUtils;
-
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertThat;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
@@ -11,21 +12,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.globant.domain.Employee;
+import edu.globant.persistence.DAO.EmployeeDAO;
+import edu.globant.persistence.DAO.EmployeeDAOImpl;
+import edu.globant.persistence.DAO.hibernate.utils.HibernateUtils;
+import edu.globant.service.employee.CreateEmployeeServiceImpl;
+import edu.globant.service.employee.ListEmployeeServiceImpl;
 import edu.globant.utils.MySQLDataSourceProvider;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import edu.globant.service.employee.CreateEmployeeService;
-import edu.globant.service.employee.ListEmployeeService;
-
-public class EmployeeServiceIT {
-
-	private CreateEmployeeService createEmployeeService;
-	private ListEmployeeService listEmployeeService;
+public class EmployeeServiceSpringInjectionIT {
+	private CreateEmployeeServiceImpl createEmployeeService;
+	private ListEmployeeServiceImpl listEmployeeService;
 	private static final String configurationPath = "/edu/globant/config/database.properties";
 	private static final String hibernateConfigXml = "/edu/globant/config/hibernate.cfg.xml";
 	MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
@@ -47,9 +43,9 @@ public class EmployeeServiceIT {
 		session = sessionFactory.openSession();
 
 		employeeDAO = new EmployeeDAOImpl(sessionFactory.openSession());
-
-		createEmployeeService = new CreateEmployeeService(employeeDAO);
-		listEmployeeService = new ListEmployeeService(employeeDAO);
+		
+		createEmployeeService = new CreateEmployeeServiceImpl(employeeDAO);
+		listEmployeeService = new ListEmployeeServiceImpl(employeeDAO);
 		employee1 = new Employee("Juan", "seller");
 		employee2 = new Employee("Jimena", "logistics");
 	}
@@ -81,4 +77,5 @@ public class EmployeeServiceIT {
 		Employee employee1DB = listEmployeeService.findById(employeeSpring1.getId());
 		assertThat(employee1DB, equalTo(employeeSpring1));
 	}
+
 }

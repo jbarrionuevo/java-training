@@ -3,7 +3,7 @@ package edu.globant.day10.dto;
 import java.util.Date;
 import java.util.List;
 
-public class EmployeeDto extends BaseEntityDto {
+public class ContactDto extends BaseEntityDto {
 
 	private String firstName;
 	private String lastName;
