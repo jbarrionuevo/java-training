@@ -126,7 +126,7 @@ $(document).ready(function(){
 				 saleId : saleId
 			   },
 			   error: function() {
-			      $('#result').html('<p>An error has occurred</p>');
+			      alert("Error. The required products may not have available stock for now");
 			   },
 			   success: function(data) {
 				   $.ajax({

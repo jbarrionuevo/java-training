@@ -48,3 +48,5 @@ it.
 For this, enter the system as seller, go to "Check Sales", and mark DRAFT sales with "CONFIRM"; if the needed stock is available, the sale will be marked
 as PAID, and the corresponding stock will be decreased from the inventory.
 //SHOW THE ERROR WHEN THERES NO STOCK
+
+//REFUND PRODUCT
