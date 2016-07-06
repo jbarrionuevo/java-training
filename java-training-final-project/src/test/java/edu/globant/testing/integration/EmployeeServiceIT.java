@@ -1,6 +1,7 @@
 package edu.globant.testing.integration;
 
 import edu.globant.persistence.DAO.EmployeeDAO;
+import edu.globant.persistence.DAO.EmployeeDAOImpl;
 import edu.globant.persistence.DAO.hibernate.utils.HibernateUtils;
 
 import org.junit.Before;
@@ -28,6 +29,7 @@ public class EmployeeServiceIT {
 	private static final String configurationPath = "/edu/globant/config/database.properties";
 	private static final String hibernateConfigXml = "/edu/globant/config/hibernate.cfg.xml";
 	MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
+	EmployeeDAO employeeDAO;
 	ApplicationContext context;
 	private Employee employee1;
 	private Employee employee2;
@@ -36,7 +38,7 @@ public class EmployeeServiceIT {
 
 	@Before
 	public void setUp() {
-			
+
 		SessionFactory sessionFactory = HibernateUtils.buildSessionFactory(hibernateConfigXml,
 				dsProvider.getMySQLDataSource(configurationPath));
 
@@ -44,8 +46,10 @@ public class EmployeeServiceIT {
 
 		session = sessionFactory.openSession();
 
-		createEmployeeService = new CreateEmployeeService(session);
-		listEmployeeService = new ListEmployeeService(session);
+		employeeDAO = new EmployeeDAOImpl(sessionFactory.openSession());
+
+		createEmployeeService = new CreateEmployeeService(employeeDAO);
+		listEmployeeService = new ListEmployeeService(employeeDAO);
 		employee1 = new Employee("Juan", "seller");
 		employee2 = new Employee("Jimena", "logistics");
 	}
@@ -63,7 +67,7 @@ public class EmployeeServiceIT {
 		assertThat(employee2, equalTo(employee2DB));
 		assertThat(employee1DB, not(equalTo(employee2DB)));
 	}
-	
+
 	@Test
 	public void createAndListWithSpring() {
 

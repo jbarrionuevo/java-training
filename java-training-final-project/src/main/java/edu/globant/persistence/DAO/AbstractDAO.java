@@ -11,7 +11,7 @@ import org.hibernate.Transaction;
 
 import edu.globant.domain.BaseEntity;
 
-public abstract class AbstractDAO<E extends BaseEntity> {
+public abstract class AbstractDAO<E extends BaseEntity> implements GenericDAO<E> {
 
 	protected Session session;
 	protected Class<E> entityClass;

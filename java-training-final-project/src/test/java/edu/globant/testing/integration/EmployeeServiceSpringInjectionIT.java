@@ -12,6 +12,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.globant.domain.Employee;
+import edu.globant.persistence.DAO.EmployeeDAO;
+import edu.globant.persistence.DAO.EmployeeDAOImpl;
 import edu.globant.persistence.DAO.hibernate.utils.HibernateUtils;
 import edu.globant.service.employee.CreateEmployeeService;
 import edu.globant.service.employee.ListEmployeeService;
@@ -23,6 +25,7 @@ public class EmployeeServiceSpringInjectionIT {
 	private static final String configurationPath = "/edu/globant/config/database.properties";
 	private static final String hibernateConfigXml = "/edu/globant/config/hibernate.cfg.xml";
 	MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
+	EmployeeDAO employeeDAO;
 	ApplicationContext context;
 	private Employee employee1;
 	private Employee employee2;
@@ -39,8 +42,10 @@ public class EmployeeServiceSpringInjectionIT {
 
 		session = sessionFactory.openSession();
 
-		createEmployeeService = new CreateEmployeeService(session);
-		listEmployeeService = new ListEmployeeService(session);
+		employeeDAO = new EmployeeDAOImpl(sessionFactory.openSession());
+		
+		createEmployeeService = new CreateEmployeeService(employeeDAO);
+		listEmployeeService = new ListEmployeeService(employeeDAO);
 		employee1 = new Employee("Juan", "seller");
 		employee2 = new Employee("Jimena", "logistics");
 	}

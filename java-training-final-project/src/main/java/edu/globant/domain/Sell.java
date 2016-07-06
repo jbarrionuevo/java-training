@@ -2,9 +2,7 @@ package edu.globant.domain;
 
 import java.util.List;
 
-import edu.globant.persistence.DAO.DTO;
-
-public abstract class Sell implements DTO{
+public abstract class Sell{
 
 	private List<Case> items;
 

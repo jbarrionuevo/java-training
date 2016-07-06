@@ -3,9 +3,7 @@ package edu.globant.domain;
 import java.util.Date;
 import java.util.List;
 
-import edu.globant.persistence.DAO.DTO;
-
-public class Case implements DTO {
+public class Case extends BaseEntity{
 
 	private String ID;
 

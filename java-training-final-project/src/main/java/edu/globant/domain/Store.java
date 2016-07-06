@@ -1,8 +1,7 @@
 package edu.globant.domain;
 
-import edu.globant.persistence.DAO.DTO;
 
-public class Store implements DTO{
+public class Store extends BaseEntity{
 	private String name;
 	private String address;
 

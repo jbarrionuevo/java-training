@@ -5,16 +5,14 @@ import java.util.List;
 import org.hibernate.Session;
 
 import edu.globant.domain.Employee;
-import edu.globant.service.ServiceImpl;
+import edu.globant.service.GenericServiceImpl;
 import edu.globant.service.facade.EmployeeServiceFacade;
 
-public class EmployeeService extends ServiceImpl{
+public class EmployeeService extends GenericServiceImpl{
 	
 	EmployeeServiceFacade employeeServiceFacade;
 	
-	public EmployeeService(Session session) {
-		super(session);
-		employeeServiceFacade = new EmployeeServiceFacade(session);
+	public EmployeeService() {
 	}
 
 	public void addEmployee(Employee employee) {

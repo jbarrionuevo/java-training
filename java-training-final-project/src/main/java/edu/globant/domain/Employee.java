@@ -4,10 +4,8 @@ import javax.persistence.Entity;
 
 import org.apache.commons.lang3.Validate;
 
-import edu.globant.persistence.DAO.DTO;
-
 @Entity
-public class Employee extends BaseEntity implements DTO {
+public class Employee extends BaseEntity{
 
 	private String name;
 	private String type;

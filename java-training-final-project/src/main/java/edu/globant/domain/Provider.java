@@ -1,8 +1,6 @@
 package edu.globant.domain;
 
-import edu.globant.persistence.DAO.DTO;
-
-public class Provider implements DTO{
+public class Provider extends BaseEntity{
 	public String name;
 
 	public String getName() {

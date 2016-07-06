@@ -7,6 +7,7 @@ import edu.globant.service.employee.CreateEmployeeService;
 import edu.globant.domain.Employee;
 import edu.globant.utils.MySQLDataSourceProvider;
 import edu.globant.persistence.DAO.EmployeeDAO;
+import edu.globant.persistence.DAO.EmployeeDAOImpl;
 import edu.globant.persistence.DAO.hibernate.utils.HibernateUtils;
 
 import java.util.Scanner;
@@ -42,7 +43,9 @@ public class Application {
 				dsProvider.getMySQLDataSource(configurationPath))) {
 			Application application = new Application(sessionFactory);
 
-			service = new CreateEmployeeService(sessionFactory.openSession());
+			EmployeeDAO employeeDAO = new EmployeeDAOImpl(sessionFactory.openSession());
+			service = new CreateEmployeeService(employeeDAO);
+			
 			service.create(new Employee("Juan", "seller"));
 		} catch (Exception e) {
 			LOGGER.error("Something terrible happened.", e);

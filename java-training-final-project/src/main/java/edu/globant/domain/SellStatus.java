@@ -2,9 +2,7 @@ package edu.globant.domain;
 
 import java.util.Date;
 
-import edu.globant.persistence.DAO.DTO;
-
-public abstract class SellStatus implements DTO{
+public abstract class SellStatus{
 	private Date date;
 	//types: RefundSell / DraftSell / Complete
 	private String type;

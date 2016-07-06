@@ -1,6 +1,7 @@
 package edu.globant.testing.integration;
 
 import edu.globant.persistence.DAO.EmployeeDAO;
+import edu.globant.persistence.DAO.EmployeeDAOImpl;
 import edu.globant.persistence.DAO.hibernate.utils.HibernateUtils;
 
 import org.junit.Before;
@@ -8,19 +9,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import edu.globant.domain.Employee;
 import edu.globant.utils.MySQLDataSourceProvider;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
-import edu.globant.service.employee.CreateEmployeeService;
 import edu.globant.service.employee.EmployeeService;
-import edu.globant.service.employee.ListEmployeeService;
 
 public class EmployeeServiceFacadeIT {
 
@@ -29,10 +24,11 @@ public class EmployeeServiceFacadeIT {
 	private static final String configurationPath = "/edu/globant/config/database.properties";
 	private static final String hibernateConfigXml = "/edu/globant/config/hibernate.cfg.xml";
 	MySQLDataSourceProvider dsProvider = new MySQLDataSourceProvider();
+	EmployeeDAO employeeDAO;
 	ApplicationContext context;
 	private Employee employee1;
 	private Employee employee2;
-
+	
 	Session session;
 
 	@Before
@@ -45,7 +41,9 @@ public class EmployeeServiceFacadeIT {
 
 		session = sessionFactory.openSession();
 
-		employeeService = new EmployeeService(session);
+		employeeDAO = new EmployeeDAOImpl(sessionFactory.openSession());
+		
+		employeeService = new EmployeeService();
 
 		employee1 = new Employee("Juan", "seller");
 		employee2 = new Employee("Jimena", "logistics");
