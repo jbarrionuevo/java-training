@@ -7,12 +7,6 @@ package edu.globant.ioncases.dao;
 
 import edu.globant.ioncases.model.CaseCover;
 import edu.globant.ioncases.model.CaseInventory;
-import java.util.List;
-import java.util.Map;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,25 +16,15 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class InventoryDaoImpl implements InventoryDao {
-
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    private Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
-    }
+public class InventoryDaoImpl extends  GenericDaoImpl<CaseInventory, Long> implements InventoryDao {
 
     @Override
     public void addCase(CaseCover caseCover, int quantity) {
-        CaseInventory ci = new CaseInventory(caseCover,quantity);
-        getCurrentSession().saveOrUpdate(ci);
+//        super.add(entity);
+        System.out.println("Add case");
     }
 
-    @Override
-    public List<CaseInventory> getAll() {
-        return getCurrentSession().createCriteria(CaseInventory.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-    }
+
 
 
 }
