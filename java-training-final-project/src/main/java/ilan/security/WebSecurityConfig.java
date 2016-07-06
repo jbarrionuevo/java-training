@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         users.put("provider","provider,ROLE_PROVIDER,enabled"); 
         users.put("seller","seller,ROLE_STORE_SELLER,enabled"); 
         users.put("super","super,ROLE_ADMIN,enabled"); 
-        users.put("ilan","ilan,ROLE_LOGISTIC,enabled");
+        users.put("ilan","ilan,ROLE_STORE_SELLER,enabled");
         
         return new InMemoryUserDetailsManager(users);
     }

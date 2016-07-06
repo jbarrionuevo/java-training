@@ -76,5 +76,4 @@ function delay(dateOfRequest,dateOfDelivery){
 	var timeDiff = Math.abs((new Date(dateOfDelivery)).getTime() - (dateOfRequest.getTime()));
 	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
 	return diffDays;
-//	return Math.floor(( new Date(dateOfDelivery) - new Date(dateOfRequest) ) / 86400000);
 }

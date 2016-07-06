@@ -35,8 +35,8 @@
 				<th>DATE OF REQUEST</th>
 				<th>TOTAL PRICE</th>
 				<div th:if="${#authorization.expression('hasRole(''ROLE_STORE_SELLER'')')}">
-					<th>CONFIRM</th>
-					<th>CANCEL</th>
+					<th>ACTION 1</th>
+					<th>ACTION 2</th>
 				</div>
 			</tr>		
 			<tr th:each="sale,itrStat : ${sales}">
@@ -49,7 +49,7 @@
 					
 					<div th:if="${#authorization.expression('hasRole(''ROLE_STORE_SELLER'')')}">
 						<div th:if="${#strings.toLowerCase(sale.Status)=='paid'}">
-						   <td><button type="button" class="refundSale" th:id="${sale.id}">REFUND</button></td>
+						   <td><button type="button" class="refundSale" th:id="${sale.id}+'_'+${sale.caseOrder.dateOfRequest}">REFUND</button></td>
 						   <td><button type="button" class="saleReceipt" th:id="${sale.id}">SEE RECEIPT</button></td>
 						</div>
 						

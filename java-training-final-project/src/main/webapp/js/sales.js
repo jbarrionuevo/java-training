@@ -22,6 +22,20 @@ $(document).ready(function(){
 		 }
 	});
 	
+	$(document).on("click",".refundSale",function(){
+		var saleId = this.id.split("_")[0];
+		var saleDate = this.id.split("_")[1];
+		var saleDelay = delay(new Date(saleDate),null);
+		if( saleDelay > 30){
+			alert("WARRANTY PERIOD EXPIRED FOR THIS SALE!");
+			return false;
+		}
+		if (confirm('Sure to refund the sale?')) {
+			 updateSale("refund",saleId);
+		}
+	});
+	
+	
 	$(document).on("click",".saleReceipt",function(){
 		var saleId = this.id;
 		$.ajax({
@@ -153,8 +167,8 @@ $(document).ready(function(){
 			"									<th>DATE OF REQUEST</th>"+
 			"									<th>TOTAL PRICE</th>";
 		if(isStoreSeller) {
-			result +="									<th>CONFIRM</th>"+
-			"									<th>CANCEL</th>";
+			result +="									<th>ACTION 1</th>"+
+			"									<th>ACTION 2</th>";
 		}
 		result +="</tr>";
 		
@@ -169,7 +183,10 @@ $(document).ready(function(){
 			  result+="<td>$"+s.totalPrice+"</td>";
 			  if(isStoreSeller) {
 				  if(s.status.toLowerCase()=='paid'){
-					  result+="<td><button type='button' class='refundSale' id="+s.id+">REFUND</button></td>";
+					  var saleDelay = delay(new Date(s.caseOrder.dateOfRequest),null);
+					  if(saleDelay>30)
+						  result+="<td>WARRANTY EXPIRED</td>";
+					  else result+="<td><button type='button' class='refundSale' id="+s.id+">REFUND</button></td>";
 					  result+="<td><button type='button' class='saleReceipt' id="+s.id+">SEE RECEIPT</button></td>";
 				  }
 				  else if(s.status.toLowerCase()=='draft'){
@@ -199,3 +216,13 @@ function getDateString(date){
 	return (yyyy+"-"+mm+"-"+dd);
 }
 
+function delay(dateOfRequest,dateOfDelivery){
+	if(dateOfDelivery==null) dateOfDelivery = new Date();
+	else {
+		dateOfDelivery= new Date(dateOfDelivery);
+		if(getDateString(dateOfRequest)==getDateString(dateOfDelivery)) return 0;
+	}
+	var timeDiff = Math.abs((new Date(dateOfDelivery)).getTime() - (dateOfRequest.getTime()));
+	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+	return diffDays;
+}
