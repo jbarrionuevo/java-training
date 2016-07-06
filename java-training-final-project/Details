@@ -32,7 +32,7 @@ without needing an alarm. You can also change the products minimum stock if you 
 3) Keep track of how many cases get from each provider, if the delivery was on date or got late, and if late for how much time. In these cases,
 the inventory for case must increase.
 You can check this entering the system with super, and clicking "Check Providers Statistics". There, you can choose the provider and see its orders
-and their delay. 
+and their delay (I consider that the order must be attended before the lapse of 3 days; if not, its delayed).
 On the other hand, entering the system with provider, you can see the orders made to the provider and supply the required cases, which will make
 the inventory increase.
 
