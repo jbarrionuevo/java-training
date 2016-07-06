@@ -9,10 +9,10 @@
 </head>
 <body>
 	<a href="<c:url value="/logistic/allInventory"/>">View all inventory</a>
-    <a href="<c:url value="/inventory/add"/>">Add case </a>
-    <a href="<c:url value="/inventory/viewAllSales"/>">Upload stock</a>
-    <a href="<c:url value="/inventory/addOrderToProvider"/>">Add order to provider</a>
-    <a href="<c:url value="/inventory/addProvider"/>">Add Provider</a>
+    <a href="<c:url value="/logistic/addCase"/>">Add case </a>
+<%--     <a href="<c:url value="/logistic/viewAllSales"/>">Upload stock</a> --%>
+    <a href="<c:url value="/logistic/addOrderToProvider"/>">Add order to provider</a>
+    <a href="<c:url value="/logistic/addProvider"/>">Add Provider</a>
 	<a href="<c:url value="/logout" />">Logout</a>
 </body>
 </html>

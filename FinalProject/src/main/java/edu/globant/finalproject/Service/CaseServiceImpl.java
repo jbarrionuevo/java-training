@@ -3,49 +3,35 @@ package edu.globant.finalproject.Service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import edu.globant.finalproject.dao.CaseDAO;
 import edu.globant.finalproject.dao.CaseDAOImpl;
+import edu.globant.finalproject.dao.GenericDAO;
+import edu.globant.finalproject.dao.InventoryDAO;
+import edu.globant.finalproject.hibernate.CaseCoverage;
 import edu.globant.finalproject.model.Case.CaseDTO;
+import edu.globant.finalproject.model.Inventory.InventoryDTO;
 
 
 @Service
-public class CaseServiceImpl implements CaseService{
+public class CaseServiceImpl extends GenericServiceImpl<CaseCoverage, Integer> implements CaseService{
+	
+	private CaseDAO caseDAO;
+	public CaseServiceImpl() {}
 	
 	@Autowired
-	CaseDAOImpl caseDAO;
-	
-	//@Autowired
-	//Inventory inventory;
-
-	@Transactional
-	@Override
-	public void create(CaseDTO c) {
-		caseDAO.save(c);
-	}
+    public CaseServiceImpl(
+            @Qualifier("caseDAOImpl") GenericDAO<CaseCoverage, Integer> genericDao) {
+        super(genericDao);
+        this.caseDAO = (CaseDAO) genericDao;
+    }
 
 	@Override
-	public ArrayList<CaseDTO> getAll() {
-		ArrayList<CaseDTO> cases = caseDAO.getAll();
-		return cases; 
-	}
-
-	@Override
-	public CaseDTO get(int id) {
-		return null;
-	}
-
-	@Transactional
-	@Override
-	public void update(CaseDTO c) {
-		
-	}
-
-	@Override
-	public int checkStock(CaseDTO c) {
+	public int checkStock(CaseCoverage c) {
+		// TODO: implementar
 		return 0;
 	}
-
 }

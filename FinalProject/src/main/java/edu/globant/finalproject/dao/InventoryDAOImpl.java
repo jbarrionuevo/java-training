@@ -10,31 +10,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.globant.finalproject.hibernate.Case;
+import edu.globant.finalproject.hibernate.CaseCoverage;
 import edu.globant.finalproject.hibernate.CaseStock;
+import edu.globant.finalproject.model.Inventory.InventoryDTO;
 
 
 @Repository
-@Transactional
-public class InventoryDAOImpl implements InventoryDAO {
-	
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	private Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
-    }
+public class InventoryDAOImpl extends GenericDAOImpl<InventoryDTO, Integer> implements InventoryDAO {
 
-	@Override
-	public void add(Case c) {
-		getCurrentSession().save(c);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<CaseStock> getAll() {
-			return  getCurrentSession()
-					.createCriteria(CaseStock.class)
-					.list();
-	}
 }

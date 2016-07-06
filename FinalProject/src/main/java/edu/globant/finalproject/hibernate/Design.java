@@ -13,6 +13,12 @@ public class Design extends BaseEntity implements Serializable{
 	
 	private Design(){}
 	
+	public Design(String colour, double length, double height){
+		this.colour = colour;
+		this.lenght = length;
+		this.height = height;
+	}
+	
 	@Column(name = "colour")
 	private String colour;
 	

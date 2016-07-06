@@ -9,7 +9,7 @@ import org.hibernate.cfg.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.globant.finalproject.hibernate.Case;
+import edu.globant.finalproject.hibernate.CaseCoverage;
 import edu.globant.finalproject.hibernate.Design;
 import edu.globant.finalproject.hibernate.Device;
 import edu.globant.finalproject.hibernate.Provider;
@@ -24,7 +24,7 @@ public final class HibernateUtils {
 			Configuration configuration = new Configuration();
 
 			configuration.configure(hibernateConfigXml)
-				.addAnnotatedClass(Case.class)
+				.addAnnotatedClass(CaseCoverage.class)
 				.addAnnotatedClass(Design.class)
 				.addAnnotatedClass(Device.class)
 				.addAnnotatedClass(Provider.class);

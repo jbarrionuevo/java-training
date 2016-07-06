@@ -1,22 +1,27 @@
 package edu.globant.finalproject.hibernate;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
-@Table(name = "caseStock")
-public class CaseStock {
+@Table(name = "case_stock")
+public class CaseStock extends BaseEntity implements Serializable{
+	
+	public CaseStock() {}
 	
 	@Autowired
-	@OneToOne (cascade=CascadeType.ALL)
-	  @JoinColumn(name="case_id", nullable=false, insertable=true, updatable=true)
-	private Case kase;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "caseStock", cascade = CascadeType.ALL)
+	private CaseCoverage kase;
 	
 	@Autowired
 	@Column(name = "actualStock",nullable = false)
@@ -26,11 +31,11 @@ public class CaseStock {
 	@Column(name = "minimumQuantity",nullable = false)
 	private int minimumQuantity;
 
-	public Case getKase() {
+	public CaseCoverage getKase() {
 		return kase;
 	}
 
-	public void setKase(Case kase) {
+	public void setKase(CaseCoverage kase) {
 		this.kase = kase;
 	}
 

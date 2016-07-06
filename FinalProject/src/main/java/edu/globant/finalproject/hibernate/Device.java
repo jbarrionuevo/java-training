@@ -10,6 +10,11 @@ public class Device extends BaseEntity{
 	
 	private Device(){}
 	
+	public Device(String brand, String model){
+		this.brand = brand;
+		this.model = model;
+	}
+	
 	@Column(name = "brand")
 	private String brand;
 	
