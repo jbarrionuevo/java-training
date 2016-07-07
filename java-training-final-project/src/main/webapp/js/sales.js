@@ -36,10 +36,6 @@ $(document).ready(function(){
 			    case "justrefund":
 			    	updateSale("refund",saleId);
 			        break;
-			    case "chooseother":
-			    	//do something
-			    	alert("do something..");
-			        break;
 			    case "samemodel":
 			    	//do something
 			    	updateSale("refundSame",saleId);
@@ -204,7 +200,6 @@ $(document).ready(function(){
 						  result+="<td>";
 						  result+="<select id='"+s.id+"_refundType'>" +
 						  		"<option value='justrefund'>Just Refund</option>" +
-						  		"<option value='chooseother'>Choose other model</option>" +
 						  		"<option value='samemodel'>Choose same model</option>" +
 						  		"</select><button type='button' class='refundSale' id='"+s.id+"_"+s.caseOrder.dateOfRequest+"'>REFUND</button></td>";
 					  }
