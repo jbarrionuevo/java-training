@@ -2,7 +2,9 @@ package ilan.models;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -29,5 +31,19 @@ public class CaseDeviceTest {
 		CaseDevice test = new CaseDevice("Test");
 		assertThat("To String method doesnt work as expected",
 				test.toString(),equalTo("Name: "+test.getName()));
+	}
+	
+	@Test
+	public void testEquals(){
+		CaseDevice test = new CaseDevice("Test");
+		assertTrue("To String method doesnt work as expected",
+				test.equals(new CaseDevice("Test")));
+	}
+	
+	@Test
+	public void testEqualsFails(){
+		CaseDevice test = new CaseDevice("Test");
+		assertFalse("To String method doesnt work as expected",
+				test.equals(new CaseDevice("Test 2")));
 	}
 }
