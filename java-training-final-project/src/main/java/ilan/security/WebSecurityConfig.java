@@ -25,7 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/salesView/**").hasAnyRole("STORE_SELLER","DELIVERY_SELLER","COMPLETE_SELLER","ADMIN")
+                .antMatchers("/sellersView").hasRole("DELIVERY_SELLER")
+                .antMatchers("/sellersView/**").hasAnyRole("STORE_SELLER","DELIVERY_SELLER","COMPLETE_SELLER","ADMIN")
                 .antMatchers("/logisticView/**").hasRole("LOGISTIC")
                 .antMatchers("/inventoryView/wrappers").hasRole("LOGISTIC")
                 .antMatchers("/inventoryView/**").hasAnyRole("STORE_SELLER","DELIVERY_SELLER","COMPLETE_SELLER", "ADMIN")

@@ -2,9 +2,11 @@ package ilan.models;
 
 import java.util.Collection;
 
+import javax.persistence.Entity;
+
 import ilan.interfaces.DeliverySellerInterface;
 
-
+@Entity
 public class DeliverySeller extends CaseSeller implements DeliverySellerInterface {
 	
 	public DeliverySeller() {}

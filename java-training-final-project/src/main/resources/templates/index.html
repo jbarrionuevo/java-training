@@ -15,9 +15,6 @@
 	
 	<div sec:authorize="isAuthenticated()">
 		<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-	    <form th:action="@{/logout}" method="post">
-	            <input type="submit" value="Sign Out"/>
-	    </form>
 		
 		<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
 			<p><a th:href="@{/inventoryView}">Check Stock</a></p>
@@ -26,12 +23,11 @@
 		</div>
 		<div th:if="${#authorization.expression('hasRole(''ROLE_STORE_SELLER'')')}">
 			<p><a th:href="@{/inventoryView}">New Sale</a></p>
-	    	<p><a th:href="@{/storeSellersView/seller/1}">Check My Sales</a></p>
-	    	<p><a th:href="@{/storeSellersView/seller/1}">Check All Sales</a></p>
+	    	<p><a th:href="@{/sellersView/seller/1/sales}">Check My Sales</a></p>
 		</div>
 		<div th:if="${#authorization.expression('hasRole(''ROLE_DELIVERY_SELLER'')')}">
-			<p><a th:href="@{/deliverySellersView}">Register Sales</a></p>
-	    	<p><a th:href="@{/deliverySellersView/seller/2}">Check My Sales</a></p>
+			<p><a th:href="@{/sellersView}">Register Sales</a></p>
+	    	<p><a th:href="@{/sellersView/seller/2/sales}">Check My Sales</a></p>
 		</div>
 		<div th:if="${#authorization.expression('hasRole(''ROLE_LOGISTIC'')')}">
 			<p><a th:href="@{/logisticView}">Providers</a></p>
@@ -41,6 +37,9 @@
 			<p><a th:href="@{/providersView/1}">My orders</a></p>
 		</div>
 	    
+	    <form th:action="@{/logout}" method="post">
+	            <input type="submit" value="Sign Out"/>
+	    </form>
 	</div>
     
 </body>

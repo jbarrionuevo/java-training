@@ -6,7 +6,7 @@
 <title>My Sales</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="../../js/sales.js"></script>
+<script type="text/javascript" src="../../../js/sales.js"></script>
 </head>
 <body>
 
@@ -59,20 +59,21 @@
 						   <td><button type="button" class="saleReceipt" th:id="${sale.id}">SEE RECEIPT</button></td>
 						</div>
 						
-<!-- 						<div th:if="${#strings.toLowerCase(sale.Status)=='cancelled'}"> -->
-<!-- 						   <td></td><td></td> -->
-<!-- 						</div> -->
-						
 						<div th:if="${#strings.toLowerCase(sale.Status)=='refund'}">
 						   <td><button type="button" class="saleReceipt" th:id="${sale.id}">SEE RECEIPT</button></td>
 						   <td></td> 
 						</div>
 						
+						<div th:if="${#authorization.expression('hasRole(''ROLE_DELIVERY_SELLER'')')}">
+							<div th:if="${#strings.toLowerCase(sale.Status)=='cancelled'}">
+							   	<td></td><td></td>
+							</div>
+							<div th:if="${#strings.toLowerCase(sale.Status)=='draft'}">
+							  	<td><button type="button" class="confirmSale" th:id="${sale.id}">CONFIRM</button></td>
+								<td><button type="button" class="cancelSale" th:id="${sale.id}">CANCEL</button></td>
+							</div> 
+						</div>
 						
-<!-- 						<div th:if="${#strings.toLowerCase(sale.Status)=='draft'}"> -->
-<!-- 							  <td><button type="button" class="confirmSale" th:id="${sale.id}">CONFIRM</button></td> -->
-<!-- 							<td><button type="button" class="cancelSale" th:id="${sale.id}">CANCEL</button></td> -->
-<!-- 						</div>  -->
 					</div>
 			</tr>
 		</table>

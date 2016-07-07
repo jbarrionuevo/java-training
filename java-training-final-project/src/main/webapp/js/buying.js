@@ -6,6 +6,9 @@ $(document).ready(function(){
 	var requestCases = new Object(); //object to be sent to the controller
 	var index = 0;
 	
+	var isDeliverySeller=$("#isDeliverySeller").val();
+	var allSales = [];
+	
 	$(document).on("click",".buyCase",function(){
 		var wrapperId= this.id;
 		var quantity = $("#"+wrapperId+"_quantity").val();
@@ -92,23 +95,31 @@ $(document).ready(function(){
 						    		}
 						 ]
 				};
-				var sellerId = 1;  //actually should get it from seller
-				$.ajax({
-					   url: '/caseSellers/'+sellerId+'/addSale',
-					   headers: { 
-					        'Accept': 'application/json',
-					        'Content-Type': 'application/json' 
-					    },
-					   data: JSON.stringify(saleDTO),
-					   error: function() {
-					      $('#result').html('<p>An error has occurred</p>');
-					   },
-					   success: function(data) {
-						  alert("Paid Sale registered succesfully. You can check the sale in sales menu.");
-						  $("#resetSale").click();
-					   },
-					   type: 'PUT'
-				});
+				if(isDeliverySeller){
+					allSales.push(saleDTO);
+					alert("Sale saved. You've registered "+allSales.length+" sales up to now. Click Confirm All Sales to register them in the database; if not, "+
+							"all of them will be lost.");
+				}
+				else{
+					var sellerId = 1;  //actually should get it from seller
+					$.ajax({
+						   url: '/caseSellers/'+sellerId+'/addSale',
+						   headers: { 
+						        'Accept': 'application/json',
+						        'Content-Type': 'application/json' 
+						    },
+						   data: JSON.stringify(saleDTO),
+						   error: function() {
+						      $('#result').html('<p>An error has occurred</p>');
+						   },
+						   success: function(data) {
+							  alert("Paid Sale registered succesfully. You can check the sale in sales menu.");
+							  $("#resetSale").click();
+						   },
+						   type: 'PUT'
+					});
+				}
+				
 		}else{
 				$("#customerData").show();
 				$("#customerData").css("visibility","visible");
