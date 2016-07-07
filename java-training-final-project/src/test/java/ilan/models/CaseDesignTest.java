@@ -30,4 +30,19 @@ public class CaseDesignTest {
 		assertThat("To String method doesnt work as expected",
 				test.toString(),equalTo("Name: "+test.getName()));
 	}
+	
+	@Test
+	public void testEquals(){
+		CaseDesign test = new CaseDesign("Test");
+		assertTrue("To String method doesnt work as expected",
+				test.equals(new CaseDesign("Test")));
+	}
+	
+	@Test
+	public void testEqualsFails(){
+		CaseDesign test = new CaseDesign("Test");
+		assertFalse("To String method doesnt work as expected",
+				test.equals(new CaseDesign("Test 2")));
+	}
+	
 }
