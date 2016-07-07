@@ -52,9 +52,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         final Properties users = new Properties();
         users.put("logistic","logistic,ROLE_LOGISTIC,enabled");
         users.put("provider","provider,ROLE_PROVIDER,enabled"); 
-        users.put("seller","seller,ROLE_STORE_SELLER,enabled"); 
+        users.put("store_seller","store_seller,ROLE_STORE_SELLER,enabled"); 
+        users.put("delivery_seller","delivery_seller,ROLE_DELIVERY_SELLER,enabled");
         users.put("super","super,ROLE_ADMIN,enabled"); 
-        users.put("ilan","ilan,ROLE_STORE_SELLER,enabled");
+        users.put("ilan","ilan,ROLE_DELIVERY_SELLER,enabled");
         
         return new InMemoryUserDetailsManager(users);
     }

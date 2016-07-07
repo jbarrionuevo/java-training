@@ -20,20 +20,25 @@
 	    </form>
 		
 		<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-			<a th:href="@{/inventoryView}">Check Stock</a>
-			<a th:href="@{/providersView}">Check Providers Statistics</a>
-			<a th:href="@{/salesView/seller/1}">Check Sales</a>
+			<p><a th:href="@{/inventoryView}">Check Stock</a></p>
+			<p><a th:href="@{/providersView}">Check Providers Statistics</a></p>
+			<p><a th:href="@{/salesView/seller/1}">Check Sales</a></p>
 		</div>
 		<div th:if="${#authorization.expression('hasRole(''ROLE_STORE_SELLER'')')}">
-			<a th:href="@{/inventoryView}">New Sale</a>
-	    	<a th:href="@{/salesView/seller/1}">Check Sales</a>
+			<p><a th:href="@{/inventoryView}">New Sale</a></p>
+	    	<p><a th:href="@{/storeSellersView/seller/1}">Check My Sales</a></p>
+	    	<p><a th:href="@{/storeSellersView/seller/1}">Check All Sales</a></p>
+		</div>
+		<div th:if="${#authorization.expression('hasRole(''ROLE_DELIVERY_SELLER'')')}">
+			<p><a th:href="@{/deliverySellersView}">Register Sales</a></p>
+	    	<p><a th:href="@{/deliverySellersView/seller/2}">Check My Sales</a></p>
 		</div>
 		<div th:if="${#authorization.expression('hasRole(''ROLE_LOGISTIC'')')}">
-			<a th:href="@{/logisticView}">Providers</a>
-			<a th:href="@{/inventoryView/wrappers}">Configure Minimum Stocks</a>
+			<p><a th:href="@{/logisticView}">Providers</a></p>
+			<p><a th:href="@{/inventoryView/wrappers}">Configure Minimum Stocks</a></p>
 		</div>
 		<div th:if="${#authorization.expression('hasRole(''ROLE_PROVIDER'')')}">
-			<a th:href="@{/providersView/1}">My orders</a>
+			<p><a th:href="@{/providersView/1}">My orders</a></p>
 		</div>
 	    
 	</div>

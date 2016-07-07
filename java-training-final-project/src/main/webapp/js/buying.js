@@ -104,7 +104,7 @@ $(document).ready(function(){
 					      $('#result').html('<p>An error has occurred</p>');
 					   },
 					   success: function(data) {
-						  alert("Draft Sale registered succesfully. You can confirm the sale in sales menu.");
+						  alert("Paid Sale registered succesfully. You can check the sale in sales menu.");
 						  $("#resetSale").click();
 					   },
 					   type: 'PUT'
@@ -120,7 +120,7 @@ $(document).ready(function(){
 
 function getCurrentDate(){
 	var today = new Date();
-	var dd = today.getDate(); 
+	var dd = today.getDate()+1; 
 	if(dd<10) dd = "0"+dd;
 	var mm = today.getMonth()+1; 
 	if(mm<10) mm = "0"+mm;

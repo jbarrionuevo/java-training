@@ -74,7 +74,7 @@ public class CaseSellerService {
 		caseOrderDao.save(order);
 		sale.getReceipts().iterator().next().setSale(sale);
 		sale.setSeller(looked);
-		sale.setStatus(SaleStatus.DRAFT);
+		sale.setStatus(SaleStatus.PAID);
 		looked.addSale(sale);
 		caseSellerDao.save(looked);
 	}

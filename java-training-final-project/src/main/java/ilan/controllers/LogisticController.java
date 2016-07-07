@@ -24,7 +24,6 @@ public class LogisticController {
 	OrderAlertService orderAlertService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	@ResponseStatus(value= HttpStatus.OK)
     public String logisticIndex(Model model) {
 		model.addAttribute("designs", inventoryService.getDesigns());
     	model.addAttribute("devices",inventoryService.getDevices());

@@ -3,7 +3,7 @@ it will create the tables the first time you run the app; for further runnings, 
 
 You can enter the app with one of these users:
 - user: super pass:super  The super admin. Can check the stock of the products and providers statistics.
-- user: seller pass:seller   A store seller. Can register sales, check their receipts, and change sales status. Its id is hardcoded to 1, so it represents 
+- user: store_seller pass:store_seller   A store seller. Can register sales, check their receipts, and refund them. Its id is hardcoded to 1, so it represents 
 seller 1 (which is saved in Application.java). Due to the lack of time, I didn't represent the users in the db, only in memory, but this could be a future
 work.
 - user: logistic pass: logistic   A logistic team member. Can make orders to the providers, and checks the generated alarms due to low stock of products. 
@@ -11,6 +11,8 @@ Can set the minimum stock of products, too.
 - user: provider pass: provider   A provider. Can check its orders and replace the products he has been ordered. Its id is hardcoded to 1, so it represents 
 provider 1 (which is saved in Application.java). Due to the lack of time, I didn't represent the users in the db, only in memory, but this could be a future
 work.
+//TO DO
+- user: delivery_seller pass: delivery_seller Register a bunch of orders and can update them after.
 
 To generate alerts to the logistic team when some case stock is to low, I've implemented the component AlarmThread,
 which has a scheduled task called 'checkAlarms', which checks for each casewrapper if its current stock is lower than
@@ -39,14 +41,14 @@ the inventory increase.
 4) Allow to register each sale and track its status. There are times when the sale is cancelled due to delivery sellers taking too much time to
 get to the customer’s place or the customer in the store realizes that doesn’t have enough money in their card to buy the case. The sale
 can have one of these status: draft, paid, cancelled and refund.
-You can register a sale entering the system with seller, and clicking "New Sale"; there, you choose all the cases you want, with a quantity from 1 to 5,
-and register the sale entering the customer details before. 
-Then, in "Check Sales", you can check each sale, seeing their status and other details. You can also change its status, marking it as paid, or canceling
-it. When refunding a paid sale, you can:
- 	a) Just refund it: the case stock is incremented in one, and the sale marked as refund; if the customer want another device, then go back
- 	to the main menu and choose new sale.
- 	b)Chose same model: the date of request its updated to the current date, so a new month of warranty starts
-
+  	a) Entering with store_seller: You can register a sale entering the system with seller, and clicking "New Sale"; there, you choose all the cases you want, with a 
+  	quantity from 1 to 5, and register the sale entering the customer details before. Then, in "Check Sales", you can check each sale, seeing their status (paid or refund),
+  	and other details. You can also change its status from paid to refund. When refunding a paid sale, you can:
+  		 	a.1) Just refund it: the case stock is incremented in one, and the sale marked as refund; if the customer want another device, then go back
+ 			to the main menu and choose new sale.
+ 			a.2)Chose same model: the date of request its updated to the current date, so a new month of warranty starts
+	b) Entering with delivery_seller: You can register a bunch of sales with any of the four status, and then change their status.
+	
 5) When registering a sell, the amount of physic cases for the design and device sold must be decreased from the inventory.
 For this, enter the system as seller, go to "Check Sales", and mark DRAFT sales with "CONFIRM"; if the needed stock is available, the sale will be marked
 as PAID, and the corresponding stock will be decreased from the inventory.

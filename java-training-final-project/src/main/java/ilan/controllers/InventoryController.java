@@ -30,7 +30,6 @@ public class InventoryController {
 	InventoryService inventoryService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	@ResponseStatus(value= HttpStatus.OK)
     public String getInventory(Model model) {
 		Collection<CaseWrapper> wrappers = inventoryService.getInventoryWrappers(0,5);
 		Collection<CaseDesign> designs = inventoryService.getDesigns();
@@ -46,7 +45,6 @@ public class InventoryController {
     }
 	
 	@RequestMapping(method = RequestMethod.GET, value="/wrappers")
-	@ResponseStatus(value= HttpStatus.OK)
     public String getInventoryWrappers(Model model) {
 		Collection<CaseWrapper> wrappers = inventoryService.getAllInventoryWrappers();
 		model.addAttribute("inventory",wrappers);

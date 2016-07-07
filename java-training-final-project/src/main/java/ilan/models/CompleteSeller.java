@@ -10,8 +10,8 @@ public class CompleteSeller extends CaseSeller implements DeliverySellerInterfac
 
 	public CompleteSeller() {}
 	
-	public CompleteSeller(String name) {
-		super(name);
+	public CompleteSeller(String name, String store) {
+		super(name,store);
 		// TODO Auto-generated constructor stub
 	}
 }

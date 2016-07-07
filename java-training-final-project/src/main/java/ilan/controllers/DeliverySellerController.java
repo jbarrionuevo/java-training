@@ -1,5 +1,6 @@
 package ilan.controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import ilan.enums.SaleStatus;
-import ilan.models.CaseWrapper;
 import ilan.models.Sale;
 import ilan.services.SaleService;
 
 @Controller
-@RequestMapping("/salesView")
-public class SaleController {
+@RequestMapping("/deliverySellersView")
+public class DeliverySellerController {
 
 	@Autowired
 	SaleService saleService;
 	
 	@RequestMapping(value="/seller/{sellerId}",method = RequestMethod.GET)
-	@ResponseStatus(value= HttpStatus.OK)
 	public String getSalesFromCaseSeller(@PathVariable Long sellerId, Model model){
 		Collection<Sale> sales = saleService.getSalesFromCaseSeller(sellerId,"all",0,5);
 		SaleStatus[] status = SaleStatus.values();
@@ -34,6 +33,14 @@ public class SaleController {
 		model.addAttribute("sales",sales);
 		model.addAttribute("status",status);
 		model.addAttribute("pageQuantity",pageQuantity);
-		return "sellerSales";
+		return "deliverySellerSales";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String registerSales(Model model){
+		SaleStatus[] status = SaleStatus.values();
+		model.addAttribute("status",status);
+		return "deliverySellerRegister";
+	}
+	
 }

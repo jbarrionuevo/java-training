@@ -9,8 +9,8 @@ public class DeliverySeller extends CaseSeller implements DeliverySellerInterfac
 	
 	public DeliverySeller() {}
 	
-	public DeliverySeller(String name) {
-		super(name);
+	public DeliverySeller(String name, String store) {
+		super(name,store);
 		// TODO Auto-generated constructor stub
 	}
 }

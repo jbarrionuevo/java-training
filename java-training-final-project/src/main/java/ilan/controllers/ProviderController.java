@@ -19,14 +19,12 @@ public class ProviderController {
 	ProviderService providerService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	@ResponseStatus(value= HttpStatus.OK)
     public String getProviders(Model model) {
 		model.addAttribute("providers",providerService.findAllProviders());
 		return "providers";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value="/{providerId}")
-	@ResponseStatus(value= HttpStatus.OK)
     public String getProviderOrders(@PathVariable Long providerId, Model model) {
 		model.addAttribute("orders",providerService.getProviderOrders(providerId));
 		return "provider";

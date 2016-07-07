@@ -18,15 +18,17 @@ public abstract class CaseSeller extends Employee {
 	//whenever a caseSeller receives an order, its a new sale with the DRAFT status; if then, the sale is not
 	//succesfull, its marked as CANCELLED; otherwise, its marked as PAID, and it could then be REFUND
 	
+	private String store;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "seller", cascade = CascadeType.ALL)
 	private Collection<Sale> sales;
 	
 	public CaseSeller(){}
 	
-	public CaseSeller(String name){
+	public CaseSeller(String name,String store){
 		super(name);
 		this.sales=new ArrayList<Sale>();
+		this.setStore(store);
 	}
 	
 
@@ -40,5 +42,13 @@ public abstract class CaseSeller extends Employee {
 
 	public void setSales(Collection<Sale> sales) {
 		this.sales = sales;
+	}
+
+	public String getStore() {
+		return store;
+	}
+
+	public void setStore(String store) {
+		this.store = store;
 	}
 }
