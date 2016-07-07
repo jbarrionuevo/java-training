@@ -45,7 +45,7 @@ Then, in "Check Sales", you can check each sale, seeing their status and other d
 it. When refunding a paid sale, you can:
  	a) Just refund it: the case stock is incremented in one, and the sale marked as refund; if the customer want another device, then go back
  	to the main menu and choose new sale.
- 	c)Chose same model: the date of request its updated to the current date, so a new month of warranty starts
+ 	b)Chose same model: the date of request its updated to the current date, so a new month of warranty starts
 
 5) When registering a sell, the amount of physic cases for the design and device sold must be decreased from the inventory.
 For this, enter the system as seller, go to "Check Sales", and mark DRAFT sales with "CONFIRM"; if the needed stock is available, the sale will be marked
