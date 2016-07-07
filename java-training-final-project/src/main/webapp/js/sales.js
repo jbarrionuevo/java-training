@@ -213,7 +213,7 @@ $(document).ready(function(){
 					  result+="<td></td><td></td>";
 				  }
 				  else{
-					  result+="<td><button type='button' class='saleDetail' id="+s.id+">DETAIL</button></td><td></td>";
+					  result+="<td><button type='button' class='saleReceipt' id="+s.id+">SEE RECEIPT</button></td><td></td>";
 				  }
 			  }
 			  result+="</tr>";
