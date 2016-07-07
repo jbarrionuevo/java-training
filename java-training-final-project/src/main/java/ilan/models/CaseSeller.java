@@ -12,6 +12,8 @@ import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.thymeleaf.util.Validate;
+
 @Entity
 public abstract class CaseSeller extends Employee {
 	
@@ -27,6 +29,8 @@ public abstract class CaseSeller extends Employee {
 	
 	public CaseSeller(String name,String store){
 		super(name);
+		Validate.notNull(name, "Name cannot be null");
+		Validate.notNull(store, "Store cannot be null");
 		this.sales=new ArrayList<Sale>();
 		this.setStore(store);
 	}

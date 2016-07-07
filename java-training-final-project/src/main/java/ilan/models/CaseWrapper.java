@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.thymeleaf.util.Validate;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -26,8 +28,12 @@ public class CaseWrapper {
 	
 	public CaseWrapper(){}
 	
-	public CaseWrapper(CaseProduct myCase, int minimumStock, int currentStock, Inventory inventory) {
+	public CaseWrapper(CaseProduct myCase, Integer minimumStock, Integer currentStock, Inventory inventory) {
 		super();
+		Validate.notNull(myCase, "myCase cannot be null");
+		Validate.notNull(minimumStock, "minimumStock cannot be null");
+		Validate.notNull(currentStock, "currentStock cannot be null");
+		Validate.notNull(inventory, "inventory cannot be null");
 		this.myCase = myCase;
 		this.minimumStock = minimumStock;
 		this.currentStock = currentStock;
