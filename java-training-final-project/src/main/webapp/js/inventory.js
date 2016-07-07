@@ -2,6 +2,9 @@ $(document).ready(function(){
 	
 	var isAdmin=false;
 	var isStoreSeller=false;
+	var isDelivery= $("#isDeliverySeller").val();
+	var isDeliverySeller=false;
+	if(isDelivery=="true") isDeliverySeller=true;
 	if($("#isAdmin").val()!=undefined) isAdmin=true;
 	if($("#isStoreSeller").val()!=undefined) isStoreSeller=true;
 	
@@ -93,7 +96,7 @@ $(document).ready(function(){
 	  		"<th>MINIMUM STOCK</th>" +
 //	  		"<th>DELETE</th>" +
 	  		"</tr>";
-		}else if(isStoreSeller){
+		}else if(isStoreSeller||isDeliverySeller){
 			result += "<th>BUY</th>" +
 					"</tr>";
 		}
@@ -108,7 +111,7 @@ $(document).ready(function(){
 				  result+="<td>"+v.currentStock+"</td>";
 				  result+="<td>"+v.minimumStock+"</td>";
 //				  result+="<td><button type='button'>Delete</button></td>";
-			  }	 else if(isStoreSeller) 
+			  }	 else if(isStoreSeller||isDeliverySeller) 
 				  result+="<td>" +
 				  		"<label>Quantity:</label>" +
 						"<input type='hidden' id='"+v.id+"_data' value='"+v.myCase.design.name+"_"+v.myCase.device.name+"_"+v.myCase.price+"_"+v.myCase.id+"'/>"+

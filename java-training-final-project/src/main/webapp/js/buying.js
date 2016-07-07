@@ -95,7 +95,7 @@ $(document).ready(function(){
 						    		}
 						 ]
 				};
-				if(isDeliverySeller){
+				if(isDeliverySeller=="true"){
 					allSales.push(saleDTO);
 					alert("Sale saved. You've registered "+allSales.length+" sales up to now. Click Confirm All Sales to register them in the database; if not, "+
 							"all of them will be lost.");

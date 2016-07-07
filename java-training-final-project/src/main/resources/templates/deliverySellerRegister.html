@@ -34,6 +34,12 @@
 		<option th:each="device:${devices}" th:value="${device.name}"
 			th:text="${device.name}"></option>
 	</select>
+	
+	<label>Select Sale Status: </label>
+	<select id="statusSelect">
+		<option th:each="status:${status}" th:value="${status}"
+			th:text="${status}"></option>
+	</select>
 
 	<div id="result">
 		<table border="1">
@@ -49,7 +55,7 @@
 					<td th:text="${casewrapper.myCase.design.name}"></td>
 					<td th:text="${casewrapper.myCase.device.name}"></td>
 					<td th:text="'$'+${casewrapper.myCase.price}"></td>
-					<div sec:authorize="hasRole('ROLE_STORE_SELLER')">
+					<sec:authorize access="hasAnyRole('ROLE_STORE_SELLER','ROLE_DELIVERY_SELLER')">
 						<td>
 							<label>Quantity:</label>
 							<input type="hidden" th:id="${casewrapper.id}+'_data'" th:value= "${casewrapper.myCase.design.name}+'_'+${casewrapper.myCase.device.name}+'_'+${casewrapper.myCase.price}+'_'+${casewrapper.myCase.id}"/>
@@ -62,17 +68,15 @@
 							</select>
 							<button type="button" class="buyCase" th:id="${casewrapper.id}">Buy!</button>
 						</td>
-					</div>
+					</sec:authorize>
 			</tr>
 		</table>
 	</div>
 	
 	<select id="pageSelect">
-<!-- 	<div id="pagination"> -->
 			<option th:each="i: ${#numbers.sequence( 1, pageQuantity)}"
 	        th:value="${i}"
 	        th:text="${i}"></option>
-<!-- 	</div> -->
 	</select>
 	
 	<label>Size:</label>
@@ -82,7 +86,8 @@
 		<option>15</option>
 	</select>
 	
-	<div sec:authorize="hasRole('ROLE_STORE_SELLER')">
+	<sec:authorize access="hasAnyRole('ROLE_STORE_SELLER','ROLE_DELIVERY_SELLER')">
+<!-- 	<div sec:authorize ifAnyGranted='ROLE_STORE_SELLER,ROLE_DELIVERY_SELLER'>  -->
 		<p>Current Sale:</p>
 		<input type="hidden" id="productQuantity" value="0"/>
 		<div id="currentSale">No product added</div>
@@ -101,7 +106,7 @@
 		
 		<button type="button" id="confirmSale">Confirm Sale</button>
 		<button type="button" id="resetSale">Reset Sale</button>
-	</div>
+	</sec:authorize>
 	
 	
 	<a th:href="@{/}">Back to the homepage</a>

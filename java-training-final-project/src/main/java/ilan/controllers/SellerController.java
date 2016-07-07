@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import ilan.enums.SaleStatus;
+import ilan.models.CaseDesign;
+import ilan.models.CaseDevice;
 import ilan.models.CaseWrapper;
 import ilan.models.Sale;
+import ilan.services.InventoryService;
 import ilan.services.SaleService;
 
 @Controller
@@ -27,6 +30,8 @@ public class SellerController {
 
 	@Autowired
 	SaleService saleService;
+	@Autowired
+	InventoryService inventoryService;
 	
 	@RequestMapping(value="/seller/{sellerId}/sales",method = RequestMethod.GET)
 	public String getSalesFromCaseSeller(@PathVariable Long sellerId, Model model){
@@ -51,7 +56,17 @@ public class SellerController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String registerSales(Model model){
+		Collection<CaseWrapper> wrappers = inventoryService.getInventoryWrappers(0,5);
+		Collection<CaseDesign> designs = inventoryService.getDesigns();
+		Collection<CaseDevice> devices = inventoryService.getDevices();
+		long count = inventoryService.getInventoryCount();
+		long pageQuantity = count / 5;
+		if((count % 5) != 0) pageQuantity++;
 		SaleStatus[] status = SaleStatus.values();
+		model.addAttribute("inventory",wrappers);
+    	model.addAttribute("designs",designs);
+    	model.addAttribute("devices",devices);
+    	model.addAttribute("pageQuantity",pageQuantity);
 		model.addAttribute("status",status);
 		return "deliverySellerRegister";
 	}
