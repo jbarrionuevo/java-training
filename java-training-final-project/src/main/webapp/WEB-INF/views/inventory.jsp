@@ -16,6 +16,7 @@
         <a href="<c:url value="/inventory/add"/>">Add case </a>
         <a href="<c:url value="/inventory/viewAllSales"/>">Upload stock</a>
         <a href="<c:url value="/inventory/addOrderToProvider"/>">Add order to provider</a>
-        <a href="<c:url value="/inventory/addProvider"/>">Add Provider</a>
+        <a href="<c:url value="/logistic/addProvider"/>">Add Provider</a>
+        <a href="<c:url value="/inventory/addProvider"/>">Add Provider - not</a>
     </body>
 </html>

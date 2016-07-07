@@ -5,18 +5,11 @@
  */
 package edu.globant.ioncases.controller;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.globant.ioncases.model.CaseCover;
 import edu.globant.ioncases.model.Provider;
 import edu.globant.ioncases.service.ProviderService;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,13 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.globant.ioncases.service.LogisticService;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  *
@@ -45,7 +35,15 @@ public class ProviderRestController {
 
     @Autowired
     LogisticService logisticService;
+
     
+    @RequestMapping(value = "/show", method = RequestMethod.GET)
+    @ResponseBody
+    public Provider getProvider(@RequestParam(value = "id") Long idProvider) {
+
+        return providerService.getProviderById(idProvider);
+    }
+
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     @ResponseBody
     public List<Provider> getAllProviders() {
@@ -54,8 +52,7 @@ public class ProviderRestController {
 
     @RequestMapping(value = "/getAllCasesByProvider", method = RequestMethod.GET)
     @ResponseBody
-    public List<CaseCover> getAllCases(@RequestParam(value = "providerId") Long idProvider) {
-        System.out.println("-----> " + idProvider);
+    public List<CaseCover> getAllCases(@RequestParam(value = "id") Long idProvider) {
 
         Provider provider = providerService.getProviderById(idProvider);
 
@@ -74,7 +71,7 @@ public class ProviderRestController {
         Map<Long, Integer> order = jsonToMap(orderStr);
 
         System.out.println(order);
-        
+
         logisticService.addOrderToProvider(order);
 
         return "Order sended to providers";
