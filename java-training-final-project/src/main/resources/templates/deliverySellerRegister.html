@@ -108,6 +108,10 @@
 		<button type="button" id="resetSale">Reset Sale</button>
 	</sec:authorize>
 	
+	<sec:authorize access="hasRole('ROLE_DELIVERY_SELLER')">
+		<h2>Registered Sales:</h2>
+		<div id="registeredSales"></div>
+	</sec:authorize>
 	
 	<a th:href="@{/}">Back to the homepage</a>
 </body>

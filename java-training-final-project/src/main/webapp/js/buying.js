@@ -8,6 +8,7 @@ $(document).ready(function(){
 	
 	var isDeliverySeller=$("#isDeliverySeller").val();
 	var allSales = [];
+	$("#registeredSales").html("<h3>No sales registered up to the moment</h3>");
 	
 	$(document).on("click",".buyCase",function(){
 		var wrapperId= this.id;
@@ -18,6 +19,7 @@ $(document).ready(function(){
 		var price = data.split("_")[2];
 		var prod_id = data.split("_")[3];
 		$("#productQuantity").val(parseInt($("#productQuantity").val)+parseInt(quantity));
+		
 		
 		var product = new Object();
 		product["wrapper_id"]=wrapperId;
@@ -96,9 +98,16 @@ $(document).ready(function(){
 						 ]
 				};
 				if(isDeliverySeller=="true"){
+					saleDTO.status = $("#statusSelect").val();
 					allSales.push(saleDTO);
 					alert("Sale saved. You've registered "+allSales.length+" sales up to now. Click Confirm All Sales to register them in the database; if not, "+
 							"all of them will be lost.");
+					$("#resetSale").click();
+					var newHtml="";
+					$.each(allSales, function(i,s) {
+						newHtml+="<p>"+(i+1)+") $"+s.totalPrice+" to customer "+s.receipts[0].customer.name+" ("+s.receipts[0].customer.location+"). Status: "+s.status+"</p>";
+					});
+					$("#registeredSales").html(newHtml);
 				}
 				else{
 					var sellerId = 1;  //actually should get it from seller
