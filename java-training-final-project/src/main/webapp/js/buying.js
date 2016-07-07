@@ -64,7 +64,23 @@ $(document).ready(function(){
 			return false;
 		}
 		if (confirm('Confirm all the sales?')) {
-			alert("great");
+			var sellerId = 2;  //actually should get it from seller
+			$.ajax({
+				   url: '/caseSellers/'+sellerId+'/addSales',
+				   headers: { 
+				        'Accept': 'application/json',
+				        'Content-Type': 'application/json' 
+				   },
+				   data: JSON.stringify(allSales),
+				   error: function() {
+				      $('#result').html('<p>An error has occurred</p>');
+				   },
+				   success: function(data) {
+					  alert("Sales registered succesfully. You can check the sales in sales menu.");
+					  $("#resetAllSales").click();
+				   },
+				   type: 'PUT'
+			});
 		}
 	});
 	
@@ -125,24 +141,7 @@ $(document).ready(function(){
 					$.each(allSales, function(i,s) {
 						newHtml+="<p>"+(i+1)+") $"+s.totalPrice+" to customer "+s.receipts[0].customer.name+" ("+s.receipts[0].customer.location+"). Status: "+s.status+"</p>";
 					});
-					$("#registeredSales").html(newHtml);
-					var sellerId = 2;  //actually should get it from seller
-					$.ajax({
-						   url: '/caseSellers/'+sellerId+'/addSales',
-						   headers: { 
-						        'Accept': 'application/json',
-						        'Content-Type': 'application/json' 
-						   },
-						   data: JSON.stringify(allSales),
-						   error: function() {
-						      $('#result').html('<p>An error has occurred</p>');
-						   },
-						   success: function(data) {
-							  alert("Sales registered succesfully. You can check the sales in sales menu.");
-							  $("#resetAllSales").click();
-						   },
-						   type: 'PUT'
-					});
+					$("#registeredSales").html(newHtml);			
 				}
 				else{
 					var sellerId = 1;  //actually should get it from seller

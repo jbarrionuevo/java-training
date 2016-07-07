@@ -18,6 +18,10 @@
         <input type="hidden" id="isStoreSeller" value="true"/>
     </div>
     
+    <div th:if="${#authorization.expression('hasRole(''ROLE_DELIVERY_SELLER'')')}">
+        <input type="hidden" id="isDeliverySeller" value="true"/>
+    </div>
+    
 	<label>Sale status: </label>
 	<select id="statusSelect">
 		<option value="all">All</option>
@@ -34,10 +38,10 @@
 				<th>STATUS</th>
 				<th>DATE OF REQUEST</th>
 				<th>TOTAL PRICE</th>
-				<div th:if="${#authorization.expression('hasRole(''ROLE_STORE_SELLER'')')}">
+				<sec:authorize access="hasAnyRole('ROLE_STORE_SELLER','ROLE_DELIVERY_SELLER')">
 					<th>ACTION 1</th>
 					<th>ACTION 2</th>
-				</div>
+				</sec:authorize>
 			</tr>		
 			<tr th:each="sale,itrStat : ${sales}">
 					<td th:text="${itrStat.count}"></td>
@@ -47,7 +51,7 @@
 					<td th:text="${#dates.format(sale.caseOrder.dateOfRequest,'dd/MM/yyyy')}"></td>
 					<td th:text="'$'+${sale.totalPrice}"></td>
 					
-					<div th:if="${#authorization.expression('hasRole(''ROLE_STORE_SELLER'')')}">
+					<sec:authorize access="hasAnyRole('ROLE_STORE_SELLER','ROLE_DELIVERY_SELLER')">
 						<div th:if="${#strings.toLowerCase(sale.Status)=='paid'}">
 						   <td>
 						    <select th:id="${sale.id}+'_refundType'">
@@ -74,7 +78,7 @@
 							</div> 
 						</div>
 						
-					</div>
+					</sec:authorize>
 			</tr>
 		</table>
 	</div>

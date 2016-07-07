@@ -5,8 +5,13 @@ $(document).ready(function(){
 	
 	var isAdmin=false;
 	var isStoreSeller=false;
+	var isDeliverySeller=false;
 	if($("#isAdmin").val()!=undefined) isAdmin=true;
 	if($("#isStoreSeller").val()!=undefined) isStoreSeller=true;
+	if($("#isDeliverySeller").val()!=undefined){
+		isDeliverySeller=true;
+		sellerId=2;
+	}
 	
 	$(document).on("click",".confirmSale",function(){
 		var saleId = this.id;
@@ -176,7 +181,7 @@ $(document).ready(function(){
 			"									<th>STATUS</th>"+
 			"									<th>DATE OF REQUEST</th>"+
 			"									<th>TOTAL PRICE</th>";
-		if(isStoreSeller) {
+		if(isStoreSeller||isDeliverySeller) {
 			result +="									<th>ACTION 1</th>"+
 			"									<th>ACTION 2</th>";
 		}
@@ -191,7 +196,7 @@ $(document).ready(function(){
 			  result+="<td>"+s.status+"</td>";
 			  result+="<td>"+getDateString(new Date(s.caseOrder.dateOfRequest))+"</td>";
 			  result+="<td>$"+s.totalPrice+"</td>";
-			  if(isStoreSeller) {
+			  if(isStoreSeller||isDeliverySeller) {
 				  if(s.status.toLowerCase()=='paid'){
 					  var saleDelay = delay(new Date(s.caseOrder.dateOfRequest),null);
 					  if(saleDelay>30)
