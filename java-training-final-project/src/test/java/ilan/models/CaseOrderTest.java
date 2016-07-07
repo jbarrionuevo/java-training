@@ -1,7 +1,10 @@
 package ilan.models;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.when;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -10,9 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.neo4j.cypher.internal.compiler.v2_2.ast.IsNotNull;
-import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.Mockito.when;
 
 public class CaseOrderTest {
 
@@ -68,6 +68,17 @@ public class CaseOrderTest {
 		assertThat("Case Device wasnt correctly instantiated",test.getRequestCases().size(),is(0));
 	}
 	
-
+	@Test
+	public void testGetQuantity(){
+		CaseOrder test = new CaseOrder(new HashMap<Long,Integer>(){{put(5L,10);put(6L,15);}},new Date(),thirdPartyParticipantMock);
+		assertThat("Case Device wasnt correctly instantiated",test.getQuantity(),is(25));
+	}
+	
+	@Test
+	public void testToString() {
+		CaseOrder test = new CaseOrder(new HashMap<Long,Integer>(),new Date(),thirdPartyParticipantMock);
+		assertThat("To String method doesnt work as expected",
+				test.toString(),equalTo("Date of request: "+test.getDateOfRequest()+". \nOrder: \n"));
+	}
 
 }
