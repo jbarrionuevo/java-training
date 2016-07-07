@@ -9,7 +9,7 @@
 </head>
 <body>
 	<a href="<c:url value="/logistic/allInventory"/>">View all inventory</a>
-    <a href="<c:url value="/logistic/addCase"/>">Add case </a>
+  <%--  <a href="<c:url value="/logistic/addCase"/>">Add case </a>--%>
 <%--     <a href="<c:url value="/logistic/viewAllSales"/>">Upload stock</a> --%>
     <a href="<c:url value="/logistic/addOrderToProvider"/>">Add order to provider</a>
     <a href="<c:url value="/logistic/addProvider"/>">Add Provider</a>

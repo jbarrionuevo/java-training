@@ -17,7 +17,7 @@ public abstract class ProviderDTO{
 	protected ProviderDTO(String name, ArrayList<OrderDTO> orders){
 		Validate.notBlank(name,"The name cannot be blank");
 		Validate.notNull(orders,"orders cannot be null");
-		Validate.notEmpty(orders,"orders cannot be empty");
+		//Validate.notEmpty(orders,"orders cannot be empty");
 		
 		this.name = name;
 		this.orders = orders;
