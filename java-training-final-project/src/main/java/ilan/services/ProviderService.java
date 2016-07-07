@@ -69,11 +69,15 @@ public class ProviderService {
 		}
 	}
 
-	public Collection<CaseOrder> getProviderOrders(Long providerId) {
+	public Collection<CaseOrder> getProviderOrders(Long providerId,String delivered) {
 		Provider provider = providerDao.findOne(providerId);
 		if(provider==null) throw new ProviderNotFoundException(providerId.toString());
-		Collection<CaseOrder> orders = caseOrderDao.findByThirdPartyParticipant(provider);
-		return orders;
+		if(delivered.equals("all")) return caseOrderDao.findByThirdPartyParticipant(provider);
+		else{
+			if(delivered.equals("false")) return caseOrderDao.findByThirdPartyParticipantAndDateOfDeliveryIsNull(provider);
+			else return caseOrderDao.findByThirdPartyParticipantAndDateOfDeliveryIsNotNull(provider);
+		}
 	}
+
 	
 }

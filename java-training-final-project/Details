@@ -3,15 +3,14 @@ it will create the tables the first time you run the app; for further runnings, 
 
 You can enter the app with one of these users:
 - user: super pass:super  The super admin. Can check the stock of the products and providers statistics.
-- user: store_seller pass:store_seller   A store seller. Can register sales, check their receipts, and refund them. Its id is hardcoded to 1, so it represents 
-seller 1 (which is saved in Application.java). Due to the lack of time, I didn't represent the users in the db, only in memory, but this could be a future
-work.
 - user: logistic pass: logistic   A logistic team member. Can make orders to the providers, and checks the generated alarms due to low stock of products. 
 Can set the minimum stock of products, too.
 - user: provider pass: provider   A provider. Can check its orders and replace the products he has been ordered. Its id is hardcoded to 1, so it represents 
 provider 1 (which is saved in Application.java). Due to the lack of time, I didn't represent the users in the db, only in memory, but this could be a future
 work.
-//TO DO
+- user: store_seller pass:store_seller   A store seller. Can register sales, check their receipts, and refund them. Its id is hardcoded to 1, so it represents 
+seller 1 (which is saved in Application.java). Due to the lack of time, I didn't represent the users in the db, only in memory, but this could be a future
+work.
 - user: delivery_seller pass: delivery_seller Register a bunch of orders and can update them after.  Its id is hardcoded to 2, so it represents 
 seller 2 (which is saved in Application.java). Due to the lack of time, I didn't represent the users in the db, only in memory, but this could be a future
 work.

@@ -229,7 +229,7 @@ $(document).ready(function(){
 });
 
 function getDateString(date){
-	var dd = date.getDate(); 
+	var dd = date.getDate()+1; 
 	if(dd<10) dd = "0"+dd;
 	var mm = date.getMonth()+1; 
 	if(mm<10) mm = "0"+mm;

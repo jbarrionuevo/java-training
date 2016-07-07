@@ -6,46 +6,50 @@
 <title>My Orders</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/dateFunctions.js"></script>
 <script type="text/javascript" src="../../js/provider.js"></script>
 </head>
 <body>
 
 	<label>Type: </label>
 	<select id="typeSelect">
-		<option value="all">All</option>
+		<option value="false">Not Delivered</option>
+		<option value="true">Delivered</option>
 <!-- 		<option value="pending">Pending</option> -->
 <!-- 		<option value="attended">Attended</option> -->
 	</select>
 	
-	<table border='1'>
-		<tr>
-			<th>INDEX</th>
-			<th>ORDER DETAILS</th>
-			<th>ORDER DATE OF REQUEST</th>
-			<th>ORDER DATE OF DELIVERY</th>
-			<th>DELAY</th>
-			<th>DELIVER</th>
-		</tr>
-		<tr th:each="order,itrStat : ${orders}">
-			<td th:text="${itrStat.count}"></td>
-			<div th:each="request : ${order.requestCases}">
-				<td th:text="${request.value}+' items of product with id '+${request.key}"></td>
-			</div>
-			<td th:text="${order.dateOfRequest}"></td>
-			<div th:if="${order.dateOfDelivery}==null">
-				<td th:if="${order.dateOfDelivery}==null">Not yet delivered</td>
-				<td th:text="0"></td>
-				<td>
-					<button type="button" class="deliver" th:id="${order.id}">Deliver!</button>
-				</td>
-			</div>
-			<div th:if="${order.dateOfDelivery}!=null">
-				<td th:if="${order.dateOfDelivery}!=null" th:text="${order.dateOfDelivery}"></td>
-				<td th:text="0"></td>
-				<td>Already Delivered</td>
-			</div>
-		</tr>
-	</table>
+	<div id="result">
+		<table border='1'>
+			<tr>
+				<th>INDEX</th>
+				<th>ORDER DETAILS</th>
+				<th>ORDER DATE OF REQUEST</th>
+				<th>ORDER DATE OF DELIVERY</th>
+				<th>DELAY</th>
+				<th>DELIVER</th>
+			</tr>
+			<tr th:each="order,itrStat : ${orders}">
+				<td th:text="${itrStat.count}"></td>
+				<div th:each="request : ${order.requestCases}">
+					<td th:text="${request.value}+' items of product with id '+${request.key}"></td>
+				</div>
+				<td th:text="${order.dateOfRequest}"></td>
+				<div th:if="${order.dateOfDelivery}==null">
+					<td th:if="${order.dateOfDelivery}==null">Not yet delivered</td>
+					<td th:text="0"></td>
+					<td>
+						<button type="button" class="deliver" th:id="${order.id}">Deliver!</button>
+					</td>
+				</div>
+				<div th:if="${order.dateOfDelivery}!=null">
+					<td th:if="${order.dateOfDelivery}!=null" th:text="${order.dateOfDelivery}"></td>
+					<td th:text="0"></td>
+					<td>Already Delivered</td>
+				</div>
+			</tr>
+		</table>
+	</div>
 	
 	<a th:href="@{/}">Back to the homepage</a>
 </body>

@@ -39,7 +39,7 @@ public class ProviderRestController {
 	
 	@RequestMapping(value = "/{providerId}/orders", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public Collection<CaseOrderDTO> getOrders(@PathVariable Long providerId) {
-		return providerService.getProviderOrders(providerId).stream().map(o->mapper.map(o,CaseOrderDTO.class)).collect(Collectors.toList());
+	public Collection<CaseOrderDTO> getOrders(@PathVariable Long providerId, @RequestParam (value="delivered", required=false, defaultValue="all") String delivered) {
+		return providerService.getProviderOrders(providerId,delivered).stream().map(o->mapper.map(o,CaseOrderDTO.class)).collect(Collectors.toList());
 	}
 }
