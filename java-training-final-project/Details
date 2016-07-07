@@ -55,3 +55,4 @@ as PAID, and the corresponding stock will be decreased from the inventory.
 //TO DO:
 6) In order to save time for the application development, the delivery sellers have to go back to the store to register their sales. 
 They have to register all sales, even if they were cancelled.
+//IF HAVE TIME: CHOOSE THE CUSTOMER IN THE SALE
