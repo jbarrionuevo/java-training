@@ -111,6 +111,8 @@
 	<sec:authorize access="hasRole('ROLE_DELIVERY_SELLER')">
 		<h2>Registered Sales:</h2>
 		<div id="registeredSales"></div>
+		<button type="button" id="confirmAllSales">Confirm All Sales</button>
+		<button type="button" id="resetAllSales">Reset All Sales</button>
 	</sec:authorize>
 	
 	<a th:href="@{/}">Back to the homepage</a>

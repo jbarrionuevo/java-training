@@ -2,6 +2,7 @@ package ilan.restcontrollers;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,10 @@ public class CaseSellerRestController {
 		caseSellerService.addSale(caseSellerId, mapper.map(saleDTO, Sale.class));
 	}
 
+	@RequestMapping(value="/{caseSellerId}/addSales",method = RequestMethod.PUT)
+	@ResponseStatus(value= HttpStatus.OK)
+	public void addSales(@PathVariable Long caseSellerId, @RequestBody Collection<SaleDTO> salesDTO){
+		caseSellerService.addSales(caseSellerId, salesDTO.stream().map(sdto->mapper.map(sdto, Sale.class)).collect(Collectors.toList()));
+	}
 	
 }

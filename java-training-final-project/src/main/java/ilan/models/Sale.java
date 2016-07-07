@@ -41,11 +41,11 @@ public class Sale {
 	
 	public Sale(){}
 	
-	public Sale(CaseOrder caseOrder, Collection<Receipt> receipts, double totalPrice) {
+	public Sale(CaseOrder caseOrder, Collection<Receipt> receipts, double totalPrice, SaleStatus status) {
 		super();
 		Validate.notNull(caseOrder,"Order cannot be null");
 		this.caseOrder=caseOrder;
-		this.status = SaleStatus.DRAFT;
+		this.status = status;
 		this.receipts=receipts;
 		this.totalPrice=totalPrice;
 	}

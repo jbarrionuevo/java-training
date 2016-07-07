@@ -45,7 +45,7 @@ public class SaleCustomConverter implements CustomConverter{
 	    	  Customer c = receipt.getCustomer();
 	    	  receipts.add(new ReceiptDTO(receipt.getStoreName(), receipt.getDateOfSale(), new CustomerDTO(c.getName(), c.getLocation(), c.getAge(), c.getGender())));
 	      }
-	      SaleDTO result = new SaleDTO(caseOrder,receipts,sourceSale.getTotalPrice());
+	      SaleDTO result = new SaleDTO(caseOrder,receipts,sourceSale.getTotalPrice(), sourceSale.getStatus());
 	      result.setId(sourceSale.getId());
 	      result.setStatus(sourceSale.getStatus());
 	      return result;
@@ -65,7 +65,7 @@ public class SaleCustomConverter implements CustomConverter{
 		    	  CustomerDTO c = receiptDTO.getCustomer();
 		    	  receipts.add(new Receipt(receiptDTO.getStoreName(), receiptDTO.getDateOfSale(), new Customer(c.getName(), c.getLocation(), c.getAge(), c.getGender())));
 		    }
-		    Sale result = new Sale(caseOrder, receipts, sourceSaleDTO.getTotalPrice());
+		    Sale result = new Sale(caseOrder, receipts, sourceSaleDTO.getTotalPrice(), sourceSaleDTO.getStatus());
 		    result.setStatus(sourceSaleDTO.getStatus());
 	    	return result;
 	    } else {

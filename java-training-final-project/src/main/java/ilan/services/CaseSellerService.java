@@ -1,5 +1,7 @@
 package ilan.services;
+import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
@@ -77,6 +79,13 @@ public class CaseSellerService {
 		sale.setStatus(SaleStatus.PAID);
 		looked.addSale(sale);
 		caseSellerDao.save(looked);
+	}
+
+	@Transactional
+	public void addSales(Long caseSellerId, Collection<Sale> sales) {
+		for(Sale sale:sales){
+			this.addSale(caseSellerId, sale);
+		}
 	}
 	
 }

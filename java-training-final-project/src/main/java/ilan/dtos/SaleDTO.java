@@ -13,10 +13,10 @@ public class SaleDTO {
 	
 	public SaleDTO(){}
 	
-	public SaleDTO(CaseOrderDTO caseOrder, Collection<ReceiptDTO> receipts, double totalPrice) {
+	public SaleDTO(CaseOrderDTO caseOrder, Collection<ReceiptDTO> receipts, double totalPrice, SaleStatus status) {
 		this.receipts=receipts;
 		this.caseOrder=caseOrder;
-		this.status = SaleStatus.DRAFT;
+		this.status = status;
 		this.totalPrice=totalPrice;
 	}
 
