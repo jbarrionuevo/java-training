@@ -55,8 +55,6 @@ can have one of these status: draft, paid, cancelled and refund.
 For this, enter the system as seller, go to "Check Sales", and mark DRAFT sales with "CONFIRM"; if the needed stock is available, the sale will be marked
 as PAID, and the corresponding stock will be decreased from the inventory.
 
-
-//TO DO:
 6) In order to save time for the application development, the delivery sellers have to go back to the store to register their sales. 
 They have to register all sales, even if they were cancelled.
-//IF HAVE TIME: CHOOSE THE CUSTOMER IN THE SALE
+You can do this entering the system with delivery_seller, and registering a bunch of sales with the status you like (you can choose it when registering each sale).
