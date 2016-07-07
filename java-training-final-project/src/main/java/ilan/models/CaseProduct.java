@@ -1,6 +1,7 @@
 package ilan.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -42,6 +43,7 @@ public class CaseProduct implements Serializable {
 		this.device = device;
 		this.price=price;
 		this.provider=provider;
+		this.alerts = new ArrayList<OrderAlert>();
 	}
 	
 	@Override
@@ -56,6 +58,10 @@ public class CaseProduct implements Serializable {
 		return this.getDesign().equals(other.getDesign())
 				&& (this.getDevice().equals(other.getDevice()))
 				&& (this.getProvider().equals(other.getProvider()));
+	}
+	
+	public void addAlert(OrderAlert alert){
+		this.alerts.add(alert);
 	}
 	
 	public void removeAlert(OrderAlert alert){

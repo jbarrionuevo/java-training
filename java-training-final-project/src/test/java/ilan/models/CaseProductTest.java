@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.CoreMatchers.*;
 
-public class CaseTest {
+public class CaseProductTest {
 
 	@Mock
 	CaseDesign caseDesignMock;
@@ -60,6 +60,24 @@ public class CaseTest {
 		CaseProduct test = new CaseProduct(caseDesignMock,caseDeviceMock,10.0,providerMock);
 		assertThat("To String method doesnt work as expected",test.toString(),equalTo("Design: "+caseDesignMock.getName()+
 				", Device: "+caseDeviceMock.getName()+", Provider: "+providerMock.getName()+"("+providerMock.getLocation()+")"));
+	}
+	
+	@Test
+	public void testAddAlert(){
+		CaseProduct test = new CaseProduct(caseDesignMock,caseDeviceMock,10.0,providerMock);
+		int alertCount = test.getAlerts().size();
+		test.addAlert(new OrderAlert(10, test));
+		assertThat("Add alert doesnt work correctly",test.getAlerts().size(),is(alertCount+1));
+	}
+	
+	@Test
+	public void testRemoveAlert(){
+		CaseProduct test = new CaseProduct(caseDesignMock,caseDeviceMock,10.0,providerMock);
+		OrderAlert newAlert = new OrderAlert(10, test);
+		test.addAlert(newAlert);
+		int alertCount = test.getAlerts().size();
+		test.removeAlert(newAlert);
+		assertThat("Remove alert doesnt work correctly",test.getAlerts().size(),is(alertCount-1));
 	}
 
 }
