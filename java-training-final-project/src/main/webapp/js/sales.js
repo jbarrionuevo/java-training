@@ -42,7 +42,7 @@ $(document).ready(function(){
 			        break;
 			    case "samemodel":
 			    	//do something
-			    	alert("do something..");
+			    	updateSale("refundSame",saleId);
 			        break;
 			}
 		}

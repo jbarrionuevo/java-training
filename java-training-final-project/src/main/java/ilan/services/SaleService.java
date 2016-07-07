@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ilan.daos.CaseOrderDao;
 import ilan.daos.CaseProductDao;
 import ilan.daos.CaseSellerDao;
 import ilan.daos.CaseWrapperDao;
@@ -24,6 +25,7 @@ import ilan.exceptions.CaseSellerNotFoundException;
 import ilan.exceptions.CaseWrapperNotFoundException;
 import ilan.exceptions.NotEnoughStockException;
 import ilan.exceptions.SaleNotFoundException;
+import ilan.models.CaseOrder;
 import ilan.models.CaseProduct;
 import ilan.models.CaseSeller;
 import ilan.models.CaseWrapper;
@@ -45,6 +47,8 @@ public class SaleService {
 	private CaseProductDao caseProductDao;
 	@Autowired
 	private InventoryDao inventoryDao;
+	@Autowired
+	private CaseOrderDao caseOrderDao;
 	
 	@Transactional
 	public void registerSales(Sale... sales) {
@@ -124,6 +128,11 @@ public class SaleService {
 			break;
 		case "cancelled":
 			sale.setStatus(SaleStatus.CANCELLED);
+			break;
+		case "refundSame":
+			CaseOrder order = caseOrderDao.findOne(sale.getCaseOrder().getId());
+			order.setDateOfRequest(new Date());
+			caseOrderDao.save(order);
 			break;
 		default:
 			sale.setStatus(SaleStatus.REFUND);
