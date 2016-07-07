@@ -18,7 +18,7 @@ its minimum; if true, it generates an alarm containing the product id, and the q
 as the stock needed for recovering the minimum plus 100).
 This task is executed once a second, but this delay can be configured as you like.
 
-Required Tasks:
+Required Tasks and their implementations in my development:
 1) Keep track of how many cases are in stock for every design and case:
 This can be achieved entering the system as super, and clicking in "Check Stock"; there, you will see
 each product with its device and design, and its stock.
@@ -42,7 +42,11 @@ can have one of these status: draft, paid, cancelled and refund.
 You can register a sale entering the system with seller, and clicking "New Sale"; there, you choose all the cases you want, with a quantity from 1 to 5,
 and register the sale entering the customer details before. 
 Then, in "Check Sales", you can check each sale, seeing their status and other details. You can also change its status, marking it as paid, or canceling
-it.
+it. When refunding a paid sale, you can:
+ 	a) Just refund it: when the customer doesn't want neither the same case nor another one; the case stock is incremented in one, and the sale marked
+ 	as refund
+ 	b)Choose other model: the customer must choose it, the sale is marked as refund and a new sale is made //NOT DONE YET
+ 	c)Chose same model: the date of request its updated to the current date, so a new month of warranty starts
 
 5) When registering a sell, the amount of physic cases for the design and device sold must be decreased from the inventory.
 For this, enter the system as seller, go to "Check Sales", and mark DRAFT sales with "CONFIRM"; if the needed stock is available, the sale will be marked
