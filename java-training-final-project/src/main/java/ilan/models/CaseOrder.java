@@ -36,6 +36,7 @@ public class CaseOrder {
 		super();
 		Validate.notNull(dateOfRequest, "Date of request cannot be null");
 		Validate.notNull(requestCases, "Request cases cannot be null");
+		Validate.notNull(thirdPartyParticipant, "ThirdPartyParticipant cannot be null");
 //		Validate.containsNoEmpties((Iterable<String>) requestCases, "There must be at least 1 request case");
 		this.requestCases = requestCases;
 		this.dateOfRequest=dateOfRequest;
