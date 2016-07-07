@@ -50,6 +50,7 @@ can have one of these status: draft, paid, cancelled and refund.
  			a.2)Chose same model: the date of request its updated to the current date, so a new month of warranty starts
 	b) Entering with delivery_seller: You can register a bunch of sales with any of the four status, and then change their status. You can also cancel sales or register
 	them as draft sales (which store_seller can't).
+	To refund a sale, the system check that it's delivery date is not older than 30 days ago; if not, it won't let you refund it.
 	
 5) When registering a sell, the amount of physic cases for the design and device sold must be decreased from the inventory.
 For this, enter the system as seller, go to "Check Sales", and mark DRAFT sales with "CONFIRM"; if the needed stock is available, the sale will be marked
