@@ -8,6 +8,7 @@ package edu.globant.ioncases.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -21,6 +22,13 @@ public class LogisticController {
     public String addProvider() {
 
         return "addProvider";
+    }
+
+    @RequestMapping(value = "/addProvider", method = RequestMethod.POST)
+    public String addProvider(@RequestParam(value = "name") String name, @RequestParam(value = "inventoryUrl") String inventoryUrl) {
+
+        System.out.println("-----------> " + name + "----> " + inventoryUrl);
+        return "index";
     }
 
 }
