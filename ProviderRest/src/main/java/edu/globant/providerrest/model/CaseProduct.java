@@ -21,9 +21,9 @@ public class CaseProduct {
     public CaseProduct() {
     }
 
-    public CaseProduct(Long id, String desgin, double price) {
+    public CaseProduct(Long id, String design, double price) {
         this.id = id;
-        this.design = desgin;
+        this.design = design;
         this.price = price;
     }
 
@@ -35,12 +35,12 @@ public class CaseProduct {
         this.id = id;
     }
 
-    public String getDesgin() {
+    public String getDesign() {
         return design;
     }
 
-    public void setDesgin(String desgin) {
-        this.design = desgin;
+    public void setDesign(String design) {
+        this.design = design;
     }
 
     public List<Device> getCompatibleDevices() {
