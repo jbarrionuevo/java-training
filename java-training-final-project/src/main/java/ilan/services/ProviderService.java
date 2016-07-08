@@ -21,6 +21,7 @@ import ilan.models.CaseOrder;
 import ilan.models.CaseProduct;
 import ilan.models.OrderAlert;
 import ilan.models.Provider;
+import jersey.repackaged.com.google.common.collect.Lists;
 
 @Service
 public class ProviderService {
@@ -49,8 +50,8 @@ public class ProviderService {
 	public Collection<Provider> findAllProviders(){
 		return providerDao.findAll();
 	}
-	public Page<Provider> findAllProviders(Integer page, Integer size){
-		return providerDao.findAll(new PageRequest(page, size));
+	public Collection<Provider> findAllProviders(Integer page, Integer size){
+		return Lists.newArrayList(providerDao.findAll(new PageRequest(page, size)));
 	}
 	
 	@Transactional
