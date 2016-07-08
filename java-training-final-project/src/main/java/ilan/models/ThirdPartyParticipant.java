@@ -24,7 +24,6 @@ public class ThirdPartyParticipant implements Serializable{
 	private String name,location;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "thirdPartyParticipant", cascade = CascadeType.ALL)
-//	@JoinColumn(name = "provider_id")
 	private Collection<CaseOrder> orders;
 	
 	public ThirdPartyParticipant(){}
