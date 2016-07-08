@@ -24,7 +24,7 @@ public class ProviderController {
 		return "providers";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value="/{providerId}")
+	@RequestMapping(method = RequestMethod.GET, value="/{providerId}/orders")
     public String getProviderOrders(@PathVariable Long providerId, Model model) {
 		model.addAttribute("orders",providerService.getProviderOrders(providerId,"false"));
 		return "provider";

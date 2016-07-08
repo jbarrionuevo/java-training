@@ -33,7 +33,7 @@
 			<p><a th:href="@{/inventoryView/wrappers}">Configure Minimum Stocks</a></p>
 		</div>
 		<div th:if="${#authorization.expression('hasRole(''ROLE_PROVIDER'')')}">
-			<p><a th:href="@{/providersView/1}">My orders</a></p>
+			<p><a th:href="@{/providersView/1/orders}">My orders</a></p>
 		</div>
 	    
 	    <form th:action="@{/logout}" method="post">
