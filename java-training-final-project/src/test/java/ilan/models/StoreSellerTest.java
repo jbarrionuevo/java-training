@@ -7,6 +7,13 @@ import org.junit.Test;
 
 public class StoreSellerTest {
 
+	@Test
+	public void testCreation() {
+		StoreSeller test = new StoreSeller("name","store");
+		assertThat("CompleteSeller wasnt correctly instantiated",test.getName(),is("name"));
+		assertThat("CompleteSeller wasnt correctly instantiated",test.getStore(),is("store"));
+	}
+	
 	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation() {
 		new StoreSeller(null,null);
@@ -22,11 +29,19 @@ public class StoreSellerTest {
 		new StoreSeller(null,"store");
 	}
 	
-	@Test
-	public void testCreation() {
-		StoreSeller test = new StoreSeller("name","store");
-		assertThat("CompleteSeller wasnt correctly instantiated",test.getName(),is("name"));
-		assertThat("CompleteSeller wasnt correctly instantiated",test.getStore(),is("store"));
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation4() {
+		new StoreSeller("","");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation5() {
+		new StoreSeller("",null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation6() {
+		new StoreSeller(null,"");
 	}
 
 }

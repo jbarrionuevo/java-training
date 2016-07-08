@@ -51,4 +51,9 @@ public class ReceiptTest {
 		new Receipt("store",new Date(),null);
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation3() {
+		new Receipt("",new Date(),null);
+	}
+	
 }

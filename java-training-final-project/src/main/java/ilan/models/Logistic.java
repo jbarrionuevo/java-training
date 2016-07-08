@@ -1,16 +1,12 @@
 package ilan.models;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-
 public class Logistic extends Employee {
 	
 	private Inventory inventory;
 	
 	public Logistic(String name, Inventory inventory) {
 		super(name);
-		// TODO Auto-generated constructor stub
+		this.inventory=inventory;
 	}
 
 	public Inventory getInventory() {

@@ -22,6 +22,21 @@ public class CompleteSellerTest {
 		new CompleteSeller(null,"store");
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation4() {
+		new CompleteSeller("","");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation5() {
+		new CompleteSeller("",null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation6() {
+		new CompleteSeller(null,"");
+	}
+	
 	@Test
 	public void testCreation() {
 		CompleteSeller test = new CompleteSeller("name","store");

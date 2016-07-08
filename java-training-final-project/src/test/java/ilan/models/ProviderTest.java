@@ -30,6 +30,11 @@ public class ProviderTest {
 		new Provider("test",null);
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation5() {
+		new Provider("","");
+	}
+	
 	@Test
 	public void testCreation() {
 		Provider test = new Provider("testName","testLocation");

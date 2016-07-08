@@ -32,8 +32,18 @@ public class CustomerTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation8() {
+		new Customer("","",0,null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation2() {
 		new Customer("name",null,0,null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation9() {
+		new Customer("",null,0,null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -47,13 +57,28 @@ public class CustomerTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation10() {
+		new Customer("",null,0,Gender.M);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation5() {
 		new Customer(null,"location",0,null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation11() {
+		new Customer(null,"",0,null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation6() {
 		new Customer(null,"location",0,Gender.M);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation12() {
+		new Customer(null,"",0,Gender.M);
 	}
 
 	@Test(expected=IllegalArgumentException.class)

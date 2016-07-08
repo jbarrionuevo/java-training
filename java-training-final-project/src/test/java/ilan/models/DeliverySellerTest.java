@@ -22,6 +22,21 @@ public class DeliverySellerTest {
 		new DeliverySeller(null,"store");
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation4() {
+		new DeliverySeller("","");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation5() {
+		new DeliverySeller("",null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation6() {
+		new DeliverySeller(null,"");
+	}
+	
 	@Test
 	public void testCreation() {
 		DeliverySeller test = new DeliverySeller("name","store");

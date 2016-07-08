@@ -22,13 +22,28 @@ public class ThirdPartyParticipantTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation6() {
+		new ThirdPartyParticipant("","");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation2() {
 		new ThirdPartyParticipant("name",null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testFailedCreation3() {
+		new ThirdPartyParticipant("",null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation4() {
 		new ThirdPartyParticipant(null,"location");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailedCreation5() {
+		new ThirdPartyParticipant(null,"");
 	}
 
 }
