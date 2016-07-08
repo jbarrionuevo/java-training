@@ -62,7 +62,7 @@ public class ProviderControllerTest {
 	}
 
 	@Test
-	public void findById_ProviderNotFound_ShouldRenderErrorView() throws Exception {
+	public void findById_ProviderNotFound_ShouldThrowError() throws Exception {
 		when(providerServiceMock.getProviderOrders(1L,"false")).thenThrow(new ProviderNotFoundException(1L));
 
 		mockMvc.perform(get("/providersView/{providerId}/orders", 1L))

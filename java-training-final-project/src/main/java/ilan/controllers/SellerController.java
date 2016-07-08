@@ -42,7 +42,7 @@ public class SellerController {
 		
 		Collection<SaleStatus> status = new ArrayList<SaleStatus>() {{add(SaleStatus.PAID);add(SaleStatus.REFUND);}};
 		Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        if (hasDeliveryAuthority(authorities)){
+		if (hasDeliveryAuthority(authorities)){
             status.add(SaleStatus.DRAFT);
 	    	status.add(SaleStatus.CANCELLED);
         }
