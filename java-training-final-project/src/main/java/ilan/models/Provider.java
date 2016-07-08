@@ -1,27 +1,17 @@
 package ilan.models;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Index;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(indexes = {@Index(columnList = "name", name = "provider_name")})
-public class Provider extends ThirdPartyParticipant implements InventoryObserver{
+public class Provider extends ThirdPartyParticipant {
 	
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "provider", cascade = CascadeType.ALL)
-	@JsonIgnore
-	private Collection<CaseProduct> cases;
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "provider", cascade = CascadeType.ALL)
+//	@JsonIgnore
+//	private Collection<CaseProduct> cases;
 	
 	
 	public Provider(){}
@@ -41,19 +31,13 @@ public class Provider extends ThirdPartyParticipant implements InventoryObserver
 		return this.getName().equals(other.getName()) && this.getLocation().equals(other.getLocation());
 	}
 
-	@Override
-	public void doUpdate(CaseProduct aCase) {
-		System.out.println("Check if the provider contains aCase; if true,"
-				+ "generate an auto-order for provide that case");
-	}
-
-	public Collection<CaseProduct> getCases() {
-		return cases;
-	}
-
-	public void setCases(Collection<CaseProduct> cases) {
-		this.cases = cases;
-	}
+//	public Collection<CaseProduct> getCases() {
+//		return cases;
+//	}
+//
+//	public void setCases(Collection<CaseProduct> cases) {
+//		this.cases = cases;
+//	}
 
 	
 }

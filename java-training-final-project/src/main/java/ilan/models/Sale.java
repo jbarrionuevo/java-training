@@ -44,6 +44,8 @@ public class Sale {
 	public Sale(CaseOrder caseOrder, Collection<Receipt> receipts, double totalPrice, SaleStatus status) {
 		super();
 		Validate.notNull(caseOrder,"Order cannot be null");
+		Validate.notNull(totalPrice,"totalPrice cannot be null");
+		Validate.notNull(status,"status cannot be null");
 		this.caseOrder=caseOrder;
 		this.status = status;
 		this.receipts=receipts;

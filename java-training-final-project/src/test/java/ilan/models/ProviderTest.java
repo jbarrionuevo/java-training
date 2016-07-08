@@ -45,5 +45,11 @@ public class ProviderTest {
 				"Name: "+test.getName()+". Location: "+test.getLocation()));
 	}
 	
+	@Test
+	public void testEquals(){
+		Provider test = new Provider("testName","testLocation");
+		assertThat("Equals method doesnt work as expected",test,equalTo(new Provider("testName","testLocation")));
+	}
+	
 
 }

@@ -33,25 +33,12 @@ public class Inventory {
 		this.stock.add(wrapper);
 	}
 	
-	
 	public Collection<CaseWrapper> getStock() {
 		return stock;
 	}
 	
 	public void setStock(Collection<CaseWrapper> stock) {
 		this.stock = stock;
-	}
-
-	public void removeCase(CaseProduct aCase, int quantity){
-		//if inventory has a CaseWrapper for that type of case
-			//update it
-		//else
-			//throw not found
-	}
-
-	private CaseWrapper getWrapperForCase(CaseProduct aCase){
-		//return the wrapper for that case, which include its minimum stock and current stock
-		return null;
 	}
 
 
