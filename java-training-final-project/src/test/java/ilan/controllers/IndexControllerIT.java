@@ -10,32 +10,27 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.mock.web.MockServletContext;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import ilan.Application;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-@ContextConfiguration(classes = MockServletContext.class)
 @WebAppConfiguration
-public class IndexControllerTest {
+public class IndexControllerIT {
 
 	private MockMvc mockMvc;
 
-	@InjectMocks
-	IndexController indexController;
+	@Autowired
+	private WebApplicationContext webApplicationContext;
 
 	@Before
 	public void setup() throws Exception {
-		MockitoAnnotations.initMocks(this);
-		this.mockMvc= MockMvcBuilders.standaloneSetup(indexController).build();	
+		this.mockMvc = webAppContextSetup(webApplicationContext).build();
 	}
 
 	@Test

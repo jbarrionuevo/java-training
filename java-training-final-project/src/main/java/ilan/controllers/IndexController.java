@@ -16,7 +16,7 @@ public class IndexController {
     
     @RequestMapping("/login")
     public String handleLogin() {
-		return "login";
+		return "loginView";
     }
     
 }
