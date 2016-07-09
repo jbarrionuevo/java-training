@@ -50,7 +50,7 @@ public class SaleRestController {
 	}
 	
 	@RequestMapping(value="/{saleId}",method = RequestMethod.PUT)
-	@ResponseStatus(value= HttpStatus.CREATED)
+	@ResponseStatus(value= HttpStatus.OK)
 	public void updateStatus(@PathVariable Long saleId, @RequestParam (value="status", required=true) String status){
 		saleService.update(saleId, status);
 	}
