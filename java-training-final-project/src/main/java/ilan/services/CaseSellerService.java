@@ -49,8 +49,8 @@ public class CaseSellerService {
 		this.caseSellerDao = caseSellerDao;
 	}
 	
-	public void save(CaseSeller caseSeller){
-		caseSellerDao.save(caseSeller);
+	public CaseSeller save(CaseSeller caseSeller){
+		return caseSellerDao.save(caseSeller);
 	}
 
 	@Transactional
@@ -81,7 +81,7 @@ public class CaseSellerService {
 	}
 
 	@Transactional
-	public void addSales(Long caseSellerId, Collection<Sale> sales) {
+	public void addSales(Long caseSellerId, Sale... sales) {
 		for(Sale sale:sales){
 			this.addSale(caseSellerId, sale);
 		}
