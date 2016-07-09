@@ -18,8 +18,8 @@ public class CaseWrapperService {
 	@Autowired
 	private CaseWrapperDao caseWrapperDao;
 	
-	public void saveCaseWrapper(CaseWrapper caseWrapper){
-		caseWrapperDao.save(caseWrapper);
+	public CaseWrapper saveCaseWrapper(CaseWrapper caseWrapper){
+		return caseWrapperDao.save(caseWrapper);
 	}
 	
 	@Transactional
