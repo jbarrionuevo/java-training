@@ -1,6 +1,7 @@
 package ilan.services;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -27,6 +28,7 @@ import ilan.daos.CaseOrderDao;
 import ilan.daos.CaseProductDao;
 import ilan.daos.CaseWrapperDao;
 import ilan.daos.InventoryDao;
+import ilan.exceptions.CaseWrapperNotFoundException;
 import ilan.models.CaseDesign;
 import ilan.models.CaseDevice;
 import ilan.models.CaseProduct;
@@ -179,6 +181,30 @@ public class InventoryServiceTest {
 		assertTrue(designsFound.containsAll(Arrays.asList(d1,d2)));
 		verify(inventoryDaoMock, times(1)).findAll();
 		verifyNoMoreInteractions(inventoryDaoMock);
+	}
+	
+	@Test
+	public void getDevices(){
+		CaseDevice d1 = new CaseDevice("d1");
+		CaseDevice d2 = new CaseDevice("d2");
+		CaseProduct p1 = new CaseProduct(new CaseDesign(), d1, 100.5, new Provider());
+		CaseProduct p2 = new CaseProduct(new CaseDesign(), d2, 100.5, new Provider());
+		Inventory inventory = new Inventory();
+		inventory.setStock(Arrays.asList(new CaseWrapper(p1, 10, 10, inventory), new CaseWrapper(p2, 10, 10, inventory)));
+		when(inventoryDaoMock.findAll()).thenReturn(Arrays.asList(inventory));
+		Collection<CaseDevice> devicesFound = inventoryService.getDevices();
+		assertTrue(devicesFound.size()==2);
+		assertTrue(devicesFound.containsAll(Arrays.asList(d1,d2)));
+		verify(inventoryDaoMock, times(1)).findAll();
+		verifyNoMoreInteractions(inventoryDaoMock);
+	}
+	
+	@Test(expected = CaseWrapperNotFoundException.class) 
+	public void setMinimumStock_CaseWrapperNotFound(){
+		CaseProduct p1 = new CaseProduct(new CaseDesign(), new CaseDevice(), 100.5, new Provider());
+		p1.setId(1L);
+		when(caseWrapperDaoMock.findByMyCaseId(1L)).thenReturn(null);
+		inventoryService.setMinimumStock(100, p1);
 	}
 
 }
