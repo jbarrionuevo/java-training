@@ -38,7 +38,7 @@ public class CaseDesignServiceTest {
 	CaseDesignDao caseDesignDaoMock;
 	
 	@InjectMocks
-	CaseDesignService cartDesignService;
+	CaseDesignService caseDesignService;
 	
 	@Before
     public void setup() {
@@ -49,7 +49,7 @@ public class CaseDesignServiceTest {
 	public void saveCaseDesign() throws Exception {
 		CaseDesign newDesign = new CaseDesign("design");
 		when(caseDesignDaoMock.save(newDesign)).thenReturn(newDesign);
-		CaseDesign designReturned = cartDesignService.saveCaseDesign(newDesign);
+		CaseDesign designReturned = caseDesignService.saveCaseDesign(newDesign);
 		assertEquals(designReturned, newDesign);
 	    verify(caseDesignDaoMock, times(1)).save(newDesign);
 		verifyNoMoreInteractions(caseDesignDaoMock);
@@ -60,7 +60,7 @@ public class CaseDesignServiceTest {
 		CaseDesign newDesign = new CaseDesign("design");
 		CaseDesign newDesign2 = new CaseDesign("design 2");
 		CaseDesign newDesign3 = new CaseDesign("design 3");
-		cartDesignService.saveCaseDesigns(newDesign,newDesign2,newDesign3);
+		caseDesignService.saveCaseDesigns(newDesign,newDesign2,newDesign3);
 	    verify(caseDesignDaoMock, times(3)).save(any(CaseDesign.class));
 		verifyNoMoreInteractions(caseDesignDaoMock);
 	}
@@ -68,14 +68,14 @@ public class CaseDesignServiceTest {
 	@Test(expected = CaseDesignNotFoundException.class) 
 	public void findByName_CaseDesignNotFound() {
 		when(caseDesignDaoMock.findByName("name")).thenReturn(null);
-		cartDesignService.findByName("name");
+		caseDesignService.findByName("name");
 	}
 	
 	@Test
 	public void findByName_CaseDesignFound() {
 		CaseDesign design = new CaseDesign("name");
 		when(caseDesignDaoMock.findByName("name")).thenReturn(design);
-		CaseDesign found = cartDesignService.findByName("name");
+		CaseDesign found = caseDesignService.findByName("name");
 		assertEquals(design, found);
 	    verify(caseDesignDaoMock, times(1)).findByName("name");
 		verifyNoMoreInteractions(caseDesignDaoMock);
@@ -87,7 +87,7 @@ public class CaseDesignServiceTest {
 		CaseDesign design2 = new CaseDesign("design 2");
 		CaseDesign design3 = new CaseDesign("design 3");
 		when(caseDesignDaoMock.findAll()).thenReturn(Arrays.asList(design,design2,design3));
-		Collection<CaseDesign> found = cartDesignService.findAllCaseDesignes();
+		Collection<CaseDesign> found = caseDesignService.findAllCaseDesignes();
 		assertTrue(found.size()==3);
 		assertTrue(found.containsAll(Arrays.asList(design,design2,design3)));
 	    verify(caseDesignDaoMock, times(1)).findAll();
