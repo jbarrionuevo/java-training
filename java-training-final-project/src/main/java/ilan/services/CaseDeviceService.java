@@ -17,8 +17,8 @@ public class CaseDeviceService {
 	@Autowired
 	CaseDeviceDao caseDeviceDao;
 	
-	public void saveCaseDevice(CaseDevice newCaseDevice){
-		caseDeviceDao.save(newCaseDevice);
+	public CaseDevice saveCaseDevice(CaseDevice newCaseDevice){
+		return caseDeviceDao.save(newCaseDevice);
 	}
 	
 	@Transactional

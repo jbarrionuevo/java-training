@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ilan.daos.CaseDesignDao;
+import ilan.exceptions.CaseDesignNotFoundException;
 import ilan.models.CaseProduct;
 import ilan.models.CaseDesign;
 import ilan.models.CaseDevice;
@@ -22,8 +23,8 @@ public class CaseDesignService {
 	@Autowired
 	CaseDesignDao caseDesignDao;
 	
-	public void saveCaseDesign(CaseDesign newCaseDesign){
-		caseDesignDao.save(newCaseDesign);
+	public CaseDesign saveCaseDesign(CaseDesign newCaseDesign){
+		return caseDesignDao.save(newCaseDesign);
 	}
 	
 	@Transactional
@@ -35,7 +36,9 @@ public class CaseDesignService {
 	}
 	
 	public CaseDesign findByName(String name){
-		return caseDesignDao.findByName(name);
+		CaseDesign caseDesign = caseDesignDao.findByName(name);
+		if(caseDesign==null) throw new CaseDesignNotFoundException(name);
+		return caseDesign;
 	}
 	
 	public Collection<CaseDesign> findAllCaseDesignes() {
