@@ -81,7 +81,7 @@ public class CaseSellerService {
 	}
 
 	@Transactional
-	public void addSales(Long caseSellerId, Sale... sales) {
+	public void addSales(Long caseSellerId, Collection<Sale> sales) {
 		for(Sale sale:sales){
 			this.addSale(caseSellerId, sale);
 		}
