@@ -35,8 +35,8 @@ public class ProviderService {
 	@Autowired
 	private CaseOrderDao caseOrderDao;
 	
-	public void saveProvider(Provider newProvider){
-		providerDao.save(newProvider);
+	public Provider saveProvider(Provider newProvider){
+		return providerDao.save(newProvider);
 	}
 	
 	@Transactional
