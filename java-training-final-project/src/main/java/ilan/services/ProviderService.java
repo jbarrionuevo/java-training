@@ -57,7 +57,7 @@ public class ProviderService {
 	@Transactional
 	public void addOrder(Long providerId, CaseOrder caseOrder, Long orderAlertId) {
 		Provider provider = providerDao.findOne(providerId);
-		if(provider==null) throw new ProviderNotFoundException(providerId.toString());
+		if(provider==null) throw new ilan.exceptions.ProviderNotFoundException(providerId);
 		caseOrder.setThirdPartyParticipant(provider);
 		provider.addOrder(caseOrder);
 		providerDao.save(provider);
@@ -72,7 +72,7 @@ public class ProviderService {
 
 	public Collection<CaseOrder> getProviderOrders(Long providerId,String delivered) {
 		Provider provider = providerDao.findOne(providerId);
-		if(provider==null) throw new ProviderNotFoundException(providerId.toString());
+		if(provider==null) throw new ilan.exceptions.ProviderNotFoundException(providerId);
 		if(delivered.equals("all")) return caseOrderDao.findByThirdPartyParticipant(provider);
 		else{
 			if(delivered.equals("false")) return caseOrderDao.findByThirdPartyParticipantAndDateOfDeliveryIsNull(provider);
