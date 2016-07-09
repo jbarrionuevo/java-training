@@ -1,6 +1,7 @@
 package ilan.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,12 +63,11 @@ public class SellerController {
 		long count = inventoryService.getInventoryCount();
 		long pageQuantity = count / 5;
 		if((count % 5) != 0) pageQuantity++;
-		SaleStatus[] status = SaleStatus.values();
 		model.addAttribute("inventory",wrappers);
     	model.addAttribute("designs",designs);
     	model.addAttribute("devices",devices);
     	model.addAttribute("pageQuantity",pageQuantity);
-		model.addAttribute("status",status);
+		model.addAttribute("status",new ArrayList<SaleStatus>(Arrays.asList(SaleStatus.CANCELLED,SaleStatus.DRAFT,SaleStatus.PAID,SaleStatus.CANCELLED)));
 		return "deliverySellerRegister";
 	}
 	
