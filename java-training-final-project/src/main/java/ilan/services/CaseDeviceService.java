@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ilan.daos.CaseDeviceDao;
+import ilan.exceptions.CaseDeviceNotFoundException;
 import ilan.models.CaseDevice;
 
 @Service
@@ -30,11 +31,15 @@ public class CaseDeviceService {
 	}
 	
 	public CaseDevice findBy(Long id){
-		return caseDeviceDao.findOne(id);
+		CaseDevice result = caseDeviceDao.findOne(id);
+		if(result==null) throw new CaseDeviceNotFoundException(id);
+		return result;
 	}
 	
 	public CaseDevice findByName(String name){
-		return caseDeviceDao.findByName(name);
+		CaseDevice result = caseDeviceDao.findByName(name);
+		if(result==null) throw new CaseDeviceNotFoundException(name);
+		return result;
 	}
 	
 }
