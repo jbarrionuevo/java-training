@@ -1,6 +1,9 @@
 package ilan.restcontrollers;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -69,6 +72,9 @@ public class CaseOrderRestControllerTest {
 	                .contentType(contentType)
 	                .content(gson.toJson(orderDTO)))
 	                .andExpect(status().isCreated());
+	    
+	    verify(caseOrderServiceMock, times(1)).save(any());
+		verifyNoMoreInteractions(caseOrderServiceMock);
 	}
 	
 
