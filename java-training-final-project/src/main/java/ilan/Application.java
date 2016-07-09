@@ -66,10 +66,12 @@ public class Application {
 		jdbcTemplate.batchUpdate("INSERT INTO INVENTORY(id) VALUES (1)");
 		return jdbcTemplate;
 	}
+	/** FINISH UNCOMMENT THIS THE FIRST TIME TO CREATE THE TABLES **/
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 
+		/** UNCOMMENT THIS THE FIRST TIME TO CREATE SOME CASES **/
 		CaseDeviceService caseDeviceService = ctx.getBean(CaseDeviceService.class);
 		CaseDesignService caseDesignService = ctx.getBean(CaseDesignService.class);
 		CaseProductService caseProductService = ctx.getBean(CaseProductService.class);
@@ -78,7 +80,6 @@ public class Application {
 		CaseWrapperService caseWrapperService = ctx.getBean(CaseWrapperService.class);
 		CaseSellerService caseSellerService = ctx.getBean(CaseSellerService.class);
 		
-		/** UNCOMMENT THIS THE FIRST TIME TO CREATE SOME CASES **/
 		CaseDesign design1 = new CaseDesign("design1");
 		CaseDesign design2 = new CaseDesign("design2");
 		CaseDesign design3 = new CaseDesign("design3");
@@ -126,11 +127,7 @@ public class Application {
 		caseSellerService.save(new DeliverySeller("delivery seller 1","Store"));
 		caseSellerService.save(new CompleteSeller("complete seller 1","Store"));
 		
-		/**THEN USE THIS TO UPDATE THE STOCK **/
-//		Collection<CaseProduct> cases = caseProductService.findAllCases();
-//		for(CaseProduct aCase: cases){
-//			inventoryService.incrementStock(aCase, 17);
-//		}
+		/** FINISH UNCOMMENT THIS THE FIRST TIME TO CREATE THE TABLES **/
 		
 	}
 	
