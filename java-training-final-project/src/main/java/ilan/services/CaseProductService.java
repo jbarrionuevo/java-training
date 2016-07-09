@@ -21,8 +21,8 @@ public class CaseProductService{
 //	@Autowired //commented to show that the injection is being taken from the beans.xml file
 	CaseProductDao caseProductDao;
 	
-	public void saveCase(CaseProduct newCase){
-	    caseProductDao.save(newCase);
+	public CaseProduct saveCase(CaseProduct newCase){
+	    return caseProductDao.save(newCase);
 	}
 	
 	@Transactional
