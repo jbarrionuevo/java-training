@@ -116,7 +116,7 @@ public class CaseSellerServiceTest {
 		CaseOrder order = new CaseOrder(new HashMap<Long,Integer>(){{put(1L, 41);}},new Date(), new Customer());
 		Sale sale1 = new Sale(order, new ArrayList<Receipt>(Arrays.asList(new Receipt("store", new Date(), new Customer()))),100.5,SaleStatus.DRAFT);
 		Sale sale2 = new Sale(order, new ArrayList<Receipt>(Arrays.asList(new Receipt("store", new Date(), new Customer()))),100.5,SaleStatus.DRAFT);
-		caseSellerServiceMock.addSales(1L,sale1,sale2);
+		caseSellerServiceMock.addSales(1L,Arrays.asList(sale1,sale2));
 	}
 
 }
