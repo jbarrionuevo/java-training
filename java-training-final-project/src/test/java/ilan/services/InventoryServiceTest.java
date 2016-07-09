@@ -120,5 +120,65 @@ public class InventoryServiceTest {
 		verify(caseWrapperDaoMock, times(1)).countByInventory(inventory);
 		verifyNoMoreInteractions(caseWrapperDaoMock);
 	}
+	
+	@Test
+	public void getCount_DesignAndDeviceNull(){
+		Inventory inventory = new Inventory();
+		when(inventoryDaoMock.findAll()).thenReturn(Arrays.asList(inventory));
+		when(caseWrapperDaoMock.countByInventory(inventory)).thenReturn(2L);
+		Long count = inventoryService.getCount(null,null);
+		assertTrue(count==2L);
+		verify(caseWrapperDaoMock, times(1)).countByInventory(inventory);
+		verifyNoMoreInteractions(caseWrapperDaoMock);
+	}
+	
+	@Test
+	public void getCount_DeviceNull(){
+		Inventory inventory = new Inventory();
+		when(inventoryDaoMock.findAll()).thenReturn(Arrays.asList(inventory));
+		when(caseWrapperDaoMock.countByInventoryAndMyCaseDesignName(inventory,"design")).thenReturn(2L);
+		Long count = inventoryService.getCount("design",null);
+		assertTrue(count==2L);
+		verify(caseWrapperDaoMock, times(1)).countByInventoryAndMyCaseDesignName(inventory,"design");
+		verifyNoMoreInteractions(caseWrapperDaoMock);
+	}
+	
+	@Test
+	public void getCount_DesignNull(){
+		Inventory inventory = new Inventory();
+		when(inventoryDaoMock.findAll()).thenReturn(Arrays.asList(inventory));
+		when(caseWrapperDaoMock.countByInventoryAndMyCaseDeviceName(inventory,"device")).thenReturn(2L);
+		Long count = inventoryService.getCount(null,"device");
+		assertTrue(count==2L);
+		verify(caseWrapperDaoMock, times(1)).countByInventoryAndMyCaseDeviceName(inventory,"device");
+		verifyNoMoreInteractions(caseWrapperDaoMock);
+	}
+	
+	@Test
+	public void getCount_DesignAndDevice(){
+		Inventory inventory = new Inventory();
+		when(inventoryDaoMock.findAll()).thenReturn(Arrays.asList(inventory));
+		when(caseWrapperDaoMock.countByInventoryAndMyCaseDesignNameAndMyCaseDeviceName(inventory,"design","device")).thenReturn(2L);
+		Long count = inventoryService.getCount("design","device");
+		assertTrue(count==2L);
+		verify(caseWrapperDaoMock, times(1)).countByInventoryAndMyCaseDesignNameAndMyCaseDeviceName(inventory,"design","device");
+		verifyNoMoreInteractions(caseWrapperDaoMock);
+	}
+	
+	@Test
+	public void getDesigns(){
+		CaseDesign d1 = new CaseDesign("d1");
+		CaseDesign d2 = new CaseDesign("d2");
+		CaseProduct p1 = new CaseProduct(d1, new CaseDevice(), 100.5, new Provider());
+		CaseProduct p2 = new CaseProduct(d2, new CaseDevice(), 100.5, new Provider());
+		Inventory inventory = new Inventory();
+		inventory.setStock(Arrays.asList(new CaseWrapper(p1, 10, 10, inventory), new CaseWrapper(p2, 10, 10, inventory)));
+		when(inventoryDaoMock.findAll()).thenReturn(Arrays.asList(inventory));
+		Collection<CaseDesign> designsFound = inventoryService.getDesigns();
+		assertTrue(designsFound.size()==2);
+		assertTrue(designsFound.containsAll(Arrays.asList(d1,d2)));
+		verify(inventoryDaoMock, times(1)).findAll();
+		verifyNoMoreInteractions(inventoryDaoMock);
+	}
 
 }
