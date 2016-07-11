@@ -51,19 +51,16 @@ public class InventoryController {
 
         return "allInventory";
     }
-    
-    
-    @RequestMapping(value="/addPost", method = RequestMethod.POST)
-    public String addPost(@RequestParam(value = "order") String orderStr){
-        
+
+    @RequestMapping(value = "/addPost", method = RequestMethod.POST)
+    public String addPost(@RequestParam(value = "order") String orderStr) {
+
         System.out.println("-----> " + orderStr);
-        
-         JSONObject jObj = new JSONObject(orderStr);
-         
-         System.out.println("-> " + jObj.get("order").toString());
-        
-        
-        
+
+        JSONObject jObj = new JSONObject(orderStr);
+
+        System.out.println("-> " + jObj.get("order").toString());
+
         return "index";
     }
 
@@ -103,9 +100,8 @@ public class InventoryController {
 
         Provider prov1 = new Provider();
         prov1.setName("Real Case");
-        
+
         // Provider has a List<CaseCover> casesCover
-        
         Device samsungS6 = new Cellphone("Samsung S6");
         Device iphone5 = new Cellphone("Iphone 5");
 
@@ -117,7 +113,7 @@ public class InventoryController {
 
         prov1.addCases(c);
 
-        providerService.newProvider(prov1);
+        providerService.add(prov1);
 
         return "index";
     }
@@ -132,7 +128,6 @@ public class InventoryController {
 //        order.put(1L, 20);
 //
 //        logisticService.addOrderToProvider(order, 1L);
-
         model.addAttribute("providers", providerService.getAll());
 
         return "addOrderToProvider";

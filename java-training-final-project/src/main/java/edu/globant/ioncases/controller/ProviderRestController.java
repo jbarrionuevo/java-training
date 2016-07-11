@@ -41,7 +41,7 @@ public class ProviderRestController {
     @ResponseBody
     public Provider getProvider(@RequestParam(value = "id") Long idProvider) {
 
-        return providerService.getProviderById(idProvider);
+        return providerService.get(idProvider);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
@@ -54,8 +54,10 @@ public class ProviderRestController {
     @ResponseBody
     public List<CaseCover> getAllCases(@RequestParam(value = "id") Long idProvider) {
 
-        Provider provider = providerService.getProviderById(idProvider);
+        Provider provider = providerService.get(idProvider);
 
+        System.out.println("-< " + provider.getName());
+        
         List<CaseCover> caseCover = provider.getCases();
 
         return provider.getCases();

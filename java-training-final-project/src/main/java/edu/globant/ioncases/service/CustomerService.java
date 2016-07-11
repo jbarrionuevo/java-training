@@ -12,15 +12,5 @@ import java.util.List;
  *
  * @author fedec
  */
-public interface CustomerService {
-
-    void add(Customer customer);
-
-    Customer getById(long id);
-
-    List<Customer> getAll();
-    
-    void update(Customer customer);
-
-    void remove(Customer customer);
+public interface CustomerService extends GenericService<Customer, Long>{
 }

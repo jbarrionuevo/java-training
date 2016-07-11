@@ -5,20 +5,14 @@
  */
 package edu.globant.ioncases.dao;
 
-import edu.globant.ioncases.model.CaseCover;
 import edu.globant.ioncases.model.Provider;
-import java.util.List;
 
 /**
  *
  * @author federico.calarco
  */
-public interface ProviderDao {
+public interface ProviderDao extends GenericDao<Provider, Long> {
     
-    Provider getById(Long id);
-    void addProvider(Provider provider);
-    List<Provider> getAll ();
-    List<CaseCover> casesAvailablesByProviderId();
-    
+
     
 }

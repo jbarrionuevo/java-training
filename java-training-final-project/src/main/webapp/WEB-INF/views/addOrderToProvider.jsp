@@ -63,12 +63,12 @@
             function getCases(provider) {
 
             $("#test").attr("disabled", "disabled");
-            var providerId = provider.value;
+            var id = provider.value;
             $.ajax({
             type: "GET",
                     url: "${pageContext.request.contextPath}/provider/getAllCasesByProvider",
                     datatype: 'text',
-                    data: {providerId},
+                    data: {id},
                     success: function (listCases) {
                     chargeCases(listCases);
                     },

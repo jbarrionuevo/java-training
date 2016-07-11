@@ -6,45 +6,26 @@
 package edu.globant.ioncases.service;
 
 import edu.globant.ioncases.dao.CustomerDao;
+import edu.globant.ioncases.dao.GenericDao;
 import edu.globant.ioncases.model.Customer;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author fedec
  */
-
 @Service
-public class CustomerServiceImpl implements CustomerService{
-    
-    @Autowired
-    CustomerDao customerDao;
+public class CustomerServiceImpl extends GenericServiceImpl<Customer, Long> implements CustomerService {
 
-    @Override
-    public void add(Customer customer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private CustomerDao customerDao;
+
+    public CustomerServiceImpl() {
     }
 
-    @Override
-    public Customer getById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public CustomerServiceImpl(@Qualifier("CustomerDaoImpl") GenericDao<Customer, Long> genericDao) {
+        super(genericDao);
+        this.customerDao = (CustomerDao) genericDao;
     }
 
-    @Override
-    public List<Customer> getAll() {
-        return customerDao.getAll();
-    }
-
-    @Override
-    public void update(Customer customer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(Customer customer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

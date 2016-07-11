@@ -9,10 +9,12 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -20,7 +22,9 @@ import org.springframework.stereotype.Repository;
  * @param <E> TODO
  * @param <K> TODO
  */
+@SuppressWarnings("unchecked")
 @Repository
+@Transactional
 public abstract class GenericDaoImpl<E, K extends Serializable> implements GenericDao<E, K> {
 
     @Autowired
@@ -65,7 +69,7 @@ public abstract class GenericDaoImpl<E, K extends Serializable> implements Gener
 
     @Override
     public List<E> getAll() {
-        return currentSession().createCriteria(daoType).list();
+        return currentSession().createCriteria(daoType).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
     }
 
 }

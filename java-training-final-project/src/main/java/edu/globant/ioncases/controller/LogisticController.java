@@ -28,6 +28,11 @@ public class LogisticController {
     public String addProvider(@RequestParam(value = "name") String name, @RequestParam(value = "inventoryUrl") String inventoryUrl) {
 
         System.out.println("-----------> " + name + "----> " + inventoryUrl);
+        
+        // 1) Send name & inventoryUrl to providerService.add(name,iventory)
+        // 2) 
+        
+        
         return "index";
     }
 

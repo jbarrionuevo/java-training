@@ -6,21 +6,10 @@
 package edu.globant.ioncases.service;
 
 import edu.globant.ioncases.model.Provider;
-import java.util.List;
 
 /**
  *
  * @author federico.calarco
  */
-public interface ProviderService {
-    
-    List<Provider> getAll();
-    
-    void newProvider(Provider provider);
-    
-    Provider getProviderById(Long id);
-
-    
-    
-    
+public interface ProviderService extends GenericService<Provider, Long> {
 }
