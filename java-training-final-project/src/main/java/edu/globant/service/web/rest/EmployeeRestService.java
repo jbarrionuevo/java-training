@@ -47,7 +47,7 @@ public class EmployeeRestService {
 			contactDtoList.add(mapper.getContactDto(employee));
 		}
 		EmployeeDtoList result = new EmployeeDtoList();
-		result.setContactList(contactDtoList);
+		result.setEmployeeList(contactDtoList);
 		return Response.ok(result).build();
 	}
 

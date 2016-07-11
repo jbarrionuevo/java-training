@@ -6,7 +6,8 @@
 
 	<session-factory>
 		<!-- Database connection settings -->
-		<!-- Delegated to the data source -->
+		<!-- Delegated to the data source 	
+		<property name="hibernate.hbm2ddl.auto">create</property>	-->
 		<property name="hibernate.connection.datasource">java:comp/env/jdbc/training</property>
         <property name="hibernate.current_session_context_class">managed</property>
 

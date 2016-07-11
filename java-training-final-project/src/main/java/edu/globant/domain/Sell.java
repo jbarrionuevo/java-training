@@ -2,7 +2,9 @@ package edu.globant.domain;
 
 import java.util.List;
 
-public abstract class Sell{
+import org.apache.commons.lang3.Validate;
+
+public class Sell extends BaseEntity{
 
 	private List<Case> items;
 
@@ -12,10 +14,18 @@ public abstract class Sell{
 
 	// status possible values: draft, paid, cancelled or refund
 	private SellStatus status;
-	
+
 	private String description;
 
 	private Store store;
+
+	public Sell(Store store, Employee seller) {		
+		Validate.notNull(store, "The store cannot be null.");
+		Validate.notNull(seller, "The seller cannot be null.");
+
+		this.seller = seller;
+		this.store = store;
+	}
 
 	public List<Case> getItems() {
 		return items;

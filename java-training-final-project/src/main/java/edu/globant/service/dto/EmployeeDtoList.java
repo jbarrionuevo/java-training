@@ -4,13 +4,13 @@ import java.util.List;
 
 public class EmployeeDtoList {
 
-	private List<EmployeeDto> contactList;
+	private List<EmployeeDto> employeeList;
 
 	public List<EmployeeDto> getContactList() {
-		return contactList;
+		return employeeList;
 	}
 
-	public void setContactList(List<EmployeeDto> contactList) {
-		this.contactList = contactList;
+	public void setEmployeeList(List<EmployeeDto> employeeList) {
+		this.employeeList = employeeList;
 	}
 }

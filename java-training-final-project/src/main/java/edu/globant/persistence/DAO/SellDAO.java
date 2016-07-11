@@ -1,12 +1,7 @@
 package edu.globant.persistence.DAO;
 
-import org.hibernate.Session;
+import edu.globant.domain.Sell;
 
-@SuppressWarnings("rawtypes")
-public class SellDAO extends AbstractDAO {
+public interface SellDAO extends GenericDAO<Sell>{
 
-	public SellDAO(Session session) {
-		super(session);
-		// TODO Auto-generated constructor stub
-	}
 }
