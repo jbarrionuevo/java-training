@@ -16,6 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -28,9 +30,11 @@ public class Provider implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<CaseCover> cases = new ArrayList<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<CaseProduct> cases = new ArrayList<>();
 
     public Provider() {
     }
@@ -51,15 +55,15 @@ public class Provider implements Serializable {
         this.name = name;
     }
 
-    public List<CaseCover> getCases() {
+    public List<CaseProduct> getCases() {
         return cases;
     }
 
-    public void setCases(List<CaseCover> cases) {
+    public void setCases(List<CaseProduct> cases) {
         this.cases = cases;
     }
 
-    public void addCases(CaseCover caseCover) {
+    public void addCases(CaseProduct caseCover) {
         cases.add(caseCover);
     }
 

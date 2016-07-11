@@ -10,9 +10,13 @@ import edu.globant.ioncases.dao.CaseDaoImpl;
 import edu.globant.ioncases.dao.InventoryDao;
 import edu.globant.ioncases.dao.InventoryDaoImpl;
 import edu.globant.ioncases.model.CaseCover;
+import edu.globant.ioncases.model.CaseProduct;
 import edu.globant.ioncases.model.Employee;
+import edu.globant.ioncases.model.Product;
 import edu.globant.ioncases.model.Store;
 import edu.globant.ioncases.model.StoreSeller;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -34,6 +38,18 @@ public class Test {
 //        
 //        caseDao.addCase(c);
 //        
+
+        List<Product> inventory = new ArrayList<>();
+        
+        
+        
+        Product p = new CaseProduct(20, 10, null, "Batman case");
+       
+        inventory.add(p);
+        
+        CaseProduct cp = (CaseProduct) inventory.get(0);
+        System.out.println("-> " + cp.getDesign());
+        
         System.out.println("ok");
     }
 }

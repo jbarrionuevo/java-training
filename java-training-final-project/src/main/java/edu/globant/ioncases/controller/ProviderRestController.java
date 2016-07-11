@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.globant.ioncases.model.CaseProduct;
 import edu.globant.ioncases.service.LogisticService;
 import java.io.IOException;
 
@@ -37,28 +38,30 @@ public class ProviderRestController {
     LogisticService logisticService;
 
     
-    @RequestMapping(value = "/show", method = RequestMethod.GET)
+//    @RequestMapping(value = "/show", method = RequestMethod.GET)
+//    @ResponseBody
+//    public Provider getProvider(@RequestParam(value = "id") Long idProvider) {
+//
+//        return providerService.get(idProvider);
+//    }
+//
+//    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+//    @ResponseBody
+//    public List<Provider> getAllProviders() {
+//        return providerService.getAll();
+//    }
+
+    @RequestMapping(value = "/getInventoryByProviderId", method = RequestMethod.GET)
     @ResponseBody
-    public Provider getProvider(@RequestParam(value = "id") Long idProvider) {
+    public List<CaseProduct> getAllCases(@RequestParam(value = "id") Long idProvider) {
 
-        return providerService.get(idProvider);
-    }
-
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Provider> getAllProviders() {
-        return providerService.getAll();
-    }
-
-    @RequestMapping(value = "/getAllCasesByProvider", method = RequestMethod.GET)
-    @ResponseBody
-    public List<CaseCover> getAllCases(@RequestParam(value = "id") Long idProvider) {
-
+        //TODO: get only inventory, not all provider
+        
         Provider provider = providerService.get(idProvider);
 
         System.out.println("-< " + provider.getName());
-        
-        List<CaseCover> caseCover = provider.getCases();
+
+        List<CaseProduct> caseCover = provider.getCases();
 
         return provider.getCases();
 

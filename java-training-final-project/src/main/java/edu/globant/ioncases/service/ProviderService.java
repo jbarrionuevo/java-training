@@ -12,4 +12,6 @@ import edu.globant.ioncases.model.Provider;
  * @author federico.calarco
  */
 public interface ProviderService extends GenericService<Provider, Long> {
+    
+    public void add(String name, String urlServiceInventory);
 }

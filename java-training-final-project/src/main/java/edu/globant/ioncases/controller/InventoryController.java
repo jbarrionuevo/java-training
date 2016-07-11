@@ -95,28 +95,28 @@ public class InventoryController {
         return "index";
     }
 
-    @RequestMapping(value = "/addProvider", method = RequestMethod.GET)
-    public String addProvider(Model model) {
-
-        Provider prov1 = new Provider();
-        prov1.setName("Real Case");
-
-        // Provider has a List<CaseCover> casesCover
-        Device samsungS6 = new Cellphone("Samsung S6");
-        Device iphone5 = new Cellphone("Iphone 5");
-
-        CaseCover c = new CaseCover("The Beatles case", 10);
-
-        c.addCompatibleDevices(samsungS6);
-        c.addCompatibleDevices(iphone5);
-        c.addProvider(prov1);
-
-        prov1.addCases(c);
-
-        providerService.add(prov1);
-
-        return "index";
-    }
+//    @RequestMapping(value = "/addProvider", method = RequestMethod.GET)
+//    public String addProvider(Model model) {
+//
+//        Provider prov1 = new Provider();
+//        prov1.setName("Real Case");
+//
+//        // Provider has a List<CaseCover> casesCover
+//        Device samsungS6 = new Cellphone("Samsung S6");
+//        Device iphone5 = new Cellphone("Iphone 5");
+//
+//        CaseCover c = new CaseCover("The Beatles case", 10);
+//
+//        c.addCompatibleDevices(samsungS6);
+//        c.addCompatibleDevices(iphone5);
+//        c.addProvider(prov1);
+//
+//        prov1.addCases(c);
+//
+//        providerService.add(prov1);
+//
+//        return "index";
+//    }
 
     @RequestMapping(value = "/addOrderToProvider", method = RequestMethod.GET)
     public String addOrderToProvider(Model model) {

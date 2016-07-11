@@ -32,23 +32,27 @@
                         <label for="name">NAME: </label><br/>
                         <input type="text" name="name" id="name" placeholder="Provider name" required autofocus/>
                     </div>
+
                     <br>
+
                     <div>
                         <label for="inventoryUrl">URL SERVICE INVENTORY: </label><br/>
-                        <input type="text" name="inventoryUrl" id="inventoryUrl" placeholder="http://localhost:8084/ProviderRest/provider/getInventory?id=1" required/>
-                        <button onclick="checkInventoryService(inventoryUrl.value)" id="btnCheckService">Check Service</button> 
+                        <input type="text" name="inventoryUrl" id="inventoryUrl" value="http://localhost:8084/ProviderRest/provider/getInventory?id=1" required/>
+                        <button type="button" onclick="checkInventoryService(inventoryUrl.value)" id="btnCheckService">Check Service</button> 
                     </div>
 
                     <br>
+
                     <button href="/">Cancel</button> 
                     <input type="submit"  value="Add provider"/>
 
                 </f:form>
+
             </div>
             <div class="col-md-6" style="background-color: white" id="inventory">Inventory: </div>
         </div>
-        <script>
 
+        <script>
             function checkInventoryService(urlService) {
 
                 console.log(urlService);
@@ -79,11 +83,7 @@
                     html = "<div>" + inventory.inventory[i].design + "</div>";
                     $('#inventory').append(html);
                 }
-
-
-
             }
-
         </script>
 
     </body>

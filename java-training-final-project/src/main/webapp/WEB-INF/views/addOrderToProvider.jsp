@@ -66,7 +66,7 @@
             var id = provider.value;
             $.ajax({
             type: "GET",
-                    url: "${pageContext.request.contextPath}/provider/getAllCasesByProvider",
+                    url: "${pageContext.request.contextPath}/provider/getInventoryByProviderId",
                     datatype: 'text',
                     data: {id},
                     success: function (listCases) {
