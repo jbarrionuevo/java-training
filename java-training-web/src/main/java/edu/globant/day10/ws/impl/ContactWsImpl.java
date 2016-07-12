@@ -15,7 +15,7 @@ import edu.globant.day10.mapper.Mapper;
 import edu.globant.day10.ws.ContactWs;
 import edu.globant.day9.domain.Contact;
 import edu.globant.day9.factory.ServiceFactory;
-import edu.globant.day9.service.ContactService;
+import edu.globant.day9.service.EmployeeService;
 
 @WebService(endpointInterface="edu.globant.day10.ws.ContactWs")
 public class ContactWsImpl implements ContactWs {
@@ -32,7 +32,7 @@ public class ContactWsImpl implements ContactWs {
 	@Override
 	public ContactDtoList getContactList() {
 		ServiceFactory serviceFactory = getServiceFactory();
-		ContactService contactService = serviceFactory.createContactService();
+		EmployeeService contactService = serviceFactory.createContactService();
 		List<Contact> contactList = contactService.findAll();
 		Mapper mapper = new Mapper();
 		List<ContactDto> contactDtoList = new ArrayList<>(contactList.size());

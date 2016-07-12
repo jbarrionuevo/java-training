@@ -17,7 +17,7 @@ import edu.globant.day10.dto.ContactDtoList;
 import edu.globant.day10.mapper.Mapper;
 import edu.globant.day9.domain.Contact;
 import edu.globant.day9.factory.ServiceFactory;
-import edu.globant.day9.service.ContactService;
+import edu.globant.day9.service.EmployeeService;
 
 @Path("/contacts")
 @Produces(MediaType.APPLICATION_JSON)
@@ -28,7 +28,7 @@ public class ContactRest {
 
 	Mapper mapper = new Mapper();
 
-	public ContactService getContactService() {
+	public EmployeeService getContactService() {
 		ServiceFactory serviceFactory = (ServiceFactory)request.getAttribute("serviceFactory");
 		return serviceFactory.createContactService();
 	}

@@ -5,7 +5,7 @@ import edu.globant.day9.dao.GenericDao;
 import edu.globant.day9.domain.Contact;
 
 public class ContactServiceImpl extends GenericServiceImpl<Contact>
-	implements ContactService {
+	implements EmployeeService {
 
 	private ContactDao dao;
 

@@ -6,14 +6,14 @@
 
 	<session-factory>
 		<!-- Database connection settings -->
-		<!-- Delegated to the data source 	
-		<property name="hibernate.hbm2ddl.auto">create</property>	-->
+		<!-- Delegated to the data source 	-->
+		<property name="hibernate.hbm2ddl.auto">create</property>
 		<property name="hibernate.connection.datasource">java:comp/env/jdbc/training</property>
         <property name="hibernate.current_session_context_class">managed</property>
 
-		<!-- SQL dialect -->
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
-
+		<!-- SQL dialect 
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>-->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">false</property>
 
