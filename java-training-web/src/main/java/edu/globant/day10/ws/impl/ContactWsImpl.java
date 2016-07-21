@@ -2,7 +2,6 @@ package edu.globant.day10.ws.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +38,7 @@ public class ContactWsImpl implements ContactWs {
 		for (Contact contact : contactList) {
 			contactDtoList.add(mapper.getContactDto(contact));
 		}
-		ContactDtoList result = new ContactDtoList();
+		ContactDtoList result = new ContactDtoList(); 		
 		result.setContactList(contactDtoList);
 		return result;
 	}

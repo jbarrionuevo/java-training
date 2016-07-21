@@ -4,10 +4,15 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 
 import edu.globant.service.employee.CreateEmployeeServiceImpl;
+import edu.globant.service.sales.CreateSalesServiceImpl;
 import edu.globant.domain.Employee;
+import edu.globant.domain.Sell;
+import edu.globant.domain.Store;
 import edu.globant.utils.MySQLDataSourceProvider;
 import edu.globant.persistence.DAO.EmployeeDAO;
 import edu.globant.persistence.DAO.EmployeeDAOImpl;
+import edu.globant.persistence.DAO.SellDAO;
+import edu.globant.persistence.DAO.SellDAOImpl;
 import edu.globant.persistence.DAO.hibernate.utils.HibernateUtils;
 
 import java.util.Scanner;
@@ -20,7 +25,8 @@ import org.slf4j.LoggerFactory;
 @EnableAutoConfiguration
 // @ComponentScan
 public class Application {
-	private static CreateEmployeeServiceImpl service;
+	private static CreateEmployeeServiceImpl employeeService;
+	private static CreateSalesServiceImpl serviceSell;
 	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 	private static final String configurationPath = "/edu/globant/config/database.properties";
 	private static final String hibernateConfigXml = "/edu/globant/config/hibernate.cfg.xml";
@@ -44,9 +50,18 @@ public class Application {
 			Application application = new Application(sessionFactory);
 
 			EmployeeDAO employeeDAO = new EmployeeDAOImpl(sessionFactory.openSession());
-			service = new CreateEmployeeServiceImpl(employeeDAO);
+			employeeService = new CreateEmployeeServiceImpl(employeeDAO);
 			
-			service.create(new Employee("Juan", "seller"));
+			employeeService.create(new Employee("Juan", "seller"));
+			
+			SellDAO sellDAO = new SellDAOImpl(sessionFactory.getCurrentSession());
+			serviceSell = new CreateSalesServiceImpl(sellDAO);
+			
+			employeeService.create(new Employee("Juan", "seller"));
+			
+			Sell sell1 = new Sell(new Store("Local1", "Carapachay"), new Employee("Juan", "seller"));
+			
+			serviceSell.create(sell1);
 		} catch (Exception e) {
 			LOGGER.error("Something terrible happened.", e);
 		}

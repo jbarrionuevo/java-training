@@ -24,4 +24,3 @@ public class CreateSalesServiceImpl extends GenericServiceImpl<Long, Sell> imple
 		return sellDAO;
 	}
 }
-

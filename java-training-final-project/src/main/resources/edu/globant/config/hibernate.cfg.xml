@@ -6,7 +6,7 @@
 	<session-factory>
 		<!-- Database connection settings -->
 		<!-- Added by jbarrionuevo -->
-		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
 
 		<!-- Delegated to the data source -->
 

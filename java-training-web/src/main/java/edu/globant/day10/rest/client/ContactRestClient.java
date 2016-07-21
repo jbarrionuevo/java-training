@@ -12,6 +12,7 @@ public class ContactRestClient {
 		String resultFromGetToBaseUrl = Unirest.get(baseUrl + "/{id}")
 				.routeParam("id", "1")
 				.asString().getBody();
+		
 		ObjectMapper mapper = new ObjectMapper();
 		ContactDto contactDto = mapper.readValue(resultFromGetToBaseUrl, ContactDto.class);
 		System.out.println(String.format("%s %s", contactDto.getFirstName(), contactDto.getLastName()));
